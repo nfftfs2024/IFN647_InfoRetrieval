@@ -1,0 +1,37 @@
+C:\Users\Alan\Desktop\Teaching\ITN647 - Advanced IR\Pracs\Week 6\Working\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\bin\Debug\LuceneAdvancedSearchApplication.exe.config
+C:\Users\Alan\Desktop\Teaching\ITN647 - Advanced IR\Pracs\Week 6\Working\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\bin\Debug\LuceneAdvancedSearchApplication.exe
+C:\Users\Alan\Desktop\Teaching\ITN647 - Advanced IR\Pracs\Week 6\Working\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\bin\Debug\LuceneAdvancedSearchApplication.pdb
+C:\Users\Alan\Desktop\Teaching\ITN647 - Advanced IR\Pracs\Week 6\Working\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\bin\Debug\Lucene.Net.dll
+C:\Users\Alan\Desktop\Teaching\ITN647 - Advanced IR\Pracs\Week 6\Working\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\bin\Debug\Lucene.Net.pdb
+C:\Users\Alan\Desktop\Teaching\ITN647 - Advanced IR\Pracs\Week 6\Working\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\obj\Debug\LuceneAdvancedSearchApplication.exe
+C:\Users\Alan\Desktop\Teaching\ITN647 - Advanced IR\Pracs\Week 6\Working\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\obj\Debug\LuceneAdvancedSearchApplication.pdb
+C:\Users\Alan\Desktop\Teaching\ITN647 - Advanced IR\Pracs\Week 6\Working\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\bin\Debug\Lucene.Net.Contrib.Analyzers.dll
+C:\Users\Alan\Desktop\Teaching\ITN647 - Advanced IR\Pracs\Week 6\Working\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\bin\Debug\Lucene.Net.Contrib.Snowball.dll
+C:\Users\Alan\Desktop\Teaching\ITN647 - Advanced IR\Pracs\Week 6\Working\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\bin\Debug\Lucene.Net.Contrib.Analyzers.pdb
+C:\Users\Alan\Desktop\Teaching\ITN647 - Advanced IR\Pracs\Week 6\Working\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\bin\Debug\Lucene.Net.Contrib.Snowball.pdb
+C:\Users\Alan\Desktop\Teaching\ITN647 - Advanced IR\Pracs\Week 6\Questions\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\bin\Debug\LuceneAdvancedSearchApplication.exe.config
+C:\Users\Alan\Desktop\Teaching\ITN647 - Advanced IR\Pracs\Week 6\Questions\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\obj\Debug\LuceneAdvancedSearchApplication.exe
+C:\Users\Alan\Desktop\Teaching\ITN647 - Advanced IR\Pracs\Week 6\Questions\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\obj\Debug\LuceneAdvancedSearchApplication.pdb
+C:\Users\Alan\Desktop\Teaching\ITN647 - Advanced IR\Pracs\Week 6\Questions\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\bin\Debug\LuceneAdvancedSearchApplication.exe
+C:\Users\Alan\Desktop\Teaching\ITN647 - Advanced IR\Pracs\Week 6\Questions\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\bin\Debug\LuceneAdvancedSearchApplication.pdb
+C:\Users\Alan\Desktop\Teaching\ITN647 - Advanced IR\Pracs\Week 6\Questions\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\bin\Debug\Lucene.Net.Contrib.Analyzers.dll
+C:\Users\Alan\Desktop\Teaching\ITN647 - Advanced IR\Pracs\Week 6\Questions\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\bin\Debug\Lucene.Net.Contrib.Snowball.dll
+C:\Users\Alan\Desktop\Teaching\ITN647 - Advanced IR\Pracs\Week 6\Questions\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\bin\Debug\Lucene.Net.dll
+C:\Users\Alan\Desktop\Teaching\ITN647 - Advanced IR\Pracs\Week 6\Questions\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\bin\Debug\Lucene.Net.pdb
+C:\Users\Alan\Desktop\Teaching\ITN647 - Advanced IR\Pracs\Week 6\Questions\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\bin\Debug\Lucene.Net.Contrib.Analyzers.pdb
+C:\Users\Alan\Desktop\Teaching\ITN647 - Advanced IR\Pracs\Week 6\Questions\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\bin\Debug\Lucene.Net.Contrib.Snowball.pdb
+C:\Users\Alan\Desktop\Teaching\ITN647 - Advanced IR\Pracs\Week 6\Questions\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\obj\Debug\LuceneAdvancedSearchApplication.csprojResolveAssemblyReference.cache
+D:\Desktop\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\bin\Debug\LuceneAdvancedSearchApplication.exe.config
+D:\Desktop\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\bin\Debug\LuceneAdvancedSearchApplication.exe
+D:\Desktop\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\bin\Debug\LuceneAdvancedSearchApplication.pdb
+D:\Desktop\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\bin\Debug\ICSharpCode.SharpZipLib.dll
+D:\Desktop\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\bin\Debug\Lucene.Net.dll
+D:\Desktop\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\bin\Debug\Lucene.Net.pdb
+D:\Desktop\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\bin\Debug\Lucene.Net.xml
+D:\Desktop\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\bin\Debug\Lucene.Net.Contrib.Analyzers.pdb
+D:\Desktop\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\bin\Debug\Lucene.Net.Contrib.Snowball.pdb
+D:\Desktop\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\obj\Debug\LuceneAdvancedSearchApplication.csprojResolveAssemblyReference.cache
+D:\Desktop\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\obj\Debug\LuceneAdvancedSearchApplication.csproj.CoreCompileInputs.cache
+D:\Desktop\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\obj\Debug\LuceneAdvancedSearchApplication.csproj.CopyComplete
+D:\Desktop\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\obj\Debug\LuceneAdvancedSearchApplication.exe
+D:\Desktop\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\obj\Debug\LuceneAdvancedSearchApplication.pdb
