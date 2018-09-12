@@ -9,7 +9,7 @@ using Lucene.Net.Index; //for Index Writer
 using Lucene.Net.Store; //for Directory
 using Lucene.Net.Search; // for IndexSearcher
 using Lucene.Net.QueryParsers;  // for QueryParser
-using Lucene.Net.Analysis.Snowball; // for snowball analyser 
+using Lucene.Net.Analysis.Snowball; 
 
 namespace LuceneAdvancedSearchApplication
 {
