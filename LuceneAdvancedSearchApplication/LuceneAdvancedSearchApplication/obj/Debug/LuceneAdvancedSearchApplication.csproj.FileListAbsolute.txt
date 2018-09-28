@@ -35,3 +35,17 @@ D:\Desktop\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\obj\D
 D:\Desktop\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\obj\Debug\LuceneAdvancedSearchApplication.csproj.CopyComplete
 D:\Desktop\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\obj\Debug\LuceneAdvancedSearchApplication.exe
 D:\Desktop\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\obj\Debug\LuceneAdvancedSearchApplication.pdb
+C:\Users\JamesC\Source\Repos\ifn647-project\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\bin\Debug\LuceneAdvancedSearchApplication.exe.config
+C:\Users\JamesC\Source\Repos\ifn647-project\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\bin\Debug\LuceneAdvancedSearchApplication.exe
+C:\Users\JamesC\Source\Repos\ifn647-project\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\bin\Debug\LuceneAdvancedSearchApplication.pdb
+C:\Users\JamesC\Source\Repos\ifn647-project\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\bin\Debug\ICSharpCode.SharpZipLib.dll
+C:\Users\JamesC\Source\Repos\ifn647-project\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\bin\Debug\Lucene.Net.dll
+C:\Users\JamesC\Source\Repos\ifn647-project\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\bin\Debug\Lucene.Net.pdb
+C:\Users\JamesC\Source\Repos\ifn647-project\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\bin\Debug\Lucene.Net.xml
+C:\Users\JamesC\Source\Repos\ifn647-project\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\bin\Debug\Lucene.Net.Contrib.Analyzers.pdb
+C:\Users\JamesC\Source\Repos\ifn647-project\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\bin\Debug\Lucene.Net.Contrib.Snowball.pdb
+C:\Users\JamesC\Source\Repos\ifn647-project\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\obj\Debug\LuceneAdvancedSearchApplication.csprojResolveAssemblyReference.cache
+C:\Users\JamesC\Source\Repos\ifn647-project\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\obj\Debug\LuceneAdvancedSearchApplication.csproj.CoreCompileInputs.cache
+C:\Users\JamesC\Source\Repos\ifn647-project\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\obj\Debug\LuceneAdvancedSearchApplication.csproj.CopyComplete
+C:\Users\JamesC\Source\Repos\ifn647-project\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\obj\Debug\LuceneAdvancedSearchApplication.exe
+C:\Users\JamesC\Source\Repos\ifn647-project\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\obj\Debug\LuceneAdvancedSearchApplication.pdb

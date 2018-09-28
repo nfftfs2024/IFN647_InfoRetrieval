@@ -150,22 +150,40 @@ namespace LuceneAdvancedSearchApplication
                     StreamReader reader = new StreamReader(name);   // Create a reader
                     string text = reader.ReadToEnd();   // Read the whole text
 
-                    //Console.WriteLine(text);
-                    Lucene.Net.Documents.Field field = new Field(TEXT_FN, text, Field.Store.YES, Field.Index.ANALYZED, Field.TermVector.YES);
-                    Lucene.Net.Documents.Document doc = new Document();
-                    doc.Add(field);
-                    writer.AddDocument(doc);
+                    int indexI = text.IndexOf(".I ") + 3;   // Get ID starting index
+                    int indexT = text.IndexOf(".T\r\n");    // Get title starting index
+                    int indexA = text.IndexOf(".A\r\n");    // Get author starting index
+                    int indexB = text.IndexOf(".B\r\n");    // Get bibliography starting index
+                    int indexW = text.IndexOf(".W\r\n");    // Get words starting index
+
+                    //Console.WriteLine(text.Substring(indexI, indexT-2-indexI));
+                    //Console.WriteLine(text.Substring(indexT + 4, ((indexA - 2 - (indexT + 4)) > 0) ? (indexA - 2 - (indexA + 4)) : 0));
+                    //Console.WriteLine(text.Substring(indexA + 4, ((indexB - 2 - (indexA + 4)) > 0) ? (indexB - 2 - (indexA + 4)) : 0));
+                    //Console.WriteLine(text.Substring(indexB + 4, ((indexW - 2 - (indexB + 4)) > 0) ? (indexW - 2 - (indexB + 4)) : 0));
+                    //Console.WriteLine(text.Substring(indexW + 4, text.Length - 6 - indexW));
+
+                    string id = text.Substring(indexI, indexT-2-indexI);    // Get ID string
+                    string title = text.Substring(indexT + 4, ((indexA - 2 - (indexT + 4)) > 0) ? (indexA - 2 - (indexT + 4)) : 0);     // Get title string
+                    string author = text.Substring(indexA + 4, ((indexB - 2 - (indexA + 4)) > 0) ? (indexB - 2 - (indexA + 4)) : 0);    // Get author string
+                    string biblio = text.Substring(indexB + 4, ((indexW - 2 - (indexB + 4)) > 0) ? (indexW - 2 - (indexB + 4)) : 0);    // Get bibliography string
+                    string words = text.Substring(indexW + 4, ((text.Length - 2 - (indexW + 4)) > 0) ? (text.Length - 2 - (indexW + 4)) : 0);   // Get words string
+
+                    Lucene.Net.Documents.Document doc = new Document();     // Create document
+                    // Add 5 fields to the document
+                    doc.Add(new Lucene.Net.Documents.Field("id", id, Field.Store.YES, Field.Index.ANALYZED, Field.TermVector.YES));
+                    doc.Add(new Lucene.Net.Documents.Field("title", title, Field.Store.YES, Field.Index.ANALYZED, Field.TermVector.YES));
+                    doc.Add(new Lucene.Net.Documents.Field("author", author, Field.Store.YES, Field.Index.ANALYZED, Field.TermVector.YES));
+                    doc.Add(new Lucene.Net.Documents.Field("bibliography", biblio, Field.Store.YES, Field.Index.ANALYZED, Field.TermVector.YES));
+                    doc.Add(new Lucene.Net.Documents.Field("words", words, Field.Store.YES, Field.Index.ANALYZED, Field.TermVector.YES));
+                    writer.AddDocument(doc);    // Add document
                 }
-
             }
-
         }
         static void Main(string[] args)
         {
             System.Console.WriteLine("Hello Lucene.Net");
 
             LuceneAdvancedSearchApplication myLuceneApp = new LuceneAdvancedSearchApplication();
-
             // source collection
             //List<string> l = new List<string>();
             //l.Add("The magical world of oz");
@@ -173,7 +191,6 @@ namespace LuceneAdvancedSearchApplication
             //l.Add("Possum magic");
             //l.Add("Mad isn't bad");
             //l.Add("Mad's greatest hits");
-
 
             // Index code
             string indexPath = @"C:\LuceneFolder";
