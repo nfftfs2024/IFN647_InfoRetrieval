@@ -31,7 +31,7 @@ namespace LuceneAdvancedSearchApplication
         {
             luceneIndexDirectory = null;
             writer = null;
-            analyzer = new Lucene.Net.Analysis.Snowball.SnowballAnalyzer(VERSION, "English");      // Stop analyzer takes 
+            analyzer = new Lucene.Net.Analysis.SimpleAnalyzer();      // Stop analyzer takes 
             parser = new QueryParser(Lucene.Net.Util.Version.LUCENE_30, TEXT_FN, analyzer);
             newSimilarity = new NewSimilarity();
 
@@ -83,16 +83,16 @@ namespace LuceneAdvancedSearchApplication
 
             TopDocs results = searcher.Search(query, 100);
             System.Console.WriteLine("Number of results is " + results.TotalHits);
-            int rank = 0;
-            foreach (ScoreDoc scoreDoc in results.ScoreDocs)
-            {
-                rank++;
-                Lucene.Net.Documents.Document doc = searcher.Doc(scoreDoc.Doc);
-                Lucene.Net.Search.Explanation exp = searcher.Explain(query, scoreDoc.Doc);
-                string myFieldValue = doc.Get(TEXT_FN).ToString();
-                Console.WriteLine("Rank " + rank + " text " + myFieldValue + "\n" + exp.ToString());
+            //int rank = 0;
+            //foreach (ScoreDoc scoreDoc in results.ScoreDocs)
+            //{
+            //    rank++;
+            //    Lucene.Net.Documents.Document doc = searcher.Doc(scoreDoc.Doc);
+            //    Lucene.Net.Search.Explanation exp = searcher.Explain(query, scoreDoc.Doc);
+            //    string myFieldValue = doc.Get("words").ToString();
+            //    Console.WriteLine("Rank " + rank + " text " + myFieldValue + "\n" + exp.ToString());
 
-            }
+            //}
 
 
         }
@@ -170,15 +170,81 @@ namespace LuceneAdvancedSearchApplication
 
                     Lucene.Net.Documents.Document doc = new Document();     // Create document
                     // Add 5 fields to the document
-                    doc.Add(new Lucene.Net.Documents.Field("id", id, Field.Store.YES, Field.Index.ANALYZED, Field.TermVector.YES));
-                    doc.Add(new Lucene.Net.Documents.Field("title", title, Field.Store.YES, Field.Index.ANALYZED, Field.TermVector.YES));
-                    doc.Add(new Lucene.Net.Documents.Field("author", author, Field.Store.YES, Field.Index.ANALYZED, Field.TermVector.YES));
-                    doc.Add(new Lucene.Net.Documents.Field("bibliography", biblio, Field.Store.YES, Field.Index.ANALYZED, Field.TermVector.YES));
-                    doc.Add(new Lucene.Net.Documents.Field("words", words, Field.Store.YES, Field.Index.ANALYZED, Field.TermVector.YES));
+                    //doc.Add(new Lucene.Net.Documents.Field("id", id, Field.Store.YES, Field.Index.ANALYZED, Field.TermVector.YES));
+                    //doc.Add(new Lucene.Net.Documents.Field("title", title, Field.Store.YES, Field.Index.ANALYZED, Field.TermVector.YES));
+                    //doc.Add(new Lucene.Net.Documents.Field("author", author, Field.Store.YES, Field.Index.ANALYZED, Field.TermVector.YES));
+                    //doc.Add(new Lucene.Net.Documents.Field("bibliography", biblio, Field.Store.YES, Field.Index.ANALYZED, Field.TermVector.YES));
+                    //doc.Add(new Lucene.Net.Documents.Field("words", words, Field.Store.YES, Field.Index.ANALYZED, Field.TermVector.YES));
+                    doc.Add(new Lucene.Net.Documents.Field(TEXT_FN, text, Field.Store.YES, Field.Index.ANALYZED, Field.TermVector.YES));
+
                     writer.AddDocument(doc);    // Add document
                 }
             }
         }
+
+
+        public Dictionary<string, string> ReadCranNeeds(string path)    // Load cran_information_need into a dictionary
+        {
+            Dictionary <string, string> dic = new Dictionary<string, string>(); // Create a dictionary
+            try
+            {
+                using (StreamReader reader = new StreamReader(path))
+                {
+                    string text = reader.ReadToEnd();   // Read the whole text file
+                    string[] sub = text.Split(new string[] { ".I " }, StringSplitOptions.RemoveEmptyEntries);   // Split by ".I "
+
+                    foreach (string need in sub)       // Loop through each query
+                    {
+                        int indexD = text.IndexOf(".D\r\n");   // Get Description starting index
+                        //Console.WriteLine(indexD);
+                        //Console.WriteLine(need.Substring(0, indexD - 5));
+                        //Console.WriteLine(need.Substring(indexD + 1));
+                        dic.Add(need.Substring(0, indexD - 5), need.Substring(indexD + 1));     // Add ID and Description into dictionary as pairs
+                    }
+
+                    //Console.WriteLine(dic["001"]);
+                    //foreach (KeyValuePair<string, string> kvp in dic)
+                    //{
+                    //    //textBox3.Text += ("Key = {0}, Value = {1}", kvp.Key, kvp.Value);
+                    //    Console.WriteLine(kvp.Key);
+                    //    Console.WriteLine(kvp.Value);
+                    //}
+                    //foreach (string i in sub)
+                    //{
+                    //    Console.WriteLine(i);
+                    //}
+
+                    //int indexI = text.IndexOf(".I ") + 3;   // Get ID starting index
+                    //int indexT = text.IndexOf(".T\r\n");    // Get title starting index
+                    //int indexA = text.IndexOf(".A\r\n");    // Get author starting index
+                    //int indexB = text.IndexOf(".B\r\n");    // Get bibliography starting index
+                    //int indexW = text.IndexOf(".W\r\n");    // Get words starting index
+
+                    ////Console.WriteLine(text.Substring(indexI, indexT-2-indexI));
+                    ////Console.WriteLine(text.Substring(indexT + 4, ((indexA - 2 - (indexT + 4)) > 0) ? (indexA - 2 - (indexA + 4)) : 0));
+                    ////Console.WriteLine(text.Substring(indexA + 4, ((indexB - 2 - (indexA + 4)) > 0) ? (indexB - 2 - (indexA + 4)) : 0));
+                    ////Console.WriteLine(text.Substring(indexB + 4, ((indexW - 2 - (indexB + 4)) > 0) ? (indexW - 2 - (indexB + 4)) : 0));
+                    ////Console.WriteLine(text.Substring(indexW + 4, text.Length - 6 - indexW));
+
+                    //string id = text.Substring(indexI, indexT - 2 - indexI);    // Get ID string
+                    //string title = text.Substring(indexT + 4, ((indexA - 2 - (indexT + 4)) > 0) ? (indexA - 2 - (indexT + 4)) : 0);     // Get title string
+                    //string author = text.Substring(indexA + 4, ((indexB - 2 - (indexA + 4)) > 0) ? (indexB - 2 - (indexA + 4)) : 0);    // Get author string
+                    //string biblio = text.Substring(indexB + 4, ((indexW - 2 - (indexB + 4)) > 0) ? (indexW - 2 - (indexB + 4)) : 0);    // Get bibliography string
+                    //string words = text.Substring(indexW + 4, ((text.Length - 2 - (indexW + 4)) > 0) ? (text.Length - 2 - (indexW + 4)) : 0);   // Get words string
+
+                    //Console.WriteLine(line);
+                }
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("couldn't read");
+                Console.WriteLine(e.Message);
+            }
+            return dic;
+        }
+
+
         static void Main(string[] args)
         {
             System.Console.WriteLine("Hello Lucene.Net");
@@ -195,6 +261,7 @@ namespace LuceneAdvancedSearchApplication
             // Index code
             string indexPath = @"C:\LuceneFolder";
             string sourcePath = @"D:\Desktop\ifn647-project\LuceneAdvancedSearchApplication\crandocs";
+            string needsPath = @"D:\Desktop\ifn647-project\LuceneAdvancedSearchApplication\cran_information_needs.txt";
 
             DateTime start = System.DateTime.Now;   // Indexing time starts
             myLuceneApp.CreateIndex(indexPath);     // Create index at the given path
@@ -205,16 +272,17 @@ namespace LuceneAdvancedSearchApplication
             DateTime end = System.DateTime.Now;   // Indexing time ends
             Console.WriteLine("The time for creating index was " + (end - start));  // Calculate and show the indexing time
 
-
+            Dictionary <string, string> cranNeeds = myLuceneApp.ReadCranNeeds(needsPath);
+            //Console.WriteLine(cranNeeds["001"]);
+            Console.ReadKey();
             //// Searching Code
+            //start = System.DateTime.Now;   //Searching time starts
             //myLuceneApp.CreateSearcher();
-
-            //myLuceneApp.SearchText("mad");
-
+            //myLuceneApp.SearchText("what \"similarity laws\" must be obeyed when constructing aeroelastic models of heated high speed aircraft.");
             //myLuceneApp.CleanUpSearcher();
-
-
-            Console.ReadLine();
+            //end = System.DateTime.Now;   // Searching time starts
+            //Console.WriteLine("The time for creating index was " + (end - start));  // Calculate and show the searching time
+            //Console.ReadLine();
         }
     }
 }
