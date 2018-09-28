@@ -32,7 +32,7 @@ namespace LuceneAdvancedSearchApplication
             luceneIndexDirectory = null;
             writer = null;
             analyzer = new Lucene.Net.Analysis.SimpleAnalyzer();      // Stop analyzer takes 
-            parser = new QueryParser(Lucene.Net.Util.Version.LUCENE_30, TEXT_FN, analyzer);
+            parser = new QueryParser(Lucene.Net.Util.Version.LUCENE_30, "author", analyzer);
             newSimilarity = new NewSimilarity();
 
         }
@@ -170,12 +170,12 @@ namespace LuceneAdvancedSearchApplication
 
                     Lucene.Net.Documents.Document doc = new Document();     // Create document
                     // Add 5 fields to the document
-                    //doc.Add(new Lucene.Net.Documents.Field("id", id, Field.Store.YES, Field.Index.ANALYZED, Field.TermVector.YES));
-                    //doc.Add(new Lucene.Net.Documents.Field("title", title, Field.Store.YES, Field.Index.ANALYZED, Field.TermVector.YES));
-                    //doc.Add(new Lucene.Net.Documents.Field("author", author, Field.Store.YES, Field.Index.ANALYZED, Field.TermVector.YES));
-                    //doc.Add(new Lucene.Net.Documents.Field("bibliography", biblio, Field.Store.YES, Field.Index.ANALYZED, Field.TermVector.YES));
-                    //doc.Add(new Lucene.Net.Documents.Field("words", words, Field.Store.YES, Field.Index.ANALYZED, Field.TermVector.YES));
-                    doc.Add(new Lucene.Net.Documents.Field(TEXT_FN, text, Field.Store.YES, Field.Index.ANALYZED, Field.TermVector.YES));
+                    doc.Add(new Lucene.Net.Documents.Field("id", id, Field.Store.YES, Field.Index.ANALYZED, Field.TermVector.YES));
+                    doc.Add(new Lucene.Net.Documents.Field("title", title, Field.Store.YES, Field.Index.ANALYZED, Field.TermVector.YES));
+                    doc.Add(new Lucene.Net.Documents.Field("author", author, Field.Store.YES, Field.Index.ANALYZED, Field.TermVector.YES));
+                    doc.Add(new Lucene.Net.Documents.Field("bibliography", biblio, Field.Store.YES, Field.Index.ANALYZED, Field.TermVector.YES));
+                    doc.Add(new Lucene.Net.Documents.Field("words", words, Field.Store.YES, Field.Index.ANALYZED, Field.TermVector.YES));
+                    //doc.Add(new Lucene.Net.Documents.Field(TEXT_FN, text, Field.Store.YES, Field.Index.ANALYZED, Field.TermVector.YES));
 
                     writer.AddDocument(doc);    // Add document
                 }
@@ -263,6 +263,7 @@ namespace LuceneAdvancedSearchApplication
             string sourcePath = @"D:\Desktop\ifn647-project\LuceneAdvancedSearchApplication\crandocs";
             string needsPath = @"D:\Desktop\ifn647-project\LuceneAdvancedSearchApplication\cran_information_needs.txt";
 
+            TextAnalyser.TextAnalyser textAnalyser = new TextAnalyser.TextAnalyser();
             DateTime start = System.DateTime.Now;   // Indexing time starts
             myLuceneApp.CreateIndex(indexPath);     // Create index at the given path
             System.Console.WriteLine("Adding Documents to Index");
@@ -283,7 +284,7 @@ namespace LuceneAdvancedSearchApplication
             //    myLuceneApp.SearchText(entry.Value);
 
             //}
-            myLuceneApp.SearchText("heat transfer");
+            myLuceneApp.SearchText("ferri");
             myLuceneApp.CleanUpSearcher();
             end = System.DateTime.Now;   // Searching time starts
             Console.WriteLine("The time for creating index was " + (end - start));  // Calculate and show the searching time
