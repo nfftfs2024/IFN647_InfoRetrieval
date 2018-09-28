@@ -199,7 +199,7 @@ namespace LuceneAdvancedSearchApplication
                         //Console.WriteLine(indexD);
                         //Console.WriteLine(need.Substring(0, indexD - 5));
                         //Console.WriteLine(need.Substring(indexD + 1));
-                        dic.Add(need.Substring(0, indexD - 5), need.Substring(indexD + 1));     // Add ID and Description into dictionary as pairs
+                        dic.Add(need.Substring(0, indexD - 5), need.Substring(indexD + 1).TrimEnd('\r', '\n'));     // Add ID and Description into dictionary as pairs
                     }
 
                     //Console.WriteLine(dic["001"]);
@@ -274,15 +274,20 @@ namespace LuceneAdvancedSearchApplication
 
             Dictionary <string, string> cranNeeds = myLuceneApp.ReadCranNeeds(needsPath);
             //Console.WriteLine(cranNeeds["001"]);
-            Console.ReadKey();
+
             //// Searching Code
-            //start = System.DateTime.Now;   //Searching time starts
-            //myLuceneApp.CreateSearcher();
-            //myLuceneApp.SearchText("what \"similarity laws\" must be obeyed when constructing aeroelastic models of heated high speed aircraft.");
-            //myLuceneApp.CleanUpSearcher();
-            //end = System.DateTime.Now;   // Searching time starts
-            //Console.WriteLine("The time for creating index was " + (end - start));  // Calculate and show the searching time
-            //Console.ReadLine();
+            start = System.DateTime.Now;   //Searching time starts
+            myLuceneApp.CreateSearcher();
+            //foreach(KeyValuePair<string, string> entry in cranNeeds)
+            //{
+            //    myLuceneApp.SearchText(entry.Value);
+
+            //}
+            myLuceneApp.SearchText("heat transfer");
+            myLuceneApp.CleanUpSearcher();
+            end = System.DateTime.Now;   // Searching time starts
+            Console.WriteLine("The time for creating index was " + (end - start));  // Calculate and show the searching time
+            Console.ReadLine();
         }
     }
 }
