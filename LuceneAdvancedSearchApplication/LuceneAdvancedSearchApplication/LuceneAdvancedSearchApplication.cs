@@ -265,6 +265,8 @@ namespace LuceneAdvancedSearchApplication
             string indexPath = GUIForm.indexPath;
             //string sourcePath = @"C:\Users\n9802614\Documents\GitHub\ifn647-project\LuceneAdvancedSearchApplication\crandocs";
             string needsPath = GUIForm.needsPath;
+            //String needsPath = @"C:\Users\n9802614\Documents\GitHub\ifn647-project\LuceneAdvancedSearchApplication\cran_information_needs.txt";
+            string searchWords = GUIForm.searchWords;
 
             TextAnalyser.TextAnalyser textAnalyser = new TextAnalyser.TextAnalyser();
             DateTime start = System.DateTime.Now;   // Indexing time starts

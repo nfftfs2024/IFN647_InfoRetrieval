@@ -16,6 +16,7 @@ namespace LuceneAdvancedSearchApplication
         public static String sourcePath { get; set; }
         public static String indexPath { get; set; }
         public static String needsPath { get; set; }
+        public static String searchWords { get; set; }
         Poem p;
         public GUIForm()
         {
@@ -27,13 +28,9 @@ namespace LuceneAdvancedSearchApplication
         {
 
         }
+        
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            string text = p.getNextLine();
-            this.NextLabel.Text =text;
-        }
-
+        
         private void TextButton_Click(object sender, EventArgs e)
         {
             
@@ -42,14 +39,11 @@ namespace LuceneAdvancedSearchApplication
 
         private void TextEnter_TextChanged(object sender, EventArgs e)
         {
-            TextShowChange.Text = TextEnter.Text;
+            //TextShowChange.Text = TextEnter.Text;
+            searchWords = TextEnter.Text;
         }
 
-        private void TextShow_Click(object sender, EventArgs e)
-        {
-
-        }
-
+   
  
 
         private void OpenButton_Click(object sender, EventArgs e)
@@ -66,22 +60,23 @@ namespace LuceneAdvancedSearchApplication
             SaveLabel.Text = mySaveFileDialog.FileName;
             indexPath = mySaveFileDialog.FileName;
         }
-        private void Needs_Click(object sender, EventArgs e)
+        private void NeedsButton_Click(object sender, EventArgs e)
         {
             myNeedsDialog.ShowDialog();
          
             needsPath = myNeedsDialog.FileName;
 
         }
-            private void confirm_Click(object sender, EventArgs e)
-        {
-            
-        }
-
+ 
 
         private void myOpenFileDialog1_FileOk(object sender, CancelEventArgs e)
         {
 
+        }
+
+        private void Confirm_button_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

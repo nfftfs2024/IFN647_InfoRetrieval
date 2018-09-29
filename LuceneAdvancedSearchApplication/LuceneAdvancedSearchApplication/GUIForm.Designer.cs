@@ -28,53 +28,31 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.NextButton = new System.Windows.Forms.Button();
             this.TextEnter = new System.Windows.Forms.TextBox();
-            this.NextLabel = new System.Windows.Forms.Label();
             this.TextButton = new System.Windows.Forms.Button();
             this.mySaveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.myFolderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
-            //this.myNeedsDialog= new System.Windows.Forms.FileDialog();
+            this.myNeedsDialog = new System.Windows.Forms.OpenFileDialog();
             this.BrowseButton = new System.Windows.Forms.Button();
             this.SaveButton = new System.Windows.Forms.Button();
             this.BrowseLabel = new System.Windows.Forms.Label();
             this.SaveLabel = new System.Windows.Forms.Label();
-            this.TextShowChange = new System.Windows.Forms.Label();
             this.myOpenFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.Confirm_button = new System.Windows.Forms.Button();
-            this.Needs_button = new System.Windows.Forms.Button();
+            this.NeedsButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
-            // NextButton
-            // 
-            this.NextButton.Location = new System.Drawing.Point(335, 26);
-            this.NextButton.Name = "NextButton";
-            this.NextButton.Size = new System.Drawing.Size(87, 20);
-            this.NextButton.TabIndex = 0;
-            this.NextButton.Text = "Get Next Line";
-            this.NextButton.UseVisualStyleBackColor = true;
-            this.NextButton.Click += new System.EventHandler(this.button1_Click);
             // 
             // TextEnter
             // 
-            this.TextEnter.Location = new System.Drawing.Point(47, 74);
+            this.TextEnter.Location = new System.Drawing.Point(49, 44);
             this.TextEnter.Name = "TextEnter";
             this.TextEnter.Size = new System.Drawing.Size(276, 20);
             this.TextEnter.TabIndex = 1;
             this.TextEnter.TextChanged += new System.EventHandler(this.TextEnter_TextChanged);
             // 
-            // NextLabel
-            // 
-            this.NextLabel.AutoSize = true;
-            this.NextLabel.Location = new System.Drawing.Point(44, 30);
-            this.NextLabel.Name = "NextLabel";
-            this.NextLabel.Size = new System.Drawing.Size(39, 13);
-            this.NextLabel.TabIndex = 4;
-            this.NextLabel.Text = "Label1";
-            // 
             // TextButton
             // 
-            this.TextButton.Location = new System.Drawing.Point(350, 72);
+            this.TextButton.Location = new System.Drawing.Point(353, 44);
             this.TextButton.Name = "TextButton";
             this.TextButton.Size = new System.Drawing.Size(72, 22);
             this.TextButton.TabIndex = 5;
@@ -84,7 +62,7 @@
             // 
             // BrowseButton
             // 
-            this.BrowseButton.Location = new System.Drawing.Point(47, 125);
+            this.BrowseButton.Location = new System.Drawing.Point(49, 92);
             this.BrowseButton.Name = "BrowseButton";
             this.BrowseButton.Size = new System.Drawing.Size(77, 24);
             this.BrowseButton.TabIndex = 8;
@@ -94,7 +72,7 @@
             // 
             // SaveButton
             // 
-            this.SaveButton.Location = new System.Drawing.Point(47, 155);
+            this.SaveButton.Location = new System.Drawing.Point(49, 122);
             this.SaveButton.Name = "SaveButton";
             this.SaveButton.Size = new System.Drawing.Size(75, 23);
             this.SaveButton.TabIndex = 9;
@@ -105,7 +83,7 @@
             // BrowseLabel
             // 
             this.BrowseLabel.AutoSize = true;
-            this.BrowseLabel.Location = new System.Drawing.Point(148, 131);
+            this.BrowseLabel.Location = new System.Drawing.Point(150, 98);
             this.BrowseLabel.Name = "BrowseLabel";
             this.BrowseLabel.Size = new System.Drawing.Size(87, 13);
             this.BrowseLabel.TabIndex = 10;
@@ -114,62 +92,51 @@
             // SaveLabel
             // 
             this.SaveLabel.AutoSize = true;
-            this.SaveLabel.Location = new System.Drawing.Point(148, 160);
+            this.SaveLabel.Location = new System.Drawing.Point(150, 127);
             this.SaveLabel.Name = "SaveLabel";
             this.SaveLabel.Size = new System.Drawing.Size(77, 13);
             this.SaveLabel.TabIndex = 11;
             this.SaveLabel.Text = "Save Directory";
             // 
-            // TextShowChange
-            // 
-            this.TextShowChange.AutoSize = true;
-            this.TextShowChange.Location = new System.Drawing.Point(44, 109);
-            this.TextShowChange.Name = "TextShowChange";
-            this.TextShowChange.Size = new System.Drawing.Size(108, 13);
-            this.TextShowChange.TabIndex = 12;
-            this.TextShowChange.Text = "Show text on change";
-            // 
             // myOpenFileDialog1
             // 
-            this.myOpenFileDialog1.FileName = "myOpenFileDialog1";
             this.myOpenFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.myOpenFileDialog1_FileOk);
             // 
             // Confirm_button
             // 
-            this.Confirm_button.Location = new System.Drawing.Point(47, 213);
+            this.Confirm_button.Location = new System.Drawing.Point(49, 180);
             this.Confirm_button.Name = "Confirm_button";
             this.Confirm_button.Size = new System.Drawing.Size(75, 23);
             this.Confirm_button.TabIndex = 13;
             this.Confirm_button.Text = "OK";
             this.Confirm_button.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
             this.Confirm_button.UseVisualStyleBackColor = true;
+            this.Confirm_button.Click += new System.EventHandler(this.Confirm_button_Click);
             // 
-            // Needs_button
+            // NeedsButton
             // 
-            this.Needs_button.Location = new System.Drawing.Point(49, 184);
-            this.Needs_button.Name = "Needs_button";
-            this.Needs_button.Size = new System.Drawing.Size(75, 23);
-            this.Needs_button.TabIndex = 14;
-            this.Needs_button.Text = "Needs";
-            this.Needs_button.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
-            this.Needs_button.UseVisualStyleBackColor = true;
+            this.NeedsButton.Location = new System.Drawing.Point(51, 151);
+            this.NeedsButton.Name = "NeedsButton";
+            this.NeedsButton.Size = new System.Drawing.Size(75, 23);
+            this.NeedsButton.TabIndex = 14;
+            this.NeedsButton.Text = "Needs";
+            this.NeedsButton.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
+            this.NeedsButton.UseVisualStyleBackColor = true;
+            this.NeedsButton.Click += new System.EventHandler(this.NeedsButton_Click);
             // 
             // GUIForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(583, 286);
-            this.Controls.Add(this.Needs_button);
+            this.Controls.Add(this.NeedsButton);
             this.Controls.Add(this.Confirm_button);
-            this.Controls.Add(this.TextShowChange);
             this.Controls.Add(this.SaveLabel);
             this.Controls.Add(this.BrowseLabel);
             this.Controls.Add(this.SaveButton);
             this.Controls.Add(this.BrowseButton);
             this.Controls.Add(this.TextButton);
-            this.Controls.Add(this.NextLabel);
             this.Controls.Add(this.TextEnter);
-            this.Controls.Add(this.NextButton);
             this.Name = "GUIForm";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -179,24 +146,20 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Button NextButton;
         private System.Windows.Forms.TextBox TextEnter;
-        private System.Windows.Forms.Label NextLabel;
         private System.Windows.Forms.Button TextButton;
         private System.Windows.Forms.SaveFileDialog mySaveFileDialog;
         private System.Windows.Forms.FolderBrowserDialog myFolderBrowserDialog;
-        private System.Windows.Forms.FileDialog myNeedsDialog;
+        private System.Windows.Forms.OpenFileDialog myNeedsDialog;
         private System.Windows.Forms.Button BrowseButton;
         private System.Windows.Forms.Button SaveButton;
         private System.Windows.Forms.Label BrowseLabel;
         private System.Windows.Forms.Label SaveLabel;
 
         private System.Windows.Forms.Label[] LabelArray;
-        private System.Windows.Forms.Label TextShowChange;
         private System.Windows.Forms.OpenFileDialog myOpenFileDialog1;
         private System.Windows.Forms.Button Confirm_button;
-        private System.Windows.Forms.Button Needs_button;
+        private System.Windows.Forms.Button NeedsButton;
     }
 }
 
