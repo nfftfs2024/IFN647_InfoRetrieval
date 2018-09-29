@@ -11,6 +11,7 @@ using Lucene.Net.Search; // for IndexSearcher
 using Lucene.Net.QueryParsers;  // for QueryParser
 using Lucene.Net.Analysis.Snowball; //hahahahaha
 using System.IO;
+using System.Windows.Forms;
 
 namespace LuceneAdvancedSearchApplication
 {
@@ -243,12 +244,14 @@ namespace LuceneAdvancedSearchApplication
             }
             return dic;
         }
-
+        [STAThread]
 
         static void Main(string[] args)
         {
             System.Console.WriteLine("Hello Lucene.Net");
-
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new GUIForm());
             LuceneAdvancedSearchApplication myLuceneApp = new LuceneAdvancedSearchApplication();
             // source collection
             //List<string> l = new List<string>();
@@ -257,11 +260,13 @@ namespace LuceneAdvancedSearchApplication
             //l.Add("Possum magic");
             //l.Add("Mad isn't bad");
             //l.Add("Mad's greatest hits");
-
+            string sourcePath = GUIForm.sourcePath;
             // Index code
-            string indexPath = @"C:\LuceneFolder";
-            string sourcePath = @"D:\Desktop\ifn647-project\LuceneAdvancedSearchApplication\crandocs";
-            string needsPath = @"D:\Desktop\ifn647-project\LuceneAdvancedSearchApplication\cran_information_needs.txt";
+            string indexPath = GUIForm.indexPath;
+            //string sourcePath = @"C:\Users\n9802614\Documents\GitHub\ifn647-project\LuceneAdvancedSearchApplication\crandocs";
+            string needsPath = GUIForm.needsPath;
+            //String needsPath = @"C:\Users\n9802614\Documents\GitHub\ifn647-project\LuceneAdvancedSearchApplication\cran_information_needs.txt";
+            string searchWords = GUIForm.searchWords;
 
             TextAnalyser.TextAnalyser textAnalyser = new TextAnalyser.TextAnalyser();
             DateTime start = System.DateTime.Now;   // Indexing time starts
