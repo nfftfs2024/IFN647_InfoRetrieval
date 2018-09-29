@@ -43,40 +43,38 @@ namespace LuceneAdvancedSearchApplication
             searchWords = TextEnter.Text;
         }
 
-   
- 
 
-        private void OpenButton_Click(object sender, EventArgs e)
+        private void SetSourceDirBtn_Click(object sender, EventArgs e)
         {
-            myFolderBrowserDialog.ShowDialog();
-            BrowseLabel.Text = myFolderBrowserDialog.SelectedPath;
-            sourcePath= myFolderBrowserDialog.SelectedPath;
+            SourceDirBrowserDialog.ShowDialog();
+            SourceLabel.Text = SourceDirBrowserDialog.SelectedPath;
+            sourcePath= SourceDirBrowserDialog.SelectedPath;
             
         }
 
-        private void SaveButton_Click(object sender, EventArgs e)
+        private void SetIndexDirBtn_Click(object sender, EventArgs e)
         {
-            mySaveFileDialog.ShowDialog();
-            SaveLabel.Text = mySaveFileDialog.FileName;
-            indexPath = mySaveFileDialog.FileName;
+            IndexDirBrowserDialog.ShowDialog();
+            IndexLabel.Text = IndexDirBrowserDialog.SelectedPath;
+            indexPath = IndexDirBrowserDialog.SelectedPath;
         }
         private void NeedsButton_Click(object sender, EventArgs e)
         {
             myNeedsDialog.ShowDialog();
-         
+            NeedsLabel.Text = myNeedsDialog.FileName;
             needsPath = myNeedsDialog.FileName;
-
-        }
- 
-
-        private void myOpenFileDialog1_FileOk(object sender, CancelEventArgs e)
-        {
-
         }
 
         private void Confirm_button_Click(object sender, EventArgs e)
         {
-            this.Close();
+            if ((indexPath is null) || (sourcePath is null) || (needsPath is null))
+            {
+                MessageBox.Show("You didn't completely select the directory paths or files", "Error!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                this.Close();
+            }
         }
     }
 }

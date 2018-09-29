@@ -274,15 +274,16 @@ namespace LuceneAdvancedSearchApplication
             //l.Add("Mad isn't bad");
             //l.Add("Mad's greatest hits");
 
-            //string sourcePath = GUIForm.sourcePath;
-            string sourcePath = @"D:\Desktop\ifn647-project\LuceneAdvancedSearchApplication\crandocs";
+            string sourcePath = GUIForm.sourcePath;
+            //string sourcePath = @"D:\Desktop\ifn647-project\LuceneAdvancedSearchApplication\crandocs";
+            
             // Index code
-            //string indexPath = GUIForm.indexPath;
-            string indexPath = @"C:\LuceneFolder";
+            string indexPath = GUIForm.indexPath;
+            //string indexPath = @"C:\LuceneFolder";
             //string sourcePath = @"C:\Users\n9802614\Documents\GitHub\ifn647-project\LuceneAdvancedSearchApplication\crandocs";
-            //string needsPath = GUIForm.needsPath;
+            string needsPath = GUIForm.needsPath;
             //string needsPath = @"C:\Users\n9802614\Documents\GitHub\ifn647-project\LuceneAdvancedSearchApplication\cran_information_needs.txt";
-            string needsPath = @"D:\Desktop\ifn647-project\LuceneAdvancedSearchApplication\cran_information_needs.txt";
+            //string needsPath = @"D:\Desktop\ifn647-project\LuceneAdvancedSearchApplication\cran_information_needs.txt";
             string searchWords = GUIForm.searchWords;
 
             TextAnalyser.TextAnalyser textAnalyser = new TextAnalyser.TextAnalyser();

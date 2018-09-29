@@ -30,16 +30,16 @@
         {
             this.TextEnter = new System.Windows.Forms.TextBox();
             this.TextButton = new System.Windows.Forms.Button();
-            this.mySaveFileDialog = new System.Windows.Forms.SaveFileDialog();
-            this.myFolderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
+            this.SourceDirBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.myNeedsDialog = new System.Windows.Forms.OpenFileDialog();
-            this.BrowseButton = new System.Windows.Forms.Button();
-            this.SaveButton = new System.Windows.Forms.Button();
-            this.BrowseLabel = new System.Windows.Forms.Label();
-            this.SaveLabel = new System.Windows.Forms.Label();
-            this.myOpenFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.SetSourceDireBtn = new System.Windows.Forms.Button();
+            this.SetIndexDirBut = new System.Windows.Forms.Button();
+            this.SourceLabel = new System.Windows.Forms.Label();
+            this.IndexLabel = new System.Windows.Forms.Label();
             this.Confirm_button = new System.Windows.Forms.Button();
             this.NeedsButton = new System.Windows.Forms.Button();
+            this.IndexDirBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
+            this.NeedsLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // TextEnter
@@ -60,47 +60,43 @@
             this.TextButton.UseVisualStyleBackColor = true;
             this.TextButton.Click += new System.EventHandler(this.TextButton_Click);
             // 
-            // BrowseButton
+            // SetSourceDireBtn
             // 
-            this.BrowseButton.Location = new System.Drawing.Point(49, 92);
-            this.BrowseButton.Name = "BrowseButton";
-            this.BrowseButton.Size = new System.Drawing.Size(77, 24);
-            this.BrowseButton.TabIndex = 8;
-            this.BrowseButton.Text = "Browse";
-            this.BrowseButton.UseVisualStyleBackColor = true;
-            this.BrowseButton.Click += new System.EventHandler(this.OpenButton_Click);
+            this.SetSourceDireBtn.Location = new System.Drawing.Point(49, 92);
+            this.SetSourceDireBtn.Name = "SetSourceDireBtn";
+            this.SetSourceDireBtn.Size = new System.Drawing.Size(123, 24);
+            this.SetSourceDireBtn.TabIndex = 8;
+            this.SetSourceDireBtn.Text = "Set Source Directory";
+            this.SetSourceDireBtn.UseVisualStyleBackColor = true;
+            this.SetSourceDireBtn.Click += new System.EventHandler(this.SetSourceDirBtn_Click);
             // 
-            // SaveButton
+            // SetIndexDirBut
             // 
-            this.SaveButton.Location = new System.Drawing.Point(49, 122);
-            this.SaveButton.Name = "SaveButton";
-            this.SaveButton.Size = new System.Drawing.Size(75, 23);
-            this.SaveButton.TabIndex = 9;
-            this.SaveButton.Text = "Save";
-            this.SaveButton.UseVisualStyleBackColor = true;
-            this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
+            this.SetIndexDirBut.Location = new System.Drawing.Point(49, 122);
+            this.SetIndexDirBut.Name = "SetIndexDirBut";
+            this.SetIndexDirBut.Size = new System.Drawing.Size(123, 23);
+            this.SetIndexDirBut.TabIndex = 9;
+            this.SetIndexDirBut.Text = "Set Index Directory";
+            this.SetIndexDirBut.UseVisualStyleBackColor = true;
+            this.SetIndexDirBut.Click += new System.EventHandler(this.SetIndexDirBtn_Click);
             // 
-            // BrowseLabel
+            // SourceLabel
             // 
-            this.BrowseLabel.AutoSize = true;
-            this.BrowseLabel.Location = new System.Drawing.Point(150, 98);
-            this.BrowseLabel.Name = "BrowseLabel";
-            this.BrowseLabel.Size = new System.Drawing.Size(87, 13);
-            this.BrowseLabel.TabIndex = 10;
-            this.BrowseLabel.Text = "Browse Directory";
+            this.SourceLabel.AutoSize = true;
+            this.SourceLabel.Location = new System.Drawing.Point(178, 98);
+            this.SourceLabel.Name = "SourceLabel";
+            this.SourceLabel.Size = new System.Drawing.Size(86, 13);
+            this.SourceLabel.TabIndex = 10;
+            this.SourceLabel.Text = "Source Directory";
             // 
-            // SaveLabel
+            // IndexLabel
             // 
-            this.SaveLabel.AutoSize = true;
-            this.SaveLabel.Location = new System.Drawing.Point(150, 127);
-            this.SaveLabel.Name = "SaveLabel";
-            this.SaveLabel.Size = new System.Drawing.Size(77, 13);
-            this.SaveLabel.TabIndex = 11;
-            this.SaveLabel.Text = "Save Directory";
-            // 
-            // myOpenFileDialog1
-            // 
-            this.myOpenFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.myOpenFileDialog1_FileOk);
+            this.IndexLabel.AutoSize = true;
+            this.IndexLabel.Location = new System.Drawing.Point(179, 127);
+            this.IndexLabel.Name = "IndexLabel";
+            this.IndexLabel.Size = new System.Drawing.Size(78, 13);
+            this.IndexLabel.TabIndex = 11;
+            this.IndexLabel.Text = "Index Directory";
             // 
             // Confirm_button
             // 
@@ -117,24 +113,34 @@
             // 
             this.NeedsButton.Location = new System.Drawing.Point(51, 151);
             this.NeedsButton.Name = "NeedsButton";
-            this.NeedsButton.Size = new System.Drawing.Size(75, 23);
+            this.NeedsButton.Size = new System.Drawing.Size(121, 23);
             this.NeedsButton.TabIndex = 14;
-            this.NeedsButton.Text = "Needs";
+            this.NeedsButton.Text = "Select Cran needs";
             this.NeedsButton.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
             this.NeedsButton.UseVisualStyleBackColor = true;
             this.NeedsButton.Click += new System.EventHandler(this.NeedsButton_Click);
+            // 
+            // NeedsLabel
+            // 
+            this.NeedsLabel.AutoSize = true;
+            this.NeedsLabel.Location = new System.Drawing.Point(179, 155);
+            this.NeedsLabel.Name = "NeedsLabel";
+            this.NeedsLabel.Size = new System.Drawing.Size(57, 13);
+            this.NeedsLabel.TabIndex = 15;
+            this.NeedsLabel.Text = "Needs File";
             // 
             // GUIForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(583, 286);
+            this.Controls.Add(this.NeedsLabel);
             this.Controls.Add(this.NeedsButton);
             this.Controls.Add(this.Confirm_button);
-            this.Controls.Add(this.SaveLabel);
-            this.Controls.Add(this.BrowseLabel);
-            this.Controls.Add(this.SaveButton);
-            this.Controls.Add(this.BrowseButton);
+            this.Controls.Add(this.IndexLabel);
+            this.Controls.Add(this.SourceLabel);
+            this.Controls.Add(this.SetIndexDirBut);
+            this.Controls.Add(this.SetSourceDireBtn);
             this.Controls.Add(this.TextButton);
             this.Controls.Add(this.TextEnter);
             this.Name = "GUIForm";
@@ -148,18 +154,18 @@
         #endregion
         private System.Windows.Forms.TextBox TextEnter;
         private System.Windows.Forms.Button TextButton;
-        private System.Windows.Forms.SaveFileDialog mySaveFileDialog;
-        private System.Windows.Forms.FolderBrowserDialog myFolderBrowserDialog;
+        private System.Windows.Forms.FolderBrowserDialog SourceDirBrowserDialog;
         private System.Windows.Forms.OpenFileDialog myNeedsDialog;
-        private System.Windows.Forms.Button BrowseButton;
-        private System.Windows.Forms.Button SaveButton;
-        private System.Windows.Forms.Label BrowseLabel;
-        private System.Windows.Forms.Label SaveLabel;
+        private System.Windows.Forms.Button SetSourceDireBtn;
+        private System.Windows.Forms.Button SetIndexDirBut;
+        private System.Windows.Forms.Label SourceLabel;
+        private System.Windows.Forms.Label IndexLabel;
 
         private System.Windows.Forms.Label[] LabelArray;
-        private System.Windows.Forms.OpenFileDialog myOpenFileDialog1;
         private System.Windows.Forms.Button Confirm_button;
         private System.Windows.Forms.Button NeedsButton;
+        private System.Windows.Forms.FolderBrowserDialog IndexDirBrowserDialog;
+        private System.Windows.Forms.Label NeedsLabel;
     }
 }
 
