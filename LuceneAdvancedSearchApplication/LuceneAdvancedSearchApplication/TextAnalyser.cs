@@ -237,48 +237,48 @@ namespace TextAnalyser
 
         }
 
-        static void Main(string[] args)
-        {
+        //static void Main(string[] args)
+        //{
 
 
-            TextAnalyser textAnalyser = new TextAnalyser();
+        //    TextAnalyser textAnalyser = new TextAnalyser();
             
-            System.Console.WriteLine("Activity 3");
-            string text1 = "Tokenising, even in english, is a difficult problem. It's even harder in other languages - such as Chinese!";
-            //textAnalyser.OutputTokens(text1);
+        //    System.Console.WriteLine("Activity 3");
+        //    string text1 = "Tokenising, even in english, is a difficult problem. It's even harder in other languages - such as Chinese!";
+        //    //textAnalyser.OutputTokens(text1);
  
-            string stem1 = "civilise";
-            string stem2 = "advertise";
-            string stem3 = "professionalize";
+        //    string stem1 = "civilise";
+        //    string stem2 = "advertise";
+        //    string stem3 = "professionalize";
 
-            //System.Console.WriteLine();
-            //System.Console.WriteLine("Activity 4");
-            textAnalyser.OutputStems(stem1);
-            textAnalyser.OutputStems(stem2);
-            textAnalyser.OutputStems(stem3);
-
-
-
-            //System.Console.WriteLine();
-            //System.Console.WriteLine("Activity 5");
-            //string text2 = "The word \"the\" is the most common word in the English language"; 
-            //textAnalyser.OutputTokenCount(text2);
+        //    //System.Console.WriteLine();
+        //    //System.Console.WriteLine("Activity 4");
+        //    textAnalyser.OutputStems(stem1);
+        //    textAnalyser.OutputStems(stem2);
+        //    textAnalyser.OutputStems(stem3);
 
 
-            //System.Console.WriteLine();
-            //System.Console.WriteLine("Activity 6");
-            //string infilename = @"C:\temp\AlicePara.txt";
-            //string outfilename = @"C:\temp\AliceParaOccurrence.txt";
-            //textAnalyser.ProcessText(infilename, outfilename);
 
-            //System.Console.WriteLine();
-            //System.Console.WriteLine("Challenge Activity");
-            //string outfilename2 = @"C:\temp\AliceParaOccurrenceNoStop.txt";
-            //textAnalyser.ProcessTextNoStopWords(infilename, outfilename2);
+        //    //System.Console.WriteLine();
+        //    //System.Console.WriteLine("Activity 5");
+        //    //string text2 = "The word \"the\" is the most common word in the English language"; 
+        //    //textAnalyser.OutputTokenCount(text2);
 
-            System.Console.ReadLine();
 
-        }
+        //    //System.Console.WriteLine();
+        //    //System.Console.WriteLine("Activity 6");
+        //    //string infilename = @"C:\temp\AlicePara.txt";
+        //    //string outfilename = @"C:\temp\AliceParaOccurrence.txt";
+        //    //textAnalyser.ProcessText(infilename, outfilename);
+
+        //    //System.Console.WriteLine();
+        //    //System.Console.WriteLine("Challenge Activity");
+        //    //string outfilename2 = @"C:\temp\AliceParaOccurrenceNoStop.txt";
+        //    //textAnalyser.ProcessTextNoStopWords(infilename, outfilename2);
+
+        //    System.Console.ReadLine();
+
+        //}
 
 
 

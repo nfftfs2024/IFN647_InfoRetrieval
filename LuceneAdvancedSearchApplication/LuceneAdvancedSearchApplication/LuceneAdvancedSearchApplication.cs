@@ -32,7 +32,7 @@ namespace LuceneAdvancedSearchApplication
             luceneIndexDirectory = null;
             writer = null;
             analyzer = new Lucene.Net.Analysis.SimpleAnalyzer();      // Stop analyzer takes 
-            parser = new QueryParser(Lucene.Net.Util.Version.LUCENE_30, "author", analyzer);
+            parser = new QueryParser(Lucene.Net.Util.Version.LUCENE_30, TEXT_FN, analyzer);
             newSimilarity = new NewSimilarity();
 
         }
@@ -162,7 +162,7 @@ namespace LuceneAdvancedSearchApplication
                     //Console.WriteLine(text.Substring(indexB + 4, ((indexW - 2 - (indexB + 4)) > 0) ? (indexW - 2 - (indexB + 4)) : 0));
                     //Console.WriteLine(text.Substring(indexW + 4, text.Length - 6 - indexW));
 
-                    string id = text.Substring(indexI, indexT-2-indexI);    // Get ID string
+                    string id = text.Substring(indexI, indexT - 2 - indexI);    // Get ID string
                     string title = text.Substring(indexT + 4, ((indexA - 2 - (indexT + 4)) > 0) ? (indexA - 2 - (indexT + 4)) : 0);     // Get title string
                     string author = text.Substring(indexA + 4, ((indexB - 2 - (indexA + 4)) > 0) ? (indexB - 2 - (indexA + 4)) : 0);    // Get author string
                     string biblio = text.Substring(indexB + 4, ((indexW - 2 - (indexB + 4)) > 0) ? (indexW - 2 - (indexB + 4)) : 0);    // Get bibliography string
@@ -170,17 +170,17 @@ namespace LuceneAdvancedSearchApplication
 
                     Lucene.Net.Documents.Document doc = new Document();     // Create document
                     // Add 5 fields to the document
-                    doc.Add(new Lucene.Net.Documents.Field("id", id, Field.Store.YES, Field.Index.ANALYZED, Field.TermVector.YES));
-                    doc.Add(new Lucene.Net.Documents.Field("title", title, Field.Store.YES, Field.Index.ANALYZED, Field.TermVector.YES));
-                    doc.Add(new Lucene.Net.Documents.Field("author", author, Field.Store.YES, Field.Index.ANALYZED, Field.TermVector.YES));
-                    doc.Add(new Lucene.Net.Documents.Field("bibliography", biblio, Field.Store.YES, Field.Index.ANALYZED, Field.TermVector.YES));
-                    doc.Add(new Lucene.Net.Documents.Field("words", words, Field.Store.YES, Field.Index.ANALYZED, Field.TermVector.YES));
-                    //doc.Add(new Lucene.Net.Documents.Field(TEXT_FN, text, Field.Store.YES, Field.Index.ANALYZED, Field.TermVector.YES));
+                    //doc.Add(new Lucene.Net.Documents.Field("id", id, Field.Store.YES, Field.Index.ANALYZED, Field.TermVector.YES));
+                    //doc.Add(new Lucene.Net.Documents.Field("title", title, Field.Store.YES, Field.Index.ANALYZED, Field.TermVector.YES));
+                    //doc.Add(new Lucene.Net.Documents.Field("author", author, Field.Store.YES, Field.Index.ANALYZED, Field.TermVector.YES));
+                    //doc.Add(new Lucene.Net.Documents.Field("bibliography", biblio, Field.Store.YES, Field.Index.ANALYZED, Field.TermVector.YES));
+                    //doc.Add(new Lucene.Net.Documents.Field("words", words, Field.Store.YES, Field.Index.ANALYZED, Field.TermVector.YES));
+                    doc.Add(new Lucene.Net.Documents.Field(TEXT_FN, text, Field.Store.YES, Field.Index.ANALYZED, Field.TermVector.YES));
 
                     writer.AddDocument(doc);    // Add document
                 }
             }
-        }
+        } 
 
 
         public Dictionary<string, string> ReadCranNeeds(string path)    // Load cran_information_need into a dictionary
@@ -273,7 +273,7 @@ namespace LuceneAdvancedSearchApplication
             DateTime end = System.DateTime.Now;   // Indexing time ends
             Console.WriteLine("The time for creating index was " + (end - start));  // Calculate and show the indexing time
 
-            Dictionary <string, string> cranNeeds = myLuceneApp.ReadCranNeeds(needsPath);
+            Dictionary <string, string> cranNeeds = myLuceneApp.ReadCranNeeds(needsPath);   // Put the cran_information_need into a dictionary
             //Console.WriteLine(cranNeeds["001"]);
 
             //// Searching Code
@@ -284,7 +284,7 @@ namespace LuceneAdvancedSearchApplication
             //    myLuceneApp.SearchText(entry.Value);
 
             //}
-            myLuceneApp.SearchText("ferri");
+            myLuceneApp.SearchText(cranNeeds["001"]);
             myLuceneApp.CleanUpSearcher();
             end = System.DateTime.Now;   // Searching time starts
             Console.WriteLine("The time for creating index was " + (end - start));  // Calculate and show the searching time
