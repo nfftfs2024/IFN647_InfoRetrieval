@@ -64,3 +64,5 @@ C:\Users\n9802614\Documents\GitHub\ifn647-project\LuceneAdvancedSearchApplicatio
 C:\Users\n9802614\Documents\GitHub\ifn647-project\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\obj\Debug\LuceneAdvancedSearchApplication.pdb
 C:\Users\n9802614\Documents\GitHub\ifn647-project\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\obj\Debug\LuceneAdvancedSearchApplication.GUIForm.resources
 C:\Users\n9802614\Documents\GitHub\ifn647-project\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\obj\Debug\LuceneAdvancedSearchApplication.csproj.GenerateResource.Cache
+C:\Users\JamesC\Source\Repos\ifn647-project\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\obj\Debug\LuceneAdvancedSearchApplication.GUIForm.resources
+C:\Users\JamesC\Source\Repos\ifn647-project\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\obj\Debug\LuceneAdvancedSearchApplication.csproj.GenerateResource.cache
