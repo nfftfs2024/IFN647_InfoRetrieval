@@ -65,6 +65,7 @@ namespace LuceneAdvancedSearchApplication
             needsPath = myNeedsDialog.FileName;
         }
 
+
         private void Confirm_button_Click(object sender, EventArgs e)
         {
             if ((indexPath is null) || (sourcePath is null) || (needsPath is null))
@@ -74,6 +75,17 @@ namespace LuceneAdvancedSearchApplication
             else
             {
                 this.Close();
+
+                //// To use form as Main interface
+                //LuceneAdvancedSearchApplication myLuceneApp = new LuceneAdvancedSearchApplication();
+                //DateTime start = System.DateTime.Now;   // Indexing time starts
+                //myLuceneApp.CreateIndex(indexPath);     // Create index at the given path
+                //System.Console.WriteLine("Adding Documents to Index");
+                //myLuceneApp.IndexText(sourcePath);      // Add file collection to the index one by one
+                //myLuceneApp.CleanUpIndexer();           // Flush the buffer and close the index
+                //Console.WriteLine("All documents added.");
+                //DateTime end = System.DateTime.Now;   // Indexing time ends
+                //Console.WriteLine("The time for creating index was " + (end - start));  // Calculate and show the indexing time
             }
         }
     }

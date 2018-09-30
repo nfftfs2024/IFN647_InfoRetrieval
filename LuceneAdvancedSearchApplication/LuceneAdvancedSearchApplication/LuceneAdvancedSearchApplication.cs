@@ -265,6 +265,7 @@ namespace LuceneAdvancedSearchApplication
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new GUIForm());
+
             LuceneAdvancedSearchApplication myLuceneApp = new LuceneAdvancedSearchApplication();
             // source collection
             //List<string> l = new List<string>();
