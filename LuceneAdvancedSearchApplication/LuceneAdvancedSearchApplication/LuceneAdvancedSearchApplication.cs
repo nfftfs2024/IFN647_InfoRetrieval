@@ -27,10 +27,12 @@ namespace LuceneAdvancedSearchApplication
 
         const Lucene.Net.Util.Version VERSION = Lucene.Net.Util.Version.LUCENE_30;
         const string TEXT_FN = "Text";
-
+       
+        
 
         public LuceneAdvancedSearchApplication()
         {
+            
             luceneIndexDirectory = null;
             writer = null;
             analyzer = new Lucene.Net.Analysis.SimpleAnalyzer();      // Stop analyzer takes 
@@ -47,7 +49,7 @@ namespace LuceneAdvancedSearchApplication
 
             luceneIndexDirectory = Lucene.Net.Store.FSDirectory.Open(indexPath);
             IndexWriter.MaxFieldLength mfl = new IndexWriter.MaxFieldLength(IndexWriter.DEFAULT_MAX_FIELD_LENGTH);
-            // writer = new Lucene.Net.Index.IndexWriter(luceneIndexDirectory, analyzer, true, mfl);
+            // writer = new Lucene.Net.Index.IndexWriter(luceneIndexDirectory, analyzer, true, mfl); 
             writer = new Lucene.Net.Index.IndexWriter(luceneIndexDirectory, analyzer, true, mfl);
             //writer.SetSimilarity(newSimilarity);
         }
