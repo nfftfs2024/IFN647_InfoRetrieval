@@ -21,6 +21,8 @@ namespace LuceneAdvancedSearchApplication
         public static List<string> resultList { get; set; }
         public static Int32 limit { get; set; }
 
+        LuceneAdvancedSearchApplication myLuceneApp = new LuceneAdvancedSearchApplication();
+
         public GUIForm()
         {
             InitializeComponent();
@@ -35,11 +37,26 @@ namespace LuceneAdvancedSearchApplication
         
         private void BuildIndBtn_Click(object sender, EventArgs e)
         {
+            //sourcePath = @"D:\Desktop\ifn647-project\LuceneAdvancedSearchApplication\crandocs";
+            //indexPath = @"C:\LuceneFolder";
 
-            if ((indexPath is null) || (sourcePath is null)
-                {
-
+            if (sourcePath is null)
+                MessageBox.Show("You didn't completely select the source directory path", "Error!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            else if (indexPath is null)
+                MessageBox.Show("You didn't completely select the index directory path", "Error!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            else
+            {
+                // To keep form as Main interface
+                //LuceneAdvancedSearchApplication myLuceneApp = new LuceneAdvancedSearchApplication();
+                DateTime start = System.DateTime.Now;   // Indexing time starts
+                myLuceneApp.CreateIndex(indexPath);     // Create index at the given path
+                System.Console.WriteLine("Adding Documents to Index");
+                myLuceneApp.IndexText(sourcePath);      // Add file collection to the index one by one
+                Console.WriteLine("All documents added.");
+                DateTime end = System.DateTime.Now;   // Indexing time ends
+                Console.WriteLine("The time for creating index was " + (end - start));  // Calculate and show the indexing time
             }
+
 
         }
 
@@ -71,46 +88,22 @@ namespace LuceneAdvancedSearchApplication
             needsPath = myNeedsDialog.FileName;
         }
 
-
-        private void Confirm_button_Click(object sender, EventArgs e)   // Whe clicking on "" button
+        private void SearchBtn_Click(object sender, EventArgs e)   // Whe clicking on "" button
         {
-            //sourcePath = @"D:\Desktop\ifn647-project\LuceneAdvancedSearchApplication\crandocs";
-
-            //indexPath = @"C:\LuceneFolder";
-
             //needsPath = @"D:\Desktop\ifn647-project\LuceneAdvancedSearchApplication\cran_information_needs.txt";
-
-            if ((indexPath is null) || (sourcePath is null) || (needsPath is null))     // Check if the paths are set
+            if ((sourcePath is null) || (indexPath is null) || (needsPath is null))       // Check if the paths are set
             {
-                if (sourcePath is null)
-                    MessageBox.Show("You didn't completely select the source directory path", "Error!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                else if (indexPath is null)
-                    MessageBox.Show("You didn't completely select the index directory path", "Error!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                else
                     MessageBox.Show("You didn't completely select the directory paths or files", "Error!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-
             }
             else
             {
                 //this.Close();
 
                 // To keep form as Main interface
-                LuceneAdvancedSearchApplication myLuceneApp = new LuceneAdvancedSearchApplication();
-                DateTime start = System.DateTime.Now;   // Indexing time starts
-                myLuceneApp.CreateIndex(indexPath);     // Create index at the given path
-                System.Console.WriteLine("Adding Documents to Index");
-                myLuceneApp.IndexText(sourcePath);      // Add file collection to the index one by one
-                myLuceneApp.CleanUpIndexer();           // Flush the buffer and close the index
-                Console.WriteLine("All documents added.");
-                DateTime end = System.DateTime.Now;   // Indexing time ends
-                Console.WriteLine("The time for creating index was " + (end - start));  // Calculate and show the indexing time
-
                 Dictionary<string, string> cranNeeds = myLuceneApp.ReadCranNeeds(needsPath);   // Put the cran_information_need into a dictionary
                                                                                               
-
                 //// Searching Code
-                start = System.DateTime.Now;   //Searching time starts
+                DateTime start = System.DateTime.Now;   //Searching time starts
                 myLuceneApp.CreateSearcher();
                 //foreach(KeyValuePair<string, string> entry in cranNeeds)
                 //{
@@ -119,10 +112,9 @@ namespace LuceneAdvancedSearchApplication
                 //}
                 resultList =  myLuceneApp.SearchText(cranNeeds["001"]);     // Get search result list
                 myLuceneApp.CleanUpSearcher();
-                end = System.DateTime.Now;   // Searching time starts
+                DateTime end = System.DateTime.Now;   // Searching time starts
                 Console.WriteLine("The time for creating index was " + (end - start));  // Calculate and show the searching time
                                                                                         
-
 
                 string outp = "";       // Initial null string
                 limit = 0;              // Set top rank starting counter
