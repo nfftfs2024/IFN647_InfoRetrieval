@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.TextEnter = new System.Windows.Forms.TextBox();
-            this.TextButton = new System.Windows.Forms.Button();
+            this.BuildIndBtn = new System.Windows.Forms.Button();
             this.SourceDirBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.myNeedsDialog = new System.Windows.Forms.OpenFileDialog();
             this.SetSourceDireBtn = new System.Windows.Forms.Button();
@@ -40,29 +40,33 @@
             this.NeedsButton = new System.Windows.Forms.Button();
             this.IndexDirBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.NeedsLabel = new System.Windows.Forms.Label();
+            this.SearchOutput = new System.Windows.Forms.TextBox();
+            this.TopLabel = new System.Windows.Forms.Label();
+            this.PreviousBtn = new System.Windows.Forms.Button();
+            this.NextBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // TextEnter
             // 
-            this.TextEnter.Location = new System.Drawing.Point(49, 44);
+            this.TextEnter.Location = new System.Drawing.Point(51, 108);
             this.TextEnter.Name = "TextEnter";
             this.TextEnter.Size = new System.Drawing.Size(276, 20);
             this.TextEnter.TabIndex = 1;
             this.TextEnter.TextChanged += new System.EventHandler(this.TextEnter_TextChanged);
             // 
-            // TextButton
+            // BuildIndBtn
             // 
-            this.TextButton.Location = new System.Drawing.Point(353, 44);
-            this.TextButton.Name = "TextButton";
-            this.TextButton.Size = new System.Drawing.Size(72, 22);
-            this.TextButton.TabIndex = 5;
-            this.TextButton.Text = "Enter";
-            this.TextButton.UseVisualStyleBackColor = true;
-            this.TextButton.Click += new System.EventHandler(this.TextButton_Click);
+            this.BuildIndBtn.Location = new System.Drawing.Point(353, 44);
+            this.BuildIndBtn.Name = "BuildIndBtn";
+            this.BuildIndBtn.Size = new System.Drawing.Size(72, 22);
+            this.BuildIndBtn.TabIndex = 5;
+            this.BuildIndBtn.Text = "Build Index";
+            this.BuildIndBtn.UseVisualStyleBackColor = true;
+            this.BuildIndBtn.Click += new System.EventHandler(this.BuildIndBtn_Click);
             // 
             // SetSourceDireBtn
             // 
-            this.SetSourceDireBtn.Location = new System.Drawing.Point(49, 92);
+            this.SetSourceDireBtn.Location = new System.Drawing.Point(49, 12);
             this.SetSourceDireBtn.Name = "SetSourceDireBtn";
             this.SetSourceDireBtn.Size = new System.Drawing.Size(123, 24);
             this.SetSourceDireBtn.TabIndex = 8;
@@ -72,7 +76,7 @@
             // 
             // SetIndexDirBut
             // 
-            this.SetIndexDirBut.Location = new System.Drawing.Point(49, 122);
+            this.SetIndexDirBut.Location = new System.Drawing.Point(49, 42);
             this.SetIndexDirBut.Name = "SetIndexDirBut";
             this.SetIndexDirBut.Size = new System.Drawing.Size(123, 23);
             this.SetIndexDirBut.TabIndex = 9;
@@ -83,7 +87,7 @@
             // SourceLabel
             // 
             this.SourceLabel.AutoSize = true;
-            this.SourceLabel.Location = new System.Drawing.Point(178, 98);
+            this.SourceLabel.Location = new System.Drawing.Point(178, 18);
             this.SourceLabel.Name = "SourceLabel";
             this.SourceLabel.Size = new System.Drawing.Size(86, 13);
             this.SourceLabel.TabIndex = 10;
@@ -92,7 +96,7 @@
             // IndexLabel
             // 
             this.IndexLabel.AutoSize = true;
-            this.IndexLabel.Location = new System.Drawing.Point(179, 127);
+            this.IndexLabel.Location = new System.Drawing.Point(179, 47);
             this.IndexLabel.Name = "IndexLabel";
             this.IndexLabel.Size = new System.Drawing.Size(78, 13);
             this.IndexLabel.TabIndex = 11;
@@ -129,11 +133,53 @@
             this.NeedsLabel.TabIndex = 15;
             this.NeedsLabel.Text = "Needs File";
             // 
+            // SearchOutput
+            // 
+            this.SearchOutput.Location = new System.Drawing.Point(49, 235);
+            this.SearchOutput.Multiline = true;
+            this.SearchOutput.Name = "SearchOutput";
+            this.SearchOutput.ReadOnly = true;
+            this.SearchOutput.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.SearchOutput.Size = new System.Drawing.Size(535, 319);
+            this.SearchOutput.TabIndex = 16;
+            // 
+            // TopLabel
+            // 
+            this.TopLabel.AutoSize = true;
+            this.TopLabel.Location = new System.Drawing.Point(48, 219);
+            this.TopLabel.Name = "TopLabel";
+            this.TopLabel.Size = new System.Drawing.Size(0, 13);
+            this.TopLabel.TabIndex = 17;
+            // 
+            // PreviousBtn
+            // 
+            this.PreviousBtn.Location = new System.Drawing.Point(422, 209);
+            this.PreviousBtn.Name = "PreviousBtn";
+            this.PreviousBtn.Size = new System.Drawing.Size(75, 23);
+            this.PreviousBtn.TabIndex = 18;
+            this.PreviousBtn.Text = "Previous 10";
+            this.PreviousBtn.UseVisualStyleBackColor = true;
+            this.PreviousBtn.Click += new System.EventHandler(this.PreviousBtn_Click);
+            // 
+            // NextBtn
+            // 
+            this.NextBtn.Location = new System.Drawing.Point(503, 209);
+            this.NextBtn.Name = "NextBtn";
+            this.NextBtn.Size = new System.Drawing.Size(75, 23);
+            this.NextBtn.TabIndex = 19;
+            this.NextBtn.Text = "Next 10";
+            this.NextBtn.UseVisualStyleBackColor = true;
+            this.NextBtn.Click += new System.EventHandler(this.NextBtn_Click);
+            // 
             // GUIForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(583, 286);
+            this.ClientSize = new System.Drawing.Size(886, 560);
+            this.Controls.Add(this.NextBtn);
+            this.Controls.Add(this.PreviousBtn);
+            this.Controls.Add(this.TopLabel);
+            this.Controls.Add(this.SearchOutput);
             this.Controls.Add(this.NeedsLabel);
             this.Controls.Add(this.NeedsButton);
             this.Controls.Add(this.Confirm_button);
@@ -141,7 +187,7 @@
             this.Controls.Add(this.SourceLabel);
             this.Controls.Add(this.SetIndexDirBut);
             this.Controls.Add(this.SetSourceDireBtn);
-            this.Controls.Add(this.TextButton);
+            this.Controls.Add(this.BuildIndBtn);
             this.Controls.Add(this.TextEnter);
             this.Name = "GUIForm";
             this.Text = "Form1";
@@ -153,7 +199,7 @@
 
         #endregion
         private System.Windows.Forms.TextBox TextEnter;
-        private System.Windows.Forms.Button TextButton;
+        private System.Windows.Forms.Button BuildIndBtn;
         private System.Windows.Forms.FolderBrowserDialog SourceDirBrowserDialog;
         private System.Windows.Forms.OpenFileDialog myNeedsDialog;
         private System.Windows.Forms.Button SetSourceDireBtn;
@@ -166,6 +212,10 @@
         private System.Windows.Forms.Button NeedsButton;
         private System.Windows.Forms.FolderBrowserDialog IndexDirBrowserDialog;
         private System.Windows.Forms.Label NeedsLabel;
+        private System.Windows.Forms.TextBox SearchOutput;
+        private System.Windows.Forms.Label TopLabel;
+        private System.Windows.Forms.Button PreviousBtn;
+        private System.Windows.Forms.Button NextBtn;
     }
 }
 

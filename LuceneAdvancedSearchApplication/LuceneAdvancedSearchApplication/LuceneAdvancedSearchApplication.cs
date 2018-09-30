@@ -76,9 +76,9 @@ namespace LuceneAdvancedSearchApplication
         /// Searches the index for the querytext
         /// </summary>
         /// <param name="querytext">The text to search the index</param>
-        public void SearchText(string querytext)
+        public List<string> SearchText(string querytext)
         {
-
+            List<string> resultList = new List<string>() ;
             System.Console.WriteLine("Searching for " + querytext);
             querytext = querytext.ToLower();
             Query query = parser.Parse(querytext);
@@ -86,7 +86,9 @@ namespace LuceneAdvancedSearchApplication
             TopDocs results = searcher.Search(query, 100);
             System.Console.WriteLine("Number of results is " + results.TotalHits);
 
-            for (int i = 0; i < 10; i++)    // Loop through the top 10 ranked documents
+            //string resultText = "";
+
+            for (int i = 0; i < 40; i++)    // Loop through the top 10 ranked documents
             {
                 int rank = i + 1;   // Set ranking number
                 ScoreDoc scoreDoc = results.ScoreDocs[i];   // Get the ranked document
@@ -102,12 +104,14 @@ namespace LuceneAdvancedSearchApplication
                 string secondhalf = parts[1].Replace("\r\n", " ");
                 MatchCollection matches = rx.Matches(secondhalf);   // Second half
 
-                Console.WriteLine(firsthalf + "First sentence of abstract: " + matches[0].Value + "\n\n");
+                resultList.Add(firsthalf + "First sentence of abstract: " + matches[0].Value + "\n\n");
+                //resultText += firsthalf + "First sentence of abstract: " + matches[0].Value + "\n\n";
+                //Console.WriteLine(firsthalf + "First sentence of abstract: " + matches[0].Value + "\n\n");
                 //Console.WriteLine("Rank " + rank + "\n" + myFieldValue + "\n"); //+ exp.ToString());
 
             }
-               
-
+            //Console.WriteLine(resultText);
+            return resultList;
 
         }
 
