@@ -55,6 +55,7 @@ namespace LuceneAdvancedSearchApplication
                 Console.WriteLine("All documents added.");
                 DateTime end = System.DateTime.Now;   // Indexing time ends
                 Console.WriteLine("The time for creating index was " + (end - start));  // Calculate and show the indexing time
+                myLuceneApp.CleanUpIndexer();
             }
 
 
