@@ -156,24 +156,33 @@ namespace LuceneAdvancedSearchApplication
                 //    myLuceneApp.SearchText(entry.Value);
 
                 //}
-                resultList = myLuceneApp.SearchText(TextEnter.Text);     // Get search result list
+                List<string> tempList = new List<string>();
+                tempList = myLuceneApp.SearchText(TextEnter.Text);     // Get search result list
                 myLuceneApp.CleanUpSearcher();
                 DateTime end = System.DateTime.Now;   // Searching time starts
                 Console.WriteLine("The time for searching text was " + (end - start));  // Calculate and show the searching time
 
-
-                string outp = "";       // Initial null string
-                limit = 0;              // Set top rank starting counter
-
-                for (int i = 0; i < limit + 10; i++)     // Concatenate the top 10 result strings
+                if (tempList.Count != 0)
                 {
-                    outp += "Rank: " + (i + 1).ToString() + "\r\n" + resultList[i] + "\r\n\r\n";
-                }
+                    string outp = "";       // Initial null string
+                    limit = 0;              // Set top rank starting counter
 
-                TopLabel.Text = "Top 1-10 results";     // Display top description
-                SearchOutput.Text = outp;               // Display top 10 results
-                NextBtn.Enabled = true;                 // Enable next button
-                ExpandAbsBtn.Enabled = true;            // Enable expand abstract button
+                    resultList = tempList; 
+
+                    for (int i = 0; i < limit + 10; i++)     // Concatenate the top 10 result strings
+                    {
+                        outp += "Rank: " + (i + 1).ToString() + "\r\n" + resultList[i] + "\r\n\r\n";
+                    }
+
+                    TopLabel.Text = "Top 1-10 results";     // Display top description
+                    SearchOutput.Text = outp;               // Display top 10 results
+                    NextBtn.Enabled = true;                 // Enable next button
+                    ExpandAbsBtn.Enabled = true;            // Enable expand abstract button
+                }
+                else
+                {
+                    MessageBox.Show("No results were found, please try something else!", "Error!!", MessageBoxButtons.OK, MessageBoxIcon.Error);  // Display error
+                }
             }
         }
 
@@ -235,6 +244,11 @@ namespace LuceneAdvancedSearchApplication
                 //PreviousBtn.Enabled = false;
                 //MessageBox.Show("You are already at the top 10 results!!", "Error!!", MessageBoxButtons.OK, MessageBoxIcon.Error);  // Display error
             //}
+        }
+
+        private void ExpandAbsBtn_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

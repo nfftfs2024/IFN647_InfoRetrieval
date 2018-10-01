@@ -217,6 +217,7 @@
             this.ExpandAbsBtn.TabIndex = 23;
             this.ExpandAbsBtn.Text = "Show Abstracts";
             this.ExpandAbsBtn.UseVisualStyleBackColor = true;
+            this.ExpandAbsBtn.Click += new System.EventHandler(this.ExpandAbsBtn_Click);
             // 
             // GUIForm
             // 
