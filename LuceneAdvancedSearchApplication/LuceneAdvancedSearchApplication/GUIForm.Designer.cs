@@ -36,7 +36,7 @@
             this.SetIndexDirBut = new System.Windows.Forms.Button();
             this.SourceLabel = new System.Windows.Forms.Label();
             this.IndexLabel = new System.Windows.Forms.Label();
-            this.SearchBtn = new System.Windows.Forms.Button();
+            this.SearchBtn1 = new System.Windows.Forms.Button();
             this.NeedsButton = new System.Windows.Forms.Button();
             this.IndexDirBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.NeedsLabel = new System.Windows.Forms.Label();
@@ -46,6 +46,8 @@
             this.NextBtn = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.SearchBtn2 = new System.Windows.Forms.Button();
+            this.ExpandAbsBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // TextEnter
@@ -104,16 +106,17 @@
             this.IndexLabel.TabIndex = 11;
             this.IndexLabel.Text = "Index Directory";
             // 
-            // SearchBtn
+            // SearchBtn1
             // 
-            this.SearchBtn.Location = new System.Drawing.Point(392, 86);
-            this.SearchBtn.Name = "SearchBtn";
-            this.SearchBtn.Size = new System.Drawing.Size(84, 22);
-            this.SearchBtn.TabIndex = 13;
-            this.SearchBtn.Text = "Search";
-            this.SearchBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
-            this.SearchBtn.UseVisualStyleBackColor = true;
-            this.SearchBtn.Click += new System.EventHandler(this.SearchBtn_Click);
+            this.SearchBtn1.Enabled = false;
+            this.SearchBtn1.Location = new System.Drawing.Point(392, 135);
+            this.SearchBtn1.Name = "SearchBtn1";
+            this.SearchBtn1.Size = new System.Drawing.Size(84, 22);
+            this.SearchBtn1.TabIndex = 13;
+            this.SearchBtn1.Text = "Search";
+            this.SearchBtn1.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
+            this.SearchBtn1.UseVisualStyleBackColor = true;
+            this.SearchBtn1.Click += new System.EventHandler(this.SearchBtn1_Click);
             // 
             // NeedsButton
             // 
@@ -129,7 +132,7 @@
             // NeedsLabel
             // 
             this.NeedsLabel.AutoSize = true;
-            this.NeedsLabel.Location = new System.Drawing.Point(180, 140);
+            this.NeedsLabel.Location = new System.Drawing.Point(52, 161);
             this.NeedsLabel.Name = "NeedsLabel";
             this.NeedsLabel.Size = new System.Drawing.Size(57, 13);
             this.NeedsLabel.TabIndex = 15;
@@ -148,13 +151,14 @@
             // TopLabel
             // 
             this.TopLabel.AutoSize = true;
-            this.TopLabel.Location = new System.Drawing.Point(49, 171);
+            this.TopLabel.Location = new System.Drawing.Point(52, 185);
             this.TopLabel.Name = "TopLabel";
             this.TopLabel.Size = new System.Drawing.Size(0, 13);
             this.TopLabel.TabIndex = 17;
             // 
             // PreviousBtn
             // 
+            this.PreviousBtn.Enabled = false;
             this.PreviousBtn.Location = new System.Drawing.Point(422, 179);
             this.PreviousBtn.Name = "PreviousBtn";
             this.PreviousBtn.Size = new System.Drawing.Size(75, 23);
@@ -165,6 +169,7 @@
             // 
             // NextBtn
             // 
+            this.NextBtn.Enabled = false;
             this.NextBtn.Location = new System.Drawing.Point(503, 179);
             this.NextBtn.Name = "NextBtn";
             this.NextBtn.Size = new System.Drawing.Size(75, 23);
@@ -191,11 +196,35 @@
             this.label2.TabIndex = 21;
             this.label2.Text = "OR";
             // 
+            // SearchBtn2
+            // 
+            this.SearchBtn2.Enabled = false;
+            this.SearchBtn2.Location = new System.Drawing.Point(392, 86);
+            this.SearchBtn2.Name = "SearchBtn2";
+            this.SearchBtn2.Size = new System.Drawing.Size(84, 22);
+            this.SearchBtn2.TabIndex = 22;
+            this.SearchBtn2.Text = "Search";
+            this.SearchBtn2.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
+            this.SearchBtn2.UseVisualStyleBackColor = true;
+            this.SearchBtn2.Click += new System.EventHandler(this.SearchBtn2_Click);
+            // 
+            // ExpandAbsBtn
+            // 
+            this.ExpandAbsBtn.Enabled = false;
+            this.ExpandAbsBtn.Location = new System.Drawing.Point(311, 179);
+            this.ExpandAbsBtn.Name = "ExpandAbsBtn";
+            this.ExpandAbsBtn.Size = new System.Drawing.Size(105, 23);
+            this.ExpandAbsBtn.TabIndex = 23;
+            this.ExpandAbsBtn.Text = "Show Abstracts";
+            this.ExpandAbsBtn.UseVisualStyleBackColor = true;
+            // 
             // GUIForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(886, 560);
+            this.Controls.Add(this.ExpandAbsBtn);
+            this.Controls.Add(this.SearchBtn2);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.NextBtn);
@@ -204,7 +233,7 @@
             this.Controls.Add(this.SearchOutput);
             this.Controls.Add(this.NeedsLabel);
             this.Controls.Add(this.NeedsButton);
-            this.Controls.Add(this.SearchBtn);
+            this.Controls.Add(this.SearchBtn1);
             this.Controls.Add(this.IndexLabel);
             this.Controls.Add(this.SourceLabel);
             this.Controls.Add(this.SetIndexDirBut);
@@ -230,7 +259,7 @@
         private System.Windows.Forms.Label IndexLabel;
 
         private System.Windows.Forms.Label[] LabelArray;
-        private System.Windows.Forms.Button SearchBtn;
+        private System.Windows.Forms.Button SearchBtn1;
         private System.Windows.Forms.Button NeedsButton;
         private System.Windows.Forms.FolderBrowserDialog IndexDirBrowserDialog;
         private System.Windows.Forms.Label NeedsLabel;
@@ -240,6 +269,8 @@
         private System.Windows.Forms.Button NextBtn;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button SearchBtn2;
+        private System.Windows.Forms.Button ExpandAbsBtn;
     }
 }
 

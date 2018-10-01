@@ -37,8 +37,8 @@ namespace LuceneAdvancedSearchApplication
         
         private void BuildIndBtn_Click(object sender, EventArgs e)
         {
-            //sourcePath = @"D:\Desktop\ifn647-project\LuceneAdvancedSearchApplication\crandocs";
-            //indexPath = @"C:\LuceneFolder";
+            sourcePath = @"D:\Desktop\ifn647-project\LuceneAdvancedSearchApplication\crandocs";
+            indexPath = @"C:\LuceneFolder";
 
             if (sourcePath is null)
                 MessageBox.Show("You didn't completely select the source directory path", "Error!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -56,6 +56,7 @@ namespace LuceneAdvancedSearchApplication
                 DateTime end = System.DateTime.Now;   // Indexing time ends
                 Console.WriteLine("The time for creating index was " + (end - start));  // Calculate and show the indexing time
                 myLuceneApp.CleanUpIndexer();
+                SearchBtn2.Enabled = true;      // Enable search button 2
             }
 
 
@@ -87,9 +88,10 @@ namespace LuceneAdvancedSearchApplication
             myNeedsDialog.ShowDialog();
             NeedsLabel.Text = myNeedsDialog.FileName;
             needsPath = myNeedsDialog.FileName;
+            SearchBtn1.Enabled = true;      // Enable search button 1
         }
 
-        private void SearchBtn_Click(object sender, EventArgs e)   // Whe clicking on "" button
+        private void SearchBtn1_Click(object sender, EventArgs e)   // Whe clicking on "" button
         {
             //needsPath = @"D:\Desktop\ifn647-project\LuceneAdvancedSearchApplication\cran_information_needs.txt";
             if ((sourcePath is null) || (indexPath is null) || (needsPath is null))       // Check if the paths are set
@@ -127,48 +129,112 @@ namespace LuceneAdvancedSearchApplication
 
                 TopLabel.Text = "Top 1-10 results";     // Display top description
                 SearchOutput.Text = outp;               // Display top 10 results
-                
-            }
+                NextBtn.Enabled = true;                 // Enable next button
+                ExpandAbsBtn.Enabled = true;            // Enable expand abstract button
+            }   
         }
 
-        private void NextBtn_Click(object sender, EventArgs e)  // When clicking on Next 10 button
+
+        private void SearchBtn2_Click(object sender, EventArgs e)
         {
-            string outp = "";       // Initial null string
-            
-            if (limit + 20 <= resultList.Count)     // Check if starting rank number exists
+            if (TextEnter.Text == "")       // Check if the paths are set
             {
-                limit += 10;        // Get new rank starting counter
-                for (int i = limit; i < limit + 10; i++)    // Concatenate the next 10 result strings
-                {
-                    outp += "Rank: " + (i + 1).ToString() + "\r\n" + resultList[i] + "\r\n\r\n";
-                }
-                TopLabel.Text = String.Format("Top {0}-{1} results", limit + 1, limit + 10);    // Display top description
-                SearchOutput.Text = outp;   // Display next 10 results
+                MessageBox.Show("Enter something!!", "Error!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
-                MessageBox.Show("These are already the last 10 results!!", "Error!!", MessageBoxButtons.OK, MessageBoxIcon.Error);  // Display error
+                //this.Close();
+
+                // To keep form as Main interface
+                Dictionary<string, string> cranNeeds = myLuceneApp.ReadCranNeeds(needsPath);   // Put the cran_information_need into a dictionary
+
+                //// Searching Code
+                DateTime start = System.DateTime.Now;   //Searching time starts
+                myLuceneApp.CreateSearcher();
+                //foreach(KeyValuePair<string, string> entry in cranNeeds)
+                //{
+                //    myLuceneApp.SearchText(entry.Value);
+
+                //}
+                resultList = myLuceneApp.SearchText(TextEnter.Text);     // Get search result list
+                myLuceneApp.CleanUpSearcher();
+                DateTime end = System.DateTime.Now;   // Searching time starts
+                Console.WriteLine("The time for searching text was " + (end - start));  // Calculate and show the searching time
+
+
+                string outp = "";       // Initial null string
+                limit = 0;              // Set top rank starting counter
+
+                for (int i = 0; i < limit + 10; i++)     // Concatenate the top 10 result strings
+                {
+                    outp += "Rank: " + (i + 1).ToString() + "\r\n" + resultList[i] + "\r\n\r\n";
+                }
+
+                TopLabel.Text = "Top 1-10 results";     // Display top description
+                SearchOutput.Text = outp;               // Display top 10 results
+                NextBtn.Enabled = true;                 // Enable next button
+                ExpandAbsBtn.Enabled = true;            // Enable expand abstract button
             }
+        }
+
+            private void NextBtn_Click(object sender, EventArgs e)  // When clicking on Next 10 button
+        {
+            string outp = "";       // Initial null string
+            
+            //if (limit + 20 <= resultList.Count)     // Check if starting rank number exists
+            //{
+
+
+            limit += 10;        // Get new rank starting counter
+            for (int i = limit; i < limit + 10; i++)    // Concatenate the next 10 result strings
+            {
+                outp += "Rank: " + (i + 1).ToString() + "\r\n" + resultList[i] + "\r\n\r\n";
+            }
+            TopLabel.Text = String.Format("Top {0}-{1} results", limit + 1, limit + 10);    // Display top description
+            SearchOutput.Text = outp;   // Display next 10 results
+            PreviousBtn.Enabled = true;
+            if (limit + 20 > resultList.Count)
+            {
+                NextBtn.Enabled = false;
+            }
+
+
+            //}
+            //else
+            //{
+                //NextBtn.Enabled = false;
+                //MessageBox.Show("These are already the last 10 results!!", "Error!!", MessageBoxButtons.OK, MessageBoxIcon.Error);  // Display error
+            //}
         }
 
         private void PreviousBtn_Click(object sender, EventArgs e)  // When clicking on Previous 10 button
         {
             string outp = "";       // Initial null string
 
-            if (limit - 10 >= 0)    // Check if starting rank number exists
+            //if (limit - 10 >= 0)    // Check if starting rank number exists
+            //{
+
+
+            limit -= 10;        // Get new rank starting counter
+            for (int i = limit; i < limit + 10; i++)    // Concatenate previous 10 result strings
             {
-                limit -= 10;        // Get new rank starting counter
-                for (int i = limit; i < limit + 10; i++)    // Concatenate previous 10 result strings
-                {
-                    outp += "Rank: " + (i + 1).ToString() + "\r\n" + resultList[i] + "\r\n\r\n";
-                }
-                TopLabel.Text = String.Format("Top {0}-{1} results", limit + 1, limit + 10);    // Display top description
-                SearchOutput.Text = outp;   // Display previous 10 results
+                outp += "Rank: " + (i + 1).ToString() + "\r\n" + resultList[i] + "\r\n\r\n";
             }
-            else
+            TopLabel.Text = String.Format("Top {0}-{1} results", limit + 1, limit + 10);    // Display top description
+            SearchOutput.Text = outp;   // Display previous 10 results
+            NextBtn.Enabled = true;
+            if (limit - 10 < 0)
             {
-                MessageBox.Show("You are already at the top 10 results!!", "Error!!", MessageBoxButtons.OK, MessageBoxIcon.Error);  // Display error
+                PreviousBtn.Enabled = false;
             }
+
+            // old ways for message box
+            //}
+            //else
+            //{
+                //PreviousBtn.Enabled = false;
+                //MessageBox.Show("You are already at the top 10 results!!", "Error!!", MessageBoxButtons.OK, MessageBoxIcon.Error);  // Display error
+            //}
         }
     }
 }
