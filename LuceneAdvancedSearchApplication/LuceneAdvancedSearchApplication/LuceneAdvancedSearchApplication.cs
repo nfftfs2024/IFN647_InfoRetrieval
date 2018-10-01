@@ -86,26 +86,29 @@ namespace LuceneAdvancedSearchApplication
             TopDocs results = searcher.Search(query, 100);
             System.Console.WriteLine("Number of results is " + results.TotalHits);
 
-            //string resultText = "";
-            if (results.TotalHits != 0)
+            if (results.TotalHits != 0)     // Check if there are found results
             {
                 for (int i = 0; i < 40; i++)    // Loop through the top 10 ranked documents
                 {
                     int rank = i + 1;   // Set ranking number
                     ScoreDoc scoreDoc = results.ScoreDocs[i];   // Get the ranked document
                     Lucene.Net.Documents.Document doc = searcher.Doc(scoreDoc.Doc);     // Get document contents
-                                                                                        //Lucene.Net.Search.Explanation exp = searcher.Explain(query, scoreDoc.Doc);    // Get document Explain information
                     string myFieldValue = doc.Get(TEXT_FN).ToString();  // Get document contents by fields
-                                                                        //Console.WriteLine("Rank " + rank + " text " + myFieldValue + "\n" + exp.ToString());
+                                                                        
+                    //Lucene.Net.Search.Explanation exp = searcher.Explain(query, scoreDoc.Doc);    // Get document Explain information
+                    //Console.WriteLine("Rank " + rank + " text " + myFieldValue + "\n" + exp.ToString());
 
                     string[] parts = myFieldValue.Split(new string[] { ".W\r\n" }, StringSplitOptions.RemoveEmptyEntries);   // Cut half the texts from the starting of .W
                     string firsthalf = parts[0].Replace(".I ", "DocID: ").Replace(".T\r\n", "Title: ").Replace(".A\r\n", "Author: ").Replace(".B\r\n", "Bibliographic information: ");  // First half
-                                                                                                                                                                                        // Using RE for the .W half to get the first sentence
+                                                                                                                                                                                       
+                    // old ways, RE moved to GUIForm
                     //Regex rx = new Regex("^.*?[.?!]", RegexOptions.Compiled | RegexOptions.IgnoreCase);     // Set the RE
-                    string secondhalf = parts[1].Replace("\r\n", " ");
                     //MatchCollection matches = rx.Matches(secondhalf);   // Second half
 
-                    resultList.Add(firsthalf + "Abstract: " + secondhalf + "\n\n");
+                    string secondhalf = parts[1].Replace("\r\n", " ");  // Replace abstract CRLF
+                    resultList.Add(firsthalf + "Abstract: " + secondhalf + "\n\n");     // Combine texts
+
+                    // old ways
                     //resultList.Add(firsthalf + "First sentence of abstract: " + matches[0].Value + "\n\n");
                     //resultText += firsthalf + "First sentence of abstract: " + matches[0].Value + "\n\n";
                     //Console.WriteLine(firsthalf + "First sentence of abstract: " + matches[0].Value + "\n\n");

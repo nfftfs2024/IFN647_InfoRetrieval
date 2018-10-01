@@ -38,8 +38,8 @@ namespace LuceneAdvancedSearchApplication
         
         private void BuildIndBtn_Click(object sender, EventArgs e)
         {
-            sourcePath = @"D:\Desktop\ifn647-project\LuceneAdvancedSearchApplication\crandocs";
-            indexPath = @"C:\LuceneFolder";
+            //sourcePath = @"D:\Desktop\ifn647-project\LuceneAdvancedSearchApplication\crandocs";
+            //indexPath = @"C:\LuceneFolder";
 
             if (sourcePath is null)
                 MessageBox.Show("You didn't completely select the source directory path", "Error!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
