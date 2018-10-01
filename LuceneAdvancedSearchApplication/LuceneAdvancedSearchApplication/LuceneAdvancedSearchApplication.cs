@@ -101,11 +101,12 @@ namespace LuceneAdvancedSearchApplication
                     string[] parts = myFieldValue.Split(new string[] { ".W\r\n" }, StringSplitOptions.RemoveEmptyEntries);   // Cut half the texts from the starting of .W
                     string firsthalf = parts[0].Replace(".I ", "DocID: ").Replace(".T\r\n", "Title: ").Replace(".A\r\n", "Author: ").Replace(".B\r\n", "Bibliographic information: ");  // First half
                                                                                                                                                                                         // Using RE for the .W half to get the first sentence
-                    Regex rx = new Regex("^.*?[.?!]", RegexOptions.Compiled | RegexOptions.IgnoreCase);     // Set the RE
+                    //Regex rx = new Regex("^.*?[.?!]", RegexOptions.Compiled | RegexOptions.IgnoreCase);     // Set the RE
                     string secondhalf = parts[1].Replace("\r\n", " ");
-                    MatchCollection matches = rx.Matches(secondhalf);   // Second half
+                    //MatchCollection matches = rx.Matches(secondhalf);   // Second half
 
-                    resultList.Add(firsthalf + "First sentence of abstract: " + matches[0].Value + "\n\n");
+                    resultList.Add(firsthalf + "Abstract: " + secondhalf + "\n\n");
+                    //resultList.Add(firsthalf + "First sentence of abstract: " + matches[0].Value + "\n\n");
                     //resultText += firsthalf + "First sentence of abstract: " + matches[0].Value + "\n\n";
                     //Console.WriteLine(firsthalf + "First sentence of abstract: " + matches[0].Value + "\n\n");
                     //Console.WriteLine("Rank " + rank + "\n" + myFieldValue + "\n"); //+ exp.ToString());

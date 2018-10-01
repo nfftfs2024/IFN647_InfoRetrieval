@@ -58,6 +58,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ExpandForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ExpandForm.Designer.cs">
+      <DependentUpon>ExpandForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUIForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -77,6 +83,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="ExpandForm.resx">
+      <DependentUpon>ExpandForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUIForm.resx">
       <DependentUpon>GUIForm.cs</DependentUpon>
     </EmbeddedResource>

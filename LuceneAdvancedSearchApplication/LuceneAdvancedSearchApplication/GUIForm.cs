@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
 
 namespace LuceneAdvancedSearchApplication
 {
@@ -94,10 +95,11 @@ namespace LuceneAdvancedSearchApplication
 
         private void SearchBtn1_Click(object sender, EventArgs e)   // Whe clicking on "" button
         {
+            ExpandAbsBtn.Text = "Show Abstracts";
             //needsPath = @"D:\Desktop\ifn647-project\LuceneAdvancedSearchApplication\cran_information_needs.txt";
 
-                // To keep form as Main interface
-                Dictionary<string, string> cranNeeds = myLuceneApp.ReadCranNeeds(needsPath);   // Put the cran_information_need into a dictionary
+            // To keep form as Main interface
+            Dictionary<string, string> cranNeeds = myLuceneApp.ReadCranNeeds(needsPath);   // Put the cran_information_need into a dictionary
                                                                                               
                 //// Searching Code
                 DateTime start = System.DateTime.Now;   //Searching time starts
@@ -119,7 +121,12 @@ namespace LuceneAdvancedSearchApplication
 
                 for(int i = 0; i < limit + 10; i++)     // Concatenate the top 10 result strings
                 {
-                    outp += "Rank: " + (i + 1).ToString() + "\r\n" + resultList[i] + "\r\n\r\n";
+                    Regex rx = new Regex("Abstract:.*?[.?!]", RegexOptions.Compiled | RegexOptions.IgnoreCase);     // Set the RE
+                    MatchCollection matches = rx.Matches(resultList[i]);   // Second half
+
+                    outp += "Rank: " + (i + 1).ToString() + "\r\n" + resultList[i].Substring(0, resultList[i].LastIndexOf("Abstract: ")) + matches[0].Value + "\r\n\r\n";
+
+                //outp += "Rank: " + (i + 1).ToString() + "\r\n" + resultList[i] + "\r\n\r\n";
                 }
 
                 TopLabel.Text = "Top 1-10 results";     // Display top description
@@ -131,6 +138,7 @@ namespace LuceneAdvancedSearchApplication
 
         private void SearchBtn2_Click(object sender, EventArgs e)
         {
+            ExpandAbsBtn.Text = "Show Abstracts";
             if (TextEnter.Text == "")       // Check if the paths are set
             {
                 MessageBox.Show("Enter something!!", "Error!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -166,7 +174,13 @@ namespace LuceneAdvancedSearchApplication
 
                     for (int i = 0; i < limit + 10; i++)     // Concatenate the top 10 result strings
                     {
-                        outp += "Rank: " + (i + 1).ToString() + "\r\n" + resultList[i] + "\r\n\r\n";
+
+                        Regex rx = new Regex("Abstract:.*?[.?!]", RegexOptions.Compiled | RegexOptions.IgnoreCase);     // Set the RE
+                        MatchCollection matches = rx.Matches(resultList[i]);   // Second half
+                        string match = "";
+                        //if (matches.Count !=0)
+                        //    match = matches[0].Value; 
+                        outp += "Rank: " + (i + 1).ToString() + "\r\n" + resultList[i].Substring(0, resultList[i].LastIndexOf("Abstract: ")) + matches[0].Value + "\r\n\r\n";
                     }
 
                     TopLabel.Text = "Top 1-10 results";     // Display top description
@@ -183,6 +197,7 @@ namespace LuceneAdvancedSearchApplication
 
             private void NextBtn_Click(object sender, EventArgs e)  // When clicking on Next 10 button
         {
+            ExpandAbsBtn.Text = "Show Abstracts";
             string outp = "";       // Initial null string
             
             //if (limit + 20 <= resultList.Count)     // Check if starting rank number exists
@@ -192,7 +207,12 @@ namespace LuceneAdvancedSearchApplication
             limit += 10;        // Get new rank starting counter
             for (int i = limit; i < limit + 10; i++)    // Concatenate the next 10 result strings
             {
-                outp += "Rank: " + (i + 1).ToString() + "\r\n" + resultList[i] + "\r\n\r\n";
+                Regex rx = new Regex("Abstract:.*?[.?!]", RegexOptions.Compiled | RegexOptions.IgnoreCase);     // Set the RE
+                MatchCollection matches = rx.Matches(resultList[i]);   // Second half
+
+                outp += "Rank: " + (i + 1).ToString() + "\r\n" + resultList[i].Substring(0, resultList[i].LastIndexOf("Abstract: ")) + matches[0].Value + "\r\n\r\n";
+
+                //outp += "Rank: " + (i + 1).ToString() + "\r\n" + resultList[i] + "\r\n\r\n";
             }
             TopLabel.Text = String.Format("Top {0}-{1} results", limit + 1, limit + 10);    // Display top description
             SearchOutput.Text = outp;   // Display next 10 results
@@ -213,6 +233,7 @@ namespace LuceneAdvancedSearchApplication
 
         private void PreviousBtn_Click(object sender, EventArgs e)  // When clicking on Previous 10 button
         {
+            ExpandAbsBtn.Text = "Show Abstracts";
             string outp = "";       // Initial null string
 
             //if (limit - 10 >= 0)    // Check if starting rank number exists
@@ -222,7 +243,12 @@ namespace LuceneAdvancedSearchApplication
             limit -= 10;        // Get new rank starting counter
             for (int i = limit; i < limit + 10; i++)    // Concatenate previous 10 result strings
             {
-                outp += "Rank: " + (i + 1).ToString() + "\r\n" + resultList[i] + "\r\n\r\n";
+                Regex rx = new Regex("Abstract:.*?[.?!]", RegexOptions.Compiled | RegexOptions.IgnoreCase);     // Set the RE
+                MatchCollection matches = rx.Matches(resultList[i]);   // Second half
+
+                outp += "Rank: " + (i + 1).ToString() + "\r\n" + resultList[i].Substring(0, resultList[i].LastIndexOf("Abstract: ")) + matches[0].Value + "\r\n\r\n";
+
+                //outp += "Rank: " + (i + 1).ToString() + "\r\n" + resultList[i] + "\r\n\r\n";
             }
             TopLabel.Text = String.Format("Top {0}-{1} results", limit + 1, limit + 10);    // Display top description
             SearchOutput.Text = outp;   // Display previous 10 results
@@ -243,7 +269,30 @@ namespace LuceneAdvancedSearchApplication
 
         private void ExpandAbsBtn_Click(object sender, EventArgs e)
         {
+            //GUIForm form2 = new GUIForm();
+            //form2.Show();
+            string outp = "";
+            if (ExpandAbsBtn.Text == "Show Abstracts")
+            {
+                for (int i = limit; i < limit + 10; i++)     // Concatenate the top 10 result strings
+                {
+                    outp += "Rank: " + (i + 1).ToString() + "\r\n" + resultList[i] + "\r\n\r\n";
+                }
+                SearchOutput.Text = outp;
+                ExpandAbsBtn.Text = "Hide Abstracts";
+            }
+            else
+            {
+                for (int i = limit; i < limit + 10; i++)     // Concatenate the top 10 result strings
+                {
 
+                    Regex rx = new Regex("Abstract:.*?[.?!]", RegexOptions.Compiled | RegexOptions.IgnoreCase);     // Set the RE
+                    MatchCollection matches = rx.Matches(resultList[i]);   // Second half
+                    outp += "Rank: " + (i + 1).ToString() + "\r\n" + resultList[i].Substring(0, resultList[i].LastIndexOf("Abstract: ")) + matches[0].Value + "\r\n\r\n";
+                }
+                SearchOutput.Text = outp;
+                ExpandAbsBtn.Text = "Show Abstracts";
+            }
         }
     }
 }
