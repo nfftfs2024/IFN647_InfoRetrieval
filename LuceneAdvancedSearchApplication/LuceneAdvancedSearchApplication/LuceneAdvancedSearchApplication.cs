@@ -27,12 +27,10 @@ namespace LuceneAdvancedSearchApplication
 
         const Lucene.Net.Util.Version VERSION = Lucene.Net.Util.Version.LUCENE_30;
         const string TEXT_FN = "Text";
-       
-        
+
 
         public LuceneAdvancedSearchApplication()
         {
-            
             luceneIndexDirectory = null;
             writer = null;
             analyzer = new Lucene.Net.Analysis.SimpleAnalyzer();      // Stop analyzer takes 
@@ -49,7 +47,7 @@ namespace LuceneAdvancedSearchApplication
 
             luceneIndexDirectory = Lucene.Net.Store.FSDirectory.Open(indexPath);
             IndexWriter.MaxFieldLength mfl = new IndexWriter.MaxFieldLength(IndexWriter.DEFAULT_MAX_FIELD_LENGTH);
-            // writer = new Lucene.Net.Index.IndexWriter(luceneIndexDirectory, analyzer, true, mfl); 
+            // writer = new Lucene.Net.Index.IndexWriter(luceneIndexDirectory, analyzer, true, mfl);
             writer = new Lucene.Net.Index.IndexWriter(luceneIndexDirectory, analyzer, true, mfl);
             //writer.SetSimilarity(newSimilarity);
         }
@@ -189,13 +187,13 @@ namespace LuceneAdvancedSearchApplication
                     string words = text.Substring(indexW + 4, ((text.Length - 2 - (indexW + 4)) > 0) ? (text.Length - 2 - (indexW + 4)) : 0);   // Get words string
 
                     Lucene.Net.Documents.Document doc = new Document();     // Create document
-                    // Add 5 fields to the document
+                    //// Add 5 fields to the document
                     //doc.Add(new Lucene.Net.Documents.Field("id", id, Field.Store.YES, Field.Index.ANALYZED, Field.TermVector.YES));
                     //doc.Add(new Lucene.Net.Documents.Field("title", title, Field.Store.YES, Field.Index.ANALYZED, Field.TermVector.YES));
                     //doc.Add(new Lucene.Net.Documents.Field("author", author, Field.Store.YES, Field.Index.ANALYZED, Field.TermVector.YES));
                     //doc.Add(new Lucene.Net.Documents.Field("bibliography", biblio, Field.Store.YES, Field.Index.ANALYZED, Field.TermVector.YES));
                     //doc.Add(new Lucene.Net.Documents.Field("words", words, Field.Store.YES, Field.Index.ANALYZED, Field.TermVector.YES));
-                    doc.Add(new Lucene.Net.Documents.Field(TEXT_FN, text, Field.Store.YES, Field.Index.ANALYZED, Field.TermVector.YES));
+                    doc.Add(new Lucene.Net.Documents.Field(TEXT_FN, text, Field.Store.YES, Field.Index.ANALYZED, Field.TermVector.NO));
 
                     writer.AddDocument(doc);    // Add document
                 }

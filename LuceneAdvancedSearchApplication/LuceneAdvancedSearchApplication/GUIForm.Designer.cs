@@ -66,10 +66,6 @@
             this.BuildIndBtn.UseVisualStyleBackColor = true;
             this.BuildIndBtn.Click += new System.EventHandler(this.BuildIndBtn_Click);
             // 
-            // myNeedsDialog
-            // 
-            
-            // 
             // SetSourceDireBtn
             // 
             this.SetSourceDireBtn.Location = new System.Drawing.Point(49, 12);

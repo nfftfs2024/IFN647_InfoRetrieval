@@ -20,10 +20,9 @@ namespace LuceneAdvancedSearchApplication
 
         public static List<string> resultList { get; set; }
         public static Int32 limit { get; set; }
-        
 
         LuceneAdvancedSearchApplication myLuceneApp = new LuceneAdvancedSearchApplication();
-        
+
         public GUIForm()
         {
             InitializeComponent();
@@ -89,42 +88,14 @@ namespace LuceneAdvancedSearchApplication
             NeedsLabel.Text = myNeedsDialog.FileName;
             needsPath = myNeedsDialog.FileName;
         }
-        
+
         private void SearchBtn_Click(object sender, EventArgs e)   // Whe clicking on "" button
         {
             //needsPath = @"D:\Desktop\ifn647-project\LuceneAdvancedSearchApplication\cran_information_needs.txt";
-            if ((sourcePath is null) || (indexPath is null))       // Check if the paths are set
+            if ((sourcePath is null) || (indexPath is null) || (needsPath is null))       // Check if the paths are set
             {
                     MessageBox.Show("You didn't completely select the directory paths or files", "Error!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            else if ((searchWords != null)&&(needsPath==null))
-                    {
-                DateTime start = System.DateTime.Now;   //Searching time starts
-                myLuceneApp.CreateSearcher();
-                //foreach(KeyValuePair<string, string> entry in cranNeeds)
-                //{
-                //    myLuceneApp.SearchText(entry.Value);
-
-                //}
-                resultList = myLuceneApp.SearchText(searchWords);     // Get search result list
-                myLuceneApp.CleanUpSearcher();
-                DateTime end = System.DateTime.Now;   // Searching time starts
-                Console.WriteLine("The time for creating index was " + (end - start));  // Calculate and show the searching time
-
-
-                string outp = "";       // Initial null string
-                limit = 0;              // Set top rank starting counter
-
-                for (int i = 0; i < limit + 10; i++)     // Concatenate the top 10 result strings
-                {
-                    outp += "Rank: " + (i + 1).ToString() + "\r\n" + resultList[i] + "\r\n\r\n";
-                }
-
-                TopLabel.Text = "Top 1-10 results";     // Display top description
-                SearchOutput.Text = outp;               // Display top 10 results
-
-            }
-            
             else
             {
                 //this.Close();
@@ -143,7 +114,7 @@ namespace LuceneAdvancedSearchApplication
                 resultList =  myLuceneApp.SearchText(cranNeeds["001"]);     // Get search result list
                 myLuceneApp.CleanUpSearcher();
                 DateTime end = System.DateTime.Now;   // Searching time starts
-                Console.WriteLine("The time for creating index was " + (end - start));  // Calculate and show the searching time
+                Console.WriteLine("The time for searching text was " + (end - start));  // Calculate and show the searching time
                                                                                         
 
                 string outp = "";       // Initial null string
@@ -199,6 +170,5 @@ namespace LuceneAdvancedSearchApplication
                 MessageBox.Show("You are already at the top 10 results!!", "Error!!", MessageBoxButtons.OK, MessageBoxIcon.Error);  // Display error
             }
         }
-
     }
 }
