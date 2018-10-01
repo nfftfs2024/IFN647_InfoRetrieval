@@ -54,6 +54,7 @@ namespace LuceneAdvancedSearchApplication
                 myLuceneApp.IndexText(sourcePath);      // Add file collection to the index one by one
                 Console.WriteLine("All documents added.");
                 DateTime end = System.DateTime.Now;   // Indexing time ends
+                MessageBox.Show("The time for indexing text was " + (end - start), "Reporting Indexing Time", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Console.WriteLine("The time for creating index was " + (end - start));  // Calculate and show the indexing time
                 myLuceneApp.CleanUpIndexer();
                 SearchBtn2.Enabled = true;      // Enable search button 2
@@ -94,13 +95,6 @@ namespace LuceneAdvancedSearchApplication
         private void SearchBtn1_Click(object sender, EventArgs e)   // Whe clicking on "" button
         {
             //needsPath = @"D:\Desktop\ifn647-project\LuceneAdvancedSearchApplication\cran_information_needs.txt";
-            if ((sourcePath is null) || (indexPath is null) || (needsPath is null))       // Check if the paths are set
-            {
-                    MessageBox.Show("You didn't completely select the directory paths or files", "Error!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else
-            {
-                //this.Close();
 
                 // To keep form as Main interface
                 Dictionary<string, string> cranNeeds = myLuceneApp.ReadCranNeeds(needsPath);   // Put the cran_information_need into a dictionary
@@ -116,6 +110,7 @@ namespace LuceneAdvancedSearchApplication
                 resultList =  myLuceneApp.SearchText(cranNeeds["001"]);     // Get search result list
                 myLuceneApp.CleanUpSearcher();
                 DateTime end = System.DateTime.Now;   // Searching time starts
+                MessageBox.Show("The time for searching text was " + (end - start), "Reporting Searching Time", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Console.WriteLine("The time for searching text was " + (end - start));  // Calculate and show the searching time
                                                                                         
 
@@ -130,8 +125,7 @@ namespace LuceneAdvancedSearchApplication
                 TopLabel.Text = "Top 1-10 results";     // Display top description
                 SearchOutput.Text = outp;               // Display top 10 results
                 NextBtn.Enabled = true;                 // Enable next button
-                ExpandAbsBtn.Enabled = true;            // Enable expand abstract button
-            }   
+                ExpandAbsBtn.Enabled = true;            // Enable expand abstract button      
         }
 
 
@@ -164,6 +158,7 @@ namespace LuceneAdvancedSearchApplication
 
                 if (tempList.Count != 0)
                 {
+                    MessageBox.Show("The time for searching text was " + (end - start), "Reporting Searching Time", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     string outp = "";       // Initial null string
                     limit = 0;              // Set top rank starting counter
 
