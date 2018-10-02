@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
+using System.IO;
 
 namespace LuceneAdvancedSearchApplication
 {
@@ -18,6 +19,7 @@ namespace LuceneAdvancedSearchApplication
         public static String indexPath { get; set; }
         public static String needsPath { get; set; }
         public static String searchWords { get; set; }
+        public static String savePath { get; set; }
 
         public static List<string> resultList { get; set; }
         public static Int32 limit { get; set; }
@@ -58,6 +60,7 @@ namespace LuceneAdvancedSearchApplication
                 MessageBox.Show("The time for indexing text was " + (end - start), "Reporting Indexing Time", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Console.WriteLine("The time for creating index was " + (end - start));  // Calculate and show the indexing time
                 myLuceneApp.CleanUpIndexer();
+                SaveResult.Enabled = true;
                 SearchBtn2.Enabled = true;      // Enable search button 2
             }
 
@@ -91,6 +94,32 @@ namespace LuceneAdvancedSearchApplication
             NeedsLabel.Text = myNeedsDialog.FileName;
             needsPath = myNeedsDialog.FileName;
             SearchBtn1.Enabled = true;      // Enable search button 1
+        }
+
+        private void SaveResult_Click(object sender, EventArgs e)   // Select directory path after click on Set Index Directory
+        {
+            SaveDialog.ShowDialog();
+            savePath = SaveDialog.FileName;
+            System.IO.FileStream fs =(System.IO.FileStream)SaveDialog.OpenFile();
+
+            
+            if (!File.Exists(savePath))
+            {
+                File.Create(savePath);
+                TextWriter tw = new StreamWriter(savePath);
+                tw.WriteLine(resultList);
+                tw.Close();
+            }
+            else if (File.Exists(savePath))
+            {
+                TextWriter tw = new StreamWriter(savePath);
+                tw.WriteLine(resultList);
+                tw.Close();
+            }
+            //TextWriter resultList = new StreamWriter(savePath);
+            
+
+
         }
 
         private void SearchBtn1_Click(object sender, EventArgs e)   // Whe clicking on search button for Cran Needs

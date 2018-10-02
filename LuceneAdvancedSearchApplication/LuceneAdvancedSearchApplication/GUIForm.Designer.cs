@@ -48,6 +48,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.SearchBtn2 = new System.Windows.Forms.Button();
             this.ExpandAbsBtn = new System.Windows.Forms.Button();
+            this.SaveResult = new System.Windows.Forms.Button();
+            this.SaveDialog = new System.Windows.Forms.SaveFileDialog();
             this.SuspendLayout();
             // 
             // TextEnter
@@ -60,9 +62,9 @@
             // 
             // BuildIndBtn
             // 
-            this.BuildIndBtn.Location = new System.Drawing.Point(353, 44);
+            this.BuildIndBtn.Location = new System.Drawing.Point(500, 47);
             this.BuildIndBtn.Name = "BuildIndBtn";
-            this.BuildIndBtn.Size = new System.Drawing.Size(72, 22);
+            this.BuildIndBtn.Size = new System.Drawing.Size(84, 22);
             this.BuildIndBtn.TabIndex = 5;
             this.BuildIndBtn.Text = "Build Index";
             this.BuildIndBtn.UseVisualStyleBackColor = true;
@@ -109,7 +111,7 @@
             // SearchBtn1
             // 
             this.SearchBtn1.Enabled = false;
-            this.SearchBtn1.Location = new System.Drawing.Point(392, 135);
+            this.SearchBtn1.Location = new System.Drawing.Point(500, 135);
             this.SearchBtn1.Name = "SearchBtn1";
             this.SearchBtn1.Size = new System.Drawing.Size(84, 22);
             this.SearchBtn1.TabIndex = 13;
@@ -199,7 +201,7 @@
             // SearchBtn2
             // 
             this.SearchBtn2.Enabled = false;
-            this.SearchBtn2.Location = new System.Drawing.Point(392, 86);
+            this.SearchBtn2.Location = new System.Drawing.Point(500, 86);
             this.SearchBtn2.Name = "SearchBtn2";
             this.SearchBtn2.Size = new System.Drawing.Size(84, 22);
             this.SearchBtn2.TabIndex = 22;
@@ -219,11 +221,23 @@
             this.ExpandAbsBtn.UseVisualStyleBackColor = true;
             this.ExpandAbsBtn.Click += new System.EventHandler(this.ExpandAbsBtn_Click);
             // 
+            // SaveResult
+            // 
+            this.SaveResult.Enabled = false;
+            this.SaveResult.Location = new System.Drawing.Point(200, 179);
+            this.SaveResult.Name = "SaveResult";
+            this.SaveResult.Size = new System.Drawing.Size(105, 23);
+            this.SaveResult.TabIndex = 24;
+            this.SaveResult.Text = "Save";
+            this.SaveResult.UseVisualStyleBackColor = true;
+            this.SaveResult.Click += new System.EventHandler(this.SaveResult_Click);
+            // 
             // GUIForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(886, 560);
+            this.Controls.Add(this.SaveResult);
             this.Controls.Add(this.ExpandAbsBtn);
             this.Controls.Add(this.SearchBtn2);
             this.Controls.Add(this.label2);
@@ -272,6 +286,8 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button SearchBtn2;
         private System.Windows.Forms.Button ExpandAbsBtn;
+        private System.Windows.Forms.Button SaveResult;
+        private System.Windows.Forms.SaveFileDialog SaveDialog;
     }
 }
 
