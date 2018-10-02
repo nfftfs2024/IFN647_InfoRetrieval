@@ -70,7 +70,7 @@
     <Compile Include="GUIForm.designer.cs">
       <DependentUpon>GUIForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="LuceneAdvancedSearchApplication.cs" />
+    <Compile Include="LuceneSearchEngine.cs" />
     <Compile Include="NewSimilarity.cs" />
     <Compile Include="Poem.cs" />
     <Compile Include="PorterStemmer.cs" />
