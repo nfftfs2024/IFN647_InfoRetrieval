@@ -101,10 +101,7 @@ namespace LuceneAdvancedSearchApplication
 
                     foreach (string need in sub)       // Loop through each query
                     {
-                        int indexD = text.IndexOf(".D\r\n");   // Get Description starting index
-                        //Console.WriteLine(indexD);
-                        //Console.WriteLine(need.Substring(0, indexD - 5));
-                        //Console.WriteLine(need.Substring(indexD + 1));
+                        int indexD = text.IndexOf(".D\r\n");   // Get Description starting index                       
                         dic.Add(need.Substring(0, indexD - 5), need.Substring(indexD + 1).TrimEnd('\r', '\n'));     // Add ID and Description into dictionary as pairs
                     }
                 }
