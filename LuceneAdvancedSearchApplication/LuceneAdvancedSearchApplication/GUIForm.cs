@@ -60,7 +60,7 @@ namespace LuceneAdvancedSearchApplication
                 MessageBox.Show("The time for indexing text was " + (end - start), "Reporting Indexing Time", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Console.WriteLine("The time for creating index was " + (end - start));  // Calculate and show the indexing time
                 myLuceneApp.CleanUpIndexer();
-                SaveResult.Enabled = true;
+                
                 SearchBtn2.Enabled = true;      // Enable search button 2
             }
 
@@ -100,23 +100,23 @@ namespace LuceneAdvancedSearchApplication
         {
             SaveDialog.ShowDialog();
             savePath = SaveDialog.FileName;
-            System.IO.FileStream fs =(System.IO.FileStream)SaveDialog.OpenFile();
+            //System.IO.FileStream fs =(System.IO.FileStream)SaveDialog.OpenFile();
+            {
 
-            
-            if (!File.Exists(savePath))
-            {
-                File.Create(savePath);
-                TextWriter tw = new StreamWriter(savePath);
-                tw.WriteLine(resultList);
-                tw.Close();
+                StreamWriter writer = new StreamWriter(SaveDialog.OpenFile());
+
+                for (int i = 0; i < 40; i++)
+                {
+                    writer.WriteLine("Rank" + (i+1));
+                    writer.WriteLine(resultList[i]);
+
+                }
+
+                writer.Dispose();
+
+                writer.Close();
+
             }
-            else if (File.Exists(savePath))
-            {
-                TextWriter tw = new StreamWriter(savePath);
-                tw.WriteLine(resultList);
-                tw.Close();
-            }
-            //TextWriter resultList = new StreamWriter(savePath);
             
 
 
@@ -161,7 +161,8 @@ namespace LuceneAdvancedSearchApplication
                 TopLabel.Text = "Top 1-10 results";     // Display top description
                 SearchOutput.Text = outp;               // Display top 10 results
                 NextBtn.Enabled = true;                 // Enable next button
-                ExpandAbsBtn.Enabled = true;            // Enable expand abstract button      
+                ExpandAbsBtn.Enabled = true;            // Enable expand abstract button 
+                SaveResult.Enabled = true;
         }
 
 
@@ -214,6 +215,7 @@ namespace LuceneAdvancedSearchApplication
                     SearchOutput.Text = outp;               // Display top 10 results
                     NextBtn.Enabled = true;                 // Enable next button
                     ExpandAbsBtn.Enabled = true;            // Enable expand abstract button
+                    SaveResult.Enabled = true;
                 }
                 else
                 {
