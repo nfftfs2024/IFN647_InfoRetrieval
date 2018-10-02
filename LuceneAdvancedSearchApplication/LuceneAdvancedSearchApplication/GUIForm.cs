@@ -106,24 +106,9 @@ namespace LuceneAdvancedSearchApplication
             SaveDialog.ShowDialog();
             savePath = SaveDialog.FileName;
             //System.IO.FileStream fs =(System.IO.FileStream)SaveDialog.OpenFile();
-            {
-
-                StreamWriter writer = new StreamWriter(SaveDialog.OpenFile());
-
-                for (int i = 0; i < 40; i++)
-                {
-                    writer.WriteLine("Rank" + (i+1));
-                    writer.WriteLine(resultList[i]);
-
-                }
-
-                writer.Dispose();
-
-                writer.Close();
-
-            }
+            StreamWriter writer = new StreamWriter(SaveDialog.OpenFile());
+            Program.SaveClick(resultList, writer);
             
-
 
         }
 

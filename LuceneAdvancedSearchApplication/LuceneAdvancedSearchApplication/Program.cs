@@ -71,6 +71,24 @@ namespace LuceneAdvancedSearchApplication
             return outp;
         }
 
+        public static void SaveClick(List<string> resultList, StreamWriter writer)
+        {
+            
+
+            for (int i = 0; i < 40; i++)
+            {
+               
+
+                writer.WriteLine("Rank" + (i + 1));
+                writer.WriteLine(resultList[i]);
+
+            }
+
+            writer.Dispose();
+
+            writer.Close();
+        }
+
         public static Dictionary<string, string> ReadCranNeeds(string path)    // Load cran_information_need into a dictionary
         {
             Dictionary<string, string> dic = new Dictionary<string, string>(); // Create a dictionary
