@@ -170,7 +170,7 @@ namespace LuceneAdvancedSearchApplication
 
                     Lucene.Net.Documents.Document doc = new Document();     // Create document
                    
-                    doc.Add(new Lucene.Net.Documents.Field(TEXT_FN, text, Field.Store.YES, Field.Index.ANALYZED, Field.TermVector.NO));
+                    doc.Add(new Lucene.Net.Documents.Field(TEXT_FN, text, Field.Store.YES, Field.Index.ANALYZED_NO_NORMS, Field.TermVector.NO));
 
                     writer.AddDocument(doc);    // Add document
                 }
