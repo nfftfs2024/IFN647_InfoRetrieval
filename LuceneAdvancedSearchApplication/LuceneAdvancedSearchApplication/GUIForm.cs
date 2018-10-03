@@ -93,10 +93,11 @@ namespace LuceneAdvancedSearchApplication
             ExpandAbsBtn.Text = "Show Abstracts";       // Retore expand abstract button
             first = true;
             DateTime start = System.DateTime.Now;   // Searching time starts
-            resultList = Program.Search_Click(cranNeeds["001"] ,myLuceneApp);       // Search Cran needs texts
+            resultList = Program.Search_Click(cranNeeds[comboBox1.SelectedItem.ToString()], myLuceneApp);       // Search Cran needs texts
             DateTime end = System.DateTime.Now;   // Searching time starts
             MessageBox.Show("The time for searching text was " + (end - start), "Reporting Searching Time", MessageBoxButtons.OK, MessageBoxIcon.Information);
             string outp = Program.ViewData(0, resultList, first);                    // Collate search result into displaying formats
+            Program.Create_BaseLine_Results(cranNeeds, myLuceneApp);
 
             TopLabel.Text = "Top 1-10 results";     // Display top description
             SearchOutput.Text = outp;               // Display top 10 results
@@ -104,8 +105,8 @@ namespace LuceneAdvancedSearchApplication
             ExpandAbsBtn.Enabled = true;            // Enable expand abstract button 
             SaveResult.Enabled = true;              // Enable save result button
 
-           
-           
+
+
         }
 
         private void SearchBtn2_Click(object sender, EventArgs e)       // When clicking on search button for user free-typing

@@ -51,6 +51,60 @@ namespace LuceneAdvancedSearchApplication
             return resultList;
         }
 
+        public static void Create_BaseLine_Results(Dictionary<string, string> cNeeds, LuceneSearcheEngine myLuceneApp)
+        {
+            string path = Path.GetDirectoryName(Application.ExecutablePath) + "\\BaseLineResults.txt";
+            List<string> resultList = new List<string>();
+            List<float> valueListBase = new List<float>();
+            List<string> docsIdsListBase = new List<string>();
+            //// Searching Code
+            myLuceneApp.CreateSearcher();           // Create searcher
+            bool control = true;
+            foreach (string key in cNeeds.Keys)
+            {
+                Tuple<List<float>, List<string>> result = myLuceneApp.SearchText_baseline(cNeeds[key]);
+                myLuceneApp.CleanUpSearcher();        // Clean searcher
+                valueListBase = result.Item1;    // Get scores ranked documents ranked
+                docsIdsListBase = result.Item2;     //Get IDs ranked documents
+                if (!File.Exists(path) && control)
+                {
+                    File.Create(path).Dispose();
+                    using (TextWriter tw = new StreamWriter(path, append: true))
+                    {
+                        for (int i = 0; i < 100; i++)
+                        {
+                            tw.WriteLine(key + "\tQ0\t" + docsIdsListBase[i].ToString() + "\t{0}\t" + valueListBase[i].ToString() + "\tBaselineSystem", i + 1);
+                            control = false;
+                        }
+                    }
+                }
+                else if (File.Exists(path) && control)
+                {
+                    File.Delete(path);
+                    File.Create(path).Dispose();
+                    using (TextWriter tw = new StreamWriter(path, append: true))
+                    {
+                        for (int i = 0; i < 100; i++)
+                        {
+                            tw.WriteLine(key + "\tQ0\t" + docsIdsListBase[i].ToString() + "\t{0}\t" + valueListBase[i].ToString() + "\tBaselineSystem", i + 1);
+                            control = false;
+                        }
+                    }
+                }
+                else if (File.Exists(path) && !control)
+                {
+                    using (TextWriter tw = new StreamWriter(path, append: true))
+                    {
+                        for (int i = 0; i < 100; i++)
+                        {
+                            tw.WriteLine(key + "\tQ0\t" + docsIdsListBase[i].ToString() + "\t{0}\t" + valueListBase[i].ToString() + "\tBaselineSystem", i + 1);
+                            control = false;
+                        }
+                    }
+                }
+            }
+        }
+
         public static string ViewData(int limit, List<List<string>> resultSet, bool first)
         {
             string outp = "";       // Initial null string

@@ -22,6 +22,7 @@ namespace LuceneAdvancedSearchApplication
         Lucene.Net.Analysis.Analyzer analyzer;              // Create analyzer object
         Lucene.Net.Index.IndexWriter writer;                // Create index writer object
         IndexSearcher searcher;                             // Create searcher object
+        IndexSearcher searcher2;
         QueryParser parser;                                 // Create parser object
 
         //Lucene.Net.Search.Similarity newSimilarity;   // for similarity measure
@@ -70,6 +71,7 @@ namespace LuceneAdvancedSearchApplication
         public void CreateSearcher()
         {
             searcher = new IndexSearcher(luceneIndexDirectory);
+            searcher2 = new IndexSearcher(luceneIndexDirectory);
             //searcher.Similarity = newSimilarity;
         }
 
@@ -107,6 +109,37 @@ namespace LuceneAdvancedSearchApplication
             }
             
             return resultList;
+
+        }
+
+        public Tuple<List<float>, List<string>> SearchText_baseline(string querytext)
+        {
+            List<float> valueListBase = new List<float>();
+            List<string> docsIdsListBase = new List<string>();
+            System.Console.WriteLine("Searching for " + querytext);
+            querytext = querytext.ToLower();
+            Query query = parser.Parse(querytext);
+
+            TopDocs results = searcher2.Search(query, 100);
+
+            if (results.TotalHits != 0)     // Check if there are found results
+            {
+                for (int i = 0; i < 100; i++)    // Loop through the top 10 ranked documents
+                {
+                    int rank = i + 1;   // Set ranking number
+                    ScoreDoc scoreDoc = results.ScoreDocs[i];   // Get the ranked document
+                    Lucene.Net.Documents.Document doc = searcher2.Doc(scoreDoc.Doc);     // Get document contents
+                    string myFieldValue = doc.Get(TEXT_FN).ToString();  // Get document contents by fields
+                    string[] parts = myFieldValue.Split(new string[] { ".W\r\n" }, StringSplitOptions.RemoveEmptyEntries);   // Cut half the texts from the starting of .W
+                    string firsthalf = parts[0].Replace(".I ", "DocID: ").Replace(".T\r\n", "Title: ").Replace(".A\r\n", "Author: ").Replace(".B\r\n", "Bibliographic information: ");  // First half                
+                    string secondhalf = parts[1].Replace("\r\n", " ");  // Replace abstract CRLF
+
+                    docsIdsListBase.Add(firsthalf.Substring(6, firsthalf.IndexOf("Title:") - 6).Trim());
+                    valueListBase.Add(scoreDoc.Score);
+                }
+            }
+            var result = Tuple.Create(valueListBase, docsIdsListBase);
+            return result;
 
         }
 
