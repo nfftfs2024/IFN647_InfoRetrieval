@@ -77,9 +77,9 @@ namespace LuceneAdvancedSearchApplication
         /// Searches the index for the querytext
         /// </summary>
         /// <param name="querytext">The text to search the index</param>
-        public List<string> SearchText(string querytext)
+        public List<List<string>> SearchText(string querytext)
         {
-            List<string> resultList = new List<string>() ;
+            List<List<string>> resultList = new List<List<string>>() ;
             System.Console.WriteLine("Searching for " + querytext);
             querytext = querytext.ToLower();
             Query query = parser.Parse(querytext);
@@ -94,17 +94,15 @@ namespace LuceneAdvancedSearchApplication
                     int rank = i + 1;   // Set ranking number
                     ScoreDoc scoreDoc = results.ScoreDocs[i];   // Get the ranked document
                     Lucene.Net.Documents.Document doc = searcher.Doc(scoreDoc.Doc);     // Get document contents
-                    string myFieldValue = doc.Get(TEXT_FN).ToString();  // Get document contents by fields
-                                                                        
+                    string myFieldValue = doc.Get(TEXT_FN).ToString();  // Get document contents by fields                                               
                    
                     string[] parts = myFieldValue.Split(new string[] { ".W\r\n" }, StringSplitOptions.RemoveEmptyEntries);   // Cut half the texts from the starting of .W
                     string firsthalf = parts[0].Replace(".I ", "DocID: ").Replace(".T\r\n", "Title: ").Replace(".A\r\n", "Author: ").Replace(".B\r\n", "Bibliographic information: ");  // First half
                                                                                                                                                                                        
                     
                     string secondhalf = parts[1].Replace("\r\n", " ");  // Replace abstract CRLF
-                    resultList.Add(firsthalf + "Abstract: " + secondhalf + "\n\n");     // Combine texts
-
-                    
+                    resultList.Add(new List<string> { firsthalf + "Abstract: " + secondhalf + "\n\n", scoreDoc.Score.ToString() });     // Combine texts
+                                        
                 }
             }
             

@@ -21,7 +21,7 @@ namespace LuceneAdvancedSearchApplication
         public static String searchWords { get; set; }
         public static String savePath { get; set; }
 
-        public static List<string> resultList { get; set; }
+        public static List<List<string>> resultList { get; set; }
         public static Int32 limit { get; set; }
         public static Boolean first { get; set; }
 
@@ -83,7 +83,7 @@ namespace LuceneAdvancedSearchApplication
             SaveDialog.ShowDialog();
             savePath = SaveDialog.FileName;
             StreamWriter writer = new StreamWriter(SaveDialog.OpenFile());
-            Program.SaveClick(resultList, writer);
+            //Program.SaveClick(resultList, writer);
             
 
         }
@@ -118,7 +118,7 @@ namespace LuceneAdvancedSearchApplication
             }
             else
             {
-                List<string> tempList = new List<string>();            // Create temporary list
+                List<List<string>> tempList = new List<List<string>>();            // Create temporary list
                 DateTime start = System.DateTime.Now;   // Searching time starts
                 tempList = Program.Search_Click(TextEnter.Text, myLuceneApp);     // Search user input texts
                 DateTime end = System.DateTime.Now;   // Searching time starts

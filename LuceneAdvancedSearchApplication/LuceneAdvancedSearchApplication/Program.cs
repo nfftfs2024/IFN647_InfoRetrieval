@@ -41,9 +41,9 @@ namespace LuceneAdvancedSearchApplication
             }
         }
 
-        public static List<string> Search_Click(string querytext, LuceneSearcheEngine myLuceneApp)
+        public static List<List<string>> Search_Click(string querytext, LuceneSearcheEngine myLuceneApp)
         {
-            List<string> resultList = new List<string>();
+            List<List<string>> resultList = new List<List<string>>();
             //// Searching Code
             myLuceneApp.CreateSearcher();           // Create searcher
             resultList = myLuceneApp.SearchText(querytext);     // Get search result list
@@ -51,21 +51,22 @@ namespace LuceneAdvancedSearchApplication
             return resultList;
         }
 
-        public static string ViewData(int limit, List<string> resultSet, bool first)
+        public static string ViewData(int limit, List<List<string>> resultSet, bool first)
         {
             string outp = "";       // Initial null string
 
             for (int i = limit; i < limit + 10; i++)     // Concatenate the top 10 result strings
             {
+                //Console.WriteLine(String.Format("text: {0}\n\nscore: {1}", resultSet[i][0], resultSet[i][1]));
                 if (first)  // For only first sentence of abstract
                 {
                     Regex rx = new Regex("Abstract:.*?[.?!]", RegexOptions.Compiled | RegexOptions.IgnoreCase);     // Set the RE to match first sentence of abstract
-                    MatchCollection matches = rx.Matches(resultSet[i]);   // Get RE match
-                    outp += "Rank: " + (i + 1).ToString() + "\r\n" + resultSet[i].Substring(0, resultSet[i].LastIndexOf("Abstract: ")) + matches[0].Value + "\r\n\r\n";   // Combine displaying texts
+                    MatchCollection matches = rx.Matches(resultSet[i][0]);   // Get RE match
+                    outp += "Rank: " + (i + 1).ToString() + "\r\n" + resultSet[i][0].Substring(0, resultSet[i][0].LastIndexOf("Abstract: ")) + matches[0].Value + "\r\n\r\n";   // Combine displaying texts
                 }
                 else
                 {
-                    outp += "Rank: " + (i + 1).ToString() + "\r\n" + resultSet[i] + "\r\n\r\n";    // Combine original texts
+                    outp += "Rank: " + (i + 1).ToString() + "\r\n" + resultSet[i][0] + "\r\n\r\n";    // Combine original texts
                 }
             }
             return outp;
