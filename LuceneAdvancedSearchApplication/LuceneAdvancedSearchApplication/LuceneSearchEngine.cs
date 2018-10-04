@@ -98,7 +98,27 @@ namespace LuceneAdvancedSearchApplication
                     Lucene.Net.Documents.Document doc = searcher.Doc(scoreDoc.Doc);     // Get document contents
                     string text = doc.Get(TEXT_FN).ToString();  // Get document contents by fields    
                     string score = scoreDoc.Score.ToString();   // Get document score
-                    resultList.Add(new List<string> {text, score});     // Add contents and score into the created list of lists
+
+                    int indexI = text.IndexOf(".I ") + 3;   // Get ID starting index
+                    int indexT = text.IndexOf(".T\n");    // Get title starting index
+                    int indexA = text.IndexOf(".A\n");    // Get author starting index
+                    int indexB = text.IndexOf(".B\n");    // Get bibliography starting index
+                    int indexW = text.IndexOf(".W\n");    // Get words starting index
+
+                    string id = text.Substring(indexI, indexT - 1 - indexI);    // Get ID string
+                    string title = text.Substring(indexT + 3, ((indexA - 1 - (indexT + 3)) > 0) ? (indexA - 1 - (indexT + 3)) : 0);     // Get title string
+                    string author = text.Substring(indexA + 3, ((indexB - 1 - (indexA + 3)) > 0) ? (indexB - 1 - (indexA + 3)) : 0);    // Get author string
+                    string biblio = text.Substring(indexB + 3, ((indexW - 1 - (indexB + 3)) > 0) ? (indexW - 1 - (indexB + 3)) : 0);    // Get bibliography string
+                    string abst = text.Substring(indexW + 3, ((text.Length - 1 - (indexW + 3)) > 0) ? (text.Length - 1 - (indexW + 3)) : 0);   // Get abstract string
+
+                    //string[] parts = resultSet[i][0].Split(new string[] { ".W\n" }, StringSplitOptions.RemoveEmptyEntries);   // Cut half the texts from the starting of .W
+                    //string firsthalf = parts[0].Replace(".I ", "DocID: ").Replace(".T\n", "\r\nTitle: ").Replace(".A\n", "\r\nAuthor: ").Replace(".B\n", "\r\nBibliographic information: ");  // First half
+                    //string secondhalf = parts[1].Replace("\n", " ");  // Replace abstract LF
+
+                    Regex rx = new Regex("^.*?[.?!]", RegexOptions.Compiled | RegexOptions.IgnoreCase);     // Set the RE to match first sentence of abstract
+                    MatchCollection abst_first = rx.Matches(abst);   // Get RE match
+
+                    resultList.Add(new List<string> {id, title, author, biblio, abst, score});     // Add contents and score into the created list of lists
 
                     //string[] parts = text.Split(new string[] { ".W\r\n" }, StringSplitOptions.RemoveEmptyEntries);   // Cut half the texts from the starting of .W
                     //string firsthalf = parts[0].Replace(".I ", "DocID: ").Replace(".T\r\n", "Title: ").Replace(".A\r\n", "Author: ").Replace(".B\r\n", "Bibliographic information: ");  // First half
@@ -106,6 +126,40 @@ namespace LuceneAdvancedSearchApplication
                 }
             }
             
+            return resultList;
+
+        }
+        /// <summary>
+        /// Searches the index for the querytext
+        /// </summary>
+        /// <param name="querytext">The text to search the index</param>
+        public List<List<string>> SearchText_bk(string querytext)
+        {
+            List<List<string>> resultList = new List<List<string>>();      // Initiate a result list
+            System.Console.WriteLine("Searching for " + querytext);
+            querytext = querytext.ToLower();
+            Query query = parser.Parse(querytext);                          // Parse the query text by parser and create the query object
+
+            TopDocs results = searcher.Search(query, 100);                  // Search the query
+            System.Console.WriteLine("Number of results is " + results.TotalHits);
+
+            if (results.TotalHits != 0)     // Check if there are found results
+            {
+                for (int i = 0; i < 40; i++)    // Loop through the top 10 ranked documents
+                {
+                    int rank = i + 1;   // Set ranking number
+                    ScoreDoc scoreDoc = results.ScoreDocs[i];   // Get the ranked document
+                    Lucene.Net.Documents.Document doc = searcher.Doc(scoreDoc.Doc);     // Get document contents
+                    string text = doc.Get(TEXT_FN).ToString();  // Get document contents by fields    
+                    string score = scoreDoc.Score.ToString();   // Get document score
+                    resultList.Add(new List<string> { text, score });     // Add contents and score into the created list of lists
+
+                    //string[] parts = text.Split(new string[] { ".W\r\n" }, StringSplitOptions.RemoveEmptyEntries);   // Cut half the texts from the starting of .W
+                    //string firsthalf = parts[0].Replace(".I ", "DocID: ").Replace(".T\r\n", "Title: ").Replace(".A\r\n", "Author: ").Replace(".B\r\n", "Bibliographic information: ");  // First half
+                    //string secondhalf = parts[1].Replace("\r\n", " ");  // Replace abstract CRLF
+                }
+            }
+
             return resultList;
 
         }

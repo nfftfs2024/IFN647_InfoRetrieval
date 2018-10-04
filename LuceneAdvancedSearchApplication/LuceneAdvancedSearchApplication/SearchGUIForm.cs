@@ -13,7 +13,7 @@ using System.IO;
 namespace LuceneAdvancedSearchApplication
 {
 
-    public partial class GUIForm : Form
+    public partial class SearchGUIForm : Form
     {
         public static String sourcePath { get; set; }
         public static String indexPath { get; set; }
@@ -30,47 +30,19 @@ namespace LuceneAdvancedSearchApplication
 
         LuceneSearcheEngine myLuceneApp;    // Create a search engine object
 
-        public GUIForm()
+        public SearchGUIForm()
         {
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void SearchGUIForm_Load(object sender, EventArgs e)
         {
 
-        }
-
-
-        private void BuildIndBtn_Click(object sender, EventArgs e)
-        {
-            indexPath = @"C:\LuceneFolder";
-            sourcePath = @"D:\Desktop\crandocs";
-
-            myLuceneApp = new LuceneSearcheEngine();    // Initiate search engine object
-            Program.BuildIndex_Click(sourcePath, indexPath, myLuceneApp);   // Build index
-            SearchBtn2.Enabled = true;      // Enable search button 2
-            
         }
 
         private void TextEnter_TextChanged(object sender, EventArgs e)
-        {
-            
+        { 
             searchWords = TextEnter.Text;
-        }
-
-        private void SetSourceDirBtn_Click(object sender, EventArgs e)  // Select directory path after click on Set Source Directory
-        {
-            SourceDirBrowserDialog.ShowDialog();
-            SourceLabel.Text = SourceDirBrowserDialog.SelectedPath;
-            sourcePath= SourceDirBrowserDialog.SelectedPath;
-            
-        }
-
-        private void SetIndexDirBtn_Click(object sender, EventArgs e)   // Select directory path after click on Set Index Directory
-        {
-            IndexDirBrowserDialog.ShowDialog();
-            IndexLabel.Text = IndexDirBrowserDialog.SelectedPath;
-            indexPath = IndexDirBrowserDialog.SelectedPath;
         }
 
         private void NeedsButton_Click(object sender, EventArgs e)      // Select file path after click on Select Cran Needs
@@ -99,7 +71,7 @@ namespace LuceneAdvancedSearchApplication
             limit = 0;      // Set starting result index
 
             DateTime start = System.DateTime.Now;   // Searching time starts
-            resultList = Program.Search_Click(cranNeeds[comboBox1.SelectedItem.ToString()], myLuceneApp);       // Search Cran needs texts
+            resultList = Program.Search_Click(cranNeeds[comboBox1.SelectedItem.ToString()]);       // Search Cran needs texts
             DateTime end = System.DateTime.Now;   // Searching time starts
             MessageBox.Show("The time for searching text was " + (end - start), "Reporting Searching Time", MessageBoxButtons.OK, MessageBoxIcon.Information);
             string outp = Program.ViewData(limit, resultList, first);                    // Collate search result into displaying formats
@@ -120,9 +92,20 @@ namespace LuceneAdvancedSearchApplication
 
         private void SearchBtn2_Click(object sender, EventArgs e)       // When clicking on search button for user free-typing
         {
+            ResultListView.Items.Clear();
+            ResultListView.Controls.Clear();
+            ResultListView.Columns.Clear();
+
+            ResultListView.Columns.Add("DocID", 50);
+            ResultListView.Columns.Add("Title", 350);
+            ResultListView.Columns.Add("Author", 150);
+            ResultListView.Columns.Add("Bibliography", 150);
+            ResultListView.Columns.Add("TEXT", 400);
+
             ExpandAbsBtn.Text = "Show Abstracts";       // Retore expand abstract button
             first = true;   // Set only displaying first line
             limit = 0;      // Set starting result index
+
             if (TextEnter.Text == "")       // Check if the textbox is empty
             {
                 MessageBox.Show("Enter something!!", "Error!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -131,7 +114,7 @@ namespace LuceneAdvancedSearchApplication
             {
                 List<List<string>> tempList = new List<List<string>>();            // Create temporary list
                 DateTime start = System.DateTime.Now;   // Searching time starts
-                tempList = Program.Search_Click(TextEnter.Text, myLuceneApp);     // Search user input texts
+                tempList = Program.Search_Click(TextEnter.Text);     // Search user input texts
                 DateTime end = System.DateTime.Now;   // Searching time starts
 
 
@@ -139,10 +122,16 @@ namespace LuceneAdvancedSearchApplication
                 {
                     MessageBox.Show("The time for searching text was " + (end - start), "Reporting Searching Time", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     resultList = tempList;  // Assign temporary list to global variable as current 10 results
-                    string outp = Program.ViewData(limit, resultList, first);                // Collate search result into displaying formats
+                    //string outp = Program.ViewData(limit, resultList, first);                // Collate search result into displaying formats
+
+                    for (int i = 0; i < 10; i++)
+                    {
+                        ListViewItem resultView = new ListViewItem(new[] { resultList[i][0], resultList[i][1], resultList[i][2], resultList[i][3], resultList[i][4] });
+                        ResultListView.Items.Add(resultView);
+                    }
 
                     TopLabel.Text = "Top 1-10 results";     // Display top description
-                    SearchOutput.Text = outp;               // Display top 10 results
+                    //SearchOutput.Text = outp;               // Display top 10 results
                     NextBtn.Enabled = true;                 // Enable next button
                     PreviousBtn.Enabled = false;            // Disable previous button
                     ExpandAbsBtn.Enabled = true;            // Enable expand abstract button 
@@ -223,6 +212,11 @@ namespace LuceneAdvancedSearchApplication
         }
 
         private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ResultListView_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

@@ -58,17 +58,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BuildIndexGUIForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BuildIndexGUIForm.Designer.cs">
+      <DependentUpon>BuildIndexGUIForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ExpandForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ExpandForm.Designer.cs">
       <DependentUpon>ExpandForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="GUIForm.cs">
+    <Compile Include="SearchGUIForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GUIForm.designer.cs">
-      <DependentUpon>GUIForm.cs</DependentUpon>
+    <Compile Include="SearchGUIForm.designer.cs">
+      <DependentUpon>SearchGUIForm.cs</DependentUpon>
     </Compile>
     <Compile Include="LuceneSearchEngine.cs" />
     <Compile Include="NewSimilarity.cs" />
@@ -83,11 +89,14 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="BuildIndexGUIForm.resx">
+      <DependentUpon>BuildIndexGUIForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ExpandForm.resx">
       <DependentUpon>ExpandForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GUIForm.resx">
-      <DependentUpon>GUIForm.cs</DependentUpon>
+    <EmbeddedResource Include="SearchGUIForm.resx">
+      <DependentUpon>SearchGUIForm.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

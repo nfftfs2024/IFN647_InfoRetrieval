@@ -10,6 +10,8 @@ namespace LuceneAdvancedSearchApplication
 {
     static class Program
     {
+
+        public static LuceneSearcheEngine myLuceneApp;
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -18,12 +20,15 @@ namespace LuceneAdvancedSearchApplication
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new GUIForm());
+            Application.Run(new BuildIndexGUIForm());
+            Application.Run(new SearchGUIForm());
         }
 
 
-        public static void BuildIndex_Click(string sourcePath, string indexPath, LuceneSearcheEngine myLuceneApp)
+        public static void BuildIndex_Click(string sourcePath, string indexPath)
         {
+            myLuceneApp = new LuceneSearcheEngine();    // Initiate LuceneSearchEngine object
+
             if (sourcePath is null)
                 MessageBox.Show("You didn't completely select the source directory path", "Error!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             else if (indexPath is null)
@@ -41,7 +46,7 @@ namespace LuceneAdvancedSearchApplication
             }
         }
 
-        public static List<List<string>> Search_Click(string querytext, LuceneSearcheEngine myLuceneApp)
+        public static List<List<string>> Search_Click(string querytext)
         {
             List<List<string>> resultList = new List<List<string>>();
             //// Searching Code
@@ -130,6 +135,29 @@ namespace LuceneAdvancedSearchApplication
             return outp;
         }
 
+        public static string ViewData_bk(int limit, List<List<string>> resultSet, bool first)
+        {
+            string outp = "";       // Initial null string
+
+            for (int i = limit; i < limit + 10; i++)     // Concatenate the top 10 result strings
+            {
+                string[] parts = resultSet[i][0].Split(new string[] { ".W\n" }, StringSplitOptions.RemoveEmptyEntries);   // Cut half the texts from the starting of .W
+                string firsthalf = parts[0].Replace(".I ", "DocID: ").Replace(".T\n", "\r\nTitle: ").Replace(".A\n", "\r\nAuthor: ").Replace(".B\n", "\r\nBibliographic information: ");  // First half
+                string secondhalf = parts[1].Replace("\n", " ");  // Replace abstract LF
+
+                if (first)  // For only first sentence of abstract
+                {
+                    Regex rx = new Regex("^.*?[.?!]", RegexOptions.Compiled | RegexOptions.IgnoreCase);     // Set the RE to match first sentence of abstract
+                    MatchCollection matches = rx.Matches(secondhalf);   // Get RE match
+                    outp += "Rank: " + (i + 1).ToString() + "\r\n" + firsthalf + "\r\nAbstract: " + matches[0].Value + "\r\n\r\n";   // Combine displaying texts
+                }
+                else
+                {
+                    outp += "Rank: " + (i + 1).ToString() + "\r\n" + firsthalf + "\r\nAbstract: " + secondhalf + "\r\n\r\n";    // Combine original texts
+                }
+            }
+            return outp;
+        }
         public static void SaveClick(List<string> resultList, StreamWriter writer)
         {
             
