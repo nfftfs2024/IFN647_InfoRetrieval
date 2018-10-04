@@ -104,6 +104,7 @@ namespace LuceneAdvancedSearchApplication
             NextBtn.Enabled = true;                 // Enable next button
             ExpandAbsBtn.Enabled = true;            // Enable expand abstract button 
             SaveResult.Enabled = true;              // Enable save result button
+            NeedQuery.Text = cranNeeds[comboBox1.SelectedItem.ToString()];     //Print Query 
 
 
 

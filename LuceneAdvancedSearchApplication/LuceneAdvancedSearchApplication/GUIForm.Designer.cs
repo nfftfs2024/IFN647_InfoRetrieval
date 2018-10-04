@@ -52,6 +52,9 @@
             this.SaveDialog = new System.Windows.Forms.SaveFileDialog();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.fontDialog1 = new System.Windows.Forms.FontDialog();
+            this.NeedQuery = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // TextEnter
@@ -153,19 +156,19 @@
             // 
             // SearchOutput
             // 
-            this.SearchOutput.Location = new System.Drawing.Point(74, 315);
+            this.SearchOutput.Location = new System.Drawing.Point(74, 400);
             this.SearchOutput.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.SearchOutput.Multiline = true;
             this.SearchOutput.Name = "SearchOutput";
             this.SearchOutput.ReadOnly = true;
             this.SearchOutput.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.SearchOutput.Size = new System.Drawing.Size(800, 526);
+            this.SearchOutput.Size = new System.Drawing.Size(800, 474);
             this.SearchOutput.TabIndex = 16;
             // 
             // TopLabel
             // 
             this.TopLabel.AutoSize = true;
-            this.TopLabel.Location = new System.Drawing.Point(78, 285);
+            this.TopLabel.Location = new System.Drawing.Point(289, 216);
             this.TopLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.TopLabel.Name = "TopLabel";
             this.TopLabel.Size = new System.Drawing.Size(0, 20);
@@ -174,7 +177,7 @@
             // PreviousBtn
             // 
             this.PreviousBtn.Enabled = false;
-            this.PreviousBtn.Location = new System.Drawing.Point(633, 275);
+            this.PreviousBtn.Location = new System.Drawing.Point(633, 356);
             this.PreviousBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.PreviousBtn.Name = "PreviousBtn";
             this.PreviousBtn.Size = new System.Drawing.Size(112, 35);
@@ -186,7 +189,7 @@
             // NextBtn
             // 
             this.NextBtn.Enabled = false;
-            this.NextBtn.Location = new System.Drawing.Point(754, 275);
+            this.NextBtn.Location = new System.Drawing.Point(754, 356);
             this.NextBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.NextBtn.Name = "NextBtn";
             this.NextBtn.Size = new System.Drawing.Size(112, 35);
@@ -231,7 +234,7 @@
             // ExpandAbsBtn
             // 
             this.ExpandAbsBtn.Enabled = false;
-            this.ExpandAbsBtn.Location = new System.Drawing.Point(466, 275);
+            this.ExpandAbsBtn.Location = new System.Drawing.Point(466, 356);
             this.ExpandAbsBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ExpandAbsBtn.Name = "ExpandAbsBtn";
             this.ExpandAbsBtn.Size = new System.Drawing.Size(158, 35);
@@ -243,7 +246,7 @@
             // SaveResult
             // 
             this.SaveResult.Enabled = false;
-            this.SaveResult.Location = new System.Drawing.Point(300, 275);
+            this.SaveResult.Location = new System.Drawing.Point(300, 356);
             this.SaveResult.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.SaveResult.Name = "SaveResult";
             this.SaveResult.Size = new System.Drawing.Size(158, 35);
@@ -262,7 +265,7 @@
             "023",
             "157",
             "219"});
-            this.comboBox1.Location = new System.Drawing.Point(541, 212);
+            this.comboBox1.Location = new System.Drawing.Point(421, 208);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(121, 28);
             this.comboBox1.TabIndex = 25;
@@ -270,17 +273,36 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(409, 220);
+            this.label3.Location = new System.Drawing.Point(289, 216);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(126, 20);
             this.label3.TabIndex = 26;
             this.label3.Text = "SelectCranNeed";
             // 
+            // NeedQuery
+            // 
+            this.NeedQuery.AutoSize = true;
+            this.NeedQuery.Location = new System.Drawing.Point(218, 288);
+            this.NeedQuery.Name = "NeedQuery";
+            this.NeedQuery.Size = new System.Drawing.Size(0, 20);
+            this.NeedQuery.TabIndex = 27;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(74, 288);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(128, 20);
+            this.label4.TabIndex = 28;
+            this.label4.Text = "Query Submitted";
+            // 
             // GUIForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1329, 862);
+            this.ClientSize = new System.Drawing.Size(1329, 893);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.NeedQuery);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.SaveResult);
@@ -337,6 +359,9 @@
         private System.Windows.Forms.SaveFileDialog SaveDialog;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.FontDialog fontDialog1;
+        private System.Windows.Forms.Label NeedQuery;
+        private System.Windows.Forms.Label label4;
     }
 }
 
