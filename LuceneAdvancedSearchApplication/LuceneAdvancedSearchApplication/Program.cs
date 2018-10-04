@@ -112,16 +112,19 @@ namespace LuceneAdvancedSearchApplication
 
             for (int i = limit; i < limit + 10; i++)     // Concatenate the top 10 result strings
             {
-                //Console.WriteLine(String.Format("text: {0}\n\nscore: {1}", resultSet[i][0], resultSet[i][1]));
+                string[] parts = resultSet[i][0].Split(new string[] { ".W\n" }, StringSplitOptions.RemoveEmptyEntries);   // Cut half the texts from the starting of .W
+                string firsthalf = parts[0].Replace(".I ", "DocID: ").Replace(".T\n", "\r\nTitle: ").Replace(".A\n", "\r\nAuthor: ").Replace(".B\n", "\r\nBibliographic information: ");  // First half
+                string secondhalf = parts[1].Replace("\n", " ");  // Replace abstract LF
+
                 if (first)  // For only first sentence of abstract
                 {
-                    Regex rx = new Regex("Abstract:.*?[.?!]", RegexOptions.Compiled | RegexOptions.IgnoreCase);     // Set the RE to match first sentence of abstract
-                    MatchCollection matches = rx.Matches(resultSet[i][0]);   // Get RE match
-                    outp += "Rank: " + (i + 1).ToString() + "\r\n" + resultSet[i][0].Substring(0, resultSet[i][0].LastIndexOf("Abstract: ")) + matches[0].Value + "\r\n\r\n";   // Combine displaying texts
+                    Regex rx = new Regex("^.*?[.?!]", RegexOptions.Compiled | RegexOptions.IgnoreCase);     // Set the RE to match first sentence of abstract
+                    MatchCollection matches = rx.Matches(secondhalf);   // Get RE match
+                    outp += "Rank: " + (i + 1).ToString() + "\r\n" + firsthalf + "\r\nAbstract: " + matches[0].Value + "\r\n\r\n";   // Combine displaying texts
                 }
                 else
                 {
-                    outp += "Rank: " + (i + 1).ToString() + "\r\n" + resultSet[i][0] + "\r\n\r\n";    // Combine original texts
+                    outp += "Rank: " + (i + 1).ToString() + "\r\n" + firsthalf + "\r\nAbstract: " + secondhalf + "\r\n\r\n";    // Combine original texts
                 }
             }
             return outp;
@@ -157,8 +160,8 @@ namespace LuceneAdvancedSearchApplication
 
                     foreach (string need in sub)       // Loop through each query
                     {
-                        int indexD = text.IndexOf(".D\r\n");   // Get Description starting index                       
-                        dic.Add(need.Substring(0, indexD - 5), need.Substring(indexD + 1).TrimEnd('\r', '\n'));     // Add ID and Description into dictionary as pairs
+                        int indexD = text.IndexOf(".D\n");   // Get Description starting index                       
+                        dic.Add(need.Substring(0, indexD - 4), need.Substring(indexD).TrimEnd('\n'));     // Add ID and Description into dictionary as pairs
                     }
                 }
             }
@@ -169,8 +172,5 @@ namespace LuceneAdvancedSearchApplication
             }
             return dic;
         }
-
-
-
     }
 }

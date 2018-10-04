@@ -43,6 +43,9 @@ namespace LuceneAdvancedSearchApplication
 
         private void BuildIndBtn_Click(object sender, EventArgs e)
         {
+            indexPath = @"C:\LuceneFolder";
+            sourcePath = @"D:\Desktop\crandocs";
+
             myLuceneApp = new LuceneSearcheEngine();    // Initiate search engine object
             Program.BuildIndex_Click(sourcePath, indexPath, myLuceneApp);   // Build index
             SearchBtn2.Enabled = true;      // Enable search button 2
@@ -92,31 +95,34 @@ namespace LuceneAdvancedSearchApplication
         private void SearchBtn1_Click(object sender, EventArgs e)   // Whe clicking on search button for Cran Needs
         {
             ExpandAbsBtn.Text = "Show Abstracts";       // Retore expand abstract button
-            first = true;
+            first = true;   // Set only displaying first line
+            limit = 0;      // Set starting result index
+
             DateTime start = System.DateTime.Now;   // Searching time starts
             resultList = Program.Search_Click(cranNeeds[comboBox1.SelectedItem.ToString()], myLuceneApp);       // Search Cran needs texts
             DateTime end = System.DateTime.Now;   // Searching time starts
             MessageBox.Show("The time for searching text was " + (end - start), "Reporting Searching Time", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            string outp = Program.ViewData(0, resultList, first);                    // Collate search result into displaying formats
+            string outp = Program.ViewData(limit, resultList, first);                    // Collate search result into displaying formats
+
             Program.Create_BaseLine_Results(cranNeeds, myLuceneApp);
 
             TopLabel.Text = "Top 1-10 results";     // Display top description
             SearchOutput.Text = outp;               // Display top 10 results
             NextBtn.Enabled = true;                 // Enable next button
+            PreviousBtn.Enabled = false;            // Disable previous button
             ExpandAbsBtn.Enabled = true;            // Enable expand abstract button 
             SaveResult.Enabled = true;              // Enable save result button
+
             NeedQuery.Text = cranNeeds[comboBox1.SelectedItem.ToString()];     //Print Query 
             pageNub = 1;
             Pagelabel.Text = "Page" + pageNub;
-
-
-
         }
 
         private void SearchBtn2_Click(object sender, EventArgs e)       // When clicking on search button for user free-typing
         {
             ExpandAbsBtn.Text = "Show Abstracts";       // Retore expand abstract button
-            first = true;
+            first = true;   // Set only displaying first line
+            limit = 0;      // Set starting result index
             if (TextEnter.Text == "")       // Check if the textbox is empty
             {
                 MessageBox.Show("Enter something!!", "Error!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -133,11 +139,12 @@ namespace LuceneAdvancedSearchApplication
                 {
                     MessageBox.Show("The time for searching text was " + (end - start), "Reporting Searching Time", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     resultList = tempList;  // Assign temporary list to global variable as current 10 results
-                    string outp = Program.ViewData(0, resultList, first);                // Collate search result into displaying formats
+                    string outp = Program.ViewData(limit, resultList, first);                // Collate search result into displaying formats
 
                     TopLabel.Text = "Top 1-10 results";     // Display top description
                     SearchOutput.Text = outp;               // Display top 10 results
                     NextBtn.Enabled = true;                 // Enable next button
+                    PreviousBtn.Enabled = false;            // Disable previous button
                     ExpandAbsBtn.Enabled = true;            // Enable expand abstract button 
                     SaveResult.Enabled = true;              // Enable save result button
                 }

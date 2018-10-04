@@ -81,12 +81,12 @@ namespace LuceneAdvancedSearchApplication
         /// <param name="querytext">The text to search the index</param>
         public List<List<string>> SearchText(string querytext)
         {
-            List<List<string>> resultList = new List<List<string>>() ;
+            List<List<string>> resultList = new List<List<string>>() ;      // Initiate a result list
             System.Console.WriteLine("Searching for " + querytext);
             querytext = querytext.ToLower();
-            Query query = parser.Parse(querytext);
+            Query query = parser.Parse(querytext);                          // Parse the query text by parser and create the query object
 
-            TopDocs results = searcher.Search(query, 100);
+            TopDocs results = searcher.Search(query, 100);                  // Search the query
             System.Console.WriteLine("Number of results is " + results.TotalHits);
 
             if (results.TotalHits != 0)     // Check if there are found results
@@ -96,15 +96,13 @@ namespace LuceneAdvancedSearchApplication
                     int rank = i + 1;   // Set ranking number
                     ScoreDoc scoreDoc = results.ScoreDocs[i];   // Get the ranked document
                     Lucene.Net.Documents.Document doc = searcher.Doc(scoreDoc.Doc);     // Get document contents
-                    string myFieldValue = doc.Get(TEXT_FN).ToString();  // Get document contents by fields                                               
-                   
-                    string[] parts = myFieldValue.Split(new string[] { ".W\r\n" }, StringSplitOptions.RemoveEmptyEntries);   // Cut half the texts from the starting of .W
-                    string firsthalf = parts[0].Replace(".I ", "DocID: ").Replace(".T\r\n", "Title: ").Replace(".A\r\n", "Author: ").Replace(".B\r\n", "Bibliographic information: ");  // First half
-                                                                                                                                                                                       
-                    
-                    string secondhalf = parts[1].Replace("\r\n", " ");  // Replace abstract CRLF
-                    resultList.Add(new List<string> { firsthalf + "Abstract: " + secondhalf + "\n\n", scoreDoc.Score.ToString() });     // Combine texts
-                                        
+                    string text = doc.Get(TEXT_FN).ToString();  // Get document contents by fields    
+                    string score = scoreDoc.Score.ToString();   // Get document score
+                    resultList.Add(new List<string> {text, score});     // Add contents and score into the created list of lists
+
+                    //string[] parts = text.Split(new string[] { ".W\r\n" }, StringSplitOptions.RemoveEmptyEntries);   // Cut half the texts from the starting of .W
+                    //string firsthalf = parts[0].Replace(".I ", "DocID: ").Replace(".T\r\n", "Title: ").Replace(".A\r\n", "Author: ").Replace(".B\r\n", "Bibliographic information: ");  // First half
+                    //string secondhalf = parts[1].Replace("\r\n", " ");  // Replace abstract CRLF
                 }
             }
             
@@ -187,17 +185,16 @@ namespace LuceneAdvancedSearchApplication
                     string text = reader.ReadToEnd();   // Read the whole text
 
                     int indexI = text.IndexOf(".I ") + 3;   // Get ID starting index
-                    int indexT = text.IndexOf(".T\r\n");    // Get title starting index
-                    int indexA = text.IndexOf(".A\r\n");    // Get author starting index
-                    int indexB = text.IndexOf(".B\r\n");    // Get bibliography starting index
-                    int indexW = text.IndexOf(".W\r\n");    // Get words starting index
+                    int indexT = text.IndexOf(".T\n");    // Get title starting index
+                    int indexA = text.IndexOf(".A\n");    // Get author starting index
+                    int indexB = text.IndexOf(".B\n");    // Get bibliography starting index
+                    int indexW = text.IndexOf(".W\n");    // Get words starting index
 
-                  
-                    string id = text.Substring(indexI, indexT - 2 - indexI);    // Get ID string
-                    string title = text.Substring(indexT + 4, ((indexA - 2 - (indexT + 4)) > 0) ? (indexA - 2 - (indexT + 4)) : 0);     // Get title string
-                    string author = text.Substring(indexA + 4, ((indexB - 2 - (indexA + 4)) > 0) ? (indexB - 2 - (indexA + 4)) : 0);    // Get author string
-                    string biblio = text.Substring(indexB + 4, ((indexW - 2 - (indexB + 4)) > 0) ? (indexW - 2 - (indexB + 4)) : 0);    // Get bibliography string
-                    string words = text.Substring(indexW + 4, ((text.Length - 2 - (indexW + 4)) > 0) ? (text.Length - 2 - (indexW + 4)) : 0);   // Get words string
+                    string id = text.Substring(indexI, indexT - 1 - indexI);    // Get ID string
+                    string title = text.Substring(indexT + 3, ((indexA - 1 - (indexT + 3)) > 0) ? (indexA - 1 - (indexT + 3)) : 0);     // Get title string
+                    string author = text.Substring(indexA + 3, ((indexB - 1 - (indexA + 3)) > 0) ? (indexB - 1 - (indexA + 3)) : 0);    // Get author string
+                    string biblio = text.Substring(indexB + 3, ((indexW - 1 - (indexB + 3)) > 0) ? (indexW - 1 - (indexB + 3)) : 0);    // Get bibliography string
+                    string words = text.Substring(indexW + 3, ((text.Length - 1 - (indexW + 3)) > 0) ? (text.Length - 1 - (indexW + 3)) : 0);   // Get words string
 
                     Lucene.Net.Documents.Document doc = new Document();     // Create document
                    
