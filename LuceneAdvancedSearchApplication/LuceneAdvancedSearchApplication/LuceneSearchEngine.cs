@@ -112,7 +112,7 @@ namespace LuceneAdvancedSearchApplication
 
         }
 
-        public Tuple<List<float>, List<string>> SearchText_baseline(string querytext)
+        public Tuple<List<float>, List<string>,int> SearchText_baseline(string querytext)
         {
             List<float> valueListBase = new List<float>();
             List<string> docsIdsListBase = new List<string>();
@@ -120,11 +120,11 @@ namespace LuceneAdvancedSearchApplication
             querytext = querytext.ToLower();
             Query query = parser.Parse(querytext);
 
-            TopDocs results = searcher2.Search(query, 100);
+            TopDocs results = searcher2.Search(query, 2000);
 
             if (results.TotalHits != 0)     // Check if there are found results
             {
-                for (int i = 0; i < 100; i++)    // Loop through the top 10 ranked documents
+                for (int i = 0; i < results.TotalHits; i++)    // Loop through all the documents retrieved
                 {
                     int rank = i + 1;   // Set ranking number
                     ScoreDoc scoreDoc = results.ScoreDocs[i];   // Get the ranked document
@@ -132,13 +132,11 @@ namespace LuceneAdvancedSearchApplication
                     string myFieldValue = doc.Get(TEXT_FN).ToString();  // Get document contents by fields
                     string[] parts = myFieldValue.Split(new string[] { ".W\r\n" }, StringSplitOptions.RemoveEmptyEntries);   // Cut half the texts from the starting of .W
                     string firsthalf = parts[0].Replace(".I ", "DocID: ").Replace(".T\r\n", "Title: ").Replace(".A\r\n", "Author: ").Replace(".B\r\n", "Bibliographic information: ");  // First half                
-                    string secondhalf = parts[1].Replace("\r\n", " ");  // Replace abstract CRLF
-
                     docsIdsListBase.Add(firsthalf.Substring(6, firsthalf.IndexOf("Title:") - 6).Trim());
                     valueListBase.Add(scoreDoc.Score);
                 }
             }
-            var result = Tuple.Create(valueListBase, docsIdsListBase);
+            var result = Tuple.Create(valueListBase, docsIdsListBase,results.TotalHits);
             return result;
 
         }

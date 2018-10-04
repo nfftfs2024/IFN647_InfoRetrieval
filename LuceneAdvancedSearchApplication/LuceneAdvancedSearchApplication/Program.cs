@@ -62,16 +62,17 @@ namespace LuceneAdvancedSearchApplication
             bool control = true;
             foreach (string key in cNeeds.Keys)
             {
-                Tuple<List<float>, List<string>> result = myLuceneApp.SearchText_baseline(cNeeds[key]);
+                Tuple<List<float>, List<string>,int> result = myLuceneApp.SearchText_baseline(cNeeds[key]);
                 myLuceneApp.CleanUpSearcher();        // Clean searcher
                 valueListBase = result.Item1;    // Get scores ranked documents ranked
                 docsIdsListBase = result.Item2;     //Get IDs ranked documents
+                int totalHits = result.Item3 ;
                 if (!File.Exists(path) && control)
                 {
                     File.Create(path).Dispose();
                     using (TextWriter tw = new StreamWriter(path, append: true))
                     {
-                        for (int i = 0; i < 100; i++)
+                        for (int i = 0; i < totalHits; i++)
                         {
                             tw.WriteLine(key + "\tQ0\t" + docsIdsListBase[i].ToString() + "\t{0}\t" + valueListBase[i].ToString() + "\tBaselineSystem", i + 1);
                             control = false;
@@ -84,7 +85,7 @@ namespace LuceneAdvancedSearchApplication
                     File.Create(path).Dispose();
                     using (TextWriter tw = new StreamWriter(path, append: true))
                     {
-                        for (int i = 0; i < 100; i++)
+                        for (int i = 0; i < totalHits; i++)
                         {
                             tw.WriteLine(key + "\tQ0\t" + docsIdsListBase[i].ToString() + "\t{0}\t" + valueListBase[i].ToString() + "\tBaselineSystem", i + 1);
                             control = false;
@@ -95,7 +96,7 @@ namespace LuceneAdvancedSearchApplication
                 {
                     using (TextWriter tw = new StreamWriter(path, append: true))
                     {
-                        for (int i = 0; i < 100; i++)
+                        for (int i = 0; i < totalHits; i++)
                         {
                             tw.WriteLine(key + "\tQ0\t" + docsIdsListBase[i].ToString() + "\t{0}\t" + valueListBase[i].ToString() + "\tBaselineSystem", i + 1);
                             control = false;
