@@ -55,23 +55,22 @@
             this.fontDialog1 = new System.Windows.Forms.FontDialog();
             this.NeedQuery = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.Pagelabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // TextEnter
             // 
-            this.TextEnter.Location = new System.Drawing.Point(165, 135);
-            this.TextEnter.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.TextEnter.Location = new System.Drawing.Point(110, 88);
             this.TextEnter.Name = "TextEnter";
-            this.TextEnter.Size = new System.Drawing.Size(412, 26);
+            this.TextEnter.Size = new System.Drawing.Size(276, 20);
             this.TextEnter.TabIndex = 1;
             this.TextEnter.TextChanged += new System.EventHandler(this.TextEnter_TextChanged);
             // 
             // BuildIndBtn
             // 
-            this.BuildIndBtn.Location = new System.Drawing.Point(750, 72);
-            this.BuildIndBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.BuildIndBtn.Location = new System.Drawing.Point(664, 50);
             this.BuildIndBtn.Name = "BuildIndBtn";
-            this.BuildIndBtn.Size = new System.Drawing.Size(126, 34);
+            this.BuildIndBtn.Size = new System.Drawing.Size(84, 22);
             this.BuildIndBtn.TabIndex = 5;
             this.BuildIndBtn.Text = "Build Index";
             this.BuildIndBtn.UseVisualStyleBackColor = true;
@@ -79,10 +78,9 @@
             // 
             // SetSourceDireBtn
             // 
-            this.SetSourceDireBtn.Location = new System.Drawing.Point(74, 18);
-            this.SetSourceDireBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.SetSourceDireBtn.Location = new System.Drawing.Point(49, 12);
             this.SetSourceDireBtn.Name = "SetSourceDireBtn";
-            this.SetSourceDireBtn.Size = new System.Drawing.Size(184, 37);
+            this.SetSourceDireBtn.Size = new System.Drawing.Size(123, 24);
             this.SetSourceDireBtn.TabIndex = 8;
             this.SetSourceDireBtn.Text = "Set Source Directory";
             this.SetSourceDireBtn.UseVisualStyleBackColor = true;
@@ -90,10 +88,9 @@
             // 
             // SetIndexDirBut
             // 
-            this.SetIndexDirBut.Location = new System.Drawing.Point(74, 65);
-            this.SetIndexDirBut.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.SetIndexDirBut.Location = new System.Drawing.Point(49, 45);
             this.SetIndexDirBut.Name = "SetIndexDirBut";
-            this.SetIndexDirBut.Size = new System.Drawing.Size(184, 35);
+            this.SetIndexDirBut.Size = new System.Drawing.Size(123, 23);
             this.SetIndexDirBut.TabIndex = 9;
             this.SetIndexDirBut.Text = "Set Index Directory";
             this.SetIndexDirBut.UseVisualStyleBackColor = true;
@@ -102,30 +99,30 @@
             // SourceLabel
             // 
             this.SourceLabel.AutoSize = true;
-            this.SourceLabel.Location = new System.Drawing.Point(267, 28);
-            this.SourceLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.SourceLabel.Location = new System.Drawing.Point(178, 21);
+            this.SourceLabel.MaximumSize = new System.Drawing.Size(400, 20);
             this.SourceLabel.Name = "SourceLabel";
-            this.SourceLabel.Size = new System.Drawing.Size(127, 20);
+            this.SourceLabel.Size = new System.Drawing.Size(86, 13);
             this.SourceLabel.TabIndex = 10;
             this.SourceLabel.Text = "Source Directory";
+            this.SourceLabel.Click += new System.EventHandler(this.SourceLabel_Click);
             // 
             // IndexLabel
             // 
             this.IndexLabel.AutoSize = true;
-            this.IndexLabel.Location = new System.Drawing.Point(268, 72);
-            this.IndexLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.IndexLabel.Location = new System.Drawing.Point(179, 50);
+            this.IndexLabel.MaximumSize = new System.Drawing.Size(400, 20);
             this.IndexLabel.Name = "IndexLabel";
-            this.IndexLabel.Size = new System.Drawing.Size(115, 20);
+            this.IndexLabel.Size = new System.Drawing.Size(78, 13);
             this.IndexLabel.TabIndex = 11;
             this.IndexLabel.Text = "Index Directory";
             // 
             // SearchBtn1
             // 
             this.SearchBtn1.Enabled = false;
-            this.SearchBtn1.Location = new System.Drawing.Point(750, 208);
-            this.SearchBtn1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.SearchBtn1.Location = new System.Drawing.Point(664, 136);
             this.SearchBtn1.Name = "SearchBtn1";
-            this.SearchBtn1.Size = new System.Drawing.Size(126, 34);
+            this.SearchBtn1.Size = new System.Drawing.Size(84, 22);
             this.SearchBtn1.TabIndex = 13;
             this.SearchBtn1.Text = "Search";
             this.SearchBtn1.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
@@ -134,10 +131,9 @@
             // 
             // NeedsButton
             // 
-            this.NeedsButton.Location = new System.Drawing.Point(78, 208);
-            this.NeedsButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.NeedsButton.Location = new System.Drawing.Point(52, 135);
             this.NeedsButton.Name = "NeedsButton";
-            this.NeedsButton.Size = new System.Drawing.Size(182, 35);
+            this.NeedsButton.Size = new System.Drawing.Size(121, 23);
             this.NeedsButton.TabIndex = 14;
             this.NeedsButton.Text = "Select Cran needs";
             this.NeedsButton.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
@@ -147,40 +143,36 @@
             // NeedsLabel
             // 
             this.NeedsLabel.AutoSize = true;
-            this.NeedsLabel.Location = new System.Drawing.Point(78, 248);
-            this.NeedsLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.NeedsLabel.Location = new System.Drawing.Point(52, 161);
             this.NeedsLabel.Name = "NeedsLabel";
-            this.NeedsLabel.Size = new System.Drawing.Size(84, 20);
+            this.NeedsLabel.Size = new System.Drawing.Size(57, 13);
             this.NeedsLabel.TabIndex = 15;
             this.NeedsLabel.Text = "Needs File";
             // 
             // SearchOutput
             // 
-            this.SearchOutput.Location = new System.Drawing.Point(74, 400);
-            this.SearchOutput.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.SearchOutput.Location = new System.Drawing.Point(49, 260);
             this.SearchOutput.Multiline = true;
             this.SearchOutput.Name = "SearchOutput";
             this.SearchOutput.ReadOnly = true;
             this.SearchOutput.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.SearchOutput.Size = new System.Drawing.Size(800, 474);
+            this.SearchOutput.Size = new System.Drawing.Size(697, 309);
             this.SearchOutput.TabIndex = 16;
             // 
             // TopLabel
             // 
             this.TopLabel.AutoSize = true;
-            this.TopLabel.Location = new System.Drawing.Point(289, 216);
-            this.TopLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.TopLabel.Location = new System.Drawing.Point(193, 140);
             this.TopLabel.Name = "TopLabel";
-            this.TopLabel.Size = new System.Drawing.Size(0, 20);
+            this.TopLabel.Size = new System.Drawing.Size(0, 13);
             this.TopLabel.TabIndex = 17;
             // 
             // PreviousBtn
             // 
             this.PreviousBtn.Enabled = false;
-            this.PreviousBtn.Location = new System.Drawing.Point(633, 356);
-            this.PreviousBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.PreviousBtn.Location = new System.Drawing.Point(259, 231);
             this.PreviousBtn.Name = "PreviousBtn";
-            this.PreviousBtn.Size = new System.Drawing.Size(112, 35);
+            this.PreviousBtn.Size = new System.Drawing.Size(75, 23);
             this.PreviousBtn.TabIndex = 18;
             this.PreviousBtn.Text = "Previous 10";
             this.PreviousBtn.UseVisualStyleBackColor = true;
@@ -189,10 +181,9 @@
             // NextBtn
             // 
             this.NextBtn.Enabled = false;
-            this.NextBtn.Location = new System.Drawing.Point(754, 356);
-            this.NextBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.NextBtn.Location = new System.Drawing.Point(411, 231);
             this.NextBtn.Name = "NextBtn";
-            this.NextBtn.Size = new System.Drawing.Size(112, 35);
+            this.NextBtn.Size = new System.Drawing.Size(75, 23);
             this.NextBtn.TabIndex = 19;
             this.NextBtn.Text = "Next 10";
             this.NextBtn.UseVisualStyleBackColor = true;
@@ -201,30 +192,27 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(74, 140);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(49, 91);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(87, 20);
+            this.label1.Size = new System.Drawing.Size(59, 13);
             this.label1.TabIndex = 20;
             this.label1.Text = "Search for:";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(78, 175);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(52, 114);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(33, 20);
+            this.label2.Size = new System.Drawing.Size(23, 13);
             this.label2.TabIndex = 21;
             this.label2.Text = "OR";
             // 
             // SearchBtn2
             // 
             this.SearchBtn2.Enabled = false;
-            this.SearchBtn2.Location = new System.Drawing.Point(750, 132);
-            this.SearchBtn2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.SearchBtn2.Location = new System.Drawing.Point(664, 88);
             this.SearchBtn2.Name = "SearchBtn2";
-            this.SearchBtn2.Size = new System.Drawing.Size(126, 34);
+            this.SearchBtn2.Size = new System.Drawing.Size(84, 22);
             this.SearchBtn2.TabIndex = 22;
             this.SearchBtn2.Text = "Search";
             this.SearchBtn2.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
@@ -234,10 +222,9 @@
             // ExpandAbsBtn
             // 
             this.ExpandAbsBtn.Enabled = false;
-            this.ExpandAbsBtn.Location = new System.Drawing.Point(466, 356);
-            this.ExpandAbsBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ExpandAbsBtn.Location = new System.Drawing.Point(532, 231);
             this.ExpandAbsBtn.Name = "ExpandAbsBtn";
-            this.ExpandAbsBtn.Size = new System.Drawing.Size(158, 35);
+            this.ExpandAbsBtn.Size = new System.Drawing.Size(105, 23);
             this.ExpandAbsBtn.TabIndex = 23;
             this.ExpandAbsBtn.Text = "Show Abstracts";
             this.ExpandAbsBtn.UseVisualStyleBackColor = true;
@@ -246,10 +233,9 @@
             // SaveResult
             // 
             this.SaveResult.Enabled = false;
-            this.SaveResult.Location = new System.Drawing.Point(300, 356);
-            this.SaveResult.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.SaveResult.Location = new System.Drawing.Point(643, 231);
             this.SaveResult.Name = "SaveResult";
-            this.SaveResult.Size = new System.Drawing.Size(158, 35);
+            this.SaveResult.Size = new System.Drawing.Size(105, 23);
             this.SaveResult.TabIndex = 24;
             this.SaveResult.Text = "Save";
             this.SaveResult.UseVisualStyleBackColor = true;
@@ -265,42 +251,58 @@
             "023",
             "157",
             "219"});
-            this.comboBox1.Location = new System.Drawing.Point(421, 208);
+            this.comboBox1.Location = new System.Drawing.Point(304, 135);
+            this.comboBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 28);
+            this.comboBox1.Size = new System.Drawing.Size(82, 21);
             this.comboBox1.TabIndex = 25;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(289, 216);
+            this.label3.Location = new System.Drawing.Point(198, 140);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(126, 20);
+            this.label3.Size = new System.Drawing.Size(85, 13);
             this.label3.TabIndex = 26;
             this.label3.Text = "SelectCranNeed";
             // 
             // NeedQuery
             // 
             this.NeedQuery.AutoSize = true;
-            this.NeedQuery.Location = new System.Drawing.Point(218, 288);
+            this.NeedQuery.Location = new System.Drawing.Point(145, 187);
+            this.NeedQuery.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.NeedQuery.Name = "NeedQuery";
-            this.NeedQuery.Size = new System.Drawing.Size(0, 20);
+            this.NeedQuery.Size = new System.Drawing.Size(0, 13);
             this.NeedQuery.TabIndex = 27;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(74, 288);
+            this.label4.Location = new System.Drawing.Point(49, 187);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(128, 20);
+            this.label4.Size = new System.Drawing.Size(85, 13);
             this.label4.TabIndex = 28;
             this.label4.Text = "Query Submitted";
             // 
+            // Pagelabel
+            // 
+            this.Pagelabel.AutoSize = true;
+            this.Pagelabel.Location = new System.Drawing.Point(354, 236);
+            this.Pagelabel.MaximumSize = new System.Drawing.Size(130, 20);
+            this.Pagelabel.Name = "Pagelabel";
+            this.Pagelabel.Size = new System.Drawing.Size(32, 13);
+            this.Pagelabel.TabIndex = 29;
+            this.Pagelabel.Text = "Page";
+            this.Pagelabel.Click += new System.EventHandler(this.label5_Click);
+            // 
             // GUIForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1329, 893);
+            this.ClientSize = new System.Drawing.Size(851, 502);
+            this.Controls.Add(this.Pagelabel);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.NeedQuery);
             this.Controls.Add(this.label3);
@@ -323,7 +325,6 @@
             this.Controls.Add(this.SetSourceDireBtn);
             this.Controls.Add(this.BuildIndBtn);
             this.Controls.Add(this.TextEnter);
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "GUIForm";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -362,6 +363,7 @@
         private System.Windows.Forms.FontDialog fontDialog1;
         private System.Windows.Forms.Label NeedQuery;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label Pagelabel;
     }
 }
 

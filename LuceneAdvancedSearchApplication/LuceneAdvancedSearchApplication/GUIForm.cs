@@ -24,6 +24,7 @@ namespace LuceneAdvancedSearchApplication
         public static List<List<string>> resultList { get; set; }
         public static Int32 limit { get; set; }
         public static Boolean first { get; set; }
+        public static int pageNub { get; set; }
 
         Dictionary<string, string> cranNeeds;
 
@@ -105,6 +106,8 @@ namespace LuceneAdvancedSearchApplication
             ExpandAbsBtn.Enabled = true;            // Enable expand abstract button 
             SaveResult.Enabled = true;              // Enable save result button
             NeedQuery.Text = cranNeeds[comboBox1.SelectedItem.ToString()];     //Print Query 
+            pageNub = 1;
+            Pagelabel.Text = "Page" + pageNub;
 
 
 
@@ -144,6 +147,9 @@ namespace LuceneAdvancedSearchApplication
                 }
 
             }
+            pageNub = 1;
+            Pagelabel.Text = "Page" + pageNub;
+
         }
 
         private void NextBtn_Click(object sender, EventArgs e)  // When clicking on Next 10 button
@@ -159,8 +165,9 @@ namespace LuceneAdvancedSearchApplication
             {
                 NextBtn.Enabled = false;    // Disable next button
             }
-            
-                
+            pageNub++;
+            Pagelabel.Text = "Page" + pageNub;
+
         }
 
         private void PreviousBtn_Click(object sender, EventArgs e)  // When clicking on Previous 10 button
@@ -177,7 +184,9 @@ namespace LuceneAdvancedSearchApplication
             {
                 PreviousBtn.Enabled = false;    // Disable previous button
             }
-           
+
+            pageNub--;
+            Pagelabel.Text = "Page" + pageNub;
         }
 
         private void ExpandAbsBtn_Click(object sender, EventArgs e)
@@ -199,6 +208,16 @@ namespace LuceneAdvancedSearchApplication
                 SearchOutput.Text = outp;   // Display texts
                 ExpandAbsBtn.Text = "Show Abstracts";   // Change the expand button text
             }
+        }
+
+        private void SourceLabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

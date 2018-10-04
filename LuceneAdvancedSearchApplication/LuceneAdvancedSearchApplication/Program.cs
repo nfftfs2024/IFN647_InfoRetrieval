@@ -136,7 +136,7 @@ namespace LuceneAdvancedSearchApplication
                
 
                 writer.WriteLine("Rank" + (i + 1));
-                writer.WriteLine(resultList[i]);
+                writer.WriteLine(resultList[i ]);
 
             }
 
