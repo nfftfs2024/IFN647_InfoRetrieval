@@ -89,7 +89,7 @@
             // PreviousBtn
             // 
             this.PreviousBtn.Enabled = false;
-            this.PreviousBtn.Location = new System.Drawing.Point(451, 472);
+            this.PreviousBtn.Location = new System.Drawing.Point(568, 497);
             this.PreviousBtn.Name = "PreviousBtn";
             this.PreviousBtn.Size = new System.Drawing.Size(75, 23);
             this.PreviousBtn.TabIndex = 18;
@@ -100,7 +100,7 @@
             // NextBtn
             // 
             this.NextBtn.Enabled = false;
-            this.NextBtn.Location = new System.Drawing.Point(603, 472);
+            this.NextBtn.Location = new System.Drawing.Point(720, 497);
             this.NextBtn.Name = "NextBtn";
             this.NextBtn.Size = new System.Drawing.Size(75, 23);
             this.NextBtn.TabIndex = 19;
@@ -140,9 +140,9 @@
             // SaveResult
             // 
             this.SaveResult.Enabled = false;
-            this.SaveResult.Location = new System.Drawing.Point(1031, 193);
+            this.SaveResult.Location = new System.Drawing.Point(1124, 176);
             this.SaveResult.Name = "SaveResult";
-            this.SaveResult.Size = new System.Drawing.Size(105, 23);
+            this.SaveResult.Size = new System.Drawing.Size(176, 40);
             this.SaveResult.TabIndex = 24;
             this.SaveResult.Text = "Save";
             this.SaveResult.UseVisualStyleBackColor = true;
@@ -177,7 +177,7 @@
             // Pagelabel
             // 
             this.Pagelabel.AutoSize = true;
-            this.Pagelabel.Location = new System.Drawing.Point(533, 477);
+            this.Pagelabel.Location = new System.Drawing.Point(650, 502);
             this.Pagelabel.MaximumSize = new System.Drawing.Size(130, 20);
             this.Pagelabel.Name = "Pagelabel";
             this.Pagelabel.Size = new System.Drawing.Size(0, 13);
@@ -186,11 +186,12 @@
             // resultListView
             // 
             this.resultListView.Activation = System.Windows.Forms.ItemActivation.TwoClick;
+            this.resultListView.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.resultListView.FullRowSelect = true;
             this.resultListView.GridLines = true;
             this.resultListView.Location = new System.Drawing.Point(26, 234);
             this.resultListView.Name = "resultListView";
-            this.resultListView.Size = new System.Drawing.Size(1110, 224);
+            this.resultListView.Size = new System.Drawing.Size(1274, 257);
             this.resultListView.TabIndex = 10;
             this.resultListView.UseCompatibleStateImageBehavior = false;
             this.resultListView.View = System.Windows.Forms.View.Details;
@@ -200,7 +201,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1163, 549);
+            this.ClientSize = new System.Drawing.Size(1326, 549);
             this.Controls.Add(this.resultListView);
             this.Controls.Add(this.Pagelabel);
             this.Controls.Add(this.label3);

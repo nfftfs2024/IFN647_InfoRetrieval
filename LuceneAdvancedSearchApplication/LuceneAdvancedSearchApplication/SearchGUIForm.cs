@@ -35,9 +35,9 @@ namespace LuceneAdvancedSearchApplication
             InitializeComponent();
 
             // Create the column headers for the list view
-            resultListView.Columns.Add("Rank", 40);
-            resultListView.Columns.Add("DocID", 45);
-            resultListView.Columns.Add("Title", 380);
+            resultListView.Columns.Add("Rank", 50);
+            resultListView.Columns.Add("DocID", 55);
+            resultListView.Columns.Add("Title", 450);
             resultListView.Columns.Add("Author", 120);
             resultListView.Columns.Add("Bibliography", 120);
             resultListView.Columns.Add("Abstract", 500);
