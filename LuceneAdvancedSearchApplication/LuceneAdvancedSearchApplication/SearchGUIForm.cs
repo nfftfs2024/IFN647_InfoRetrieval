@@ -25,11 +25,11 @@ namespace LuceneAdvancedSearchApplication
         public static Int32 limit { get; set; }
         public static Boolean first { get; set; }
         public static int pageNub { get; set; }
-<<<<<<< HEAD
+
         public static int queryCount { get; set; }
-=======
+
         public static int totalpage { get; set; }
->>>>>>> 0d6116af2786e4bb7981c8fe413ac88f639b29bf
+
 
         Dictionary<string, string> cranNeeds;
 
@@ -42,16 +42,9 @@ namespace LuceneAdvancedSearchApplication
             // Create the column headers for the list view
             resultListView.Columns.Add("DocID", 35);
             resultListView.Columns.Add("Title", 350);
-<<<<<<< HEAD
-            resultListView.Columns.Add("Author", 150);
-            resultListView.Columns.Add("Bibliography", 150);
-            resultListView.Columns.Add("TEXT", 400);
-            queryCount = 0;
-=======
             resultListView.Columns.Add("Author", 100);
             resultListView.Columns.Add("Bibliography", 100);
             resultListView.Columns.Add("Abstract", 500);
->>>>>>> 0d6116af2786e4bb7981c8fe413ac88f639b29bf
         }
 
         private void SearchGUIForm_Load(object sender, EventArgs e)
@@ -251,8 +244,6 @@ namespace LuceneAdvancedSearchApplication
 
         }
 
-<<<<<<< HEAD
-=======
         public void ViewData(int limit, List<Dictionary<string, string>> resultList)
         {
             resultListView.Items.Clear();
@@ -263,6 +254,5 @@ namespace LuceneAdvancedSearchApplication
                 resultListView.Items.Add(resultView);
             }
         }
->>>>>>> 0d6116af2786e4bb7981c8fe413ac88f639b29bf
     }
 }

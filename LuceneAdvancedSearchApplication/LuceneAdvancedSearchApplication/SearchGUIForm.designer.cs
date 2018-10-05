@@ -243,7 +243,7 @@
             this.resultListView.Location = new System.Drawing.Point(46, 234);
             this.resultListView.MultiSelect = false;
             this.resultListView.Name = "resultListView";
-            this.resultListView.Size = new System.Drawing.Size(749, 317);
+            this.resultListView.Size = new System.Drawing.Size(749, 206);
             this.resultListView.TabIndex = 10;
             this.resultListView.UseCompatibleStateImageBehavior = false;
             this.resultListView.View = System.Windows.Forms.View.Details;
