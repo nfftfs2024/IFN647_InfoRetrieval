@@ -12,6 +12,7 @@ namespace LuceneAdvancedSearchApplication
     {
 
         public static LuceneSearcheEngine myLuceneApp;
+        
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -46,13 +47,40 @@ namespace LuceneAdvancedSearchApplication
             }
         }
 
-        public static List<List<string>> Search_Click(string querytext)
+        public static List<Dictionary<string, string>> Search_Click(string querytext)
         {
-            List<List<string>> resultList = new List<List<string>>();
+            List<List<string>> tempList = new List<List<string>>();
+            List<Dictionary<string, string>> resultList = new List<Dictionary<string, string>>();
             //// Searching Code
             myLuceneApp.CreateSearcher();           // Create searcher
-            resultList = myLuceneApp.SearchText(querytext);     // Get search result list
+            //resultList = myLuceneApp.SearchText(querytext);     // Get search result list
+            tempList = myLuceneApp.SearchText_bk(querytext);     // Get search result list
             myLuceneApp.CleanUpSearcher();        // Clean searcher
+
+            foreach (List<string> result in tempList)
+            {
+                string text = result[0];
+                int indexI = text.IndexOf(".I ") + 3;   // Get ID starting index
+                int indexT = text.IndexOf(".T\n");    // Get title starting index
+                int indexA = text.IndexOf(".A\n");    // Get author starting index
+                int indexB = text.IndexOf(".B\n");    // Get bibliography starting index
+                int indexW = text.IndexOf(".W\n");    // Get words starting index
+
+                string id = text.Substring(indexI, indexT - 1 - indexI);    // Get ID string
+                string title = text.Substring(indexT + 3, ((indexA - 1 - (indexT + 3)) > 0) ? (indexA - 1 - (indexT + 3)) : 0);     // Get title string
+                string author = text.Substring(indexA + 3, ((indexB - 1 - (indexA + 3)) > 0) ? (indexB - 1 - (indexA + 3)) : 0);    // Get author string
+                string biblio = text.Substring(indexB + 3, ((indexW - 1 - (indexB + 3)) > 0) ? (indexW - 1 - (indexB + 3)) : 0);    // Get bibliography string
+                string abst = text.Substring(indexW + 3, ((text.Length - 1 - (indexW + 3)) > 0) ? (text.Length - 1 - (indexW + 3)) : 0);   // Get abstract string
+
+                //string[] parts = resultSet[i][0].Split(new string[] { ".W\n" }, StringSplitOptions.RemoveEmptyEntries);   // Cut half the texts from the starting of .W
+                //string firsthalf = parts[0].Replace(".I ", "DocID: ").Replace(".T\n", "\r\nTitle: ").Replace(".A\n", "\r\nAuthor: ").Replace(".B\n", "\r\nBibliographic information: ");  // First half
+                abst = abst.Replace("\n", " ");  // Replace abstract LF
+
+                Regex rx = new Regex("^.*?[.?!]", RegexOptions.Compiled | RegexOptions.IgnoreCase);     // Set the RE to match first sentence of abstract
+                MatchCollection abst_first = rx.Matches(abst);   // Get RE match
+
+                resultList.Add(new Dictionary<string, string> { { "id", id }, { "title", title }, { "author", author }, { "biblio", biblio }, { "abstract", abst }, { "abstract_first", abst_first[0].Value}, { "score", result[0] } });     // Add contents and score into the created list of lists
+            }
             return resultList;
         }
 
@@ -111,29 +139,30 @@ namespace LuceneAdvancedSearchApplication
             }
         }
 
-        public static string ViewData(int limit, List<List<string>> resultSet, bool first)
+        public static void ViewData(int limit, List<Dictionary<string, string>> resultList)
         {
-            string outp = "";       // Initial null string
+            //xx.ResultListView.Items.Clear();
+            //xx.ResultListView.Controls.Clear();
+            //for (int i = limit; i < limit + 10; i++)     // Concatenate the top 10 result strings
+            //{ 
+            //        ListViewItem resultView = new ListViewItem(new[] { resultList[i]["id"], resultList[i]["title"], resultList[i]["author"], resultList[i]["biblio"], resultList[i]["abstract"] });
+            //        xx.ResultListView.Items.Add(resultView);
+                    //string[] parts = resultSet[i][0].Split(new string[] { ".W\n" }, StringSplitOptions.RemoveEmptyEntries);   // Cut half the texts from the starting of .W
+                    //string firsthalf = parts[0].Replace(".I ", "DocID: ").Replace(".T\n", "\r\nTitle: ").Replace(".A\n", "\r\nAuthor: ").Replace(".B\n", "\r\nBibliographic information: ");  // First half
+                    //string secondhalf = parts[1].Replace("\n", " ");  // Replace abstract LF
 
-            for (int i = limit; i < limit + 10; i++)     // Concatenate the top 10 result strings
-            {
-                string[] parts = resultSet[i][0].Split(new string[] { ".W\n" }, StringSplitOptions.RemoveEmptyEntries);   // Cut half the texts from the starting of .W
-                string firsthalf = parts[0].Replace(".I ", "DocID: ").Replace(".T\n", "\r\nTitle: ").Replace(".A\n", "\r\nAuthor: ").Replace(".B\n", "\r\nBibliographic information: ");  // First half
-                string secondhalf = parts[1].Replace("\n", " ");  // Replace abstract LF
-
-                if (first)  // For only first sentence of abstract
-                {
-                    Regex rx = new Regex("^.*?[.?!]", RegexOptions.Compiled | RegexOptions.IgnoreCase);     // Set the RE to match first sentence of abstract
-                    MatchCollection matches = rx.Matches(secondhalf);   // Get RE match
-                    outp += "Rank: " + (i + 1).ToString() + "\r\n" + firsthalf + "\r\nAbstract: " + matches[0].Value + "\r\n\r\n";   // Combine displaying texts
-                }
-                else
-                {
-                    outp += "Rank: " + (i + 1).ToString() + "\r\n" + firsthalf + "\r\nAbstract: " + secondhalf + "\r\n\r\n";    // Combine original texts
-                }
-            }
-            return outp;
+                    //if (first)  // For only first sentence of abstract
+                    //{
+                    //    Regex rx = new Regex("^.*?[.?!]", RegexOptions.Compiled | RegexOptions.IgnoreCase);     // Set the RE to match first sentence of abstract
+                    //    MatchCollection matches = rx.Matches(secondhalf);   // Get RE match
+                    //    outp += "Rank: " + (i + 1).ToString() + "\r\n" + firsthalf + "\r\nAbstract: " + matches[0].Value + "\r\n\r\n";   // Combine displaying texts
+                    //}
+                    //else
+                    //{
+                    //    outp += "Rank: " + (i + 1).ToString() + "\r\n" + firsthalf + "\r\nAbstract: " + secondhalf + "\r\n\r\n";    // Combine original texts
+                    //}
         }
+        
 
         public static string ViewData_bk(int limit, List<List<string>> resultSet, bool first)
         {

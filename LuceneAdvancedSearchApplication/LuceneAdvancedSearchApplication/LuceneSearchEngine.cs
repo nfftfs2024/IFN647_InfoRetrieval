@@ -79,9 +79,9 @@ namespace LuceneAdvancedSearchApplication
         /// Searches the index for the querytext
         /// </summary>
         /// <param name="querytext">The text to search the index</param>
-        public List<List<string>> SearchText(string querytext)
+        public List<Dictionary<string, string>> SearchText(string querytext)
         {
-            List<List<string>> resultList = new List<List<string>>() ;      // Initiate a result list
+            List<Dictionary<string, string>> resultList = new List<Dictionary<string, string>>() ;      // Initiate a result list
             System.Console.WriteLine("Searching for " + querytext);
             querytext = querytext.ToLower();
             Query query = parser.Parse(querytext);                          // Parse the query text by parser and create the query object
@@ -118,7 +118,7 @@ namespace LuceneAdvancedSearchApplication
                     Regex rx = new Regex("^.*?[.?!]", RegexOptions.Compiled | RegexOptions.IgnoreCase);     // Set the RE to match first sentence of abstract
                     MatchCollection abst_first = rx.Matches(abst);   // Get RE match
 
-                    resultList.Add(new List<string> {id, title, author, biblio, abst, score});     // Add contents and score into the created list of lists
+                    resultList.Add(new Dictionary<string, string> { {"id", id}, { "title", title }, { "author", author }, { "biblio", biblio }, { "abstract", abst } });     // Add contents and score into the created list of lists
 
                     //string[] parts = text.Split(new string[] { ".W\r\n" }, StringSplitOptions.RemoveEmptyEntries);   // Cut half the texts from the starting of .W
                     //string firsthalf = parts[0].Replace(".I ", "DocID: ").Replace(".T\r\n", "Title: ").Replace(".A\r\n", "Author: ").Replace(".B\r\n", "Bibliographic information: ");  // First half
@@ -159,9 +159,7 @@ namespace LuceneAdvancedSearchApplication
                     //string secondhalf = parts[1].Replace("\r\n", " ");  // Replace abstract CRLF
                 }
             }
-
             return resultList;
-
         }
 
         public Tuple<List<float>, List<string>,int> SearchText_baseline(string querytext)

@@ -49,7 +49,7 @@
             this.NeedQuery = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.Pagelabel = new System.Windows.Forms.Label();
-            this.ResultListView = new System.Windows.Forms.ListView();
+            this.resultListView = new System.Windows.Forms.ListView();
             this.SuspendLayout();
             // 
             // TextEnter
@@ -238,25 +238,25 @@
             this.Pagelabel.Text = "Page";
             this.Pagelabel.Click += new System.EventHandler(this.label5_Click);
             // 
-            // ResultListView
+            // resultListView
             // 
-            this.ResultListView.FullRowSelect = true;
-            this.ResultListView.GridLines = true;
-            this.ResultListView.Location = new System.Drawing.Point(46, 234);
-            this.ResultListView.MultiSelect = false;
-            this.ResultListView.Name = "ResultListView";
-            this.ResultListView.Size = new System.Drawing.Size(749, 317);
-            this.ResultListView.TabIndex = 30;
-            this.ResultListView.UseCompatibleStateImageBehavior = false;
-            this.ResultListView.View = System.Windows.Forms.View.Details;
-            this.ResultListView.SelectedIndexChanged += new System.EventHandler(this.ResultListView_SelectedIndexChanged);
+            this.resultListView.FullRowSelect = true;
+            this.resultListView.GridLines = true;
+            this.resultListView.Location = new System.Drawing.Point(46, 234);
+            this.resultListView.MultiSelect = false;
+            this.resultListView.Name = "resultListView";
+            this.resultListView.Size = new System.Drawing.Size(749, 317);
+            this.resultListView.TabIndex = 10;
+            this.resultListView.UseCompatibleStateImageBehavior = false;
+            this.resultListView.View = System.Windows.Forms.View.Details;
+            this.resultListView.SelectedIndexChanged += new System.EventHandler(this.ResultListView_SelectedIndexChanged);
             // 
             // SearchGUIForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(851, 549);
-            this.Controls.Add(this.ResultListView);
+            this.Controls.Add(this.resultListView);
             this.Controls.Add(this.Pagelabel);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.NeedQuery);
@@ -307,7 +307,9 @@
         private System.Windows.Forms.Label NeedQuery;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label Pagelabel;
-        private System.Windows.Forms.ListView ResultListView;
+        private System.Windows.Forms.ListView resultListView;
+
+        
     }
 }
 
