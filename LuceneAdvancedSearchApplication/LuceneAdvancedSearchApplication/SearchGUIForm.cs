@@ -150,7 +150,7 @@ namespace LuceneAdvancedSearchApplication
             ViewData(limit, resultList);    // View data on listview
 
             PreviousBtn.Enabled = true; // Enable previous button
-            if (limit + 20 - resultList.Count > 10)  // If no next 10 results
+            if (limit + 20 - resultList.Count >= 10)  // If no next 10 results
             {
                 NextBtn.Enabled = false;    // Disable next button
             }
@@ -193,9 +193,9 @@ namespace LuceneAdvancedSearchApplication
             resultListView.Items.Clear();
             resultListView.Controls.Clear();        // Clear current listview
             int end = 0;
-            if (resultList.Count - limit < 10)
+            if (resultList.Count - limit < 10)      // Check if it's the last results less than 10
             {
-                end = limit + (resultList.Count % 10);
+                end = limit + (resultList.Count % 10);  // Get the modulus
             }
             else
             {
