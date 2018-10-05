@@ -33,6 +33,8 @@ namespace LuceneAdvancedSearchApplication
         public SearchGUIForm()
         {
             InitializeComponent();
+
+            // Create the column headers for the list view
             resultListView.Columns.Add("DocID", 50);
             resultListView.Columns.Add("Title", 350);
             resultListView.Columns.Add("Author", 150);
@@ -49,6 +51,7 @@ namespace LuceneAdvancedSearchApplication
         { 
             searchWords = TextEnter.Text;
         }
+
 
         private void NeedsButton_Click(object sender, EventArgs e)      // Select file path after click on Select Cran Needs
         {
@@ -92,7 +95,7 @@ namespace LuceneAdvancedSearchApplication
 
             NeedQuery.Text = cranNeeds[comboBox1.SelectedItem.ToString()];     //Print Query 
             pageNub = 1;
-            Pagelabel.Text = "Page" + pageNub;
+            Pagelabel.Text = "Page " + pageNub;
         }
 
         private void SearchBtn2_Click(object sender, EventArgs e)       // When clicking on search button for user free-typing
@@ -148,7 +151,7 @@ namespace LuceneAdvancedSearchApplication
 
             }
             pageNub = 1;
-            Pagelabel.Text = "Page" + pageNub;
+            Pagelabel.Text = "Page " + pageNub;
 
         }
 
@@ -173,7 +176,7 @@ namespace LuceneAdvancedSearchApplication
                 NextBtn.Enabled = false;    // Disable next button
             }
             pageNub++;
-            Pagelabel.Text = "Page" + pageNub;
+            Pagelabel.Text = "Page " + pageNub;
 
         }
 
@@ -200,7 +203,7 @@ namespace LuceneAdvancedSearchApplication
             }
 
             pageNub--;
-            Pagelabel.Text = "Page" + pageNub;
+            Pagelabel.Text = "Page " + pageNub;
         }
 
         private void ExpandAbsBtn_Click(object sender, EventArgs e)
@@ -233,19 +236,11 @@ namespace LuceneAdvancedSearchApplication
             }
         }
 
-        private void SourceLabel_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void ResultListView_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
+
+        public static 
     }
 }
