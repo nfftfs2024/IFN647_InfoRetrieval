@@ -204,7 +204,8 @@ namespace LuceneAdvancedSearchApplication
             for (int i = limit; i < end; i++)     // Loop through current 10 results
             {
                 // Add result details into the listview
-                ListViewItem resultView = new ListViewItem(new[] { resultListDict[i]["rank"], resultListDict[i]["id"], resultListDict[i]["title"], resultListDict[i]["author"], resultListDict[i]["biblio"], resultListDict[i]["abstract"] });
+                ListViewItem resultView = new ListViewItem(new[] { resultListDict[i]["rank"], resultListDict[i]["id"], resultListDict[i]["title"],
+                                                            resultListDict[i]["author"], resultListDict[i]["biblio"], resultListDict[i]["abstract_first"] });
                 resultListView.Items.Add(resultView);
             }
         }
