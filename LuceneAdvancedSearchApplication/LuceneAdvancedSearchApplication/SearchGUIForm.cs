@@ -25,6 +25,7 @@ namespace LuceneAdvancedSearchApplication
         public static Int32 limit { get; set; }
         public static Boolean first { get; set; }
         public static int pageNub { get; set; }
+        public static int queryCount { get; set; }
 
         Dictionary<string, string> cranNeeds;
 
@@ -40,6 +41,7 @@ namespace LuceneAdvancedSearchApplication
             resultListView.Columns.Add("Author", 150);
             resultListView.Columns.Add("Bibliography", 150);
             resultListView.Columns.Add("TEXT", 400);
+            queryCount = 0;
         }
 
         private void SearchGUIForm_Load(object sender, EventArgs e)
@@ -48,7 +50,7 @@ namespace LuceneAdvancedSearchApplication
         }
 
         private void TextEnter_TextChanged(object sender, EventArgs e)
-        { 
+        {
             searchWords = TextEnter.Text;
         }
 
@@ -66,9 +68,9 @@ namespace LuceneAdvancedSearchApplication
         {
             SaveDialog.ShowDialog();
             savePath = SaveDialog.FileName;
-            StreamWriter writer = new StreamWriter(SaveDialog.OpenFile());
-            //Program.SaveClick(resultList, writer);
-            
+            StreamWriter writer = new StreamWriter(savePath,append:true);
+            Program.SaveClick(resultList, writer,queryCount);
+
 
         }
 
@@ -123,6 +125,7 @@ namespace LuceneAdvancedSearchApplication
                 {
                     MessageBox.Show("The time for searching text was " + (end - start), "Reporting Searching Time", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     resultList = tempList;  // Assign temporary list to global variable as current 10 results
+                    queryCount++;
                     //string outp = Program.ViewData(limit, resultList, first);                // Collate search result into displaying formats
 
                     //for (int i = 0; i < 10; i++)
@@ -137,7 +140,7 @@ namespace LuceneAdvancedSearchApplication
                         resultListView.Items.Add(resultView);
                     }
 
-                        TopLabel.Text = "Top 1-10 results";     // Display top description
+                    TopLabel.Text = "Top 1-10 results";     // Display top description
                     //SearchOutput.Text = outp;               // Display top 10 results
                     NextBtn.Enabled = true;                 // Enable next button
                     PreviousBtn.Enabled = false;            // Disable previous button
@@ -241,6 +244,5 @@ namespace LuceneAdvancedSearchApplication
 
         }
 
-        public static 
     }
 }

@@ -79,7 +79,7 @@ namespace LuceneAdvancedSearchApplication
                 Regex rx = new Regex("^.*?[.?!]", RegexOptions.Compiled | RegexOptions.IgnoreCase);     // Set the RE to match first sentence of abstract
                 MatchCollection abst_first = rx.Matches(abst);   // Get RE match
 
-                resultList.Add(new Dictionary<string, string> { { "id", id }, { "title", title }, { "author", author }, { "biblio", biblio }, { "abstract", abst }, { "abstract_first", abst_first[0].Value}, { "score", result[0] } });     // Add contents and score into the created list of lists
+                resultList.Add(new Dictionary<string, string> { { "id", id }, { "title", title }, { "author", author }, { "biblio", biblio }, { "abstract", abst }, { "abstract_first", abst_first[0].Value}, { "score", result[1] } });     // Add contents and score into the created list of lists
             }
             return resultList;
         }
@@ -187,7 +187,7 @@ namespace LuceneAdvancedSearchApplication
             }
             return outp;
         }
-        public static void SaveClick(List<List<string>> resultList, StreamWriter writer)
+        public static void SaveClick(List<Dictionary<string,string>> resultList, StreamWriter writer, int queryCount)
         {
             
 
@@ -195,8 +195,8 @@ namespace LuceneAdvancedSearchApplication
             {
                
 
-                writer.WriteLine("Rank" + (i + 1));
-                writer.WriteLine(resultList[0][i]);
+                writer.WriteLine(queryCount.ToString()+ "\tRank" + (i + 1)+ "\t"+resultList[i]["id"]+ "\t"+resultList[i]["score"]);
+                
 
             }
 
