@@ -54,15 +54,15 @@
             // 
             // TextEnter
             // 
-            this.TextEnter.Location = new System.Drawing.Point(130, 62);
+            this.TextEnter.Location = new System.Drawing.Point(177, 76);
             this.TextEnter.Name = "TextEnter";
-            this.TextEnter.Size = new System.Drawing.Size(276, 20);
+            this.TextEnter.Size = new System.Drawing.Size(471, 20);
             this.TextEnter.TabIndex = 1;
             this.TextEnter.TextChanged += new System.EventHandler(this.TextEnter_TextChanged);
             // 
             // SearchBtn1
             // 
-            this.SearchBtn1.Location = new System.Drawing.Point(684, 110);
+            this.SearchBtn1.Location = new System.Drawing.Point(676, 151);
             this.SearchBtn1.Name = "SearchBtn1";
             this.SearchBtn1.Size = new System.Drawing.Size(84, 22);
             this.SearchBtn1.TabIndex = 13;
@@ -73,7 +73,7 @@
             // 
             // NeedsButton
             // 
-            this.NeedsButton.Location = new System.Drawing.Point(72, 109);
+            this.NeedsButton.Location = new System.Drawing.Point(119, 150);
             this.NeedsButton.Name = "NeedsButton";
             this.NeedsButton.Size = new System.Drawing.Size(121, 23);
             this.NeedsButton.TabIndex = 14;
@@ -85,7 +85,7 @@
             // NeedsLabel
             // 
             this.NeedsLabel.AutoSize = true;
-            this.NeedsLabel.Location = new System.Drawing.Point(72, 135);
+            this.NeedsLabel.Location = new System.Drawing.Point(119, 176);
             this.NeedsLabel.Name = "NeedsLabel";
             this.NeedsLabel.Size = new System.Drawing.Size(57, 13);
             this.NeedsLabel.TabIndex = 15;
@@ -104,7 +104,7 @@
             // TopLabel
             // 
             this.TopLabel.AutoSize = true;
-            this.TopLabel.Location = new System.Drawing.Point(213, 114);
+            this.TopLabel.Location = new System.Drawing.Point(260, 155);
             this.TopLabel.Name = "TopLabel";
             this.TopLabel.Size = new System.Drawing.Size(0, 13);
             this.TopLabel.TabIndex = 17;
@@ -112,7 +112,7 @@
             // PreviousBtn
             // 
             this.PreviousBtn.Enabled = false;
-            this.PreviousBtn.Location = new System.Drawing.Point(279, 205);
+            this.PreviousBtn.Location = new System.Drawing.Point(451, 472);
             this.PreviousBtn.Name = "PreviousBtn";
             this.PreviousBtn.Size = new System.Drawing.Size(75, 23);
             this.PreviousBtn.TabIndex = 18;
@@ -123,7 +123,7 @@
             // NextBtn
             // 
             this.NextBtn.Enabled = false;
-            this.NextBtn.Location = new System.Drawing.Point(431, 205);
+            this.NextBtn.Location = new System.Drawing.Point(603, 472);
             this.NextBtn.Name = "NextBtn";
             this.NextBtn.Size = new System.Drawing.Size(75, 23);
             this.NextBtn.TabIndex = 19;
@@ -134,7 +134,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(69, 65);
+            this.label1.Location = new System.Drawing.Point(116, 79);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(59, 13);
             this.label1.TabIndex = 20;
@@ -143,7 +143,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(72, 88);
+            this.label2.Location = new System.Drawing.Point(116, 111);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(23, 13);
             this.label2.TabIndex = 21;
@@ -151,7 +151,7 @@
             // 
             // SearchBtn2
             // 
-            this.SearchBtn2.Location = new System.Drawing.Point(684, 62);
+            this.SearchBtn2.Location = new System.Drawing.Point(676, 76);
             this.SearchBtn2.Name = "SearchBtn2";
             this.SearchBtn2.Size = new System.Drawing.Size(84, 22);
             this.SearchBtn2.TabIndex = 22;
@@ -163,7 +163,7 @@
             // ExpandAbsBtn
             // 
             this.ExpandAbsBtn.Enabled = false;
-            this.ExpandAbsBtn.Location = new System.Drawing.Point(552, 205);
+            this.ExpandAbsBtn.Location = new System.Drawing.Point(874, 200);
             this.ExpandAbsBtn.Name = "ExpandAbsBtn";
             this.ExpandAbsBtn.Size = new System.Drawing.Size(105, 23);
             this.ExpandAbsBtn.TabIndex = 23;
@@ -174,7 +174,7 @@
             // SaveResult
             // 
             this.SaveResult.Enabled = false;
-            this.SaveResult.Location = new System.Drawing.Point(663, 205);
+            this.SaveResult.Location = new System.Drawing.Point(985, 200);
             this.SaveResult.Name = "SaveResult";
             this.SaveResult.Size = new System.Drawing.Size(105, 23);
             this.SaveResult.TabIndex = 24;
@@ -192,7 +192,7 @@
             "023",
             "157",
             "219"});
-            this.comboBox1.Location = new System.Drawing.Point(324, 109);
+            this.comboBox1.Location = new System.Drawing.Point(371, 150);
             this.comboBox1.Margin = new System.Windows.Forms.Padding(2);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(82, 21);
@@ -201,7 +201,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(218, 114);
+            this.label3.Location = new System.Drawing.Point(265, 155);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(85, 13);
@@ -211,7 +211,7 @@
             // NeedQuery
             // 
             this.NeedQuery.AutoSize = true;
-            this.NeedQuery.Location = new System.Drawing.Point(165, 161);
+            this.NeedQuery.Location = new System.Drawing.Point(212, 202);
             this.NeedQuery.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.NeedQuery.Name = "NeedQuery";
             this.NeedQuery.Size = new System.Drawing.Size(0, 13);
@@ -220,7 +220,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(69, 161);
+            this.label4.Location = new System.Drawing.Point(116, 202);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(85, 13);
@@ -230,7 +230,7 @@
             // Pagelabel
             // 
             this.Pagelabel.AutoSize = true;
-            this.Pagelabel.Location = new System.Drawing.Point(361, 210);
+            this.Pagelabel.Location = new System.Drawing.Point(533, 477);
             this.Pagelabel.MaximumSize = new System.Drawing.Size(130, 20);
             this.Pagelabel.Name = "Pagelabel";
             this.Pagelabel.Size = new System.Drawing.Size(0, 13);
@@ -240,10 +240,10 @@
             // 
             this.resultListView.FullRowSelect = true;
             this.resultListView.GridLines = true;
-            this.resultListView.Location = new System.Drawing.Point(46, 234);
+            this.resultListView.Location = new System.Drawing.Point(69, 234);
             this.resultListView.MultiSelect = false;
             this.resultListView.Name = "resultListView";
-            this.resultListView.Size = new System.Drawing.Size(749, 206);
+            this.resultListView.Size = new System.Drawing.Size(1021, 224);
             this.resultListView.TabIndex = 10;
             this.resultListView.UseCompatibleStateImageBehavior = false;
             this.resultListView.View = System.Windows.Forms.View.Details;
@@ -253,7 +253,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(851, 549);
+            this.ClientSize = new System.Drawing.Size(1163, 549);
             this.Controls.Add(this.resultListView);
             this.Controls.Add(this.Pagelabel);
             this.Controls.Add(this.label4);
