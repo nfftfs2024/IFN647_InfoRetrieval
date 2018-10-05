@@ -62,6 +62,7 @@ namespace LuceneAdvancedSearchApplication
             needsPath = myNeedsDialog.FileName;
             cranNeeds = Program.ReadCranNeeds(needsPath);   // Put the cran_information_need into a dictionary
             SearchBtn1.Enabled = true;      // Enable search button 1
+            comboBox1.Enabled = true;
         }
 
         private void SaveResult_Click(object sender, EventArgs e)   // Select directory path after click on Set Index Directory
@@ -90,9 +91,10 @@ namespace LuceneAdvancedSearchApplication
             PreviousBtn.Enabled = false;            // Disable previous button
             SaveResult.Enabled = true;              // Enable save result button
             resultLab.Text = "Result numbers:";     // Display result number label
+            FinalQTxtbox.Text = cranNeeds[comboBox1.SelectedItem.ToString()];     //Print Query 
             resultNumLab.Text = resultListDict.Count.ToString();    // Display result number
 
-            //NeedQuery.Text = cranNeeds[comboBox1.SelectedItem.ToString()];     //Print Query 
+
 
             pageNub = 1;
             totalpage = Convert.ToInt32(Math.Ceiling((double)resultListDict.Count / 10));

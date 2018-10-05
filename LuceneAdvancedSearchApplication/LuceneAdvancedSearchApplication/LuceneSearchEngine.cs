@@ -115,19 +115,20 @@ namespace LuceneAdvancedSearchApplication
 
             if (results.TotalHits != 0)     // Check if there are found results
             {
-                for (int i = 0; i < results.TotalHits; i++)    // Loop through all the documents retrieved
+                for (int i = 0; i < results.TotalHits; i++)    // Loop through the top 10 ranked documents
                 {
-                    int rank = i + 1;   // Set ranking number
                     ScoreDoc scoreDoc = results.ScoreDocs[i];   // Get the ranked document
                     Lucene.Net.Documents.Document doc = searcher2.Doc(scoreDoc.Doc);     // Get document contents
-                    string myFieldValue = doc.Get(TEXT_FN).ToString();  // Get document contents by fields
-                    string[] parts = myFieldValue.Split(new string[] { ".W\r\n" }, StringSplitOptions.RemoveEmptyEntries);   // Cut half the texts from the starting of .W
-                    string firsthalf = parts[0].Replace(".I ", "DocID: ").Replace(".T\r\n", "Title: ").Replace(".A\r\n", "Author: ").Replace(".B\r\n", "Bibliographic information: ");  // First half                
-                    docsIdsListBase.Add(firsthalf.Substring(6, firsthalf.IndexOf("Title:") - 6).Trim());
+                    string text = doc.Get(TEXT_FN).ToString();  // Get document contents by fields    
+                    string score = scoreDoc.Score.ToString();   // Get document score
+                    int idxI = text.IndexOf(".I ") + 3;   // Get ID starting index
+                    int idxT = text.IndexOf(".T\n");    // Get title starting index
+                    string id = text.Substring(idxI, idxT - 1 - idxI);    // Get ID string
+                    docsIdsListBase.Add(id.Trim());
                     valueListBase.Add(scoreDoc.Score);
                 }
             }
-            var result = Tuple.Create(valueListBase, docsIdsListBase,results.TotalHits);
+            var result = Tuple.Create(valueListBase, docsIdsListBase, results.TotalHits);
             return result;
 
         }
