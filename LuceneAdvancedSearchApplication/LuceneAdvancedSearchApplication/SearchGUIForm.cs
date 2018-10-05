@@ -169,6 +169,16 @@ namespace LuceneAdvancedSearchApplication
 
         private void ResultListView_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (resultListView.Items.Count != 0)
+            {
+                if (resultListView.SelectedItems.Count > 0)
+                {
+                    int rank = Int32.Parse(resultListView.SelectedItems[0].Text);
+                    //var popform = new Form();
+                    //popform.ShowDialog();
+                    MessageBox.Show(resultList[rank - 1]["abstract"], "Entire Abstract");
+                }
+            }
 
         }
 

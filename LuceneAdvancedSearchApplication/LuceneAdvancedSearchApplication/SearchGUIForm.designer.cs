@@ -185,10 +185,10 @@
             // 
             // resultListView
             // 
+            this.resultListView.Activation = System.Windows.Forms.ItemActivation.TwoClick;
             this.resultListView.FullRowSelect = true;
             this.resultListView.GridLines = true;
             this.resultListView.Location = new System.Drawing.Point(26, 234);
-            this.resultListView.MultiSelect = false;
             this.resultListView.Name = "resultListView";
             this.resultListView.Size = new System.Drawing.Size(1110, 224);
             this.resultListView.TabIndex = 10;
