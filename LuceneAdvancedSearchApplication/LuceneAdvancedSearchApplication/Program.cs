@@ -87,7 +87,7 @@ namespace LuceneAdvancedSearchApplication
         public static void Create_BaseLine_Results(Dictionary<string, string> cNeeds)
         {
             string path = Path.GetDirectoryName(Application.ExecutablePath) + "\\BaseLineResults.txt";
-            List<string> resultList = new List<string>();
+            List<string> resultListDict = new List<string>();
             List<float> valueListBase = new List<float>();
             List<string> docsIdsListBase = new List<string>();
             //// Searching Code
@@ -139,7 +139,7 @@ namespace LuceneAdvancedSearchApplication
             }
         }
 
-        public static void SaveClick(List<Dictionary<string,string>> resultList, StreamWriter writer, int queryCount)
+        public static void SaveClick(List<Dictionary<string,string>> resultListDict, StreamWriter writer, int queryCount)
         {
             
 
@@ -147,7 +147,7 @@ namespace LuceneAdvancedSearchApplication
             {
                
 
-                writer.WriteLine(queryCount.ToString()+ "\tRank" + (i + 1)+ "\t"+resultList[i]["id"]+ "\t"+resultList[i]["score"]);
+                writer.WriteLine(queryCount.ToString()+ "\tRank" + (i + 1)+ "\t"+resultListDict[i]["id"]+ "\t"+resultListDict[i]["score"]);
                 
 
             }

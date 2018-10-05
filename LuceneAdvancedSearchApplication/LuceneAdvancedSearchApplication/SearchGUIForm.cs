@@ -20,7 +20,7 @@ namespace LuceneAdvancedSearchApplication
 
         string searchWords;
 
-        List<Dictionary<string, string>> resultList;    // Create global result list in type of list of dictionaries
+        List<Dictionary<string, string>> resultListDict;    // Create global result list in type of list of dictionaries
         int limit;              // Create document starting index variable
         string finalQueryTxt;    // Create final query text variable
 
@@ -36,12 +36,12 @@ namespace LuceneAdvancedSearchApplication
             InitializeComponent();
 
             // Create the column headers for the list view
-            resultListView.Columns.Add("Rank", 50);
-            resultListView.Columns.Add("DocID", 55);
-            resultListView.Columns.Add("Title", 450);
-            resultListView.Columns.Add("Author", 120);
-            resultListView.Columns.Add("Bibliography", 120);
-            resultListView.Columns.Add("Abstract", 500);
+            resultListDictView.Columns.Add("Rank", 50);
+            resultListDictView.Columns.Add("DocID", 55);
+            resultListDictView.Columns.Add("Title", 450);
+            resultListDictView.Columns.Add("Author", 120);
+            resultListDictView.Columns.Add("Bibliography", 120);
+            resultListDictView.Columns.Add("Abstract", 500);
         }
 
         private void SearchGUIForm_Load(object sender, EventArgs e)
@@ -69,7 +69,7 @@ namespace LuceneAdvancedSearchApplication
             SaveDialog.ShowDialog();
             savePath = SaveDialog.FileName;
             StreamWriter writer = new StreamWriter(savePath,append:true);
-            Program.SaveClick(resultList, writer,queryCount);
+            Program.SaveClick(resultListDict, writer,queryCount);
 
 
         }
@@ -79,23 +79,23 @@ namespace LuceneAdvancedSearchApplication
             limit = 0;      // Set starting result index
 
             DateTime start = System.DateTime.Now;   // Searching time starts
-            resultList = Program.Search_Click(cranNeeds[comboBox1.SelectedItem.ToString()], out finalQueryTxt);       // Search Cran needs texts
+            resultListDict = Program.Search_Click(cranNeeds[comboBox1.SelectedItem.ToString()], out finalQueryTxt);       // Search Cran needs texts
             DateTime end = System.DateTime.Now;   // Searching time starts
             MessageBox.Show("The time for searching text was " + (end - start), "Reporting Searching Time", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-            ViewData(limit, resultList);    // View data on listview
+            ViewData(limit, resultListDict);    // View data on listview
             Program.Create_BaseLine_Results(cranNeeds);
 
             NextBtn.Enabled = true;                 // Enable next button
             PreviousBtn.Enabled = false;            // Disable previous button
             SaveResult.Enabled = true;              // Enable save result button
             resultLab.Text = "Result numbers:";     // Display result number label
-            resultNumLab.Text = resultList.Count.ToString();    // Display result number
+            resultNumLab.Text = resultListDict.Count.ToString();    // Display result number
 
             //NeedQuery.Text = cranNeeds[comboBox1.SelectedItem.ToString()];     //Print Query 
 
             pageNub = 1;
-            totalpage = Convert.ToInt32(Math.Ceiling((double)resultList.Count / 10));
+            totalpage = Convert.ToInt32(Math.Ceiling((double)resultListDict.Count / 10));
             Pagelabel.Text = String.Format("Page {0} of {1}", pageNub, totalpage);
         }
 
@@ -110,24 +110,24 @@ namespace LuceneAdvancedSearchApplication
             }
             else
             {
-                List<Dictionary<string, string>> tempList = new List<Dictionary<string, string>>();            // Create temporary list of dictionaries
+                List<Dictionary<string, string>> tempListDict = new List<Dictionary<string, string>>();            // Create temporary list of dictionaries
                 DateTime start = System.DateTime.Now;   // Searching time starts
-                tempList = Program.Search_Click(TextEnter.Text, out finalQueryTxt);     // Search user input texts
+                tempListDict = Program.Search_Click(TextEnter.Text, out finalQueryTxt);     // Search user input texts
                 DateTime end = System.DateTime.Now;   // Searching time starts
                 
-                if (tempList.Count != 0)
+                if (tempListDict.Count != 0)
                 {
                     MessageBox.Show("The time for searching text was " + (end - start), "Reporting Searching Time", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    resultList = tempList;  // Assign temporary list to global variable as current 10 results
+                    resultListDict = tempListDict;  // Assign temporary list to global variable as current 10 results
                     queryCount++;       // Count number of query search 
-                    ViewData(limit, resultList);    // View data on listview
+                    ViewData(limit, resultListDict);    // View data on listview
 
                     NextBtn.Enabled = true;                 // Enable next button
                     PreviousBtn.Enabled = false;            // Disable previous button
                     SaveResult.Enabled = true;              // Enable save result button
                     FinalQTxtbox.Text = finalQueryTxt;      // Display final query text
                     resultLab.Text = "Result numbers:";     // Display result number label
-                    resultNumLab.Text = resultList.Count.ToString();    // Display result number
+                    resultNumLab.Text = resultListDict.Count.ToString();    // Display result number
                 }
                 else
                 {
@@ -136,21 +136,21 @@ namespace LuceneAdvancedSearchApplication
 
             }
             pageNub = 1;
-            totalpage = Convert.ToInt32(Math.Ceiling((double)resultList.Count / 10));
+            totalpage = Convert.ToInt32(Math.Ceiling((double)resultListDict.Count / 10));
             Pagelabel.Text = String.Format("Page {0} of {1}", pageNub, totalpage);
         }
 
         private void NextBtn_Click(object sender, EventArgs e)  // When clicking on Next 10 button
         {
             pageNub++;
-            totalpage = Convert.ToInt32(Math.Ceiling((double)resultList.Count / 10));
+            totalpage = Convert.ToInt32(Math.Ceiling((double)resultListDict.Count / 10));
             Pagelabel.Text = String.Format("Page {0} of {1}", pageNub, totalpage);
 
             limit += 10;        // Get new rank starting counter
-            ViewData(limit, resultList);    // View data on listview
+            ViewData(limit, resultListDict);    // View data on listview
 
             PreviousBtn.Enabled = true; // Enable previous button
-            if (limit + 20 - resultList.Count >= 10)  // If no next 10 results
+            if (limit + 20 - resultListDict.Count >= 10)  // If no next 10 results
             {
                 NextBtn.Enabled = false;    // Disable next button
             }
@@ -159,11 +159,11 @@ namespace LuceneAdvancedSearchApplication
         private void PreviousBtn_Click(object sender, EventArgs e)  // When clicking on Previous 10 button
         {
             pageNub--;
-            totalpage = Convert.ToInt32(Math.Ceiling((double)resultList.Count / 10));
+            totalpage = Convert.ToInt32(Math.Ceiling((double)resultListDict.Count / 10));
             Pagelabel.Text = String.Format("Page {0} of {1}", pageNub, totalpage);
 
             limit -= 10;        // Get new rank starting counter
-            ViewData(limit, resultList);    // View data on listview
+            ViewData(limit, resultListDict);    // View data on listview
 
             NextBtn.Enabled = true;     // Enable next button
             if (limit - 10 < 0)         // If no previous results
@@ -173,29 +173,29 @@ namespace LuceneAdvancedSearchApplication
         }
 
 
-        private void ResultListView_SelectedIndexChanged(object sender, EventArgs e)
+        private void resultListDictView_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (resultListView.Items.Count != 0)
+            if (resultListDictView.Items.Count != 0)
             {
-                if (resultListView.SelectedItems.Count > 0)
+                if (resultListDictView.SelectedItems.Count > 0)
                 {
-                    int rank = Int32.Parse(resultListView.SelectedItems[0].Text);
+                    int rank = Int32.Parse(resultListDictView.SelectedItems[0].Text);
                     //var popform = new Form();
                     //popform.ShowDialog();
-                    MessageBox.Show(resultList[rank - 1]["abstract"], "Entire Abstract");
+                    MessageBox.Show(resultListDict[rank - 1]["abstract"], "Entire Abstract");
                 }
             }
 
         }
 
-        public void ViewData(int limit, List<Dictionary<string, string>> resultList)    // Create global method for viewing the data
+        public void ViewData(int limit, List<Dictionary<string, string>> resultListDict)    // Create global method for viewing the data
         {
-            resultListView.Items.Clear();
-            resultListView.Controls.Clear();        // Clear current listview
+            resultListDictView.Items.Clear();
+            resultListDictView.Controls.Clear();        // Clear current listview
             int end = 0;
-            if (resultList.Count - limit < 10)      // Check if it's the last results less than 10
+            if (resultListDict.Count - limit < 10)      // Check if it's the last results less than 10
             {
-                end = limit + (resultList.Count % 10);  // Get the modulus
+                end = limit + (resultListDict.Count % 10);  // Get the modulus
             }
             else
             {
@@ -204,8 +204,8 @@ namespace LuceneAdvancedSearchApplication
             for (int i = limit; i < end; i++)     // Loop through current 10 results
             {
                 // Add result details into the listview
-                ListViewItem resultView = new ListViewItem(new[] { resultList[i]["rank"], resultList[i]["id"], resultList[i]["title"], resultList[i]["author"], resultList[i]["biblio"], resultList[i]["abstract"] });
-                resultListView.Items.Add(resultView);
+                ListViewItem resultView = new ListViewItem(new[] { resultListDict[i]["rank"], resultListDict[i]["id"], resultListDict[i]["title"], resultListDict[i]["author"], resultListDict[i]["biblio"], resultListDict[i]["abstract"] });
+                resultListDictView.Items.Add(resultView);
             }
         }
     }

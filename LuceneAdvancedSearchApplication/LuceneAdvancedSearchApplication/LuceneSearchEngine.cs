@@ -80,7 +80,7 @@ namespace LuceneAdvancedSearchApplication
         /// <param name="querytext">The text to search the index</param>
         public List<List<string>> SearchText(string querytext, out string finalQueryTxt)
         {
-            List<List<string>> resultList = new List<List<string>>();      // Initiate a result list
+            List<List<string>> resultListDict = new List<List<string>>();      // Initiate a result list
             System.Console.WriteLine("Searching for " + querytext);
             querytext = querytext.ToLower();
             Query query = parser.Parse(querytext);      // Parse the query text by parser and create the query object
@@ -97,10 +97,10 @@ namespace LuceneAdvancedSearchApplication
                     Lucene.Net.Documents.Document doc = searcher.Doc(scoreDoc.Doc);     // Get document contents
                     string text = doc.Get(TEXT_FN).ToString();  // Get document contents by fields    
                     string score = scoreDoc.Score.ToString();   // Get document score
-                    resultList.Add(new List<string> { text, score });     // Add contents and score into the created list of lists
+                    resultListDict.Add(new List<string> { text, score });     // Add contents and score into the created list of lists
                 }
             }
-            return resultList;
+            return resultListDict;
         }
 
         public Tuple<List<float>, List<string>,int> SearchText_baseline(string querytext)

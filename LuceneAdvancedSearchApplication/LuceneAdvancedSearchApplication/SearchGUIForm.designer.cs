@@ -44,7 +44,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.fontDialog1 = new System.Windows.Forms.FontDialog();
             this.Pagelabel = new System.Windows.Forms.Label();
-            this.resultListView = new System.Windows.Forms.ListView();
+            this.resultListDictView = new System.Windows.Forms.ListView();
             this.FinalQTxtbox = new System.Windows.Forms.TextBox();
             this.FinalQLab = new System.Windows.Forms.Label();
             this.resultLab = new System.Windows.Forms.Label();
@@ -191,19 +191,19 @@
             this.Pagelabel.Size = new System.Drawing.Size(0, 13);
             this.Pagelabel.TabIndex = 29;
             // 
-            // resultListView
+            // resultListDictView
             // 
-            this.resultListView.Activation = System.Windows.Forms.ItemActivation.TwoClick;
-            this.resultListView.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.resultListView.FullRowSelect = true;
-            this.resultListView.GridLines = true;
-            this.resultListView.Location = new System.Drawing.Point(26, 234);
-            this.resultListView.Name = "resultListView";
-            this.resultListView.Size = new System.Drawing.Size(1274, 257);
-            this.resultListView.TabIndex = 10;
-            this.resultListView.UseCompatibleStateImageBehavior = false;
-            this.resultListView.View = System.Windows.Forms.View.Details;
-            this.resultListView.SelectedIndexChanged += new System.EventHandler(this.ResultListView_SelectedIndexChanged);
+            this.resultListDictView.Activation = System.Windows.Forms.ItemActivation.TwoClick;
+            this.resultListDictView.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.resultListDictView.FullRowSelect = true;
+            this.resultListDictView.GridLines = true;
+            this.resultListDictView.Location = new System.Drawing.Point(26, 234);
+            this.resultListDictView.Name = "resultListDictView";
+            this.resultListDictView.Size = new System.Drawing.Size(1274, 257);
+            this.resultListDictView.TabIndex = 10;
+            this.resultListDictView.UseCompatibleStateImageBehavior = false;
+            this.resultListDictView.View = System.Windows.Forms.View.Details;
+            this.resultListDictView.SelectedIndexChanged += new System.EventHandler(this.resultListDictView_SelectedIndexChanged);
             // 
             // FinalQTxtbox
             // 
@@ -250,7 +250,7 @@
             this.Controls.Add(this.resultLab);
             this.Controls.Add(this.FinalQLab);
             this.Controls.Add(this.FinalQTxtbox);
-            this.Controls.Add(this.resultListView);
+            this.Controls.Add(this.resultListDictView);
             this.Controls.Add(this.Pagelabel);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.comboBox1);
@@ -291,7 +291,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.FontDialog fontDialog1;
         private System.Windows.Forms.Label Pagelabel;
-        private System.Windows.Forms.ListView resultListView;
+        private System.Windows.Forms.ListView resultListDictView;
         private System.Windows.Forms.TextBox FinalQTxtbox;
         private System.Windows.Forms.Label FinalQLab;
         private System.Windows.Forms.Label resultLab;
