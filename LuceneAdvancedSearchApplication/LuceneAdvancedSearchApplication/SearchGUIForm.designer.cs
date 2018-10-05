@@ -34,7 +34,6 @@
             this.NeedsButton = new System.Windows.Forms.Button();
             this.NeedsLabel = new System.Windows.Forms.Label();
             this.SearchOutput = new System.Windows.Forms.TextBox();
-            this.TopLabel = new System.Windows.Forms.Label();
             this.PreviousBtn = new System.Windows.Forms.Button();
             this.NextBtn = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -46,8 +45,6 @@
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.fontDialog1 = new System.Windows.Forms.FontDialog();
-            this.NeedQuery = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.Pagelabel = new System.Windows.Forms.Label();
             this.resultListView = new System.Windows.Forms.ListView();
             this.SuspendLayout();
@@ -100,14 +97,6 @@
             this.SearchOutput.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.SearchOutput.Size = new System.Drawing.Size(697, 309);
             this.SearchOutput.TabIndex = 16;
-            // 
-            // TopLabel
-            // 
-            this.TopLabel.AutoSize = true;
-            this.TopLabel.Location = new System.Drawing.Point(260, 155);
-            this.TopLabel.Name = "TopLabel";
-            this.TopLabel.Size = new System.Drawing.Size(0, 13);
-            this.TopLabel.TabIndex = 17;
             // 
             // PreviousBtn
             // 
@@ -169,7 +158,6 @@
             this.ExpandAbsBtn.TabIndex = 23;
             this.ExpandAbsBtn.Text = "Show Abstracts";
             this.ExpandAbsBtn.UseVisualStyleBackColor = true;
-            this.ExpandAbsBtn.Click += new System.EventHandler(this.ExpandAbsBtn_Click);
             // 
             // SaveResult
             // 
@@ -208,25 +196,6 @@
             this.label3.TabIndex = 26;
             this.label3.Text = "SelectCranNeed";
             // 
-            // NeedQuery
-            // 
-            this.NeedQuery.AutoSize = true;
-            this.NeedQuery.Location = new System.Drawing.Point(212, 202);
-            this.NeedQuery.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.NeedQuery.Name = "NeedQuery";
-            this.NeedQuery.Size = new System.Drawing.Size(0, 13);
-            this.NeedQuery.TabIndex = 27;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(116, 202);
-            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(85, 13);
-            this.label4.TabIndex = 28;
-            this.label4.Text = "Query Submitted";
-            // 
             // Pagelabel
             // 
             this.Pagelabel.AutoSize = true;
@@ -256,8 +225,6 @@
             this.ClientSize = new System.Drawing.Size(1163, 549);
             this.Controls.Add(this.resultListView);
             this.Controls.Add(this.Pagelabel);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.NeedQuery);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.SaveResult);
@@ -267,7 +234,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.NextBtn);
             this.Controls.Add(this.PreviousBtn);
-            this.Controls.Add(this.TopLabel);
+
             this.Controls.Add(this.SearchOutput);
             this.Controls.Add(this.NeedsLabel);
             this.Controls.Add(this.NeedsButton);
@@ -290,7 +257,6 @@
         private System.Windows.Forms.Button NeedsButton;
         private System.Windows.Forms.Label NeedsLabel;
         private System.Windows.Forms.TextBox SearchOutput;
-        private System.Windows.Forms.Label TopLabel;
         private System.Windows.Forms.Button PreviousBtn;
         private System.Windows.Forms.Button NextBtn;
         private System.Windows.Forms.Label label1;
@@ -302,8 +268,6 @@
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.FontDialog fontDialog1;
-        private System.Windows.Forms.Label NeedQuery;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label Pagelabel;
         private System.Windows.Forms.ListView resultListView;
 

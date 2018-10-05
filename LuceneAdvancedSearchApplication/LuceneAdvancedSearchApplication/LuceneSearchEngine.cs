@@ -9,9 +9,7 @@ using Lucene.Net.Index; //for Index Writer
 using Lucene.Net.Store; //for Directory
 using Lucene.Net.Search; // for IndexSearcher
 using Lucene.Net.QueryParsers;  // for QueryParser
-//using Lucene.Net.Analysis.Snowball;
 using System.IO;
-//using System.Windows.Forms;
 using System.Text.RegularExpressions;
 
 namespace LuceneAdvancedSearchApplication
@@ -179,29 +177,23 @@ namespace LuceneAdvancedSearchApplication
                     StreamReader reader = new StreamReader(name);   // Create a reader
                     string text = reader.ReadToEnd();   // Read the whole text
 
+                    Lucene.Net.Documents.Document doc = new Document();     // Create document
+                    doc.Add(new Lucene.Net.Documents.Field(TEXT_FN, text, Field.Store.YES, Field.Index.ANALYZED_NO_NORMS, Field.TermVector.NO));
+                    writer.AddDocument(doc);    // Add document
+
+                    // For later advanced features (Task 7)
                     int indexI = text.IndexOf(".I ") + 3;   // Get ID starting index
                     int indexT = text.IndexOf(".T\n");    // Get title starting index
                     int indexA = text.IndexOf(".A\n");    // Get author starting index
                     int indexB = text.IndexOf(".B\n");    // Get bibliography starting index
                     int indexW = text.IndexOf(".W\n");    // Get words starting index
-
                     string id = text.Substring(indexI, indexT - 1 - indexI);    // Get ID string
                     string title = text.Substring(indexT + 3, ((indexA - 1 - (indexT + 3)) > 0) ? (indexA - 1 - (indexT + 3)) : 0);     // Get title string
                     string author = text.Substring(indexA + 3, ((indexB - 1 - (indexA + 3)) > 0) ? (indexB - 1 - (indexA + 3)) : 0);    // Get author string
                     string biblio = text.Substring(indexB + 3, ((indexW - 1 - (indexB + 3)) > 0) ? (indexW - 1 - (indexB + 3)) : 0);    // Get bibliography string
                     string words = text.Substring(indexW + 3, ((text.Length - 1 - (indexW + 3)) > 0) ? (text.Length - 1 - (indexW + 3)) : 0);   // Get words string
-
-                    Lucene.Net.Documents.Document doc = new Document();     // Create document
-                   
-                    doc.Add(new Lucene.Net.Documents.Field(TEXT_FN, text, Field.Store.YES, Field.Index.ANALYZED_NO_NORMS, Field.TermVector.NO));
-
-                    writer.AddDocument(doc);    // Add document
                 }
             }
         }
-
-
-        
-      
     }
 }

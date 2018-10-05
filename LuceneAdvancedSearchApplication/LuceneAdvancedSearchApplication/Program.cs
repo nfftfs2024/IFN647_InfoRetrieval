@@ -53,12 +53,13 @@ namespace LuceneAdvancedSearchApplication
             List<Dictionary<string, string>> resultList = new List<Dictionary<string, string>>();   // Create a list of dictionaries for outputting to GUI
 
             myLuceneApp.CreateSearcher();           // Create searcher
-            //resultList = myLuceneApp.SearchText(querytext);     // Get search result list
-            tempList = myLuceneApp.SearchText(querytext);     // Get search result list
+            tempList = myLuceneApp.SearchText(querytext);     // Get search result list of lists
             myLuceneApp.CleanUpSearcher();        // Clean searcher
 
-            foreach (List<string> result in tempList)
+            int rank = 0;
+            foreach (List<string> result in tempList)   // Go through each resulting document
             {
+                rank++;
                 string text = result[0];    // Get whole text from input list
                 int indexI = text.IndexOf(".I ") + 3;   // Get ID starting index
                 int indexT = text.IndexOf(".T\n");    // Get title starting index
@@ -74,14 +75,15 @@ namespace LuceneAdvancedSearchApplication
                 abst = abst.Replace("\n", " ");  // Replace abstract LF
 
                 Regex rx = new Regex("^.*?[.?!]", RegexOptions.Compiled | RegexOptions.IgnoreCase);     // Set the RE to match first sentence of abstract
-                MatchCollection abst_first = rx.Matches(abst);   // Get RE match
+                MatchCollection abst_first = rx.Matches(abst);   // Get RE match for first sentence of abstract
 
-                resultList.Add(new Dictionary<string, string> { { "id", id }, { "title", title }, { "author", author }, { "biblio", biblio }, { "abstract", abst }, { "abstract_first", abst_first[0].Value}, { "score", result[1] } });     // Add contents and score into the created list of lists
+                // Add everything into the created list of dictionaries
+                resultList.Add(new Dictionary<string, string> {{"rank", rank.ToString()}, {"id", id}, {"title", title}, {"author", author}, {"biblio", biblio}, {"abstract", abst}, {"abstract_first", abst_first[0].Value}, {"score", result[1]}});     
             }
             return resultList;
         }
 
-        public static void Create_BaseLine_Results(Dictionary<string, string> cNeeds, LuceneSearcheEngine myLuceneApp)
+        public static void Create_BaseLine_Results(Dictionary<string, string> cNeeds)
         {
             string path = Path.GetDirectoryName(Application.ExecutablePath) + "\\BaseLineResults.txt";
             List<string> resultList = new List<string>();
