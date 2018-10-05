@@ -25,6 +25,7 @@ namespace LuceneAdvancedSearchApplication
         public static Int32 limit { get; set; }
         public static Boolean first { get; set; }
         public static int pageNub { get; set; }
+        public static int totalpage { get; set; }
 
         Dictionary<string, string> cranNeeds;
 
@@ -35,11 +36,11 @@ namespace LuceneAdvancedSearchApplication
             InitializeComponent();
 
             // Create the column headers for the list view
-            resultListView.Columns.Add("DocID", 50);
+            resultListView.Columns.Add("DocID", 35);
             resultListView.Columns.Add("Title", 350);
-            resultListView.Columns.Add("Author", 150);
-            resultListView.Columns.Add("Bibliography", 150);
-            resultListView.Columns.Add("TEXT", 400);
+            resultListView.Columns.Add("Author", 100);
+            resultListView.Columns.Add("Bibliography", 100);
+            resultListView.Columns.Add("Abstract", 500);
         }
 
         private void SearchGUIForm_Load(object sender, EventArgs e)
@@ -94,8 +95,10 @@ namespace LuceneAdvancedSearchApplication
             SaveResult.Enabled = true;              // Enable save result button
 
             NeedQuery.Text = cranNeeds[comboBox1.SelectedItem.ToString()];     //Print Query 
+
             pageNub = 1;
-            Pagelabel.Text = "Page " + pageNub;
+            totalpage = resultList.Count / 10;
+            Pagelabel.Text = String.Format("Page {0} of {1}", pageNub, totalpage);
         }
 
         private void SearchBtn2_Click(object sender, EventArgs e)       // When clicking on search button for user free-typing
@@ -148,7 +151,8 @@ namespace LuceneAdvancedSearchApplication
 
             }
             pageNub = 1;
-            Pagelabel.Text = "Page " + pageNub;
+            totalpage = resultList.Count / 10;
+            Pagelabel.Text = String.Format("Page {0} of {1}", pageNub, totalpage);
 
         }
 
@@ -171,7 +175,8 @@ namespace LuceneAdvancedSearchApplication
                 NextBtn.Enabled = false;    // Disable next button
             }
             pageNub++;
-            Pagelabel.Text = "Page " + pageNub;
+            totalpage = resultList.Count / 10;
+            Pagelabel.Text = String.Format("Page {0} of {1}", pageNub, totalpage);
 
         }
 
@@ -195,7 +200,8 @@ namespace LuceneAdvancedSearchApplication
             }
 
             pageNub--;
-            Pagelabel.Text = "Page " + pageNub;
+            totalpage = resultList.Count / 10;
+            Pagelabel.Text = String.Format("Page {0} of {1}", pageNub, totalpage);
         }
 
         private void ExpandAbsBtn_Click(object sender, EventArgs e)

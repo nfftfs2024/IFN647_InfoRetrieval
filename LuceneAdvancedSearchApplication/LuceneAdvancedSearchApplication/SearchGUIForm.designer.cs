@@ -230,13 +230,11 @@
             // Pagelabel
             // 
             this.Pagelabel.AutoSize = true;
-            this.Pagelabel.Location = new System.Drawing.Point(374, 210);
+            this.Pagelabel.Location = new System.Drawing.Point(361, 210);
             this.Pagelabel.MaximumSize = new System.Drawing.Size(130, 20);
             this.Pagelabel.Name = "Pagelabel";
-            this.Pagelabel.Size = new System.Drawing.Size(32, 13);
+            this.Pagelabel.Size = new System.Drawing.Size(0, 13);
             this.Pagelabel.TabIndex = 29;
-            this.Pagelabel.Text = "Page";
-
             // 
             // resultListView
             // 
