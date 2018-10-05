@@ -236,7 +236,7 @@
             this.Pagelabel.Size = new System.Drawing.Size(32, 13);
             this.Pagelabel.TabIndex = 29;
             this.Pagelabel.Text = "Page";
-            this.Pagelabel.Click += new System.EventHandler(this.label5_Click);
+
             // 
             // resultListView
             // 
