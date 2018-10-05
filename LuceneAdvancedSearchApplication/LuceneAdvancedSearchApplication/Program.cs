@@ -187,7 +187,7 @@ namespace LuceneAdvancedSearchApplication
             }
             return outp;
         }
-        public static void SaveClick(List<string> resultList, StreamWriter writer)
+        public static void SaveClick(List<List<string>> resultList, StreamWriter writer)
         {
             
 
@@ -196,7 +196,7 @@ namespace LuceneAdvancedSearchApplication
                
 
                 writer.WriteLine("Rank" + (i + 1));
-                writer.WriteLine(resultList[i ]);
+                writer.WriteLine(resultList[0][i]);
 
             }
 
