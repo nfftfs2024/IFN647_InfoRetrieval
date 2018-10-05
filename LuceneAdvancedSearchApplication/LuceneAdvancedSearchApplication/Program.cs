@@ -49,17 +49,17 @@ namespace LuceneAdvancedSearchApplication
 
         public static List<Dictionary<string, string>> Search_Click(string querytext)
         {
-            List<List<string>> tempList = new List<List<string>>();
-            List<Dictionary<string, string>> resultList = new List<Dictionary<string, string>>();
-            //// Searching Code
+            List<List<string>> tempList = new List<List<string>>();     // Create a list of lists for receiving output from SearchText method
+            List<Dictionary<string, string>> resultList = new List<Dictionary<string, string>>();   // Create a list of dictionaries for outputting to GUI
+
             myLuceneApp.CreateSearcher();           // Create searcher
             //resultList = myLuceneApp.SearchText(querytext);     // Get search result list
-            tempList = myLuceneApp.SearchText_bk(querytext);     // Get search result list
+            tempList = myLuceneApp.SearchText(querytext);     // Get search result list
             myLuceneApp.CleanUpSearcher();        // Clean searcher
 
             foreach (List<string> result in tempList)
             {
-                string text = result[0];
+                string text = result[0];    // Get whole text from input list
                 int indexI = text.IndexOf(".I ") + 3;   // Get ID starting index
                 int indexT = text.IndexOf(".T\n");    // Get title starting index
                 int indexA = text.IndexOf(".A\n");    // Get author starting index
@@ -71,9 +71,6 @@ namespace LuceneAdvancedSearchApplication
                 string author = text.Substring(indexA + 3, ((indexB - 1 - (indexA + 3)) > 0) ? (indexB - 1 - (indexA + 3)) : 0);    // Get author string
                 string biblio = text.Substring(indexB + 3, ((indexW - 1 - (indexB + 3)) > 0) ? (indexW - 1 - (indexB + 3)) : 0);    // Get bibliography string
                 string abst = text.Substring(indexW + 3, ((text.Length - 1 - (indexW + 3)) > 0) ? (text.Length - 1 - (indexW + 3)) : 0);   // Get abstract string
-
-                //string[] parts = resultSet[i][0].Split(new string[] { ".W\n" }, StringSplitOptions.RemoveEmptyEntries);   // Cut half the texts from the starting of .W
-                //string firsthalf = parts[0].Replace(".I ", "DocID: ").Replace(".T\n", "\r\nTitle: ").Replace(".A\n", "\r\nAuthor: ").Replace(".B\n", "\r\nBibliographic information: ");  // First half
                 abst = abst.Replace("\n", " ");  // Replace abstract LF
 
                 Regex rx = new Regex("^.*?[.?!]", RegexOptions.Compiled | RegexOptions.IgnoreCase);     // Set the RE to match first sentence of abstract
@@ -139,54 +136,6 @@ namespace LuceneAdvancedSearchApplication
             }
         }
 
-        public static void ViewData(int limit, List<Dictionary<string, string>> resultList)
-        {
-            //xx.ResultListView.Items.Clear();
-            //xx.ResultListView.Controls.Clear();
-            //for (int i = limit; i < limit + 10; i++)     // Concatenate the top 10 result strings
-            //{ 
-            //        ListViewItem resultView = new ListViewItem(new[] { resultList[i]["id"], resultList[i]["title"], resultList[i]["author"], resultList[i]["biblio"], resultList[i]["abstract"] });
-            //        xx.ResultListView.Items.Add(resultView);
-                    //string[] parts = resultSet[i][0].Split(new string[] { ".W\n" }, StringSplitOptions.RemoveEmptyEntries);   // Cut half the texts from the starting of .W
-                    //string firsthalf = parts[0].Replace(".I ", "DocID: ").Replace(".T\n", "\r\nTitle: ").Replace(".A\n", "\r\nAuthor: ").Replace(".B\n", "\r\nBibliographic information: ");  // First half
-                    //string secondhalf = parts[1].Replace("\n", " ");  // Replace abstract LF
-
-                    //if (first)  // For only first sentence of abstract
-                    //{
-                    //    Regex rx = new Regex("^.*?[.?!]", RegexOptions.Compiled | RegexOptions.IgnoreCase);     // Set the RE to match first sentence of abstract
-                    //    MatchCollection matches = rx.Matches(secondhalf);   // Get RE match
-                    //    outp += "Rank: " + (i + 1).ToString() + "\r\n" + firsthalf + "\r\nAbstract: " + matches[0].Value + "\r\n\r\n";   // Combine displaying texts
-                    //}
-                    //else
-                    //{
-                    //    outp += "Rank: " + (i + 1).ToString() + "\r\n" + firsthalf + "\r\nAbstract: " + secondhalf + "\r\n\r\n";    // Combine original texts
-                    //}
-        }
-        
-
-        public static string ViewData_bk(int limit, List<List<string>> resultSet, bool first)
-        {
-            string outp = "";       // Initial null string
-
-            for (int i = limit; i < limit + 10; i++)     // Concatenate the top 10 result strings
-            {
-                string[] parts = resultSet[i][0].Split(new string[] { ".W\n" }, StringSplitOptions.RemoveEmptyEntries);   // Cut half the texts from the starting of .W
-                string firsthalf = parts[0].Replace(".I ", "DocID: ").Replace(".T\n", "\r\nTitle: ").Replace(".A\n", "\r\nAuthor: ").Replace(".B\n", "\r\nBibliographic information: ");  // First half
-                string secondhalf = parts[1].Replace("\n", " ");  // Replace abstract LF
-
-                if (first)  // For only first sentence of abstract
-                {
-                    Regex rx = new Regex("^.*?[.?!]", RegexOptions.Compiled | RegexOptions.IgnoreCase);     // Set the RE to match first sentence of abstract
-                    MatchCollection matches = rx.Matches(secondhalf);   // Get RE match
-                    outp += "Rank: " + (i + 1).ToString() + "\r\n" + firsthalf + "\r\nAbstract: " + matches[0].Value + "\r\n\r\n";   // Combine displaying texts
-                }
-                else
-                {
-                    outp += "Rank: " + (i + 1).ToString() + "\r\n" + firsthalf + "\r\nAbstract: " + secondhalf + "\r\n\r\n";    // Combine original texts
-                }
-            }
-            return outp;
-        }
         public static void SaveClick(List<Dictionary<string,string>> resultList, StreamWriter writer, int queryCount)
         {
             
