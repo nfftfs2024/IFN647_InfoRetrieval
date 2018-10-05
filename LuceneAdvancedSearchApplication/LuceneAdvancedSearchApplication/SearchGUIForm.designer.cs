@@ -33,13 +33,11 @@
             this.SearchBtn1 = new System.Windows.Forms.Button();
             this.NeedsButton = new System.Windows.Forms.Button();
             this.NeedsLabel = new System.Windows.Forms.Label();
-            this.SearchOutput = new System.Windows.Forms.TextBox();
             this.PreviousBtn = new System.Windows.Forms.Button();
             this.NextBtn = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.SearchBtn2 = new System.Windows.Forms.Button();
-            this.ExpandAbsBtn = new System.Windows.Forms.Button();
             this.SaveResult = new System.Windows.Forms.Button();
             this.SaveDialog = new System.Windows.Forms.SaveFileDialog();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
@@ -87,16 +85,6 @@
             this.NeedsLabel.Size = new System.Drawing.Size(57, 13);
             this.NeedsLabel.TabIndex = 15;
             this.NeedsLabel.Text = "Needs File";
-            // 
-            // SearchOutput
-            // 
-            this.SearchOutput.Location = new System.Drawing.Point(69, 234);
-            this.SearchOutput.Multiline = true;
-            this.SearchOutput.Name = "SearchOutput";
-            this.SearchOutput.ReadOnly = true;
-            this.SearchOutput.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.SearchOutput.Size = new System.Drawing.Size(697, 309);
-            this.SearchOutput.TabIndex = 16;
             // 
             // PreviousBtn
             // 
@@ -149,20 +137,10 @@
             this.SearchBtn2.UseVisualStyleBackColor = true;
             this.SearchBtn2.Click += new System.EventHandler(this.SearchBtn2_Click);
             // 
-            // ExpandAbsBtn
-            // 
-            this.ExpandAbsBtn.Enabled = false;
-            this.ExpandAbsBtn.Location = new System.Drawing.Point(874, 200);
-            this.ExpandAbsBtn.Name = "ExpandAbsBtn";
-            this.ExpandAbsBtn.Size = new System.Drawing.Size(105, 23);
-            this.ExpandAbsBtn.TabIndex = 23;
-            this.ExpandAbsBtn.Text = "Show Abstracts";
-            this.ExpandAbsBtn.UseVisualStyleBackColor = true;
-            // 
             // SaveResult
             // 
             this.SaveResult.Enabled = false;
-            this.SaveResult.Location = new System.Drawing.Point(985, 200);
+            this.SaveResult.Location = new System.Drawing.Point(1031, 193);
             this.SaveResult.Name = "SaveResult";
             this.SaveResult.Size = new System.Drawing.Size(105, 23);
             this.SaveResult.TabIndex = 24;
@@ -209,10 +187,10 @@
             // 
             this.resultListView.FullRowSelect = true;
             this.resultListView.GridLines = true;
-            this.resultListView.Location = new System.Drawing.Point(69, 234);
+            this.resultListView.Location = new System.Drawing.Point(26, 234);
             this.resultListView.MultiSelect = false;
             this.resultListView.Name = "resultListView";
-            this.resultListView.Size = new System.Drawing.Size(1021, 224);
+            this.resultListView.Size = new System.Drawing.Size(1110, 224);
             this.resultListView.TabIndex = 10;
             this.resultListView.UseCompatibleStateImageBehavior = false;
             this.resultListView.View = System.Windows.Forms.View.Details;
@@ -228,14 +206,11 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.SaveResult);
-            this.Controls.Add(this.ExpandAbsBtn);
             this.Controls.Add(this.SearchBtn2);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.NextBtn);
             this.Controls.Add(this.PreviousBtn);
-
-            this.Controls.Add(this.SearchOutput);
             this.Controls.Add(this.NeedsLabel);
             this.Controls.Add(this.NeedsButton);
             this.Controls.Add(this.SearchBtn1);
@@ -256,13 +231,11 @@
         private System.Windows.Forms.Button SearchBtn1;
         private System.Windows.Forms.Button NeedsButton;
         private System.Windows.Forms.Label NeedsLabel;
-        private System.Windows.Forms.TextBox SearchOutput;
         private System.Windows.Forms.Button PreviousBtn;
         private System.Windows.Forms.Button NextBtn;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button SearchBtn2;
-        private System.Windows.Forms.Button ExpandAbsBtn;
         private System.Windows.Forms.Button SaveResult;
         private System.Windows.Forms.SaveFileDialog SaveDialog;
         private System.Windows.Forms.ComboBox comboBox1;

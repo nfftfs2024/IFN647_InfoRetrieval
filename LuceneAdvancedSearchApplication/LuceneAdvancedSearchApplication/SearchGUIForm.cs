@@ -35,10 +35,11 @@ namespace LuceneAdvancedSearchApplication
             InitializeComponent();
 
             // Create the column headers for the list view
+            resultListView.Columns.Add("Rank", 40);
             resultListView.Columns.Add("DocID", 45);
-            resultListView.Columns.Add("Title", 350);
-            resultListView.Columns.Add("Author", 100);
-            resultListView.Columns.Add("Bibliography", 100);
+            resultListView.Columns.Add("Title", 380);
+            resultListView.Columns.Add("Author", 120);
+            resultListView.Columns.Add("Bibliography", 120);
             resultListView.Columns.Add("Abstract", 500);
         }
 
@@ -74,7 +75,6 @@ namespace LuceneAdvancedSearchApplication
 
         private void SearchBtn1_Click(object sender, EventArgs e)   // Whe clicking on search button for Cran Needs
         {
-            ExpandAbsBtn.Text = "Show Abstracts";       // Retore expand abstract button
             limit = 0;      // Set starting result index
 
             DateTime start = System.DateTime.Now;   // Searching time starts
@@ -87,7 +87,6 @@ namespace LuceneAdvancedSearchApplication
 
             NextBtn.Enabled = true;                 // Enable next button
             PreviousBtn.Enabled = false;            // Disable previous button
-            ExpandAbsBtn.Enabled = true;            // Enable expand abstract button 
             SaveResult.Enabled = true;              // Enable save result button
 
             //NeedQuery.Text = cranNeeds[comboBox1.SelectedItem.ToString()];     //Print Query 
@@ -99,7 +98,7 @@ namespace LuceneAdvancedSearchApplication
 
         private void SearchBtn2_Click(object sender, EventArgs e)       // When clicking on search button for user free-typing
         {
-            ExpandAbsBtn.Text = "Show Abstracts";       // Retore expand abstract button
+
             limit = 0;      // Set starting result index
 
             if (TextEnter.Text == "")       // Check if the textbox is empty
@@ -122,7 +121,6 @@ namespace LuceneAdvancedSearchApplication
 
                     NextBtn.Enabled = true;                 // Enable next button
                     PreviousBtn.Enabled = false;            // Disable previous button
-                    ExpandAbsBtn.Enabled = true;            // Enable expand abstract button 
                     SaveResult.Enabled = true;              // Enable save result button
                 }
                 else
@@ -182,7 +180,7 @@ namespace LuceneAdvancedSearchApplication
             for (int i = limit; i < limit + 10; i++)     // Loop through current 10 results
             {
                 // Add result details into the listview
-                ListViewItem resultView = new ListViewItem(new[] { resultList[i]["id"], resultList[i]["title"], resultList[i]["author"], resultList[i]["biblio"], resultList[i]["abstract"] });
+                ListViewItem resultView = new ListViewItem(new[] { resultList[i]["rank"], resultList[i]["id"], resultList[i]["title"], resultList[i]["author"], resultList[i]["biblio"], resultList[i]["abstract"] });
                 resultListView.Items.Add(resultView);
             }
         }
