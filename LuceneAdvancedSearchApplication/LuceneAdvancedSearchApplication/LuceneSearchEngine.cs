@@ -18,10 +18,12 @@ namespace LuceneAdvancedSearchApplication
     {
         Lucene.Net.Store.Directory luceneIndexDirectory;    // Create directory object
         Lucene.Net.Analysis.Analyzer analyzer;              // Create analyzer object
+        Lucene.Net.Analysis.Analyzer analyzerAsIs;             // Create analyzer to as-is searching
         Lucene.Net.Index.IndexWriter writer;                // Create index writer object
         IndexSearcher searcher;                             // Create searcher object
-        IndexSearcher searcher2;
+        IndexSearcher searcher2;                            // Create a searcher for the Baseline.
         QueryParser parser;                                 // Create parser object
+        QueryParser parserAsIs;
 
         //Lucene.Net.Search.Similarity newSimilarity;   // for similarity measure
 
@@ -34,7 +36,9 @@ namespace LuceneAdvancedSearchApplication
             luceneIndexDirectory = null;
             writer = null;
             analyzer = new Lucene.Net.Analysis.SimpleAnalyzer();      // Using simple analyzer for baseline system 
+            analyzerAsIs = new Lucene.Net.Analysis.KeywordAnalyzer();      // Using keyword analyzer for query as-is
             parser = new QueryParser(Lucene.Net.Util.Version.LUCENE_30, TEXT_FN, analyzer);
+            parserAsIs = new QueryParser(Lucene.Net.Util.Version.LUCENE_30, TEXT_FN, analyzerAsIs);
             //newSimilarity = new NewSimilarity();
         }
 
@@ -78,28 +82,51 @@ namespace LuceneAdvancedSearchApplication
         /// Searches the index for the querytext
         /// </summary>
         /// <param name="querytext">The text to search the index</param>
-        public List<List<string>> SearchText(string querytext, out string finalQueryTxt)
+        public List<List<string>> SearchText(string querytext, bool asIsCheckBox, out string finalQueryTxt)
         {
             List<List<string>> resultListDict = new List<List<string>>();      // Initiate a result list
             System.Console.WriteLine("Searching for " + querytext);
             querytext = querytext.ToLower();
-            Query query = parser.Parse(querytext);      // Parse the query text by parser and create the query object
-            finalQueryTxt = query.ToString();           // Assign processed query text to final query text variable
-
-            TopDocs results = searcher.Search(query, 10000);                  // Search the query
-            System.Console.WriteLine("Number of results is " + results.TotalHits);
-
-            if (results.TotalHits != 0)     // Check if there are found results
+            Console.WriteLine("The value of the boolean is {0}", asIsCheckBox);
+            if (asIsCheckBox == true)
             {
-                for (int i = 0; i < results.TotalHits; i++)    // Loop through the top 10 ranked documents
+                Console.WriteLine("Is accesing");
+                Query query = parserAsIs.Parse(querytext);      // Parse the query text by parser and create the query object
+                finalQueryTxt = query.ToString();           // Assign processed query text to final query text variable
+                TopDocs results = searcher.Search(query, 10000);                  // Search the query
+                System.Console.WriteLine("Number of results is " + results.TotalHits);
+                if (results.TotalHits != 0)     // Check if there are found results
                 {
-                    ScoreDoc scoreDoc = results.ScoreDocs[i];   // Get the ranked document
-                    Lucene.Net.Documents.Document doc = searcher.Doc(scoreDoc.Doc);     // Get document contents
-                    string text = doc.Get(TEXT_FN).ToString();  // Get document contents by fields    
-                    string score = scoreDoc.Score.ToString();   // Get document score
-                    resultListDict.Add(new List<string> { text, score });     // Add contents and score into the created list of lists
+                    for (int i = 0; i < results.TotalHits; i++)    // Loop through the top 10 ranked documents
+                    {
+                        ScoreDoc scoreDoc = results.ScoreDocs[i];   // Get the ranked document
+                        Lucene.Net.Documents.Document doc = searcher.Doc(scoreDoc.Doc);     // Get document contents
+                        string text = doc.Get(TEXT_FN).ToString();  // Get document contents by fields    
+                        string score = scoreDoc.Score.ToString();   // Get document score
+                        resultListDict.Add(new List<string> { text, score });     // Add contents and score into the created list of lists
+                    }
                 }
             }
+            else
+            {
+                Console.WriteLine("NOT working at all");
+                Query query = parser.Parse(querytext);      // Parse the query text by parser and create the query object
+                finalQueryTxt = query.ToString();           // Assign processed query text to final query text variable
+                TopDocs results = searcher.Search(query, 10000);                  // Search the query
+                System.Console.WriteLine("Number of results is " + results.TotalHits);
+                if (results.TotalHits != 0)     // Check if there are found results
+                {
+                    for (int i = 0; i < results.TotalHits; i++)    // Loop through the top 10 ranked documents
+                    {
+                        ScoreDoc scoreDoc = results.ScoreDocs[i];   // Get the ranked document
+                        Lucene.Net.Documents.Document doc = searcher.Doc(scoreDoc.Doc);     // Get document contents
+                        string text = doc.Get(TEXT_FN).ToString();  // Get document contents by fields    
+                        string score = scoreDoc.Score.ToString();   // Get document score
+                        resultListDict.Add(new List<string> { text, score });     // Add contents and score into the created list of lists
+                    }
+                }
+            }
+            
             return resultListDict;
         }
 
@@ -107,10 +134,8 @@ namespace LuceneAdvancedSearchApplication
         {
             List<float> valueListBase = new List<float>();
             List<string> docsIdsListBase = new List<string>();
-            System.Console.WriteLine("Searching for " + querytext);
             querytext = querytext.ToLower();
             Query query = parser.Parse(querytext);
-
             TopDocs results = searcher2.Search(query, 2000);
 
             if (results.TotalHits != 0)     // Check if there are found results

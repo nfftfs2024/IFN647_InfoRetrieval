@@ -49,6 +49,7 @@
             this.FinalQLab = new System.Windows.Forms.Label();
             this.resultLab = new System.Windows.Forms.Label();
             this.resultNumLab = new System.Windows.Forms.Label();
+            this.asIsCheckBox = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // TextEnter
@@ -188,9 +189,9 @@
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(291, 194);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(178, 25);
+            this.label3.Size = new System.Drawing.Size(137, 25);
             this.label3.TabIndex = 26;
-            this.label3.Text = "SelectCranNeed:";
+            this.label3.Text = "Select Need:";
             // 
             // Pagelabel
             // 
@@ -220,11 +221,11 @@
             // FinalQTxtbox
             // 
             this.FinalQTxtbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FinalQTxtbox.Location = new System.Drawing.Point(718, 255);
+            this.FinalQTxtbox.Location = new System.Drawing.Point(718, 262);
             this.FinalQTxtbox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.FinalQTxtbox.Multiline = true;
             this.FinalQTxtbox.Name = "FinalQTxtbox";
-            this.FinalQTxtbox.Size = new System.Drawing.Size(540, 95);
+            this.FinalQTxtbox.Size = new System.Drawing.Size(540, 78);
             this.FinalQTxtbox.TabIndex = 30;
             // 
             // FinalQLab
@@ -258,11 +259,22 @@
             this.resultNumLab.Size = new System.Drawing.Size(0, 25);
             this.resultNumLab.TabIndex = 33;
             // 
+            // asIsCheckBox
+            // 
+            this.asIsCheckBox.AutoSize = true;
+            this.asIsCheckBox.Location = new System.Drawing.Point(770, 124);
+            this.asIsCheckBox.Name = "asIsCheckBox";
+            this.asIsCheckBox.Size = new System.Drawing.Size(126, 24);
+            this.asIsCheckBox.TabIndex = 34;
+            this.asIsCheckBox.Text = "Search As Is";
+            this.asIsCheckBox.UseVisualStyleBackColor = true;
+            // 
             // SearchGUIForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1924, 845);
+            this.Controls.Add(this.asIsCheckBox);
             this.Controls.Add(this.resultNumLab);
             this.Controls.Add(this.resultLab);
             this.Controls.Add(this.FinalQLab);
@@ -314,6 +326,7 @@
         private System.Windows.Forms.Label FinalQLab;
         private System.Windows.Forms.Label resultLab;
         private System.Windows.Forms.Label resultNumLab;
+        private System.Windows.Forms.CheckBox asIsCheckBox;
     }
 }
 
