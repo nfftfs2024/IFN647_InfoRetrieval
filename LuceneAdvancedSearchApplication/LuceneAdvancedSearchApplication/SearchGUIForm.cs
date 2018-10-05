@@ -25,7 +25,11 @@ namespace LuceneAdvancedSearchApplication
         public static Int32 limit { get; set; }
         public static Boolean first { get; set; }
         public static int pageNub { get; set; }
+<<<<<<< HEAD
         public static int queryCount { get; set; }
+=======
+        public static int totalpage { get; set; }
+>>>>>>> 0d6116af2786e4bb7981c8fe413ac88f639b29bf
 
         Dictionary<string, string> cranNeeds;
 
@@ -36,12 +40,18 @@ namespace LuceneAdvancedSearchApplication
             InitializeComponent();
 
             // Create the column headers for the list view
-            resultListView.Columns.Add("DocID", 50);
+            resultListView.Columns.Add("DocID", 35);
             resultListView.Columns.Add("Title", 350);
+<<<<<<< HEAD
             resultListView.Columns.Add("Author", 150);
             resultListView.Columns.Add("Bibliography", 150);
             resultListView.Columns.Add("TEXT", 400);
             queryCount = 0;
+=======
+            resultListView.Columns.Add("Author", 100);
+            resultListView.Columns.Add("Bibliography", 100);
+            resultListView.Columns.Add("Abstract", 500);
+>>>>>>> 0d6116af2786e4bb7981c8fe413ac88f639b29bf
         }
 
         private void SearchGUIForm_Load(object sender, EventArgs e)
@@ -84,8 +94,8 @@ namespace LuceneAdvancedSearchApplication
             resultList = Program.Search_Click(cranNeeds[comboBox1.SelectedItem.ToString()]);       // Search Cran needs texts
             DateTime end = System.DateTime.Now;   // Searching time starts
             MessageBox.Show("The time for searching text was " + (end - start), "Reporting Searching Time", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            Program.ViewData(limit, resultList);                    // Collate search result into displaying formats
-
+            //Program.ViewData(limit, resultList);                    // Collate search result into displaying formats
+            ViewData(limit, resultList);
             Program.Create_BaseLine_Results(cranNeeds, myLuceneApp);
 
             TopLabel.Text = "Top 1-10 results";     // Display top description
@@ -96,15 +106,14 @@ namespace LuceneAdvancedSearchApplication
             SaveResult.Enabled = true;              // Enable save result button
 
             NeedQuery.Text = cranNeeds[comboBox1.SelectedItem.ToString()];     //Print Query 
+
             pageNub = 1;
-            Pagelabel.Text = "Page " + pageNub;
+            totalpage = resultList.Count / 10;
+            Pagelabel.Text = String.Format("Page {0} of {1}", pageNub, totalpage);
         }
 
         private void SearchBtn2_Click(object sender, EventArgs e)       // When clicking on search button for user free-typing
         {
-            resultListView.Items.Clear();
-            resultListView.Controls.Clear();
-
             ExpandAbsBtn.Text = "Show Abstracts";       // Retore expand abstract button
             first = true;   // Set only displaying first line
             limit = 0;      // Set starting result index
@@ -127,18 +136,18 @@ namespace LuceneAdvancedSearchApplication
                     resultList = tempList;  // Assign temporary list to global variable as current 10 results
                     queryCount++;
                     //string outp = Program.ViewData(limit, resultList, first);                // Collate search result into displaying formats
-
+                    ViewData(limit, resultList);
                     //for (int i = 0; i < 10; i++)
                     //{
                     //    ListViewItem resultView = new ListViewItem(new[] { resultList[i]["id"], resultList[i]["title"], resultList[i]["author"], resultList[i]["biblio"], resultList[i]["abstract"] });
                     //    resultListView.Items.Add(resultView);
                     //}
 
-                    for (int i = limit; i < limit + 10; i++)     // Concatenate the top 10 result strings
-                    {
-                        ListViewItem resultView = new ListViewItem(new[] { resultList[i]["id"], resultList[i]["title"], resultList[i]["author"], resultList[i]["biblio"], resultList[i]["abstract"] });
-                        resultListView.Items.Add(resultView);
-                    }
+                    //for (int i = limit; i < limit + 10; i++)     // Concatenate the top 10 result strings
+                    //{
+                    //    ListViewItem resultView = new ListViewItem(new[] { resultList[i]["id"], resultList[i]["title"], resultList[i]["author"], resultList[i]["biblio"], resultList[i]["abstract"] });
+                    //    resultListView.Items.Add(resultView);
+                    //}
 
                     TopLabel.Text = "Top 1-10 results";     // Display top description
                     //SearchOutput.Text = outp;               // Display top 10 results
@@ -154,22 +163,21 @@ namespace LuceneAdvancedSearchApplication
 
             }
             pageNub = 1;
-            Pagelabel.Text = "Page " + pageNub;
+            totalpage = resultList.Count / 10;
+            Pagelabel.Text = String.Format("Page {0} of {1}", pageNub, totalpage);
 
         }
 
         private void NextBtn_Click(object sender, EventArgs e)  // When clicking on Next 10 button
         {
-            resultListView.Items.Clear();
-            resultListView.Controls.Clear();
             limit += 10;        // Get new rank starting counter
-                                //Program.ViewData(limit, resultList);                    // Collate search result into displaying formats
-
-            for (int i = limit; i < limit + 10; i++)     // Concatenate the top 10 result strings
-            {
-                ListViewItem resultView = new ListViewItem(new[] { resultList[i]["id"], resultList[i]["title"], resultList[i]["author"], resultList[i]["biblio"], resultList[i]["abstract"] });
-                resultListView.Items.Add(resultView);
-            }
+            //Program.ViewData(limit, resultList);                    // Collate search result into displaying formats
+            ViewData(limit, resultList);
+            //for (int i = limit; i < limit + 10; i++)     // Concatenate the top 10 result strings
+            //{
+            //    ListViewItem resultView = new ListViewItem(new[] { resultList[i]["id"], resultList[i]["title"], resultList[i]["author"], resultList[i]["biblio"], resultList[i]["abstract"] });
+            //    resultListView.Items.Add(resultView);
+            //}
 
             TopLabel.Text = String.Format("Top {0}-{1} results", limit + 1, limit + 10);    // Display top description
             //SearchOutput.Text = outp;               // Display top 10 results
@@ -179,23 +187,21 @@ namespace LuceneAdvancedSearchApplication
                 NextBtn.Enabled = false;    // Disable next button
             }
             pageNub++;
-            Pagelabel.Text = "Page " + pageNub;
+            totalpage = resultList.Count / 10;
+            Pagelabel.Text = String.Format("Page {0} of {1}", pageNub, totalpage);
 
         }
 
         private void PreviousBtn_Click(object sender, EventArgs e)  // When clicking on Previous 10 button
         {
-
-            resultListView.Items.Clear();
-            resultListView.Controls.Clear();
             limit -= 10;        // Get new rank starting counter
-                                //Program.ViewData(limit, resultList);                    // Collate search result into displaying formats
-
-            for (int i = limit; i < limit + 10; i++)     // Concatenate the top 10 result strings
-            {
-                ListViewItem resultView = new ListViewItem(new[] { resultList[i]["id"], resultList[i]["title"], resultList[i]["author"], resultList[i]["biblio"], resultList[i]["abstract"] });
-                resultListView.Items.Add(resultView);
-            }
+            //Program.ViewData(limit, resultList);                    // Collate search result into displaying formats
+            ViewData(limit, resultList);
+            //for (int i = limit; i < limit + 10; i++)     // Concatenate the top 10 result strings
+            //{
+            //    ListViewItem resultView = new ListViewItem(new[] { resultList[i]["id"], resultList[i]["title"], resultList[i]["author"], resultList[i]["biblio"], resultList[i]["abstract"] });
+            //    resultListView.Items.Add(resultView);
+            //}
 
             TopLabel.Text = String.Format("Top {0}-{1} results", limit + 1, limit + 10);    // Display top description
             //SearchOutput.Text = outp;   // Display previous 10 results
@@ -206,7 +212,8 @@ namespace LuceneAdvancedSearchApplication
             }
 
             pageNub--;
-            Pagelabel.Text = "Page " + pageNub;
+            totalpage = resultList.Count / 10;
+            Pagelabel.Text = String.Format("Page {0} of {1}", pageNub, totalpage);
         }
 
         private void ExpandAbsBtn_Click(object sender, EventArgs e)
@@ -244,5 +251,18 @@ namespace LuceneAdvancedSearchApplication
 
         }
 
+<<<<<<< HEAD
+=======
+        public void ViewData(int limit, List<Dictionary<string, string>> resultList)
+        {
+            resultListView.Items.Clear();
+            resultListView.Controls.Clear();
+            for (int i = limit; i < limit + 10; i++)     // Concatenate the top 10 result strings
+            {
+                ListViewItem resultView = new ListViewItem(new[] { resultList[i]["id"], resultList[i]["title"], resultList[i]["author"], resultList[i]["biblio"], resultList[i]["abstract"] });
+                resultListView.Items.Add(resultView);
+            }
+        }
+>>>>>>> 0d6116af2786e4bb7981c8fe413ac88f639b29bf
     }
 }
