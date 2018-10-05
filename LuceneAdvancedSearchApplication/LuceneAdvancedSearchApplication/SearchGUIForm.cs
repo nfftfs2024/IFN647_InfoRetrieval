@@ -36,12 +36,12 @@ namespace LuceneAdvancedSearchApplication
             InitializeComponent();
 
             // Create the column headers for the list view
-            resultListDictView.Columns.Add("Rank", 50);
-            resultListDictView.Columns.Add("DocID", 55);
-            resultListDictView.Columns.Add("Title", 450);
-            resultListDictView.Columns.Add("Author", 120);
-            resultListDictView.Columns.Add("Bibliography", 120);
-            resultListDictView.Columns.Add("Abstract", 500);
+            resultListView.Columns.Add("Rank", 50);
+            resultListView.Columns.Add("DocID", 55);
+            resultListView.Columns.Add("Title", 450);
+            resultListView.Columns.Add("Author", 120);
+            resultListView.Columns.Add("Bibliography", 120);
+            resultListView.Columns.Add("Abstract", 500);
         }
 
         private void SearchGUIForm_Load(object sender, EventArgs e)
@@ -175,11 +175,11 @@ namespace LuceneAdvancedSearchApplication
 
         private void resultListDictView_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (resultListDictView.Items.Count != 0)
+            if (resultListView.Items.Count != 0)
             {
-                if (resultListDictView.SelectedItems.Count > 0)
+                if (resultListView.SelectedItems.Count > 0)
                 {
-                    int rank = Int32.Parse(resultListDictView.SelectedItems[0].Text);
+                    int rank = Int32.Parse(resultListView.SelectedItems[0].Text);
                     //var popform = new Form();
                     //popform.ShowDialog();
                     MessageBox.Show(resultListDict[rank - 1]["abstract"], "Entire Abstract");
@@ -190,8 +190,8 @@ namespace LuceneAdvancedSearchApplication
 
         public void ViewData(int limit, List<Dictionary<string, string>> resultListDict)    // Create global method for viewing the data
         {
-            resultListDictView.Items.Clear();
-            resultListDictView.Controls.Clear();        // Clear current listview
+            resultListView.Items.Clear();
+            resultListView.Controls.Clear();        // Clear current listview
             int end = 0;
             if (resultListDict.Count - limit < 10)      // Check if it's the last results less than 10
             {
@@ -205,7 +205,7 @@ namespace LuceneAdvancedSearchApplication
             {
                 // Add result details into the listview
                 ListViewItem resultView = new ListViewItem(new[] { resultListDict[i]["rank"], resultListDict[i]["id"], resultListDict[i]["title"], resultListDict[i]["author"], resultListDict[i]["biblio"], resultListDict[i]["abstract"] });
-                resultListDictView.Items.Add(resultView);
+                resultListView.Items.Add(resultView);
             }
         }
     }
