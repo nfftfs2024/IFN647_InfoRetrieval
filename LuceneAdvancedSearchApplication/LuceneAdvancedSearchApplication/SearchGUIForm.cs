@@ -193,7 +193,7 @@ namespace LuceneAdvancedSearchApplication
             resultListView.Items.Clear();
             resultListView.Controls.Clear();        // Clear current listview
             int end = 0;
-            if (pageNub == totalpage)
+            if (resultList.Count - limit < 10)
             {
                 end = limit + (resultList.Count % 10);
             }
