@@ -94,7 +94,7 @@
             // PreviousBtn
             // 
             this.PreviousBtn.Enabled = false;
-            this.PreviousBtn.Location = new System.Drawing.Point(568, 497);
+            this.PreviousBtn.Location = new System.Drawing.Point(561, 497);
             this.PreviousBtn.Name = "PreviousBtn";
             this.PreviousBtn.Size = new System.Drawing.Size(75, 23);
             this.PreviousBtn.TabIndex = 18;
@@ -105,7 +105,7 @@
             // NextBtn
             // 
             this.NextBtn.Enabled = false;
-            this.NextBtn.Location = new System.Drawing.Point(720, 497);
+            this.NextBtn.Location = new System.Drawing.Point(718, 497);
             this.NextBtn.Name = "NextBtn";
             this.NextBtn.Size = new System.Drawing.Size(75, 23);
             this.NextBtn.TabIndex = 19;
@@ -185,7 +185,7 @@
             // Pagelabel
             // 
             this.Pagelabel.AutoSize = true;
-            this.Pagelabel.Location = new System.Drawing.Point(650, 502);
+            this.Pagelabel.Location = new System.Drawing.Point(643, 502);
             this.Pagelabel.MaximumSize = new System.Drawing.Size(130, 20);
             this.Pagelabel.Name = "Pagelabel";
             this.Pagelabel.Size = new System.Drawing.Size(0, 13);

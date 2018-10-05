@@ -95,7 +95,7 @@ namespace LuceneAdvancedSearchApplication
             //NeedQuery.Text = cranNeeds[comboBox1.SelectedItem.ToString()];     //Print Query 
 
             pageNub = 1;
-            totalpage = resultList.Count / 10;
+            totalpage = Convert.ToInt32(Math.Ceiling((double)resultList.Count / 10));
             Pagelabel.Text = String.Format("Page {0} of {1}", pageNub, totalpage);
         }
 
@@ -136,28 +136,32 @@ namespace LuceneAdvancedSearchApplication
 
             }
             pageNub = 1;
-            totalpage = resultList.Count / 10;
+            totalpage = Convert.ToInt32(Math.Ceiling((double)resultList.Count / 10));
             Pagelabel.Text = String.Format("Page {0} of {1}", pageNub, totalpage);
         }
 
         private void NextBtn_Click(object sender, EventArgs e)  // When clicking on Next 10 button
         {
+            pageNub++;
+            totalpage = Convert.ToInt32(Math.Ceiling((double)resultList.Count / 10));
+            Pagelabel.Text = String.Format("Page {0} of {1}", pageNub, totalpage);
+
             limit += 10;        // Get new rank starting counter
             ViewData(limit, resultList);    // View data on listview
 
             PreviousBtn.Enabled = true; // Enable previous button
-            if (limit + 20 > resultList.Count)  // If no next 10 results
+            if (limit + 20 - resultList.Count > 10)  // If no next 10 results
             {
                 NextBtn.Enabled = false;    // Disable next button
             }
-
-            pageNub++;
-            totalpage = resultList.Count / 10;
-            Pagelabel.Text = String.Format("Page {0} of {1}", pageNub, totalpage);
         }
 
         private void PreviousBtn_Click(object sender, EventArgs e)  // When clicking on Previous 10 button
         {
+            pageNub--;
+            totalpage = Convert.ToInt32(Math.Ceiling((double)resultList.Count / 10));
+            Pagelabel.Text = String.Format("Page {0} of {1}", pageNub, totalpage);
+
             limit -= 10;        // Get new rank starting counter
             ViewData(limit, resultList);    // View data on listview
 
@@ -166,10 +170,6 @@ namespace LuceneAdvancedSearchApplication
             {
                 PreviousBtn.Enabled = false;    // Disable previous button
             }
-
-            pageNub--;
-            totalpage = resultList.Count / 10;
-            Pagelabel.Text = String.Format("Page {0} of {1}", pageNub, totalpage);
         }
 
 
@@ -192,8 +192,16 @@ namespace LuceneAdvancedSearchApplication
         {
             resultListView.Items.Clear();
             resultListView.Controls.Clear();        // Clear current listview
-
-            for (int i = limit; i < limit + 10; i++)     // Loop through current 10 results
+            int end = 0;
+            if (pageNub == totalpage)
+            {
+                end = limit + (resultList.Count % 10);
+            }
+            else
+            {
+                end = limit + 10;
+            }
+            for (int i = limit; i < end; i++)     // Loop through current 10 results
             {
                 // Add result details into the listview
                 ListViewItem resultView = new ListViewItem(new[] { resultList[i]["rank"], resultList[i]["id"], resultList[i]["title"], resultList[i]["author"], resultList[i]["biblio"], resultList[i]["abstract"] });

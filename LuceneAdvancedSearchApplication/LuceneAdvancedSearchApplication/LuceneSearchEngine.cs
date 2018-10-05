@@ -83,17 +83,16 @@ namespace LuceneAdvancedSearchApplication
             List<List<string>> resultList = new List<List<string>>();      // Initiate a result list
             System.Console.WriteLine("Searching for " + querytext);
             querytext = querytext.ToLower();
-            Query query = parser.Parse(querytext);                          // Parse the query text by parser and create the query object
+            Query query = parser.Parse(querytext);      // Parse the query text by parser and create the query object
+            finalQueryTxt = query.ToString();           // Assign processed query text to final query text variable
 
-            finalQueryTxt = query.ToString();
-            TopDocs results = searcher.Search(query, 100);                  // Search the query
+            TopDocs results = searcher.Search(query, 10000);                  // Search the query
             System.Console.WriteLine("Number of results is " + results.TotalHits);
 
             if (results.TotalHits != 0)     // Check if there are found results
             {
-                for (int i = 0; i < 40; i++)    // Loop through the top 10 ranked documents
+                for (int i = 0; i < results.TotalHits; i++)    // Loop through the top 10 ranked documents
                 {
-                    int rank = i + 1;   // Set ranking number
                     ScoreDoc scoreDoc = results.ScoreDocs[i];   // Get the ranked document
                     Lucene.Net.Documents.Document doc = searcher.Doc(scoreDoc.Doc);     // Get document contents
                     string text = doc.Get(TEXT_FN).ToString();  // Get document contents by fields    
