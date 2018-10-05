@@ -89,6 +89,8 @@ namespace LuceneAdvancedSearchApplication
             NextBtn.Enabled = true;                 // Enable next button
             PreviousBtn.Enabled = false;            // Disable previous button
             SaveResult.Enabled = true;              // Enable save result button
+            resultLab.Text = "Result numbers:";     // Display result number label
+            resultNumLab.Text = resultList.Count.ToString();    // Display result number
 
             //NeedQuery.Text = cranNeeds[comboBox1.SelectedItem.ToString()];     //Print Query 
 
@@ -124,6 +126,8 @@ namespace LuceneAdvancedSearchApplication
                     PreviousBtn.Enabled = false;            // Disable previous button
                     SaveResult.Enabled = true;              // Enable save result button
                     FinalQTxtbox.Text = finalQueryTxt;      // Display final query text
+                    resultLab.Text = "Result numbers:";     // Display result number label
+                    resultNumLab.Text = resultList.Count.ToString();    // Display result number
                 }
                 else
                 {

@@ -47,6 +47,8 @@
             this.resultListView = new System.Windows.Forms.ListView();
             this.FinalQTxtbox = new System.Windows.Forms.TextBox();
             this.FinalQLab = new System.Windows.Forms.Label();
+            this.resultLab = new System.Windows.Forms.Label();
+            this.resultNumLab = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // TextEnter
@@ -221,11 +223,31 @@
             this.FinalQLab.TabIndex = 31;
             this.FinalQLab.Text = "Final query - ";
             // 
+            // resultLab
+            // 
+            this.resultLab.AutoSize = true;
+            this.resultLab.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.resultLab.Location = new System.Drawing.Point(24, 213);
+            this.resultLab.Name = "resultLab";
+            this.resultLab.Size = new System.Drawing.Size(0, 16);
+            this.resultLab.TabIndex = 32;
+            // 
+            // resultNumLab
+            // 
+            this.resultNumLab.AutoSize = true;
+            this.resultNumLab.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.resultNumLab.Location = new System.Drawing.Point(141, 213);
+            this.resultNumLab.Name = "resultNumLab";
+            this.resultNumLab.Size = new System.Drawing.Size(0, 16);
+            this.resultNumLab.TabIndex = 33;
+            // 
             // SearchGUIForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1326, 549);
+            this.Controls.Add(this.resultNumLab);
+            this.Controls.Add(this.resultLab);
             this.Controls.Add(this.FinalQLab);
             this.Controls.Add(this.FinalQTxtbox);
             this.Controls.Add(this.resultListView);
@@ -272,6 +294,8 @@
         private System.Windows.Forms.ListView resultListView;
         private System.Windows.Forms.TextBox FinalQTxtbox;
         private System.Windows.Forms.Label FinalQLab;
+        private System.Windows.Forms.Label resultLab;
+        private System.Windows.Forms.Label resultNumLab;
     }
 }
 
