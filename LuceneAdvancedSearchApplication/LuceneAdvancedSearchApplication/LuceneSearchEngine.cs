@@ -78,13 +78,14 @@ namespace LuceneAdvancedSearchApplication
         /// Searches the index for the querytext
         /// </summary>
         /// <param name="querytext">The text to search the index</param>
-        public List<List<string>> SearchText(string querytext)
+        public List<List<string>> SearchText(string querytext, out string finalQueryTxt)
         {
             List<List<string>> resultList = new List<List<string>>();      // Initiate a result list
             System.Console.WriteLine("Searching for " + querytext);
             querytext = querytext.ToLower();
             Query query = parser.Parse(querytext);                          // Parse the query text by parser and create the query object
 
+            finalQueryTxt = query.ToString();
             TopDocs results = searcher.Search(query, 100);                  // Search the query
             System.Console.WriteLine("Number of results is " + results.TotalHits);
 

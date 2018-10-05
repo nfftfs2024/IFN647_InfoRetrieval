@@ -22,6 +22,7 @@ namespace LuceneAdvancedSearchApplication
 
         List<Dictionary<string, string>> resultList;    // Create global result list in type of list of dictionaries
         int limit;              // Create document starting index variable
+        string finalQueryTxt;    // Create final query text variable
 
         string savePath;        // Create save path variable
         int pageNub;            // Create page number variable
@@ -78,7 +79,7 @@ namespace LuceneAdvancedSearchApplication
             limit = 0;      // Set starting result index
 
             DateTime start = System.DateTime.Now;   // Searching time starts
-            resultList = Program.Search_Click(cranNeeds[comboBox1.SelectedItem.ToString()]);       // Search Cran needs texts
+            resultList = Program.Search_Click(cranNeeds[comboBox1.SelectedItem.ToString()], out finalQueryTxt);       // Search Cran needs texts
             DateTime end = System.DateTime.Now;   // Searching time starts
             MessageBox.Show("The time for searching text was " + (end - start), "Reporting Searching Time", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -109,7 +110,7 @@ namespace LuceneAdvancedSearchApplication
             {
                 List<Dictionary<string, string>> tempList = new List<Dictionary<string, string>>();            // Create temporary list of dictionaries
                 DateTime start = System.DateTime.Now;   // Searching time starts
-                tempList = Program.Search_Click(TextEnter.Text);     // Search user input texts
+                tempList = Program.Search_Click(TextEnter.Text, out finalQueryTxt);     // Search user input texts
                 DateTime end = System.DateTime.Now;   // Searching time starts
                 
                 if (tempList.Count != 0)
@@ -122,6 +123,7 @@ namespace LuceneAdvancedSearchApplication
                     NextBtn.Enabled = true;                 // Enable next button
                     PreviousBtn.Enabled = false;            // Disable previous button
                     SaveResult.Enabled = true;              // Enable save result button
+                    FinalQTxtbox.Text = finalQueryTxt;      // Display final query text
                 }
                 else
                 {
