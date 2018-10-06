@@ -130,6 +130,9 @@ namespace LuceneAdvancedSearchApplication
                     FinalQTxtbox.Text = finalQueryTxt;      // Display final query text
                     resultLab.Text = "Result numbers:";     // Display result number label
                     resultNumLab.Text = resultListDict.Count.ToString();    // Display result number
+                    pageNub = 1;
+                    totalpage = Convert.ToInt32(Math.Ceiling((double)resultListDict.Count / 10));
+                    Pagelabel.Text = String.Format("Page {0} of {1}", pageNub, totalpage);
                 }
                 else
                 {
@@ -137,9 +140,7 @@ namespace LuceneAdvancedSearchApplication
                 }
 
             }
-            pageNub = 1;
-            totalpage = Convert.ToInt32(Math.Ceiling((double)resultListDict.Count / 10));
-            Pagelabel.Text = String.Format("Page {0} of {1}", pageNub, totalpage);
+          
         }
 
         private void NextBtn_Click(object sender, EventArgs e)  // When clicking on Next 10 button

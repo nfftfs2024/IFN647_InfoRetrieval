@@ -143,7 +143,7 @@ namespace LuceneAdvancedSearchApplication
         {
             
 
-            for (int i = 0; i < 40; i++)
+            for (int i = 0; i < resultListDict.Count; i++)
             {
                
 

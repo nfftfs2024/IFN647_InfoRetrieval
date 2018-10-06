@@ -213,7 +213,7 @@ namespace LuceneAdvancedSearchApplication
                     int indexA = text.IndexOf(".A\n");    // Get author starting index
                     int indexB = text.IndexOf(".B\n");    // Get bibliography starting index
                     int indexW = text.IndexOf(".W\n");    // Get words starting index
-                    string id = text.Substring(indexI, indexT - 1 - indexI);    // Get ID string
+                    string id = text.Substring(indexI, indexT -1 - indexI);    // Get ID string
                     string title = text.Substring(indexT + 3, ((indexA - 1 - (indexT + 3)) > 0) ? (indexA - 1 - (indexT + 3)) : 0);     // Get title string
                     string author = text.Substring(indexA + 3, ((indexB - 1 - (indexA + 3)) > 0) ? (indexB - 1 - (indexA + 3)) : 0);    // Get author string
                     string biblio = text.Substring(indexB + 3, ((indexW - 1 - (indexB + 3)) > 0) ? (indexW - 1 - (indexB + 3)) : 0);    // Get bibliography string
