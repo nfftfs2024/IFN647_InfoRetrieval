@@ -64,6 +64,7 @@
     <Compile Include="BuildIndexGUIForm.Designer.cs">
       <DependentUpon>BuildIndexGUIForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Converter.cs" />
     <Compile Include="ExpandForm.cs">
       <SubType>Form</SubType>
     </Compile>

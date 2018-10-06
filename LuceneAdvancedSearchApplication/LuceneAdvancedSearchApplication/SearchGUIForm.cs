@@ -69,9 +69,11 @@ namespace LuceneAdvancedSearchApplication
         {
             SaveDialog.ShowDialog();
             savePath = SaveDialog.FileName;
+            SaveDialog.Filter = "Text File | *.txt";
             StreamWriter writer = new StreamWriter(savePath,append:true);
-            SaveDialog.Filter  = "Text File | *.txt";
             Program.SaveClick(resultListDict, writer,queryCount);
+            
+            ConvertBtn.Enabled=true;
 
 
         }
@@ -212,6 +214,14 @@ namespace LuceneAdvancedSearchApplication
                                                             resultListDict[i]["author"], resultListDict[i]["biblio"], resultListDict[i]["abstract_first"] });
                 resultListView.Items.Add(resultView);
             }
+        }
+
+        private void ConvertBtn_Click(object sender, EventArgs e)
+        {
+            myNeedsDialog.ShowDialog();
+            
+            Converter.Dos2Unix(myNeedsDialog.FileName);
+            Converter.RemoveBOM(myNeedsDialog.FileName);
         }
     }
 }
