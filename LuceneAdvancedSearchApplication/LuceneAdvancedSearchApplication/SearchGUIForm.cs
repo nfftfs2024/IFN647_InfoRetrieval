@@ -70,6 +70,7 @@ namespace LuceneAdvancedSearchApplication
             SaveDialog.ShowDialog();
             savePath = SaveDialog.FileName;
             StreamWriter writer = new StreamWriter(savePath,append:true);
+            SaveDialog.Filter  = "Text File | *.txt";
             Program.SaveClick(resultListDict, writer,queryCount);
 
 

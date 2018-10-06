@@ -150,7 +150,7 @@ namespace LuceneAdvancedSearchApplication
             {
                
 
-                writer.WriteLine(queryCount.ToString()+ "\tRank" + (i + 1)+ "\t"+resultListDict[i]["id"]+ "\t"+resultListDict[i]["score"]);
+                writer.WriteLine(queryCount.ToString()+ "\tQ1"+ "\t" + resultListDict[i]["id"] + "\t" + (i + 1)+  "\t"+resultListDict[i]["score"]+"    \tBaselineSystem");
                 
 
             }
