@@ -37,6 +37,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.SourceDirBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.IndexDirBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // BuildIndBtn
@@ -103,11 +104,25 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.SetIndexDirBtn_Click);
             // 
-            // BuildIndexGUI
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Lucida Bright", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.label1.Location = new System.Drawing.Point(149, 29);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(415, 84);
+            this.label1.TabIndex = 20;
+            this.label1.Text = "Kingsland University \r\nof Technology";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label1.Click += new System.EventHandler(this.label1_Click);
+            // 
+            // BuildIndexGUIForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(709, 392);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.IndTxtBox);
             this.Controls.Add(this.SourceTxtBox);
@@ -115,7 +130,7 @@
             this.Controls.Add(this.SourceLabel);
             this.Controls.Add(this.SetSourceDireBtn);
             this.Controls.Add(this.BuildIndBtn);
-            this.Name = "BuildIndexGUI";
+            this.Name = "BuildIndexGUIForm";
             this.Text = "BuildIndexGUI";
             this.Load += new System.EventHandler(this.BuildIndexGUIForm_Load);
             this.ResumeLayout(false);
@@ -134,5 +149,6 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.FolderBrowserDialog SourceDirBrowserDialog;
         private System.Windows.Forms.FolderBrowserDialog IndexDirBrowserDialog;
+        private System.Windows.Forms.Label label1;
     }
 }

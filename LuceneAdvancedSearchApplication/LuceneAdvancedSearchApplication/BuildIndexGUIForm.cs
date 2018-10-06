@@ -44,5 +44,10 @@ namespace LuceneAdvancedSearchApplication
             IndTxtBox.Text = IndexDirBrowserDialog.SelectedPath;
             indexPath = IndexDirBrowserDialog.SelectedPath;
         }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
