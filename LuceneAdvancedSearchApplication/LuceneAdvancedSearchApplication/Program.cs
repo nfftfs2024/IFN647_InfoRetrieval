@@ -76,10 +76,13 @@ namespace LuceneAdvancedSearchApplication
 
                 Regex rx = new Regex("^.*?[.?!]", RegexOptions.Compiled | RegexOptions.IgnoreCase);     // Set the RE to match first sentence of abstract
                 MatchCollection abst_first = rx.Matches(abst);   // Get RE match for first sentence of abstract
-
+                string abst_fir = "";   // Create first sentence variable
+                if (abst_first.Count != 0)  // Check if there is no RE match (usually abstract is empty)
+                    abst_fir = abst_first[0].Value;
+                
                 // Add everything into the created list of dictionaries
                 resultListDict.Add(new Dictionary<string, string> {{"rank", rank.ToString()}, {"id", id}, {"title", title}, {"author", author},
-                    { "biblio", biblio}, {"abstract", abst}, {"abstract_first", abst_first[0].Value}, {"score", result[1]}});     
+                    { "biblio", biblio}, {"abstract", abst}, {"abstract_first", abst_fir}, {"score", result[1]}});     
             }
             return resultListDict;
         }
