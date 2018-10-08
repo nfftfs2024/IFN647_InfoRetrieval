@@ -57,6 +57,63 @@ namespace LuceneAdvancedSearchApplication
         }
 
         /// <summary>
+        /// Indexes a given string into the index
+        /// </summary>
+        /// <param name="text">The text to index</param>
+        public void IndexText(string path)
+        {
+            System.IO.DirectoryInfo root = new System.IO.DirectoryInfo(path);   // Create DirectoryInfo object
+            System.IO.FileInfo[] files = null;  // Create FileInfo array
+
+            // Get all files in the directory
+            try
+            {
+                files = root.GetFiles("*.*");
+            }
+
+            catch (UnauthorizedAccessException e)
+            {
+                System.Console.WriteLine(e.Message);
+            }
+
+            catch (System.IO.DirectoryNotFoundException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
+            if (files != null)
+            {
+
+                foreach (System.IO.FileInfo fi in files)
+                {
+                    string name = fi.FullName;    // Get file name
+                    Console.WriteLine("Adding doc " + name + " to Index");
+
+                    StreamReader reader = new StreamReader(name);   // Create a reader
+                    string text = reader.ReadToEnd();   // Read the whole text
+
+                    Lucene.Net.Documents.Document doc = new Document();     // Create document
+                    doc.Add(new Lucene.Net.Documents.Field(TEXT_FN, text, Field.Store.YES, Field.Index.ANALYZED_NO_NORMS, Field.TermVector.NO));
+                    writer.AddDocument(doc);    // Add document
+
+                    // For later advanced features (Task 7)
+                    int indexI = text.IndexOf(".I ") + 3;   // Get ID starting index
+                    int indexT = text.IndexOf(".T\n");    // Get title starting index
+                    int indexA = text.IndexOf(".A\n");    // Get author starting index
+                    int indexB = text.IndexOf(".B\n");    // Get bibliography starting index
+                    int indexW = text.IndexOf(".W\n");    // Get words starting index
+                    string id = text.Substring(indexI, indexT - 1 - indexI);    // Get ID string
+                    string title = text.Substring(indexT + 3, ((indexA - 1 - (indexT + 3)) > 0) ? (indexA - 1 - (indexT + 3)) : 0);     // Get title string
+                    string author = text.Substring(indexA + 3, ((indexB - 1 - (indexA + 3)) > 0) ? (indexB - 1 - (indexA + 3)) : 0);    // Get author string
+                    string biblio = text.Substring(indexB + 3, ((indexW - 1 - (indexB + 3)) > 0) ? (indexW - 1 - (indexB + 3)) : 0);    // Get bibliography string
+                    string words = text.Substring(indexW + 3, ((text.Length - 1 - (indexW + 3)) > 0) ? (text.Length - 1 - (indexW + 3)) : 0);   // Get words string
+
+                    reader.Close();
+                }
+            }
+        }
+
+        /// <summary>
         /// Flushes the buffer and closes the index
         /// </summary>
         public void CleanUpIndexer()
@@ -165,61 +222,41 @@ namespace LuceneAdvancedSearchApplication
         {
             searcher.Dispose();
         }
-       
 
         /// <summary>
-        /// Indexes a given string into the index
+        /// Creates a Thesuaris of stems
         /// </summary>
-        /// <param name="text">The text to index</param>
-        public void IndexText(string path)
+        /// <returns>A a Thesuaris of stems in the form: <stem,list of words> </returns>
+        public Dictionary<string, string[]> CreateThesaurus()       // Have to get WordNet data to here!
         {
-            System.IO.DirectoryInfo root = new System.IO.DirectoryInfo(path);   // Create DirectoryInfo object
-            System.IO.FileInfo[] files = null;  // Create FileInfo array
+            Dictionary<string, string[]> thesaurus = new Dictionary<string, string[]>();
 
-            // Get all files in the directory
-            try
-            {
-                files = root.GetFiles("*.*");
-            }
+            thesaurus.Add("walk", new[] { "walk", "walked", "walking" });
+            thesaurus.Add("run", new[] { "run", "running" });
+            thesaurus.Add("love", new[] { "love", "lovely", "loving" });
+            return thesaurus;
+        }
 
-            catch (UnauthorizedAccessException e)
+        /// <summary>
+        /// Expands the query with terms in the thesaurus
+        /// </summary>
+        /// <param name="thesaurus">A thesaurus of stems and associated terms</param>
+        /// <param name="query">a query to stem</param>
+        /// <returns>the query expanded with words that share the stem</returns>
+        public string GetWeightedExpandedQuery(Dictionary<string, string[]> thesaurus, string queryTerm)
+        {
+            string expandedQuery = "";
+            if (thesaurus.ContainsKey(queryTerm))
             {
-                System.Console.WriteLine(e.Message);
-            }
-
-            catch (System.IO.DirectoryNotFoundException e)
-            {
-                Console.WriteLine(e.Message);
-            }
-
-            if (files != null)
-            {
-                
-                foreach (System.IO.FileInfo fi in files)
+                string[] word = thesaurus[queryTerm];
+                foreach (string w in word)
                 {
-                    string name = fi.FullName;    // Get file name
-                    Console.WriteLine("Adding doc " + name + " to Index");
-
-                    StreamReader reader = new StreamReader(name);   // Create a reader
-                    string text = reader.ReadToEnd();   // Read the whole text
-
-                    Lucene.Net.Documents.Document doc = new Document();     // Create document
-                    doc.Add(new Lucene.Net.Documents.Field(TEXT_FN, text, Field.Store.YES, Field.Index.ANALYZED_NO_NORMS, Field.TermVector.NO));
-                    writer.AddDocument(doc);    // Add document
-
-                    // For later advanced features (Task 7)
-                    int indexI = text.IndexOf(".I ") + 3;   // Get ID starting index
-                    int indexT = text.IndexOf(".T\n");    // Get title starting index
-                    int indexA = text.IndexOf(".A\n");    // Get author starting index
-                    int indexB = text.IndexOf(".B\n");    // Get bibliography starting index
-                    int indexW = text.IndexOf(".W\n");    // Get words starting index
-                    string id = text.Substring(indexI, indexT -1 - indexI);    // Get ID string
-                    string title = text.Substring(indexT + 3, ((indexA - 1 - (indexT + 3)) > 0) ? (indexA - 1 - (indexT + 3)) : 0);     // Get title string
-                    string author = text.Substring(indexA + 3, ((indexB - 1 - (indexA + 3)) > 0) ? (indexB - 1 - (indexA + 3)) : 0);    // Get author string
-                    string biblio = text.Substring(indexB + 3, ((indexW - 1 - (indexB + 3)) > 0) ? (indexW - 1 - (indexB + 3)) : 0);    // Get bibliography string
-                    string words = text.Substring(indexW + 3, ((text.Length - 1 - (indexW + 3)) > 0) ? (text.Length - 1 - (indexW + 3)) : 0);   // Get words string
+                    if (w == queryTerm)
+                        expandedQuery += "^5";                    
+                    expandedQuery += " " + w;
                 }
             }
+            return expandedQuery;
         }
     }
 }

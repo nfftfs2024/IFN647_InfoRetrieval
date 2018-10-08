@@ -51,6 +51,7 @@
             this.resultNumLab = new System.Windows.Forms.Label();
             this.asIsCheckBox = new System.Windows.Forms.CheckBox();
             this.ConvertBtn = new System.Windows.Forms.Button();
+            this.QECheckbox = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // TextEnter
@@ -170,7 +171,7 @@
             "157",
             "219"});
             this.comboBox1.Location = new System.Drawing.Point(298, 125);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.comboBox1.Margin = new System.Windows.Forms.Padding(2);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(80, 21);
             this.comboBox1.TabIndex = 25;
@@ -250,7 +251,7 @@
             // 
             this.asIsCheckBox.AutoSize = true;
             this.asIsCheckBox.Location = new System.Drawing.Point(513, 81);
-            this.asIsCheckBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.asIsCheckBox.Margin = new System.Windows.Forms.Padding(2);
             this.asIsCheckBox.Name = "asIsCheckBox";
             this.asIsCheckBox.Size = new System.Drawing.Size(86, 17);
             this.asIsCheckBox.TabIndex = 34;
@@ -268,11 +269,23 @@
             this.ConvertBtn.UseVisualStyleBackColor = true;
             this.ConvertBtn.Click += new System.EventHandler(this.ConvertBtn_Click);
             // 
+            // QECheckbox
+            // 
+            this.QECheckbox.AutoSize = true;
+            this.QECheckbox.Location = new System.Drawing.Point(513, 102);
+            this.QECheckbox.Margin = new System.Windows.Forms.Padding(2);
+            this.QECheckbox.Name = "QECheckbox";
+            this.QECheckbox.Size = new System.Drawing.Size(106, 17);
+            this.QECheckbox.TabIndex = 36;
+            this.QECheckbox.Text = "Query Expansion";
+            this.QECheckbox.UseVisualStyleBackColor = true;
+            // 
             // SearchGUIForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 561);
+            this.Controls.Add(this.QECheckbox);
             this.Controls.Add(this.ConvertBtn);
             this.Controls.Add(this.asIsCheckBox);
             this.Controls.Add(this.resultNumLab);
@@ -327,6 +340,7 @@
         private System.Windows.Forms.Label resultNumLab;
         private System.Windows.Forms.CheckBox asIsCheckBox;
         private System.Windows.Forms.Button ConvertBtn;
+        private System.Windows.Forms.CheckBox QECheckbox;
     }
 }
 
