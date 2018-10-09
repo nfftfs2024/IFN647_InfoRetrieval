@@ -11,9 +11,10 @@ namespace LuceneAdvancedSearchApplication
     static class Program
     {
 
-        public static LuceneSearcheEngine myLuceneApp;
-        public static PorterStemmer myStemmer;
-        public static Dictionary<string, string[]> thesaurus;
+        public static LuceneSearcheEngine myLuceneApp;      // Set publicly callable LuceneSearchEngine object
+        public static PorterStemmer myStemmer;              // Set publicly callable PorterStemmer object
+
+        public static Dictionary<string, string[]> thesaurus;   // Set thesaurus dictionary
 
         /// <summary>
         /// The main entry point for the application.
@@ -31,8 +32,8 @@ namespace LuceneAdvancedSearchApplication
         public static void BuildIndex_Click(string sourcePath, string indexPath)
         {
             myLuceneApp = new LuceneSearcheEngine();    // Initiate LuceneSearchEngine object
-            myStemmer = new PorterStemmer();
-            thesaurus = myLuceneApp.CreateThesaurus();
+            myStemmer = new PorterStemmer();            // Initiate PorterStemmer object
+            thesaurus = myLuceneApp.CreateThesaurus();  // Get thesaurus dictionary
 
             if (sourcePath is null)
                 MessageBox.Show("You didn't completely select the source directory path", "Error!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -58,10 +59,12 @@ namespace LuceneAdvancedSearchApplication
 
 
             myLuceneApp.CreateSearcher();           // Create searcher
+
             if (QECheckbox)
             {
                 querytext = myLuceneApp.PreProcess(myStemmer, thesaurus, querytext);
             }
+
             tempList = myLuceneApp.SearchText(querytext, asIsCheckBox, out finalQueryTxt);     // Get search result list of lists
             myLuceneApp.CleanUpSearcher();        // Clean searcher
 
