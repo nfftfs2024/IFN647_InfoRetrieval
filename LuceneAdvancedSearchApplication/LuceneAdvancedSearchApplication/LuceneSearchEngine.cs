@@ -234,6 +234,7 @@ namespace LuceneAdvancedSearchApplication
             thesaurus.Add("walk", new[] { "walk", "walked", "walking" });
             thesaurus.Add("run", new[] { "run", "running" });
             thesaurus.Add("love", new[] { "love", "lovely", "loving" });
+            thesaurus.Add("heat", new[] { "heat", "heating", "heater" });
             return thesaurus;
         }
 
@@ -252,11 +253,30 @@ namespace LuceneAdvancedSearchApplication
                 foreach (string w in word)
                 {
                     if (w == queryTerm)
-                        expandedQuery += "^5";                    
-                    expandedQuery += " " + w;
+                        expandedQuery += w + "^5 ";
+                    else
+                        expandedQuery += w + " ";
                 }
+                return expandedQuery.TrimEnd();
             }
-            return expandedQuery;
+            else
+                return queryTerm;
+            
+        }
+
+        public string PreProcess (PorterStemmer myStemmer, Dictionary<string, string[]> thesaurus, string text)
+        {
+            char[] splits = new char[] { ' ', '\t', '\'', '"', '-', '(', ')', ',', '’', '\n', ':', ';', '?', '.', '!' };
+            string[] tokens =  text.ToLower().Split(splits, StringSplitOptions.RemoveEmptyEntries);
+            string ProcessedText = "";
+            
+            foreach(string t in tokens)
+            {
+                //string tempt = myStemmer.stemTerm(t);
+                string tempt = GetWeightedExpandedQuery(thesaurus, t);
+                ProcessedText += tempt + " ";
+            }
+            return ProcessedText.TrimEnd();
         }
     }
 }
