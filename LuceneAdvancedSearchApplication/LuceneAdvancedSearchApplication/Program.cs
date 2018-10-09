@@ -58,7 +58,10 @@ namespace LuceneAdvancedSearchApplication
 
 
             myLuceneApp.CreateSearcher();           // Create searcher
-            myLuceneApp.PreProcess(myStemmer, thesaurus, querytext);
+            if (QECheckbox)
+            {
+                querytext = myLuceneApp.PreProcess(myStemmer, thesaurus, querytext);
+            }
             tempList = myLuceneApp.SearchText(querytext, asIsCheckBox, out finalQueryTxt);     // Get search result list of lists
             myLuceneApp.CleanUpSearcher();        // Clean searcher
 
