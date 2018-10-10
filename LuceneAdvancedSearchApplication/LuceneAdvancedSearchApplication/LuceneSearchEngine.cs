@@ -150,12 +150,11 @@ namespace LuceneAdvancedSearchApplication
         {
             List<List<string>> resultListDict = new List<List<string>>();      // Initiate a result list
             System.Console.WriteLine("Searching for " + querytext);
-            querytext = querytext.ToLower();
             Console.WriteLine("The value of the boolean is {0}", asIsCheckBox);
             if (asIsCheckBox == true)
             {
                 Console.WriteLine("Is accesing");
-                Query query = parserAsIs.Parse(querytext);      // Parse the query text by parser and create the query object
+                Query query = parser.Parse("\"" + querytext + "\"");      // Parse the query text by parser and create the query object
                 finalQueryTxt = query.ToString();           // Assign processed query text to final query text variable
                 TopDocs results = searcher.Search(query, 10000);                  // Search the query
                 System.Console.WriteLine("Number of results is " + results.TotalHits);
@@ -189,8 +188,7 @@ namespace LuceneAdvancedSearchApplication
                         resultListDict.Add(new List<string> { text, score });     // Add contents and score into the created list of lists
                     }
                 }
-            }
-            
+            }            
             return resultListDict;
         }
 
