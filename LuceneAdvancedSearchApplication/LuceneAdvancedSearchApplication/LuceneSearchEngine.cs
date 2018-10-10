@@ -91,6 +91,12 @@ namespace LuceneAdvancedSearchApplication
                     StreamReader reader = new StreamReader(name);   // Create a reader
                     string text = reader.ReadToEnd();   // Read the whole text
 
+                    int startTitle = text.IndexOf(".T\n") + 2;    // Get title starting index
+                    int startAbstract = text.IndexOf(".A\n") -1 ;    // Get index before author starting  
+                    int startWords = text.IndexOf(".W\n");    // Get Words Starting index
+                    int lengthOfTitle = startAbstract - startTitle; //Calculate length of title 
+                    text = text.Remove(startWords + 2, lengthOfTitle); //Remove title from Words section.
+
                     Lucene.Net.Documents.Document doc = new Document();     // Create document
                     doc.Add(new Lucene.Net.Documents.Field(TEXT_FN, text, Field.Store.YES, Field.Index.ANALYZED_NO_NORMS, Field.TermVector.NO));
                     writer.AddDocument(doc);    // Add document

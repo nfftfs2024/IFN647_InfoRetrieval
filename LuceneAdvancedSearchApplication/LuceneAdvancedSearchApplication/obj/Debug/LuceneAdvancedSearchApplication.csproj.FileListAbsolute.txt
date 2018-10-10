@@ -104,3 +104,4 @@ C:\Users\n9802614\Documents\GitHub\ifn647-project\LuceneAdvancedSearchApplicatio
 C:\Users\corve\OneDrive\Documentos\GitHub\ifn647-project\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\obj\Debug\LuceneAdvancedSearchApplication.BuildIndexGUIForm.resources
 C:\Users\corve\OneDrive\Documentos\GitHub\ifn647-project\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\obj\Debug\LuceneAdvancedSearchApplication.SearchGUIForm.resources
 D:\IR\ifn647-project\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\bin\Debug\Syn.WordNet.dll
+C:\Users\corve\OneDrive\Documentos\GitHub\ifn647-project\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\bin\Debug\Syn.WordNet.dll
