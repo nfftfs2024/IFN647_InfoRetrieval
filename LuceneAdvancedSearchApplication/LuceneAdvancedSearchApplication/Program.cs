@@ -5,6 +5,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using Syn.WordNet;
 
 namespace LuceneAdvancedSearchApplication
 {
@@ -13,8 +14,8 @@ namespace LuceneAdvancedSearchApplication
 
         public static LuceneSearcheEngine myLuceneApp;      // Set publicly callable LuceneSearchEngine object
         public static PorterStemmer myStemmer;              // Set publicly callable PorterStemmer object
-
-        public static Dictionary<string, string[]> thesaurus;   // Set thesaurus dictionary
+        public static WordNetEngine wordNet;                // Set WordNet object
+        //public static Dictionary<string, string[]> thesaurus;   // Set thesaurus dictionary
 
         /// <summary>
         /// The main entry point for the application.
@@ -25,6 +26,23 @@ namespace LuceneAdvancedSearchApplication
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new BuildIndexGUIForm());
+
+            var directory = System.IO.Directory.GetCurrentDirectory() + "\\wordnet";        // Set WordNet directory
+            wordNet = new WordNetEngine();  // Initiate WordNet object
+
+            // Load WordNet data and index
+            wordNet.AddDataSource(new StreamReader(Path.Combine(directory, "data.adj")), PartOfSpeech.Adjective);
+            wordNet.AddDataSource(new StreamReader(Path.Combine(directory, "data.adv")), PartOfSpeech.Adverb);
+            wordNet.AddDataSource(new StreamReader(Path.Combine(directory, "data.noun")), PartOfSpeech.Noun);
+            wordNet.AddDataSource(new StreamReader(Path.Combine(directory, "data.verb")), PartOfSpeech.Verb);
+            wordNet.AddIndexSource(new StreamReader(Path.Combine(directory, "index.adj")), PartOfSpeech.Adjective);
+            wordNet.AddIndexSource(new StreamReader(Path.Combine(directory, "index.adv")), PartOfSpeech.Adverb);
+            wordNet.AddIndexSource(new StreamReader(Path.Combine(directory, "index.noun")), PartOfSpeech.Noun);
+            wordNet.AddIndexSource(new StreamReader(Path.Combine(directory, "index.verb")), PartOfSpeech.Verb);
+            Console.WriteLine("Loading WordNet database...");
+            wordNet.Load();
+            Console.WriteLine("Load completed.");
+
             Application.Run(new SearchGUIForm());
         }
 
@@ -33,7 +51,7 @@ namespace LuceneAdvancedSearchApplication
         {
             myLuceneApp = new LuceneSearcheEngine();    // Initiate LuceneSearchEngine object
             myStemmer = new PorterStemmer();            // Initiate PorterStemmer object
-            thesaurus = myLuceneApp.CreateThesaurus();  // Get thesaurus dictionary
+            //thesaurus = myLuceneApp.CreateThesaurus();  // Get thesaurus dictionary
 
             if (sourcePath is null)
                 MessageBox.Show("You didn't completely select the source directory path", "Error!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -62,7 +80,7 @@ namespace LuceneAdvancedSearchApplication
 
             if (QECheckbox)
             {
-                querytext = myLuceneApp.PreProcess(myStemmer, thesaurus, querytext);
+                querytext = myLuceneApp.PreProcess(myStemmer, querytext);       // Pre-process query texts if checked
             }
 
             tempList = myLuceneApp.SearchText(querytext, asIsCheckBox, out finalQueryTxt);     // Get search result list of lists

@@ -10,7 +10,6 @@ using Lucene.Net.Store; //for Directory
 using Lucene.Net.Search; // for IndexSearcher
 using Lucene.Net.QueryParsers;  // for QueryParser
 using System.IO;
-using System.Text.RegularExpressions;
 
 namespace LuceneAdvancedSearchApplication
 {
@@ -36,7 +35,7 @@ namespace LuceneAdvancedSearchApplication
         {
             luceneIndexDirectory = null;
             writer = null;
-            analyzer = new Lucene.Net.Analysis.Standard.StandardAnalyzer(VERSION);     // Using simple analyzer for baseline system 
+            analyzer = new Lucene.Net.Analysis.SimpleAnalyzer();     // Using simple analyzer for baseline system 
             analyzerAsIs = new Lucene.Net.Analysis.KeywordAnalyzer();      // Using keyword analyzer for query as-is
             parser = new QueryParser(Lucene.Net.Util.Version.LUCENE_30, TEXT_FN, analyzer);
             parserAsIs = new QueryParser(Lucene.Net.Util.Version.LUCENE_30, TEXT_FN, analyzerAsIs);
@@ -223,18 +222,27 @@ namespace LuceneAdvancedSearchApplication
             searcher.Dispose();
         }
 
-        /// <summary>
-        /// Creates a Thesuaris of stems
-        /// </summary>
-        /// <returns>A a Thesuaris of stems in the form: <stem,list of words> </returns>
-        public Dictionary<string, string[]> CreateThesaurus()       // Have to get WordNet data to here!
+        public List<string> FindSyns(string term)       // Have to get WordNet data to here!
         {
-            Dictionary<string, string[]> thesaurus = new Dictionary<string, string[]>();
+            List<string> thesaurus = new List<string>();
+            thesaurus.Add(term);        // Create synonym list and add the original word
 
-            thesaurus.Add("walk", new[] { "walk", "walked", "walking" });
-            thesaurus.Add("run", new[] { "run", "running" });
-            thesaurus.Add("love", new[] { "love", "lovely", "loving" });
-            thesaurus.Add("heat", new[] { "heat", "heating", "heater" });
+            List<Syn.WordNet.SynSet> synSetList = Program.wordNet.GetSynSets(term);     // Get synonyms by using WordNet method
+
+            for(int i = 0; i < synSetList.Count; i++)   // Loop through each entry
+            {
+                // Only take those that are Nouns and Verbs
+                if ((synSetList[i].PartOfSpeech is Syn.WordNet.PartOfSpeech.Noun) || (synSetList[i].PartOfSpeech is Syn.WordNet.PartOfSpeech.Verb))
+                {
+                    foreach (string s in synSetList[i].Words)   // Loop through each synonym
+                    {
+                        if(!thesaurus.Contains(s) && !s.Contains("_"))      // If it's not yet contained in the synonym list and contains no "_"
+                        {
+                            thesaurus.Add(s);   // Add to synonym list
+                        }
+                    }
+                }
+            }
             return thesaurus;
         }
 
@@ -244,43 +252,45 @@ namespace LuceneAdvancedSearchApplication
         /// <param name="thesaurus">A thesaurus of stems and associated terms</param>
         /// <param name="query">a query to stem</param>
         /// <returns>the query expanded with words that share the stem</returns>
-        public string GetWeightedExpandedQuery(Dictionary<string, string[]> thesaurus, string queryTerm)
+        public string GetWeightedExpandedQuery(string queryTerm)
         {
+            List <string> thesaurus = new List<string>();
             string expandedQuery = "";
-            if (thesaurus.ContainsKey(queryTerm))
+
+            thesaurus = FindSyns(queryTerm);    // Find synonyms
+
+            if (thesaurus.Count > 1)    // If there's any synonyms found
             {
-                string[] word = thesaurus[queryTerm];
-                foreach (string w in word)
+                foreach (string w in thesaurus)     // Loop through synonyms including original word
                 {
                     if (w == queryTerm)
-                        expandedQuery += w + "^5 ";
+                        expandedQuery += w + "^5 ";     // Boost original queried word
                     else
                         expandedQuery += w + " ";
                 }
-                return expandedQuery.TrimEnd();
+                return expandedQuery.TrimEnd();     // Return concatenated word and synonyms
             }
             else
-                return queryTerm;
-            
+                return queryTerm;   // Return original word
         }
 
-        public string PreProcess (PorterStemmer myStemmer, Dictionary<string, string[]> thesaurus, string text)
+        public string PreProcess (PorterStemmer myStemmer, string text)
         {
-            char[] splits = new char[] { ' ', '\t', '\'', '"', '-', '(', ')', ',', '’', '\n', ':', ';', '?', '.', '!' };
-            string[] tokens =  text.ToLower().Split(splits, StringSplitOptions.RemoveEmptyEntries);
+            char[] splits = new char[] { ' ', '\t', '\'', '"', '-', '(', ')', ',', '’', '\n', ':', ';', '?', '.', '!' };    // Set token delimiters
+            string[] tokens =  text.ToLower().Split(splits, StringSplitOptions.RemoveEmptyEntries);     // Tokenisation
 
             string ProcessedText = "";
 
-            foreach (string t in tokens)
+            foreach (string t in tokens)        // Looping through each token
             {
                 if ((!stopWords.Contains(t)) && (t.Length > 2))     // Remove stopwords
                 {
                     //string tempt = myStemmer.stemTerm(t);
-                    string tempt = GetWeightedExpandedQuery(thesaurus, t);
-                    ProcessedText += tempt + " ";
+                    string tempt = GetWeightedExpandedQuery(t);     // Call query expansion on tokens
+                    ProcessedText += tempt + " ";       // Add spaces between words
                 }
             }
-            return ProcessedText.TrimEnd();
+            return ProcessedText.TrimEnd();     // Trim tailing spaces
         }
 
     }
