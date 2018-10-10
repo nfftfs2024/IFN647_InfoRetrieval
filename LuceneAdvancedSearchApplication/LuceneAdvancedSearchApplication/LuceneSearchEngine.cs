@@ -25,6 +25,7 @@ namespace LuceneAdvancedSearchApplication
         QueryParser parser;                                 // Create parser object
         QueryParser parserAsIs;
 
+        string[] stopWords = { "a", "an", "and", "are", "as", "at", "be", "but", "by", "for", "if", "in", "into", "is", "it", "no", "not", "of", "on", "or", "such", "that", "the", "their", "then", "there", "these", "they", "this", "to", "was", "will", "with" };
         //Lucene.Net.Search.Similarity newSimilarity;   // for similarity measure
 
         const Lucene.Net.Util.Version VERSION = Lucene.Net.Util.Version.LUCENE_30;  // Lucene version 
@@ -35,7 +36,7 @@ namespace LuceneAdvancedSearchApplication
         {
             luceneIndexDirectory = null;
             writer = null;
-            analyzer = new Lucene.Net.Analysis.SimpleAnalyzer();      // Using simple analyzer for baseline system 
+            analyzer = new Lucene.Net.Analysis.Standard.StandardAnalyzer(VERSION);     // Using simple analyzer for baseline system 
             analyzerAsIs = new Lucene.Net.Analysis.KeywordAnalyzer();      // Using keyword analyzer for query as-is
             parser = new QueryParser(Lucene.Net.Util.Version.LUCENE_30, TEXT_FN, analyzer);
             parserAsIs = new QueryParser(Lucene.Net.Util.Version.LUCENE_30, TEXT_FN, analyzerAsIs);
@@ -48,7 +49,6 @@ namespace LuceneAdvancedSearchApplication
         /// <param name="indexPath">The pathname to create the index</param>
         public void CreateIndex(string indexPath)
         {
-
             luceneIndexDirectory = Lucene.Net.Store.FSDirectory.Open(indexPath);
             IndexWriter.MaxFieldLength mfl = new IndexWriter.MaxFieldLength(IndexWriter.DEFAULT_MAX_FIELD_LENGTH);
             writer = new Lucene.Net.Index.IndexWriter(luceneIndexDirectory, analyzer, true, mfl);
@@ -268,15 +268,20 @@ namespace LuceneAdvancedSearchApplication
         {
             char[] splits = new char[] { ' ', '\t', '\'', '"', '-', '(', ')', ',', '’', '\n', ':', ';', '?', '.', '!' };
             string[] tokens =  text.ToLower().Split(splits, StringSplitOptions.RemoveEmptyEntries);
+
             string ProcessedText = "";
-            
-            foreach(string t in tokens)
+
+            foreach (string t in tokens)
             {
-                //string tempt = myStemmer.stemTerm(t);
-                string tempt = GetWeightedExpandedQuery(thesaurus, t);
-                ProcessedText += tempt + " ";
+                if ((!stopWords.Contains(t)) && (t.Length > 2))     // Remove stopwords
+                {
+                    //string tempt = myStemmer.stemTerm(t);
+                    string tempt = GetWeightedExpandedQuery(thesaurus, t);
+                    ProcessedText += tempt + " ";
+                }
             }
             return ProcessedText.TrimEnd();
         }
+
     }
 }
