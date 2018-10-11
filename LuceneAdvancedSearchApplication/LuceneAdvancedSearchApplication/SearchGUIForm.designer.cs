@@ -299,7 +299,7 @@
             // 
             this.advancedSearching.Location = new System.Drawing.Point(192, 125);
             this.advancedSearching.Name = "advancedSearching";
-            this.advancedSearching.Size = new System.Drawing.Size(173, 28);
+            this.advancedSearching.Size = new System.Drawing.Size(173, 37);
             this.advancedSearching.TabIndex = 37;
             this.advancedSearching.Text = "Advanced Search";
             this.advancedSearching.UseVisualStyleBackColor = true;
@@ -308,7 +308,7 @@
             // advancedCheck
             // 
             this.advancedCheck.AutoSize = true;
-            this.advancedCheck.Location = new System.Drawing.Point(390, 128);
+            this.advancedCheck.Location = new System.Drawing.Point(384, 132);
             this.advancedCheck.Name = "advancedCheck";
             this.advancedCheck.Size = new System.Drawing.Size(152, 24);
             this.advancedCheck.TabIndex = 38;

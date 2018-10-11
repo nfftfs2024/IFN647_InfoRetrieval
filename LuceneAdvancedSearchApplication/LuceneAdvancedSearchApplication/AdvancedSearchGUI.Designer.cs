@@ -29,11 +29,9 @@
         private void InitializeComponent()
         {
             this.titleBox = new System.Windows.Forms.TextBox();
-            this.abstractBox = new System.Windows.Forms.TextBox();
             this.authorBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.advGotoSerchbut = new System.Windows.Forms.Button();
             this.checkAuthorBoost = new System.Windows.Forms.CheckBox();
             this.checkTitleBoost = new System.Windows.Forms.CheckBox();
@@ -45,13 +43,6 @@
             this.titleBox.Name = "titleBox";
             this.titleBox.Size = new System.Drawing.Size(410, 26);
             this.titleBox.TabIndex = 0;
-            // 
-            // abstractBox
-            // 
-            this.abstractBox.Location = new System.Drawing.Point(136, 109);
-            this.abstractBox.Name = "abstractBox";
-            this.abstractBox.Size = new System.Drawing.Size(410, 26);
-            this.abstractBox.TabIndex = 1;
             // 
             // authorBox
             // 
@@ -80,20 +71,10 @@
             this.label2.TabIndex = 4;
             this.label2.Text = "AUTHOR:";
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(23, 112);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(107, 20);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "ABSTRACT:";
-            // 
             // advGotoSerchbut
             // 
             this.advGotoSerchbut.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.advGotoSerchbut.Location = new System.Drawing.Point(252, 160);
+            this.advGotoSerchbut.Location = new System.Drawing.Point(257, 110);
             this.advGotoSerchbut.Name = "advGotoSerchbut";
             this.advGotoSerchbut.Size = new System.Drawing.Size(159, 62);
             this.advGotoSerchbut.TabIndex = 6;
@@ -125,15 +106,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(659, 233);
+            this.ClientSize = new System.Drawing.Size(665, 194);
             this.Controls.Add(this.checkTitleBoost);
             this.Controls.Add(this.checkAuthorBoost);
             this.Controls.Add(this.advGotoSerchbut);
-            this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.authorBox);
-            this.Controls.Add(this.abstractBox);
             this.Controls.Add(this.titleBox);
             this.Name = "AdvancedSearchGUI";
             this.Text = "AdvancedSearchGUI";
@@ -145,11 +124,9 @@
         #endregion
 
         private System.Windows.Forms.TextBox titleBox;
-        private System.Windows.Forms.TextBox abstractBox;
         private System.Windows.Forms.TextBox authorBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button advGotoSerchbut;
         private System.Windows.Forms.CheckBox checkAuthorBoost;
         private System.Windows.Forms.CheckBox checkTitleBoost;

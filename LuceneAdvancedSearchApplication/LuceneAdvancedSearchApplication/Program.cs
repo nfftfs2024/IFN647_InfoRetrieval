@@ -90,26 +90,30 @@ namespace LuceneAdvancedSearchApplication
             foreach (List<string> result in tempList)   // Go through each resulting document
             {
                 rank++;
+
+                //Retrieving values indexed as TEXT
                 string text = result[0];    // Get whole text from input list
                 int indexI = text.IndexOf(".I ") + 3;   // Get ID starting index
                 int indexT = text.IndexOf(".T\n");    // Get title starting index
                 int indexA = text.IndexOf(".A\n");    // Get author starting index
                 int indexB = text.IndexOf(".B\n");    // Get bibliography starting index
                 int indexW = text.IndexOf(".W\n");    // Get words starting index
-
                 string id = text.Substring(indexI, indexT - 1 - indexI);    // Get ID string
                 string title = text.Substring(indexT + 3, ((indexA - 1 - (indexT + 3)) > 0) ? (indexA - 1 - (indexT + 3)) : 0);     // Get title string
                 string author = text.Substring(indexA + 3, ((indexB - 1 - (indexA + 3)) > 0) ? (indexB - 1 - (indexA + 3)) : 0);    // Get author string
                 string biblio = text.Substring(indexB + 3, ((indexW - 1 - (indexB + 3)) > 0) ? (indexW - 1 - (indexB + 3)) : 0);    // Get bibliography string
                 string abst = text.Substring(indexW + 3, ((text.Length - 1 - (indexW + 3)) > 0) ? (text.Length - 1 - (indexW + 3)) : 0);   // Get abstract string
-                abst = abst.Replace("\n", " ");  // Replace abstract LF
+                
 
+                //Handling issues in the abstract to display it
+                abst = abst.Replace("\n", " ");  // Replace abstract LF
                 Regex rx = new Regex("^.*?[.?!]", RegexOptions.Compiled | RegexOptions.IgnoreCase);     // Set the RE to match first sentence of abstract
                 MatchCollection abst_first = rx.Matches(abst);   // Get RE match for first sentence of abstract
                 string abst_fir = "";   // Create first sentence variable
                 if (abst_first.Count != 0)  // Check if there is no RE match (usually abstract is empty)
                     abst_fir = abst_first[0].Value;
-                
+               
+                                
                 // Add everything into the created list of dictionaries
                 resultListDict.Add(new Dictionary<string, string> {{"rank", rank.ToString()}, {"id", id}, {"title", title}, {"author", author},
                     { "biblio", biblio}, {"abstract", abst}, {"abstract_first", abst_fir}, {"score", result[1]}});     

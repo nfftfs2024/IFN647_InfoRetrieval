@@ -25,8 +25,7 @@ namespace LuceneAdvancedSearchApplication
         {
             string title = titleBox.Text;
             string author = authorBox.Text;
-            string abstrac = abstractBox.Text;
-            string textToSearch = "Title= " + title + "\tAuthor= " + author + "\tAbstract= " + abstrac;
+            string textToSearch = "Title= " + title + "\tAuthor= " + author;
             originalForm.advtext = textToSearch;
             originalForm.populate();
             this.Close();
