@@ -150,6 +150,7 @@ namespace LuceneAdvancedSearchApplication
         {
             List<List<string>> resultListDict = new List<List<string>>();      // Initiate a result list
             System.Console.WriteLine("Searching for " + querytext);
+            
             Console.WriteLine("The value of the boolean is {0}", asIsCheckBox);
             if (asIsCheckBox == true)
             {
