@@ -20,6 +20,8 @@ namespace LuceneAdvancedSearchApplication
 
         string searchWords;
 
+        public string advtext;
+
         List<Dictionary<string, string>> resultListDict;    // Create global result list in type of list of dictionaries
         int limit;              // Create document starting index variable
         string finalQueryTxt;    // Create final query text variable
@@ -29,7 +31,7 @@ namespace LuceneAdvancedSearchApplication
         int queryCount;         // Create query count variable
         int totalpage;          // Create total page variable
 
-        
+
 
         public SearchGUIForm()
         {
@@ -53,7 +55,6 @@ namespace LuceneAdvancedSearchApplication
         {
             searchWords = TextEnter.Text;
         }
-
 
         private void NeedsButton_Click(object sender, EventArgs e)      // Select file path after click on Select Cran Needs
         {
@@ -222,6 +223,19 @@ namespace LuceneAdvancedSearchApplication
             
             Converter.Dos2Unix(myNeedsDialog.FileName);
             Converter.RemoveBOM(myNeedsDialog.FileName);
+        }
+
+        private void advancedSearching_Click(object sender, EventArgs e)
+        {
+            AdvancedSearchGUI as1 = new AdvancedSearchGUI(this);
+            as1.Show();
+        }
+
+        internal void populate()
+        {
+            TextEnter.Text = advtext;
+            advancedCheck.Checked = true;
+            advancedCheck.Visible = true;
         }
     }
 }

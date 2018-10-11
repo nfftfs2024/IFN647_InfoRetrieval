@@ -148,6 +148,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdvancedSearchGUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdvancedSearchGUI.Designer.cs">
+      <DependentUpon>AdvancedSearchGUI.cs</DependentUpon>
+    </Compile>
     <Compile Include="BuildIndexGUIForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -180,6 +186,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="AdvancedSearchGUI.resx">
+      <DependentUpon>AdvancedSearchGUI.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="BuildIndexGUIForm.resx">
       <DependentUpon>BuildIndexGUIForm.cs</DependentUpon>
     </EmbeddedResource>
