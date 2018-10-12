@@ -237,5 +237,10 @@ namespace LuceneAdvancedSearchApplication
             advancedCheck.Checked = true;
             advancedCheck.Visible = true;
         }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            NeedsTxtbox.Text = cranNeeds[comboBox1.SelectedItem.ToString()];
+        }
     }
 }
