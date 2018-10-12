@@ -21,6 +21,7 @@ namespace LuceneAdvancedSearchApplication
         IndexSearcher searcher;                             // Create searcher object
         IndexSearcher searcher2;                            // Create a searcher for the Baseline.
         QueryParser parser;                                 // Create parser object
+        MultiFieldQueryParser multiParser;
 
         FileInfo fileStopWords = new FileInfo(Path.GetDirectoryName(System.Windows.Forms.Application.ExecutablePath) + "\\stopwords.txt"); //Defining path to save the defined stopwords 
         string[] stopWords = { "a", "an", "and", "are", "as", "at", "be", "but", "by", "for", "if", "in", "into", "is", "it", "no", "not", "of", "on", "or", "such", "that", "the", "their", "then", "there", "these", "they", "this", "to", "was", "will", "with" };
@@ -30,6 +31,7 @@ namespace LuceneAdvancedSearchApplication
         const string TEXT_FN = "Text";                                              // Lucene field "Text"
         const string TEXT_FN_TITLE = "Title";
         const string TEXT_FN_AUTHOR = "Author";
+        Dictionary<string, float> boosts = new Dictionary<string, float>{{ TEXT_FN_TITLE, 100},{TEXT_FN_AUTHOR, 50}};
 
         public LuceneSearcheEngine()
         {
@@ -37,7 +39,8 @@ namespace LuceneAdvancedSearchApplication
             writer = null;
             //analyzer = new Lucene.Net.Analysis.SimpleAnalyzer();     // Using simple analyzer for baseline system 
             analyzer = new Lucene.Net.Analysis.Standard.StandardAnalyzer(VERSION, fileStopWords); //Using Standard Analyzer to apply steming and removing of stop words.
-             parser = new QueryParser(Lucene.Net.Util.Version.LUCENE_30, TEXT_FN, analyzer);
+            parser = new QueryParser(Lucene.Net.Util.Version.LUCENE_30, TEXT_FN, analyzer);
+            multiParser = new MultiFieldQueryParser(VERSION, new[] {TEXT_FN_TITLE,TEXT_FN_AUTHOR}, analyzer);
             //newSimilarity = new NewSimilarity();
         }
 
@@ -140,7 +143,7 @@ namespace LuceneAdvancedSearchApplication
         /// Searches the index for the querytext
         /// </summary>
         /// <param name="querytext">The text to search the index</param>
-        public List<List<string>> SearchText(string querytext, bool asIsCheckBox, out string finalQueryTxt)
+        public List<List<string>> SearchText(string querytext, bool asIsCheckBox, bool advCheckBox, out string finalQueryTxt)
         {
             List<List<string>> resultListDict = new List<List<string>>();      // Initiate a result list    
             if (asIsCheckBox == true)
@@ -163,23 +166,44 @@ namespace LuceneAdvancedSearchApplication
             }
             else
             {
-                Query query = parser.Parse(querytext);      // Parse the query text by parser and create the query object
-                finalQueryTxt = query.ToString();           // Assign processed query text to final query text variable
-                TopDocs results = searcher.Search(query, 10000);                  // Search the query
-                System.Console.WriteLine("Number of results is " + results.TotalHits);
-                if (results.TotalHits != 0)     // Check if there are found results
+                if(advCheckBox)
                 {
-                    for (int i = 0; i < results.TotalHits; i++)    // Loop through the top 10 ranked documents
+                    Query query = multiParser.Parse(querytext);      // Parse the query text by parser and create the query object
+                    finalQueryTxt = query.ToString();           // Assign processed query text to final query text variable
+                    TopDocs results = searcher.Search(query, 10000);                  // Search the query
+                    System.Console.WriteLine("Number of results is " + results.TotalHits);
+                    if (results.TotalHits != 0)     // Check if there are found results
                     {
-                        
-                        ScoreDoc scoreDoc = results.ScoreDocs[i];   // Get the ranked document
-                        Lucene.Net.Documents.Document doc = searcher.Doc(scoreDoc.Doc);     // Get document contents
-                        string text = doc.Get(TEXT_FN).ToString();  // Get document contents by fields
-                        string title = doc.Get(TEXT_FN_TITLE).ToString();  // Get document contents by fields
-                        string author = doc.Get(TEXT_FN_AUTHOR).ToString();  // Get document contents by fields   
-                        string score = scoreDoc.Score.ToString();   // Get document score
-                        resultListDict.Add(new List<string> { text,title,author,score });     // Add contents and score into the created list of lists
-                        
+                        for (int i = 0; i < results.TotalHits; i++)    // Loop through the top 10 ranked documents
+                        {
+
+                            ScoreDoc scoreDoc = results.ScoreDocs[i];   // Get the ranked document
+                            Lucene.Net.Documents.Document doc = searcher.Doc(scoreDoc.Doc);     // Get document contents
+                            string text = doc.Get(TEXT_FN).ToString();  // Get document contents by fields  
+                            string score = scoreDoc.Score.ToString();   // Get document score
+                            resultListDict.Add(new List<string> { text, score });     // Add contents and score into the created list of lists
+
+                        }
+                    }
+                }
+                else
+                {
+                    Query query = parser.Parse(querytext);      // Parse the query text by parser and create the query object
+                    finalQueryTxt = query.ToString();           // Assign processed query text to final query text variable
+                    TopDocs results = searcher.Search(query, 10000);                  // Search the query
+                    System.Console.WriteLine("Number of results is " + results.TotalHits);
+                    if (results.TotalHits != 0)     // Check if there are found results
+                    {
+                        for (int i = 0; i < results.TotalHits; i++)    // Loop through the top 10 ranked documents
+                        {
+
+                            ScoreDoc scoreDoc = results.ScoreDocs[i];   // Get the ranked document
+                            Lucene.Net.Documents.Document doc = searcher.Doc(scoreDoc.Doc);     // Get document contents
+                            string text = doc.Get(TEXT_FN).ToString();  // Get document contents by fields  
+                            string score = scoreDoc.Score.ToString();   // Get document score
+                            resultListDict.Add(new List<string> { text, score });     // Add contents and score into the created list of lists
+
+                        }
                     }
                 }
             }            

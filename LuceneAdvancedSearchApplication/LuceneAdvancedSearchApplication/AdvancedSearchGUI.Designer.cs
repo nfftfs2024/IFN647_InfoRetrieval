@@ -33,8 +33,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.advGotoSerchbut = new System.Windows.Forms.Button();
-            this.checkAuthorBoost = new System.Windows.Forms.CheckBox();
-            this.checkTitleBoost = new System.Windows.Forms.CheckBox();
+            this.comboBoxCondition = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // titleBox
@@ -74,7 +74,7 @@
             // advGotoSerchbut
             // 
             this.advGotoSerchbut.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.advGotoSerchbut.Location = new System.Drawing.Point(257, 110);
+            this.advGotoSerchbut.Location = new System.Drawing.Point(337, 110);
             this.advGotoSerchbut.Name = "advGotoSerchbut";
             this.advGotoSerchbut.Size = new System.Drawing.Size(159, 62);
             this.advGotoSerchbut.TabIndex = 6;
@@ -82,33 +82,35 @@
             this.advGotoSerchbut.UseVisualStyleBackColor = true;
             this.advGotoSerchbut.Click += new System.EventHandler(this.advGotoSerchbut_Click);
             // 
-            // checkAuthorBoost
+            // comboBoxCondition
             // 
-            this.checkAuthorBoost.AutoSize = true;
-            this.checkAuthorBoost.Location = new System.Drawing.Point(564, 67);
-            this.checkAuthorBoost.Name = "checkAuthorBoost";
-            this.checkAuthorBoost.Size = new System.Drawing.Size(77, 24);
-            this.checkAuthorBoost.TabIndex = 7;
-            this.checkAuthorBoost.Text = "Boost";
-            this.checkAuthorBoost.UseVisualStyleBackColor = true;
+            this.comboBoxCondition.FormattingEnabled = true;
+            this.comboBoxCondition.Items.AddRange(new object[] {
+            "AND",
+            "OR"});
+            this.comboBoxCondition.Location = new System.Drawing.Point(136, 105);
+            this.comboBoxCondition.Name = "comboBoxCondition";
+            this.comboBoxCondition.Size = new System.Drawing.Size(121, 28);
+            this.comboBoxCondition.TabIndex = 9;
             // 
-            // checkTitleBoost
+            // label3
             // 
-            this.checkTitleBoost.AutoSize = true;
-            this.checkTitleBoost.Location = new System.Drawing.Point(564, 29);
-            this.checkTitleBoost.Name = "checkTitleBoost";
-            this.checkTitleBoost.Size = new System.Drawing.Size(77, 24);
-            this.checkTitleBoost.TabIndex = 8;
-            this.checkTitleBoost.Text = "Boost";
-            this.checkTitleBoost.UseVisualStyleBackColor = true;
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(19, 113);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(111, 20);
+            this.label3.TabIndex = 10;
+            this.label3.Text = "CONDITION:";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // AdvancedSearchGUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(665, 194);
-            this.Controls.Add(this.checkTitleBoost);
-            this.Controls.Add(this.checkAuthorBoost);
+            this.ClientSize = new System.Drawing.Size(562, 186);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.comboBoxCondition);
             this.Controls.Add(this.advGotoSerchbut);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -128,7 +130,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button advGotoSerchbut;
-        private System.Windows.Forms.CheckBox checkAuthorBoost;
-        private System.Windows.Forms.CheckBox checkTitleBoost;
+        private System.Windows.Forms.ComboBox comboBoxCondition;
+        private System.Windows.Forms.Label label3;
     }
 }

@@ -23,12 +23,44 @@ namespace LuceneAdvancedSearchApplication
 
         private void advGotoSerchbut_Click(object sender, EventArgs e)
         {
+            string gateway = comboBoxCondition.Text;
             string title = titleBox.Text;
             string author = authorBox.Text;
-            string textToSearch = "Title= " + title + "\tAuthor= " + author;
+            string textToSearch = "";
+
+
+            if (String.IsNullOrEmpty(title) && String.IsNullOrEmpty(author))
+            {
+                MessageBox.Show("Please Enter a value in some field.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else
+            {
+                if (author.Length > 0 && title.Length > 0)
+                {
+                    textToSearch = "Title:\"" + title + "\" " + " " + gateway + " " + "Author:\"" + author + "\"";                   
+                }
+                else
+                {
+                    if (author.Length > 0)
+                    {
+                        textToSearch = "Author\"" + author + "\""; ;
+                    }
+                    if (title.Length > 0)
+                    {
+                        textToSearch = "Title:\"" + title + "\"";
+                    }
+                }
+                
+            }
+                              
             originalForm.advtext = textToSearch;
             originalForm.populate();
             this.Close();
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
 
         }
     }

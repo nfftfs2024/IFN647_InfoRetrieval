@@ -70,7 +70,7 @@ namespace LuceneAdvancedSearchApplication
             }
         }
 
-        public static List<Dictionary<string, string>> Search_Click(string querytext, bool asIsCheckBox, bool QECheckbox, out string finalQueryTxt)
+        public static List<Dictionary<string, string>> Search_Click(string querytext, bool asIsCheckBox, bool QECheckbox, bool advCheckBox, out string finalQueryTxt)
         {
             List<List<string>> tempList = new List<List<string>>();     // Create a list of lists for receiving output from SearchText method
             List<Dictionary<string, string>> resultListDict = new List<Dictionary<string, string>>();   // Create a list of dictionaries for outputting to GUI
@@ -83,7 +83,7 @@ namespace LuceneAdvancedSearchApplication
                 querytext = myLuceneApp.PreProcess(myStemmer, querytext);       // Pre-process query texts if checked
             }
 
-            tempList = myLuceneApp.SearchText(querytext, asIsCheckBox, out finalQueryTxt);     // Get search result list of lists
+            tempList = myLuceneApp.SearchText(querytext, asIsCheckBox, advCheckBox, out finalQueryTxt);     // Get search result list of lists
             myLuceneApp.CleanUpSearcher();        // Clean searcher
 
             int rank = 0;

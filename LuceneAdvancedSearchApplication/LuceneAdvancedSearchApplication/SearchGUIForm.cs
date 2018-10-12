@@ -84,7 +84,7 @@ namespace LuceneAdvancedSearchApplication
             limit = 0;      // Set starting result index
 
             DateTime start = System.DateTime.Now;   // Searching time starts
-            resultListDict = Program.Search_Click(cranNeeds[comboBox1.SelectedItem.ToString()], false, QECheckbox.Checked, out finalQueryTxt);       // Search Cran needs texts
+            resultListDict = Program.Search_Click(cranNeeds[comboBox1.SelectedItem.ToString()], false, QECheckbox.Checked, advancedCheck.Checked, out finalQueryTxt);       // Search Cran needs texts
             DateTime end = System.DateTime.Now;   // Searching time starts
             MessageBox.Show("The time for searching text was " + (end - start), "Reporting Searching Time", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -118,7 +118,7 @@ namespace LuceneAdvancedSearchApplication
             {
                 List<Dictionary<string, string>> tempListDict = new List<Dictionary<string, string>>();            // Create temporary list of dictionaries
                 DateTime start = System.DateTime.Now;   // Searching time starts
-                tempListDict = Program.Search_Click(TextEnter.Text, asIsCheckBox.Checked, QECheckbox.Checked, out finalQueryTxt);     // Search user input texts
+                tempListDict = Program.Search_Click(TextEnter.Text, asIsCheckBox.Checked, QECheckbox.Checked, advancedCheck.Checked, out finalQueryTxt);     // Search user input texts
                 DateTime end = System.DateTime.Now;   // Searching time starts
                 
                 if (tempListDict.Count != 0)
@@ -236,6 +236,7 @@ namespace LuceneAdvancedSearchApplication
             TextEnter.Text = advtext;
             advancedCheck.Checked = true;
             advancedCheck.Visible = true;
+            SearchBtn2.PerformClick();
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
