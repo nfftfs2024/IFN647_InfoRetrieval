@@ -86,7 +86,7 @@ namespace LuceneAdvancedSearchApplication
             DateTime start = System.DateTime.Now;   // Searching time starts
             resultListDict = Program.Search_Click(cranNeeds[comboBox1.SelectedItem.ToString()], false, QECheckbox.Checked, advancedCheck.Checked, out finalQueryTxt);       // Search Cran needs texts
             DateTime end = System.DateTime.Now;   // Searching time starts
-            MessageBox.Show("The time for searching text was " + (end - start), "Reporting Searching Time", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("The time for searching text was " + (end - start).TotalMilliseconds +" milliseconds", "Reporting Searching Time", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             ViewData(limit, resultListDict);    // View data on listview
             Program.Create_BaseLine_Results(cranNeeds);
@@ -123,7 +123,7 @@ namespace LuceneAdvancedSearchApplication
                 
                 if (tempListDict.Count != 0)
                 {
-                    MessageBox.Show("The time for searching text was " + (end - start), "Reporting Searching Time", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("The time for searching text was " + (end - start).TotalMilliseconds + " milliseconds", "Reporting Searching Time", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     resultListDict = tempListDict;  // Assign temporary list to global variable as current 10 results
                     queryCount++;       // Count number of query search 
                     ViewData(limit, resultListDict);    // View data on listview

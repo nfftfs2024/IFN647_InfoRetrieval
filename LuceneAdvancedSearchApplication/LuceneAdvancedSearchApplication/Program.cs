@@ -66,7 +66,7 @@ namespace LuceneAdvancedSearchApplication
                 System.Console.WriteLine("All documents added.");
                 myLuceneApp.CleanUpIndexer();       // Clean up indexer
                 DateTime end = System.DateTime.Now;   // Indexing time ends
-                MessageBox.Show("The time for indexing text was " + (end - start), "Reporting Indexing Time", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("The time for indexing text was " + (end - start).TotalMilliseconds + " milliseconds", "Reporting Indexing Time", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -207,7 +207,7 @@ namespace LuceneAdvancedSearchApplication
                     foreach (string need in sub)       // Loop through each query
                     {
                         int indexD = text.IndexOf(".D\n");   // Get Description starting index
-                        dic.Add(need.Substring(0, indexD - 4), need.Substring(indexD).TrimEnd('\n'));     // Add ID and Description into dictionary as pairs
+                        dic.Add(need.Substring(0, indexD - 4), need.Substring(indexD).Replace("\n", " ").TrimEnd('\n'));     // Add ID and Description into dictionary as pairs
                     }
                     reader.Close();
                 }
