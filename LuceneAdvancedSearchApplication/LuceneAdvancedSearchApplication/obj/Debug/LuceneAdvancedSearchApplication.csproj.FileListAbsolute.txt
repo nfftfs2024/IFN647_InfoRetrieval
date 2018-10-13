@@ -195,3 +195,4 @@ D:\IR\ifn647-project\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplica
 D:\IR\ifn647-project\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\bin\Debug\IKVM.Runtime.JNI.dll
 D:\IR\ifn647-project\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\bin\Debug\stanford-postagger-3.9.1.dll
 D:\IR\ifn647-project\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\obj\Debug\LuceneAdvancedSearchApplication.AdvancedSearchGUI.resources
+C:\Users\n9802614\Documents\GitHub\ifn647-project\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\obj\Debug\LuceneAdvancedSearchApplication.AdvancedSearchGUI.resources

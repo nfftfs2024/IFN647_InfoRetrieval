@@ -22,6 +22,7 @@ namespace LuceneAdvancedSearchApplication
         IndexSearcher searcher2;                            // Create a searcher for the Baseline.
         QueryParser parser;                                 // Create parser object
         MultiFieldQueryParser multiParser;
+        NewSimilarity newSimilarity;
 
         FileInfo fileStopWords = new FileInfo(Path.GetDirectoryName(System.Windows.Forms.Application.ExecutablePath) + "\\stopwords.txt"); //Defining path to save the defined stopwords 
         string[] stopWords = { "a", "an", "and", "are", "as", "at", "be", "but", "by", "for", "if", "in", "into", "is", "it", "no", "not", "of", "on", "or", "such", "that", "the", "their", "then", "there", "these", "they", "this", "to", "was", "will", "with" };
@@ -41,6 +42,8 @@ namespace LuceneAdvancedSearchApplication
             analyzer = new Lucene.Net.Analysis.Standard.StandardAnalyzer(VERSION, fileStopWords); //Using Standard Analyzer to apply steming and removing of stop words.
             parser = new QueryParser(Lucene.Net.Util.Version.LUCENE_30, TEXT_FN, analyzer);
             multiParser = new MultiFieldQueryParser(VERSION, new[] {TEXT_FN_TITLE,TEXT_FN_AUTHOR}, analyzer);
+            newSimilarity = new NewSimilarity();
+            
             //newSimilarity = new NewSimilarity();
         }
 
@@ -53,6 +56,8 @@ namespace LuceneAdvancedSearchApplication
             luceneIndexDirectory = Lucene.Net.Store.FSDirectory.Open(indexPath);
             IndexWriter.MaxFieldLength mfl = new IndexWriter.MaxFieldLength(IndexWriter.DEFAULT_MAX_FIELD_LENGTH);
             writer = new Lucene.Net.Index.IndexWriter(luceneIndexDirectory, analyzer, true, mfl);
+            writer.SetSimilarity(new NewSimilarity());
+
 
             //writer.SetSimilarity(newSimilarity);  // for similarity measure
         }
@@ -135,7 +140,7 @@ namespace LuceneAdvancedSearchApplication
         {
             searcher = new IndexSearcher(luceneIndexDirectory);
             searcher2 = new IndexSearcher(luceneIndexDirectory);
-            //searcher.Similarity = newSimilarity;
+            searcher.Similarity = newSimilarity;
         }
 
 
