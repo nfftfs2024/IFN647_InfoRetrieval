@@ -44,7 +44,7 @@ namespace LuceneAdvancedSearchApplication
             multiParser = new MultiFieldQueryParser(VERSION, new[] {TEXT_FN_TITLE,TEXT_FN_AUTHOR}, analyzer);
             newSimilarity = new NewSimilarity();
             
-            //newSimilarity = new NewSimilarity();
+            
         }
 
         /// <summary>
@@ -141,6 +141,7 @@ namespace LuceneAdvancedSearchApplication
             searcher = new IndexSearcher(luceneIndexDirectory);
             searcher2 = new IndexSearcher(luceneIndexDirectory);
             searcher.Similarity = newSimilarity;
+            searcher2.Similarity = newSimilarity;
         }
 
 
