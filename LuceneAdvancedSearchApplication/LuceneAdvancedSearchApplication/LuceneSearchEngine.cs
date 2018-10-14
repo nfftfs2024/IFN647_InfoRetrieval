@@ -11,6 +11,8 @@ using Lucene.Net.Search; // for IndexSearcher
 using Lucene.Net.QueryParsers;  // for QueryParser
 using System.Text.RegularExpressions;
 using System.IO;
+using System.Windows.Forms;
+
 
 namespace LuceneAdvancedSearchApplication
 {
@@ -24,6 +26,7 @@ namespace LuceneAdvancedSearchApplication
         QueryParser parser;                                 // Create parser object
         MultiFieldQueryParser multiParser;
         NewSimilarity newSimilarity;
+        List<String> exFile= new List<string>();
 
         FileInfo fileStopWords = new FileInfo(Path.GetDirectoryName(System.Windows.Forms.Application.ExecutablePath) + "\\stopwords.txt"); //Defining path to save the defined stopwords 
         string[] stopWords = { "a", "an", "and", "are", "as", "at", "be", "but", "by", "for", "if", "in", "into", "is",
@@ -139,8 +142,13 @@ namespace LuceneAdvancedSearchApplication
                     else
                     {
                         Console.WriteLine(name);
+                        exFile.Add(name);
+                        
                     }
                 }
+                var message = string.Join(Environment.NewLine, exFile);
+                MessageBox.Show("The following files are excluded from the index because of the incorrect format:\n"+message);
+                
             }
         }
 

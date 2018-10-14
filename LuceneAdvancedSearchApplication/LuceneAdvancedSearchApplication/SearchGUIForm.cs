@@ -68,9 +68,12 @@ namespace LuceneAdvancedSearchApplication
 
         private void SaveResult_Click(object sender, EventArgs e)   // Select directory path after click on Set Index Directory
         {
+            
+            SaveFileDialog saveDialog = new SaveFileDialog();
+           
+            SaveDialog.Filter = "Text File | *.txt";
             SaveDialog.ShowDialog();
             savePath = SaveDialog.FileName;
-            SaveDialog.Filter = "Text File | *.txt";
             StreamWriter writer = new StreamWriter(savePath,append:true);
             Program.SaveClick(resultListDict, writer,queryCount);
             
