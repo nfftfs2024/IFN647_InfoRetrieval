@@ -53,21 +53,15 @@ namespace LuceneAdvancedSearchApplication
             myStemmer = new PorterStemmer();            // Initiate PorterStemmer object
             //thesaurus = myLuceneApp.CreateThesaurus();  // Get thesaurus dictionary
 
-            if (sourcePath is null)
-                MessageBox.Show("You didn't completely select the source directory path", "Error!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            else if (indexPath is null)
-                MessageBox.Show("You didn't completely select the index directory path", "Error!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            else
-            {
-                DateTime start = System.DateTime.Now;   // Indexing time starts
-                myLuceneApp.CreateIndex(indexPath);     // Create index at the given path
-                System.Console.WriteLine("Adding Documents to Index");
-                myLuceneApp.IndexText(sourcePath);      // Add file collection to the index one by one
-                System.Console.WriteLine("All documents added.");
-                myLuceneApp.CleanUpIndexer();       // Clean up indexer
-                DateTime end = System.DateTime.Now;   // Indexing time ends
-                MessageBox.Show("The time for indexing text was " + (end - start).TotalMilliseconds + " milliseconds", "Reporting Indexing Time", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
+            DateTime start = System.DateTime.Now;   // Indexing time starts
+            myLuceneApp.CreateIndex(indexPath);     // Create index at the given path
+            System.Console.WriteLine("Adding Documents to Index");
+            myLuceneApp.IndexText(sourcePath);      // Add file collection to the index one by one
+            System.Console.WriteLine("All documents added.");
+            myLuceneApp.CleanUpIndexer();       // Clean up indexer
+            DateTime end = System.DateTime.Now;   // Indexing time ends
+            MessageBox.Show("The time for indexing text was " + (end - start).TotalMilliseconds + " milliseconds", "Reporting Indexing Time", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            
         }
 
         public static List<Dictionary<string, string>> Search_Click(string querytext, bool asIsCheckBox, bool QECheckbox, bool advCheckBox, out string finalQueryTxt)

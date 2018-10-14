@@ -75,7 +75,7 @@ namespace LuceneAdvancedSearchApplication
             // Get all files in the directory
             try
             {
-                files = root.GetFiles("*.*");
+                files = root.GetFiles("*.txt");
             }
 
             catch (UnauthorizedAccessException e)

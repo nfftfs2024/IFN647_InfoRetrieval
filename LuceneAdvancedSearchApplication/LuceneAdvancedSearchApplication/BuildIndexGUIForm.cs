@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace LuceneAdvancedSearchApplication
 {
@@ -15,8 +16,11 @@ namespace LuceneAdvancedSearchApplication
         //string indexPath = @"C:\Users\n9802614\Desktop\New folder";
         //string sourcePath = @"H:\647\crandocs";
 
-        string indexPath = @"D:\IR\ifn647-project\LuceneAdvancedSearchApplication\index";
-        string sourcePath = @"D:\IR\ifn647-project\LuceneAdvancedSearchApplication\crandocs";
+        //string indexPath = @"D:\IR\ifn647-project\LuceneAdvancedSearchApplication\index";
+        //string sourcePath = @"D:\IR\ifn647-project\LuceneAdvancedSearchApplication\crandocs";
+
+        string indexPath;
+        string sourcePath;
         public BuildIndexGUIForm()
         {
             InitializeComponent();
@@ -29,15 +33,27 @@ namespace LuceneAdvancedSearchApplication
 
         private void BuildIndBtn_Click(object sender, EventArgs e)
         {
-            Program.BuildIndex_Click(sourcePath, indexPath);   // Build index
-            this.Close();
+            if (sourcePath is null)
+                MessageBox.Show("You didn't completely select the source directory path", "Error!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            else if (indexPath is null)
+                MessageBox.Show("You didn't completely select the index directory path", "Error!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            else
+            {
+                Program.BuildIndex_Click(sourcePath, indexPath);   // Build index
+                this.Close();
+            }
         }
 
         private void SetSourceDireBtn_Click(object sender, EventArgs e)
         {
-            SourceDirBrowserDialog.ShowDialog();
+            bool chk = true;
+            while (chk)
+            {
+                SourceDirBrowserDialog.ShowDialog();
+                sourcePath = SourceDirBrowserDialog.SelectedPath;
+                chk = CheckSourceDirectory(sourcePath);
+            }
             SourceTxtBox.Text = SourceDirBrowserDialog.SelectedPath;
-            sourcePath = SourceDirBrowserDialog.SelectedPath;
         }
 
         private void SetIndexDirBtn_Click(object sender, EventArgs e)
@@ -47,9 +63,19 @@ namespace LuceneAdvancedSearchApplication
             indexPath = IndexDirBrowserDialog.SelectedPath;
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        public bool CheckSourceDirectory(string sourcePath)
         {
-
+            bool chk;
+            DirectoryInfo dir = new DirectoryInfo(sourcePath);
+            FileInfo[] TXTFiles = dir.GetFiles("*.txt");
+            if (TXTFiles.Length == 0)
+            {
+                MessageBox.Show("This directory does not have any text files for creating index", "Error!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                chk = true;
+            }
+            else
+                chk = false;
+            return chk;
         }
     }
 }
