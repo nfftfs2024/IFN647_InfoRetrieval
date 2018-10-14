@@ -25,7 +25,8 @@ namespace LuceneAdvancedSearchApplication
         NewSimilarity newSimilarity;
 
         FileInfo fileStopWords = new FileInfo(Path.GetDirectoryName(System.Windows.Forms.Application.ExecutablePath) + "\\stopwords.txt"); //Defining path to save the defined stopwords 
-        string[] stopWords = { "a", "an", "and", "are", "as", "at", "be", "but", "by", "for", "if", "in", "into", "is", "it", "no", "not", "of", "on", "or", "such", "that", "the", "their", "then", "there", "these", "they", "this", "to", "was", "will", "with" };
+        string[] stopWords = { "a", "an", "and", "are", "as", "at", "be", "but", "by", "for", "if", "in", "into", "is",
+            "it", "no", "not", "of", "on", "or", "such", "that", "the", "their", "then", "there", "these", "they", "this", "to", "was", "will", "with", "what", "how", "can", "must", "when"};
         //Lucene.Net.Search.Similarity newSimilarity;   // for similarity measure
 
         const Lucene.Net.Util.Version VERSION = Lucene.Net.Util.Version.LUCENE_30;  // Lucene version 

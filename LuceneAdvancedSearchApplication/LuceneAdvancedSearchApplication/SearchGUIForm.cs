@@ -95,7 +95,8 @@ namespace LuceneAdvancedSearchApplication
             PreviousBtn.Enabled = false;            // Disable previous button
             SaveResult.Enabled = true;              // Enable save result button
             resultLab.Text = "Result numbers:";     // Display result number label
-            FinalQTxtbox.Text = cranNeeds[comboBox1.SelectedItem.ToString()];     //Print Query 
+            //FinalQTxtbox.Text = cranNeeds[comboBox1.SelectedItem.ToString()];     //Print Query 
+            FinalQTxtbox.Text = finalQueryTxt;
             resultNumLab.Text = resultListDict.Count.ToString();    // Display result number
 
 
