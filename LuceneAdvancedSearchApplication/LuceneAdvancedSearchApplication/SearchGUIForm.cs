@@ -243,5 +243,22 @@ namespace LuceneAdvancedSearchApplication
         {
             NeedsTxtbox.Text = cranNeeds[comboBox1.SelectedItem.ToString()];
         }
+
+        private void asIsCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (asIsCheckBox.Checked)
+                QECheckbox.Enabled = false;
+            else if (!asIsCheckBox.Checked)
+                QECheckbox.Enabled = true;
+
+        }
+
+        private void QECheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (QECheckbox.Checked)
+                asIsCheckBox.Enabled = false;
+            else if (!QECheckbox.Checked)
+                asIsCheckBox.Enabled = true;
+        }
     }
 }
