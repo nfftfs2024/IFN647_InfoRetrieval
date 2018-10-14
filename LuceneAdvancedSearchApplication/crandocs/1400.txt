@@ -7,6 +7,7 @@ kleeman,p.w.
 .B
 arc r + m.2971, 1953.
 .W
+.A
 the buckling shear stress of simply-supported infinitely
 long plates with transverse stiffeners .
   this report is an extension of previous theoretical

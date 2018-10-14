@@ -9,6 +9,7 @@ using Lucene.Net.Index; //for Index Writer
 using Lucene.Net.Store; //for Directory
 using Lucene.Net.Search; // for IndexSearcher
 using Lucene.Net.QueryParsers;  // for QueryParser
+using System.Text.RegularExpressions;
 using System.IO;
 
 namespace LuceneAdvancedSearchApplication
@@ -56,7 +57,9 @@ namespace LuceneAdvancedSearchApplication
         {
             luceneIndexDirectory = Lucene.Net.Store.FSDirectory.Open(indexPath);
             IndexWriter.MaxFieldLength mfl = new IndexWriter.MaxFieldLength(IndexWriter.DEFAULT_MAX_FIELD_LENGTH);
+          
             writer = new Lucene.Net.Index.IndexWriter(luceneIndexDirectory, analyzer, true, mfl);
+            
             writer.SetSimilarity(new NewSimilarity());
 
 
@@ -97,28 +100,46 @@ namespace LuceneAdvancedSearchApplication
                     Console.WriteLine("Adding doc " + name + " to Index");
                     StreamReader reader = new StreamReader(name);   // Create a reader
                     string text = reader.ReadToEnd();   // Read the whole text
-                    int indexT = text.IndexOf(".T");    // Get title starting index
-                    int indexA = text.IndexOf(".A");    // Get author starting index
-                    int indexB = text.IndexOf(".B");    // Get bibliography starting index
-                    string title = text.Substring(indexT + 3, ((indexA - 1 - (indexT + 3)) > 0) ? (indexA - 1 - (indexT + 3)) : 0);     // Get title string
-                    string author = text.Substring(indexA + 3, ((indexB - 1 - (indexA + 3)) > 0) ? (indexB - 1 - (indexA + 3)) : 0);    // Get author string
+                    Regex rxi = new Regex(".I ", RegexOptions.Compiled );     // Set the RE to match first sentence of abstract
+                    Regex rxa = new Regex(".A\n", RegexOptions.Compiled);
+                    Regex rxb = new Regex(".B\n", RegexOptions.Compiled);
+                    Regex rxt = new Regex(".T\n", RegexOptions.Compiled);
+                    Regex rxw = new Regex(".W\n", RegexOptions.Compiled);
+                    MatchCollection abst_i = rxi.Matches(text);
+                    MatchCollection abst_a = rxa.Matches(text);
+                    MatchCollection abst_b = rxb.Matches(text);
+                    MatchCollection abst_t = rxt.Matches(text);
+                    MatchCollection abst_w = rxw.Matches(text);
+                    if (abst_i.Count == 1 && abst_a.Count == 1 && abst_b.Count == 1 && abst_t.Count == 1 && abst_w.Count == 1)
+                    {
+                        int indexT = text.IndexOf(".T");    // Get title starting index
+                        int indexA = text.IndexOf(".A");    // Get author starting index
+                        int indexB = text.IndexOf(".B");    // Get bibliography starting index
+                        string title = text.Substring(indexT + 3, ((indexA - 1 - (indexT + 3)) > 0) ? (indexA - 1 - (indexT + 3)) : 0);     // Get title string
+                        string author = text.Substring(indexA + 3, ((indexB - 1 - (indexA + 3)) > 0) ? (indexB - 1 - (indexA + 3)) : 0);    // Get author string
 
 
-                    //This section is focused on removing the title from the abstract
-                    int startTitle = text.IndexOf(".T\n") + 2;    // Get title starting index
-                    int startAbstract = text.IndexOf(".A\n") -1 ;    // Get index before author starting  
-                    int startWords = text.IndexOf(".W\n");    // Get Words Starting index
-                    int lengthOfTitle = startAbstract - startTitle; //Calculate length of title 
-                    text = text.Remove(startWords + 2, lengthOfTitle); //Remove title from Words section.
-                    
 
-                    // Indexing by using the fields
-                    Lucene.Net.Documents.Document doc = new Document();     // Create document
-                    doc.Add(new Lucene.Net.Documents.Field(TEXT_FN, text, Field.Store.YES, Field.Index.ANALYZED_NO_NORMS, Field.TermVector.NO));
-                    doc.Add(new Lucene.Net.Documents.Field(TEXT_FN_TITLE, title, Field.Store.YES, Field.Index.ANALYZED_NO_NORMS, Field.TermVector.NO));
-                    doc.Add(new Lucene.Net.Documents.Field(TEXT_FN_AUTHOR, author, Field.Store.YES, Field.Index.ANALYZED_NO_NORMS, Field.TermVector.NO));                 
-                    writer.AddDocument(doc);    // Add document
-                    reader.Close();
+                        //This section is focused on removing the title from the abstract
+                        int startTitle = text.IndexOf(".T\n") + 2;    // Get title starting index
+                        int startAbstract = text.IndexOf(".A\n") - 1;    // Get index before author starting  
+                        int startWords = text.IndexOf(".W\n");    // Get Words Starting index
+                        int lengthOfTitle = startAbstract - startTitle; //Calculate length of title 
+                        text = text.Remove(startWords + 2, lengthOfTitle); //Remove title from Words section.
+
+
+                        // Indexing by using the fields
+                        Lucene.Net.Documents.Document doc = new Document();     // Create document
+                        doc.Add(new Lucene.Net.Documents.Field(TEXT_FN, text, Field.Store.YES, Field.Index.ANALYZED_NO_NORMS, Field.TermVector.NO));
+                        doc.Add(new Lucene.Net.Documents.Field(TEXT_FN_TITLE, title, Field.Store.YES, Field.Index.ANALYZED_NO_NORMS, Field.TermVector.NO));
+                        doc.Add(new Lucene.Net.Documents.Field(TEXT_FN_AUTHOR, author, Field.Store.YES, Field.Index.ANALYZED_NO_NORMS, Field.TermVector.NO));
+                        writer.AddDocument(doc);    // Add document
+                        reader.Close();
+                    }
+                    else
+                    {
+                        Console.WriteLine(name);
+                    }
                 }
             }
         }
