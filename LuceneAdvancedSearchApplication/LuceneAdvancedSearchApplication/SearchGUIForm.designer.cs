@@ -60,18 +60,20 @@
             // TextEnter
             // 
             this.TextEnter.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextEnter.Location = new System.Drawing.Point(157, 19);
+            this.TextEnter.Location = new System.Drawing.Point(236, 29);
+            this.TextEnter.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.TextEnter.Name = "TextEnter";
-            this.TextEnter.Size = new System.Drawing.Size(608, 22);
+            this.TextEnter.Size = new System.Drawing.Size(910, 30);
             this.TextEnter.TabIndex = 1;
             this.TextEnter.TextChanged += new System.EventHandler(this.TextEnter_TextChanged);
             // 
             // SearchBtn1
             // 
             this.SearchBtn1.Enabled = false;
-            this.SearchBtn1.Location = new System.Drawing.Point(806, 90);
+            this.SearchBtn1.Location = new System.Drawing.Point(1209, 138);
+            this.SearchBtn1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.SearchBtn1.Name = "SearchBtn1";
-            this.SearchBtn1.Size = new System.Drawing.Size(100, 78);
+            this.SearchBtn1.Size = new System.Drawing.Size(150, 120);
             this.SearchBtn1.TabIndex = 13;
             this.SearchBtn1.Text = "Search";
             this.SearchBtn1.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
@@ -80,9 +82,10 @@
             // 
             // NeedsButton
             // 
-            this.NeedsButton.Location = new System.Drawing.Point(46, 99);
+            this.NeedsButton.Location = new System.Drawing.Point(69, 152);
+            this.NeedsButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.NeedsButton.Name = "NeedsButton";
-            this.NeedsButton.Size = new System.Drawing.Size(120, 20);
+            this.NeedsButton.Size = new System.Drawing.Size(180, 31);
             this.NeedsButton.TabIndex = 14;
             this.NeedsButton.Text = "Select Cran needs";
             this.NeedsButton.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
@@ -92,17 +95,19 @@
             // NeedsLabel
             // 
             this.NeedsLabel.AutoSize = true;
-            this.NeedsLabel.Location = new System.Drawing.Point(47, 123);
+            this.NeedsLabel.Location = new System.Drawing.Point(70, 189);
+            this.NeedsLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.NeedsLabel.Name = "NeedsLabel";
-            this.NeedsLabel.Size = new System.Drawing.Size(0, 13);
+            this.NeedsLabel.Size = new System.Drawing.Size(0, 20);
             this.NeedsLabel.TabIndex = 15;
             // 
             // PreviousBtn
             // 
             this.PreviousBtn.Enabled = false;
-            this.PreviousBtn.Location = new System.Drawing.Point(392, 531);
+            this.PreviousBtn.Location = new System.Drawing.Point(588, 817);
+            this.PreviousBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.PreviousBtn.Name = "PreviousBtn";
-            this.PreviousBtn.Size = new System.Drawing.Size(75, 23);
+            this.PreviousBtn.Size = new System.Drawing.Size(112, 35);
             this.PreviousBtn.TabIndex = 18;
             this.PreviousBtn.Text = "Previous 10";
             this.PreviousBtn.UseVisualStyleBackColor = true;
@@ -111,9 +116,10 @@
             // NextBtn
             // 
             this.NextBtn.Enabled = false;
-            this.NextBtn.Location = new System.Drawing.Point(484, 531);
+            this.NextBtn.Location = new System.Drawing.Point(726, 817);
+            this.NextBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.NextBtn.Name = "NextBtn";
-            this.NextBtn.Size = new System.Drawing.Size(75, 23);
+            this.NextBtn.Size = new System.Drawing.Size(112, 35);
             this.NextBtn.TabIndex = 19;
             this.NextBtn.Text = "Next 10";
             this.NextBtn.UseVisualStyleBackColor = true;
@@ -123,9 +129,10 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(68, 22);
+            this.label1.Location = new System.Drawing.Point(102, 34);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(83, 16);
+            this.label1.Size = new System.Drawing.Size(119, 25);
             this.label1.TabIndex = 20;
             this.label1.Text = "Search for:";
             // 
@@ -133,17 +140,19 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(86, 58);
+            this.label2.Location = new System.Drawing.Point(129, 89);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(30, 16);
+            this.label2.Size = new System.Drawing.Size(43, 25);
             this.label2.TabIndex = 21;
             this.label2.Text = "OR";
             // 
             // SearchBtn2
             // 
-            this.SearchBtn2.Location = new System.Drawing.Point(806, 18);
+            this.SearchBtn2.Location = new System.Drawing.Point(1209, 28);
+            this.SearchBtn2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.SearchBtn2.Name = "SearchBtn2";
-            this.SearchBtn2.Size = new System.Drawing.Size(100, 48);
+            this.SearchBtn2.Size = new System.Drawing.Size(150, 74);
             this.SearchBtn2.TabIndex = 22;
             this.SearchBtn2.Text = "Search";
             this.SearchBtn2.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
@@ -153,9 +162,10 @@
             // SaveResult
             // 
             this.SaveResult.Enabled = false;
-            this.SaveResult.Location = new System.Drawing.Point(806, 189);
+            this.SaveResult.Location = new System.Drawing.Point(1209, 291);
+            this.SaveResult.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.SaveResult.Name = "SaveResult";
-            this.SaveResult.Size = new System.Drawing.Size(100, 20);
+            this.SaveResult.Size = new System.Drawing.Size(150, 31);
             this.SaveResult.TabIndex = 24;
             this.SaveResult.Text = "Save";
             this.SaveResult.UseVisualStyleBackColor = true;
@@ -172,10 +182,9 @@
             "023",
             "157",
             "219"});
-            this.comboBox1.Location = new System.Drawing.Point(309, 99);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.comboBox1.Location = new System.Drawing.Point(464, 152);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(80, 21);
+            this.comboBox1.Size = new System.Drawing.Size(118, 28);
             this.comboBox1.TabIndex = 25;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
@@ -183,20 +192,20 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(209, 100);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Location = new System.Drawing.Point(314, 154);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(98, 16);
+            this.label3.Size = new System.Drawing.Size(137, 25);
             this.label3.TabIndex = 26;
             this.label3.Text = "Select Need:";
             // 
             // Pagelabel
             // 
             this.Pagelabel.AutoSize = true;
-            this.Pagelabel.Location = new System.Drawing.Point(737, 541);
-            this.Pagelabel.MaximumSize = new System.Drawing.Size(130, 20);
+            this.Pagelabel.Location = new System.Drawing.Point(1106, 832);
+            this.Pagelabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.Pagelabel.MaximumSize = new System.Drawing.Size(195, 31);
             this.Pagelabel.Name = "Pagelabel";
-            this.Pagelabel.Size = new System.Drawing.Size(0, 13);
+            this.Pagelabel.Size = new System.Drawing.Size(0, 20);
             this.Pagelabel.TabIndex = 29;
             // 
             // resultListView
@@ -205,9 +214,10 @@
             this.resultListView.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.resultListView.FullRowSelect = true;
             this.resultListView.GridLines = true;
-            this.resultListView.Location = new System.Drawing.Point(12, 267);
+            this.resultListView.Location = new System.Drawing.Point(18, 411);
+            this.resultListView.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.resultListView.Name = "resultListView";
-            this.resultListView.Size = new System.Drawing.Size(939, 249);
+            this.resultListView.Size = new System.Drawing.Size(1406, 381);
             this.resultListView.TabIndex = 10;
             this.resultListView.UseCompatibleStateImageBehavior = false;
             this.resultListView.View = System.Windows.Forms.View.Details;
@@ -216,20 +226,22 @@
             // FinalQTxtbox
             // 
             this.FinalQTxtbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FinalQTxtbox.Location = new System.Drawing.Point(351, 184);
+            this.FinalQTxtbox.Location = new System.Drawing.Point(526, 283);
+            this.FinalQTxtbox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.FinalQTxtbox.Multiline = true;
             this.FinalQTxtbox.Name = "FinalQTxtbox";
             this.FinalQTxtbox.ReadOnly = true;
-            this.FinalQTxtbox.Size = new System.Drawing.Size(413, 61);
+            this.FinalQTxtbox.Size = new System.Drawing.Size(618, 92);
             this.FinalQTxtbox.TabIndex = 30;
             // 
             // FinalQLab
             // 
             this.FinalQLab.AutoSize = true;
             this.FinalQLab.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FinalQLab.Location = new System.Drawing.Point(236, 197);
+            this.FinalQLab.Location = new System.Drawing.Point(354, 303);
+            this.FinalQLab.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.FinalQLab.Name = "FinalQLab";
-            this.FinalQLab.Size = new System.Drawing.Size(98, 16);
+            this.FinalQLab.Size = new System.Drawing.Size(139, 25);
             this.FinalQLab.TabIndex = 31;
             this.FinalQLab.Text = "Final query - ";
             // 
@@ -237,27 +249,28 @@
             // 
             this.resultLab.AutoSize = true;
             this.resultLab.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.resultLab.Location = new System.Drawing.Point(46, 220);
+            this.resultLab.Location = new System.Drawing.Point(69, 338);
+            this.resultLab.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.resultLab.Name = "resultLab";
-            this.resultLab.Size = new System.Drawing.Size(0, 16);
+            this.resultLab.Size = new System.Drawing.Size(0, 25);
             this.resultLab.TabIndex = 32;
             // 
             // resultNumLab
             // 
             this.resultNumLab.AutoSize = true;
             this.resultNumLab.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.resultNumLab.Location = new System.Drawing.Point(164, 220);
+            this.resultNumLab.Location = new System.Drawing.Point(246, 338);
+            this.resultNumLab.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.resultNumLab.Name = "resultNumLab";
-            this.resultNumLab.Size = new System.Drawing.Size(0, 16);
+            this.resultNumLab.Size = new System.Drawing.Size(0, 25);
             this.resultNumLab.TabIndex = 33;
             // 
             // asIsCheckBox
             // 
             this.asIsCheckBox.AutoSize = true;
-            this.asIsCheckBox.Location = new System.Drawing.Point(446, 49);
-            this.asIsCheckBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.asIsCheckBox.Location = new System.Drawing.Point(669, 75);
             this.asIsCheckBox.Name = "asIsCheckBox";
-            this.asIsCheckBox.Size = new System.Drawing.Size(86, 17);
+            this.asIsCheckBox.Size = new System.Drawing.Size(126, 24);
             this.asIsCheckBox.TabIndex = 34;
             this.asIsCheckBox.Text = "Search As Is";
             this.asIsCheckBox.UseVisualStyleBackColor = true;
@@ -266,9 +279,10 @@
             // ConvertBtn
             // 
             this.ConvertBtn.Enabled = false;
-            this.ConvertBtn.Location = new System.Drawing.Point(806, 215);
+            this.ConvertBtn.Location = new System.Drawing.Point(1209, 331);
+            this.ConvertBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ConvertBtn.Name = "ConvertBtn";
-            this.ConvertBtn.Size = new System.Drawing.Size(100, 20);
+            this.ConvertBtn.Size = new System.Drawing.Size(150, 31);
             this.ConvertBtn.TabIndex = 35;
             this.ConvertBtn.Text = "Convert2Unix";
             this.ConvertBtn.UseVisualStyleBackColor = true;
@@ -277,10 +291,9 @@
             // QECheckbox
             // 
             this.QECheckbox.AutoSize = true;
-            this.QECheckbox.Location = new System.Drawing.Point(553, 49);
-            this.QECheckbox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.QECheckbox.Location = new System.Drawing.Point(830, 75);
             this.QECheckbox.Name = "QECheckbox";
-            this.QECheckbox.Size = new System.Drawing.Size(106, 17);
+            this.QECheckbox.Size = new System.Drawing.Size(155, 24);
             this.QECheckbox.TabIndex = 36;
             this.QECheckbox.Text = "Query Expansion";
             this.QECheckbox.UseVisualStyleBackColor = true;
@@ -288,10 +301,9 @@
             // 
             // advancedSearching
             // 
-            this.advancedSearching.Location = new System.Drawing.Point(157, 44);
-            this.advancedSearching.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.advancedSearching.Location = new System.Drawing.Point(236, 68);
             this.advancedSearching.Name = "advancedSearching";
-            this.advancedSearching.Size = new System.Drawing.Size(116, 24);
+            this.advancedSearching.Size = new System.Drawing.Size(174, 37);
             this.advancedSearching.TabIndex = 37;
             this.advancedSearching.Text = "Advanced Search";
             this.advancedSearching.UseVisualStyleBackColor = true;
@@ -300,10 +312,9 @@
             // advancedCheck
             // 
             this.advancedCheck.AutoSize = true;
-            this.advancedCheck.Location = new System.Drawing.Point(320, 49);
-            this.advancedCheck.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.advancedCheck.Location = new System.Drawing.Point(480, 75);
             this.advancedCheck.Name = "advancedCheck";
-            this.advancedCheck.Size = new System.Drawing.Size(106, 17);
+            this.advancedCheck.Size = new System.Drawing.Size(152, 24);
             this.advancedCheck.TabIndex = 38;
             this.advancedCheck.Text = "Advanced Query";
             this.advancedCheck.UseVisualStyleBackColor = true;
@@ -312,18 +323,19 @@
             // NeedsTxtbox
             // 
             this.NeedsTxtbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NeedsTxtbox.Location = new System.Drawing.Point(464, 92);
+            this.NeedsTxtbox.Location = new System.Drawing.Point(696, 142);
+            this.NeedsTxtbox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.NeedsTxtbox.Multiline = true;
             this.NeedsTxtbox.Name = "NeedsTxtbox";
             this.NeedsTxtbox.ReadOnly = true;
-            this.NeedsTxtbox.Size = new System.Drawing.Size(301, 77);
+            this.NeedsTxtbox.Size = new System.Drawing.Size(450, 116);
             this.NeedsTxtbox.TabIndex = 39;
             // 
             // SearchGUIForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(960, 573);
+            this.ClientSize = new System.Drawing.Size(1440, 882);
             this.Controls.Add(this.NeedsTxtbox);
             this.Controls.Add(this.advancedCheck);
             this.Controls.Add(this.advancedSearching);
@@ -348,6 +360,7 @@
             this.Controls.Add(this.NeedsButton);
             this.Controls.Add(this.SearchBtn1);
             this.Controls.Add(this.TextEnter);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "SearchGUIForm";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.SearchGUIForm_Load);
@@ -360,14 +373,12 @@
         private System.Windows.Forms.OpenFileDialog myNeedsDialog;
 
         private System.Windows.Forms.Label[] LabelArray;
-        private System.Windows.Forms.Button SearchBtn1;
         private System.Windows.Forms.Button NeedsButton;
         private System.Windows.Forms.Label NeedsLabel;
         private System.Windows.Forms.Button PreviousBtn;
         private System.Windows.Forms.Button NextBtn;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button SearchBtn2;
         private System.Windows.Forms.Button SaveResult;
         private System.Windows.Forms.SaveFileDialog SaveDialog;
         private System.Windows.Forms.ComboBox comboBox1;
@@ -386,6 +397,8 @@
         private System.Windows.Forms.Button advancedSearching;
         public System.Windows.Forms.CheckBox advancedCheck;
         public System.Windows.Forms.TextBox NeedsTxtbox;
+        public System.Windows.Forms.Button SearchBtn1;
+        public System.Windows.Forms.Button SearchBtn2;
     }
 }
 

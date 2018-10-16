@@ -20,7 +20,7 @@ namespace LuceneAdvancedSearchApplication
 
         string searchWords;
 
-        public string advtext;
+        public string advtext, cond_operator;
 
         List<Dictionary<string, string>> resultListDict;    // Create global result list in type of list of dictionaries
         int limit;              // Create document starting index variable
@@ -87,7 +87,7 @@ namespace LuceneAdvancedSearchApplication
             limit = 0;      // Set starting result index
 
             DateTime start = System.DateTime.Now;   // Searching time starts
-            resultListDict = Program.Search_Click(cranNeeds[comboBox1.SelectedItem.ToString()], false, QECheckbox.Checked, advancedCheck.Checked, out finalQueryTxt);       // Search Cran needs texts
+            resultListDict = Program.Search_Click(cranNeeds[comboBox1.SelectedItem.ToString()], false, QECheckbox.Checked, advancedCheck.Checked, cond_operator, out finalQueryTxt);       // Search Cran needs texts
             DateTime end = System.DateTime.Now;   // Searching time starts
             MessageBox.Show("The time for searching text was " + (end - start).TotalMilliseconds +" milliseconds", "Reporting Searching Time", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -122,7 +122,7 @@ namespace LuceneAdvancedSearchApplication
             {
                 List<Dictionary<string, string>> tempListDict = new List<Dictionary<string, string>>();            // Create temporary list of dictionaries
                 DateTime start = System.DateTime.Now;   // Searching time starts
-                tempListDict = Program.Search_Click(TextEnter.Text, asIsCheckBox.Checked, QECheckbox.Checked, advancedCheck.Checked, out finalQueryTxt);     // Search user input texts
+                tempListDict = Program.Search_Click(TextEnter.Text, asIsCheckBox.Checked, QECheckbox.Checked, advancedCheck.Checked, cond_operator, out finalQueryTxt);     // Search user input texts
                 DateTime end = System.DateTime.Now;   // Searching time starts
                 
                 if (tempListDict.Count != 0)
@@ -238,9 +238,12 @@ namespace LuceneAdvancedSearchApplication
         internal void populate()
         {
             TextEnter.Text = advtext;
+            SearchBtn2.Enabled = true;
             advancedCheck.Checked = true;
             advancedCheck.Visible = true;
+            advancedCheck.Enabled = false;
             SearchBtn2.PerformClick();
+            SearchBtn2.Enabled = false;
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)

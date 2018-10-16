@@ -78,7 +78,7 @@
             this.advGotoSerchbut.Name = "advGotoSerchbut";
             this.advGotoSerchbut.Size = new System.Drawing.Size(159, 62);
             this.advGotoSerchbut.TabIndex = 6;
-            this.advGotoSerchbut.Text = "GO TO SEARCH";
+            this.advGotoSerchbut.Text = "SEARCH";
             this.advGotoSerchbut.UseVisualStyleBackColor = true;
             this.advGotoSerchbut.Click += new System.EventHandler(this.advGotoSerchbut_Click);
             // 
@@ -118,6 +118,8 @@
             this.Controls.Add(this.titleBox);
             this.Name = "AdvancedSearchGUI";
             this.Text = "AdvancedSearchGUI";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AdvancedSearchGUI_FormClosing);
+            this.Load += new System.EventHandler(this.AdvancedSearchGUI_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

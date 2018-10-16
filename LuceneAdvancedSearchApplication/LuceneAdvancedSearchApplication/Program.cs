@@ -64,7 +64,7 @@ namespace LuceneAdvancedSearchApplication
             
         }
 
-        public static List<Dictionary<string, string>> Search_Click(string querytext, bool asIsCheckBox, bool QECheckbox, bool advCheckBox, out string finalQueryTxt)
+        public static List<Dictionary<string, string>> Search_Click(string querytext, bool asIsCheckBox, bool QECheckbox, bool advCheckBox, string cond, out string finalQueryTxt)
         {
             List<List<string>> tempList = new List<List<string>>();     // Create a list of lists for receiving output from SearchText method
             List<Dictionary<string, string>> resultListDict = new List<Dictionary<string, string>>();   // Create a list of dictionaries for outputting to GUI
@@ -74,10 +74,41 @@ namespace LuceneAdvancedSearchApplication
 
             if (QECheckbox)
             {
-                querytext = myLuceneApp.PreProcess(myStemmer, querytext);       // Pre-process query texts if checked
+                if(advCheckBox)
+                {
+                    int indexT = querytext.IndexOf("Title:");  // Get again the index just in case it has been changed
+                    int indexA = querytext.IndexOf("Author:");  // Get again the index just in case it has been changed
+                    if (indexT != -1 && indexA != -1)
+                    {
+                        string title_query = querytext.Substring(indexT + 6, ((indexA - 1 - (indexT + 6)) > 0) ? (indexA - 1 - (indexT + 6)) : 0);     // Get title string
+                        string author_query = querytext.Substring(indexA + 7, ((querytext.Length - (indexA + 7)) > 0) ? (querytext.Length - (indexA + 7)) : 0);    // Get author string
+                        string querytitle = myLuceneApp.PreProcess(myStemmer, title_query);       // Pre-process query texts if checked
+                        string queryauthor = myLuceneApp.PreProcess(myStemmer, author_query);       // Pre-process query texts if checked
+                        querytext = "Title:" + querytitle + " Author:" + queryauthor;
+                    }//When both the title and author are queried
+                    if (indexT == -1)
+                    {
+                        string author_query = querytext.Substring(indexA + 7, ((querytext.Length - (indexA + 7)) > 0) ? (querytext.Length - (indexA + 7)) : 0);    // Get author string
+                        string queryauthor = myLuceneApp.PreProcess(myStemmer, author_query);       // Pre-process query texts if checked
+                        querytext = "Author:" + queryauthor;
+                    }//When only the Author is queried
+
+                    if (indexA == -1)
+                    {
+                        string title_query = querytext.Substring(indexT + 6, ((querytext.Length - (indexT + 6)) > 0) ? (querytext.Length - (indexT + 6)) : 0);     // Get title string
+                        string querytitle = myLuceneApp.PreProcess(myStemmer, title_query);       // Pre-process query texts if checked
+                        querytext = "Title:" + querytitle;
+                    }//When only the title is queried               
+                }
+                else
+                {
+                    querytext = querytext.Replace("Title:", "").Replace("Author:", "");
+                    querytext = myLuceneApp.PreProcess(myStemmer, querytext);       // Pre-process query texts if checked
+                }
+                
             }
 
-            tempList = myLuceneApp.SearchText(querytext, asIsCheckBox, advCheckBox, out finalQueryTxt);     // Get search result list of lists
+            tempList = myLuceneApp.SearchText(querytext, asIsCheckBox, QECheckbox, advCheckBox, cond, out finalQueryTxt);     // Get search result list of lists
             myLuceneApp.CleanUpSearcher();        // Clean searcher
 
             int rank = 0;
@@ -212,6 +243,37 @@ namespace LuceneAdvancedSearchApplication
                 Console.WriteLine(e.Message);
             }
             return dic;
+        }
+
+        public static string Query_Preprocessing_advanced_Search(string querytext)
+        {
+            string finalAdvQuery;
+            int indexT = querytext.IndexOf("Title:");  // Get again the index just in case it has been changed
+            int indexA = querytext.IndexOf("Author:");  // Get again the index just in case it has been changed
+            if (indexT != -1 && indexA != -1)
+            {
+                string title_query = querytext.Substring(indexT + 6, ((indexA - 1 - (indexT + 6)) > 0) ? (indexA - 1 - (indexT + 6)) : 0);     // Get title string
+                string author_query = querytext.Substring(indexA + 7, ((querytext.Length - (indexA + 7)) > 0) ? (querytext.Length - (indexA + 7)) : 0);    // Get author string
+                title_query = title_query.Replace(" ", " Title:");
+                author_query = author_query.Replace(" ", " Author:");
+                finalAdvQuery = "Title:" + title_query + " Author:" + author_query;
+            }//When both the title and author are queried
+            else
+            {
+                if (indexT == -1)
+                {
+                    string author_query = querytext.Substring(indexA + 7, ((querytext.Length - (indexA + 7)) > 0) ? (querytext.Length - (indexA + 7)) : 0);    // Get author string
+                    author_query = author_query.Replace(" ", " Author:");
+                    finalAdvQuery = "Author:" + author_query;
+                }//When only the Author is queried
+                else
+                {
+                    string title_query = querytext.Substring(indexT + 6, ((querytext.Length - (indexT + 6)) > 0) ? (querytext.Length - (indexT + 6)) : 0);     // Get title string
+                    title_query = title_query.Replace(" ", " Title:");
+                    finalAdvQuery = "Title:" + title_query;
+                }
+            }
+            return finalAdvQuery;
         }
     }
 }

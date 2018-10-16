@@ -18,6 +18,7 @@ namespace LuceneAdvancedSearchApplication
         public AdvancedSearchGUI(SearchGUIForm incomingForm)
         {
             originalForm = incomingForm;
+            originalForm.SearchBtn2.Enabled = false;
             InitializeComponent();
         }
 
@@ -37,31 +38,41 @@ namespace LuceneAdvancedSearchApplication
             {
                 if (author.Length > 0 && title.Length > 0)
                 {
-                    textToSearch = "Title:\"" + title + "\" " + " " + gateway + " " + "Author:\"" + author + "\"";                   
+                    textToSearch = "Title:" + title + " " + "Author:" + author;                   
                 }
                 else
                 {
                     if (author.Length > 0)
                     {
-                        textToSearch = "Author\"" + author + "\""; ;
+                        textToSearch = "Author:" + author ;
                     }
                     if (title.Length > 0)
                     {
-                        textToSearch = "Title:\"" + title + "\"";
+                        textToSearch = "Title:" + title;
                     }
                 }
                 
             }
-                              
             originalForm.advtext = textToSearch;
+            originalForm.cond_operator = gateway;
             originalForm.populate();
-            this.Close();
+            //this.Close();
 
         }
 
         private void label3_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void AdvancedSearchGUI_Load(object sender, EventArgs e)
+        {
+        }
+
+        private void AdvancedSearchGUI_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            originalForm.SearchBtn2.Enabled = true;
+            originalForm.advancedCheck.Checked = false;
         }
     }
 }
