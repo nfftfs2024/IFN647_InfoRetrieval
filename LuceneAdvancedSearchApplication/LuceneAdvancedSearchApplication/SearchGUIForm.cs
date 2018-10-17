@@ -61,6 +61,7 @@ namespace LuceneAdvancedSearchApplication
             myNeedsDialog.ShowDialog();
             NeedsLabel.Text = myNeedsDialog.FileName;
             needsPath = myNeedsDialog.FileName;
+            comboBox1.Items.Clear();
             cranNeeds = Program.ReadCranNeeds(needsPath);   // Put the cran_information_need into a dictionary
             foreach(string key in cranNeeds.Keys)
             {
