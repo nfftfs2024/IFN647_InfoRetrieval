@@ -157,7 +157,8 @@ namespace LuceneAdvancedSearchApplication
             bool control = true;
             foreach (string key in cNeeds.Keys)
             {
-                Tuple<List<float>, List<string>,int> result = myLuceneApp.SearchText_baseline(cNeeds[key]);
+                string querytext = myLuceneApp.PreProcess(myStemmer, cNeeds[key]);
+                Tuple<List<float>, List<string>,int> result = myLuceneApp.SearchText_baseline(querytext);
                 myLuceneApp.CleanUpSearcher();        // Clean searcher
                 valueListBase = result.Item1;    // Get scores ranked documents ranked
                 docsIdsListBase = result.Item2;     //Get IDs ranked documents
@@ -262,35 +263,32 @@ namespace LuceneAdvancedSearchApplication
             return dic;
         }
 
-        public static string Query_Preprocessing_advanced_Search(string querytext)
+
+        public static Tuple<string, string> Query_Simple_Preprocessing_advanced_Search(string querytext)
         {
-            string finalAdvQuery;
+            string title_query = "";
+            string author_query = "";
             int indexT = querytext.IndexOf("Title:");  // Get again the index just in case it has been changed
             int indexA = querytext.IndexOf("Author:");  // Get again the index just in case it has been changed
             if (indexT != -1 && indexA != -1)
             {
-                string title_query = querytext.Substring(indexT + 6, ((indexA - 1 - (indexT + 6)) > 0) ? (indexA - 1 - (indexT + 6)) : 0);     // Get title string
-                string author_query = querytext.Substring(indexA + 7, ((querytext.Length - (indexA + 7)) > 0) ? (querytext.Length - (indexA + 7)) : 0);    // Get author string
-                title_query = title_query.Replace(" ", " Title:");
-                author_query = author_query.Replace(" ", " Author:");
-                finalAdvQuery = "Title:" + title_query + " Author:" + author_query;
+                title_query = querytext.Substring(indexT + 6, ((indexA - 1 - (indexT + 6)) > 0) ? (indexA - 1 - (indexT + 6)) : 0);     // Get title string
+                author_query = querytext.Substring(indexA + 7, ((querytext.Length - (indexA + 7)) > 0) ? (querytext.Length - (indexA + 7)) : 0);    // Get author string
             }//When both the title and author are queried
             else
             {
                 if (indexT == -1)
                 {
-                    string author_query = querytext.Substring(indexA + 7, ((querytext.Length - (indexA + 7)) > 0) ? (querytext.Length - (indexA + 7)) : 0);    // Get author string
-                    author_query = author_query.Replace(" ", " Author:");
-                    finalAdvQuery = "Author:" + author_query;
+                    author_query = querytext.Substring(indexA + 7, ((querytext.Length - (indexA + 7)) > 0) ? (querytext.Length - (indexA + 7)) : 0);    // Get author string
                 }//When only the Author is queried
                 else
                 {
-                    string title_query = querytext.Substring(indexT + 6, ((querytext.Length - (indexT + 6)) > 0) ? (querytext.Length - (indexT + 6)) : 0);     // Get title string
-                    title_query = title_query.Replace(" ", " Title:");
-                    finalAdvQuery = "Title:" + title_query;
+                    title_query = querytext.Substring(indexT + 6, ((querytext.Length - (indexT + 6)) > 0) ? (querytext.Length - (indexT + 6)) : 0);     // Get title string
                 }
             }
+            var finalAdvQuery = Tuple.Create(title_query, author_query);
             return finalAdvQuery;
         }
+
     }
 }
