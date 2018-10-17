@@ -176,12 +176,6 @@
             this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.Enabled = false;
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "001",
-            "002",
-            "023",
-            "157",
-            "219"});
             this.comboBox1.Location = new System.Drawing.Point(464, 152);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(118, 28);
@@ -381,7 +375,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button SaveResult;
         private System.Windows.Forms.SaveFileDialog SaveDialog;
-        private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.FontDialog fontDialog1;
         private System.Windows.Forms.Label Pagelabel;
@@ -399,6 +392,7 @@
         public System.Windows.Forms.TextBox NeedsTxtbox;
         public System.Windows.Forms.Button SearchBtn1;
         public System.Windows.Forms.Button SearchBtn2;
+        public System.Windows.Forms.ComboBox comboBox1;
     }
 }
 

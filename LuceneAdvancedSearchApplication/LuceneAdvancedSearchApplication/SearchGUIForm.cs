@@ -20,7 +20,7 @@ namespace LuceneAdvancedSearchApplication
 
         string searchWords;
 
-        public string advtext, cond_operator;
+        public string advtext, cond_operator; //Variables to be accesed by the advanced search form
 
         List<Dictionary<string, string>> resultListDict;    // Create global result list in type of list of dictionaries
         int limit;              // Create document starting index variable
@@ -62,6 +62,11 @@ namespace LuceneAdvancedSearchApplication
             NeedsLabel.Text = myNeedsDialog.FileName;
             needsPath = myNeedsDialog.FileName;
             cranNeeds = Program.ReadCranNeeds(needsPath);   // Put the cran_information_need into a dictionary
+            foreach(string key in cranNeeds.Keys)
+            {
+                comboBox1.Items.Add(key);
+            }
+            
             SearchBtn1.Enabled = true;      // Enable search button 1
             comboBox1.Enabled = true;
         }
@@ -248,6 +253,7 @@ namespace LuceneAdvancedSearchApplication
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
+
             NeedsTxtbox.Text = cranNeeds[comboBox1.SelectedItem.ToString()];
         }
 

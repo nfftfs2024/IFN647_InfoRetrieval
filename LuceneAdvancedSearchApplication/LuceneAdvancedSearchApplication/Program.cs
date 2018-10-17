@@ -226,15 +226,32 @@ namespace LuceneAdvancedSearchApplication
             {
                 using (StreamReader reader = new StreamReader(path))
                 {
+                    //Verification of structure in Cran_needs document
                     string text = reader.ReadToEnd();   // Read the whole text file
-                    string[] sub = text.Split(new string[] { ".I " }, StringSplitOptions.RemoveEmptyEntries);   // Split by ".I "
 
-                    foreach (string need in sub)       // Loop through each query
+                    Regex rxi = new Regex(".I ", RegexOptions.Compiled);     // Set the RE to match first sentence of abstract
+                    Regex rxd = new Regex(".D\n", RegexOptions.Compiled);
+                    MatchCollection abst_i = rxi.Matches(text);
+                    MatchCollection abst_d = rxd.Matches(text);
+
+                    if (abst_i.Count > 0 && abst_d.Count > 0 && abst_i.Count == abst_d.Count)
                     {
-                        int indexD = text.IndexOf(".D\n");   // Get Description starting index
-                        dic.Add(need.Substring(0, indexD - 4), need.Substring(indexD).Replace("\n", " ").TrimEnd('\n'));     // Add ID and Description into dictionary as pairs
+                        string[] sub = text.Split(new string[] { ".I " }, StringSplitOptions.RemoveEmptyEntries);   // Split by ".I "
+                        foreach (string need in sub)       // Loop through each query
+                        {
+                            int indexD = text.IndexOf(".D\n");   // Get Description starting index
+                            dic.Add(need.Substring(0, indexD - 4), need.Substring(indexD).Replace("\n", " ").TrimEnd('\n'));     // Add ID and Description into dictionary as pairs
+                        }
+                        reader.Close();
                     }
-                    reader.Close();
+                    if (abst_i.Count == 0 || abst_d.Count == 0)
+                    {
+                        MessageBox.Show("The file used does not contain the correct indicators .I and .D to identify the queries\nPlease Select a different file", "Error!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    if (abst_i.Count != abst_d.Count)
+                    {
+                        MessageBox.Show("The file used does not have the same number of ID queries than texts to be searched\nPlease Select a different file", "Error!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }                                 
                 }
             }
             catch (Exception e)

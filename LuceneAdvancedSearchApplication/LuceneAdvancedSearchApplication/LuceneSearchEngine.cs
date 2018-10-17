@@ -142,8 +142,6 @@ namespace LuceneAdvancedSearchApplication
                         string title = text.Substring(indexT + 3, ((indexA - 1 - (indexT + 3)) > 0) ? (indexA - 1 - (indexT + 3)) : 0);     // Get title string
                         string author = text.Substring(indexA + 3, ((indexB - 1 - (indexA + 3)) > 0) ? (indexB - 1 - (indexA + 3)) : 0);    // Get author string
 
-
-
                         //This section is focused on removing the title from the abstract
                         int startTitle = text.IndexOf(".T\n") + 2;    // Get title starting index
                         int startAbstract = text.IndexOf(".A\n") - 1;    // Get index before author starting  
@@ -153,9 +151,9 @@ namespace LuceneAdvancedSearchApplication
 
                         // Indexing by using the fields
                         Lucene.Net.Documents.Document doc = new Document();     // Create document
-                        Lucene.Net.Documents.Field titleField = new Lucene.Net.Documents.Field(TEXT_FN_TITLE, title, Field.Store.YES, Field.Index.ANALYZED, Field.TermVector.WITH_POSITIONS_OFFSETS);
-                        Lucene.Net.Documents.Field authorField = new Lucene.Net.Documents.Field(TEXT_FN_AUTHOR, author, Field.Store.YES, Field.Index.ANALYZED, Field.TermVector.WITH_POSITIONS_OFFSETS);
-                        doc.Add(new Lucene.Net.Documents.Field(TEXT_FN, text, Field.Store.YES, Field.Index.ANALYZED, Field.TermVector.WITH_POSITIONS_OFFSETS));
+                        Lucene.Net.Documents.Field titleField = new Lucene.Net.Documents.Field(TEXT_FN_TITLE, title, Field.Store.YES, Field.Index.ANALYZED, Field.TermVector.WITH_POSITIONS_OFFSETS);//Indexing field title
+                        Lucene.Net.Documents.Field authorField = new Lucene.Net.Documents.Field(TEXT_FN_AUTHOR, author, Field.Store.YES, Field.Index.ANALYZED, Field.TermVector.WITH_POSITIONS_OFFSETS);//Indexing field author
+                        doc.Add(new Lucene.Net.Documents.Field(TEXT_FN, text, Field.Store.YES, Field.Index.ANALYZED, Field.TermVector.WITH_POSITIONS_OFFSETS));//indexing field text
                         authorField.Boost = 2;
                         titleField.Boost = 5;
                         doc.Add(titleField);
