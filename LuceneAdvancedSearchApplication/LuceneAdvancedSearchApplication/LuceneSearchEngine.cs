@@ -279,34 +279,6 @@ namespace LuceneAdvancedSearchApplication
                     if (asIsCheckBox == false && advCheckBox == true && qeCheckBox == false)
                     {
                         Console.WriteLine("Opcion 3");
-                        //Option 1 the query complete and the parser adding the boosting 
-                        /*
-                        if (cond == "AND")
-                        {
-                            multiParser.DefaultOperator = QueryParser.AND_OPERATOR;
-                        }
-                        else
-                        {
-                            multiParser.DefaultOperator = QueryParser.OR_OPERATOR;
-                        }
-                        querytext = querytext.Replace("Title:","").Replace("Author:","");
-                        Query query = multiParser.Parse(querytext);
-                        finalQueryTxt = query.ToString();           // Assign processed query text to final query text variable
-                        TopDocs results = searcher.Search(query, 10000);                  // Search the query
-                        System.Console.WriteLine("Number of results is " + results.TotalHits);
-                        if (results.TotalHits != 0)     // Check if there are found results
-                        {
-                            for (int i = 0; i < results.TotalHits; i++)    // Loop through the top 10 ranked documents
-                            {
-                                ScoreDoc scoreDoc = results.ScoreDocs[i];   // Get the ranked document
-                                Lucene.Net.Documents.Document doc = searcher.Doc(scoreDoc.Doc);     // Get document contents
-                                string text = doc.Get(TEXT_FN).ToString();  // Get document contents by fields  
-                                string score = scoreDoc.Score.ToString();   // Get document score
-                                resultListDict.Add(new List<string> { text, score });     // Add contents and score into the created list of lists
-                             }
-                        }
-                        */
-
                         //Option 2 sending i some way author and title separate.
                         if (cond == "AND")
                         {
@@ -369,35 +341,7 @@ namespace LuceneAdvancedSearchApplication
                     {
                         if (asIsCheckBox == false && advCheckBox == true && qeCheckBox == true)
                         {
-                            Console.WriteLine("Opcion 4");
-                            //Option 1 the query complete and the parser adding the boosting 
-                            /*
-                            if (cond == "AND")
-                            {
-                                multiParser.DefaultOperator = QueryParser.AND_OPERATOR;
-                            }
-                            else
-                            {
-                                multiParser.DefaultOperator = QueryParser.OR_OPERATOR;
-                            }
-                            querytext = querytext.Replace("Title:","").Replace("Author:","");
-                            Query query = multiParser.Parse(querytext);
-                            finalQueryTxt = query.ToString();           // Assign processed query text to final query text variable
-                            TopDocs results = searcher.Search(query, 10000);                  // Search the query
-                            System.Console.WriteLine("Number of results is " + results.TotalHits);
-                            if (results.TotalHits != 0)     // Check if there are found results
-                            {
-                                for (int i = 0; i < results.TotalHits; i++)    // Loop through the top 10 ranked documents
-                                {
-                                    ScoreDoc scoreDoc = results.ScoreDocs[i];   // Get the ranked document
-                                    Lucene.Net.Documents.Document doc = searcher.Doc(scoreDoc.Doc);     // Get document contents
-                                    string text = doc.Get(TEXT_FN).ToString();  // Get document contents by fields  
-                                    string score = scoreDoc.Score.ToString();   // Get document score
-                                    resultListDict.Add(new List<string> { text, score });     // Add contents and score into the created list of lists
-                                 }
-                            }
-                            */
-
+                            Console.WriteLine("Opcion 4");                            
                             //Option 2 sending i some way author and title separate.
                             if (cond == "AND")
                             {

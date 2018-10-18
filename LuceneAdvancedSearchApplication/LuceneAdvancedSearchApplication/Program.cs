@@ -157,8 +157,9 @@ namespace LuceneAdvancedSearchApplication
             bool control = true;
             foreach (string key in cNeeds.Keys)
             {
-                string querytext = myLuceneApp.PreProcess(myStemmer, cNeeds[key]);
-                Tuple<List<float>, List<string>,int> result = myLuceneApp.SearchText_baseline(querytext);
+                //string querytext = myLuceneApp.PreProcess(myStemmer, cNeeds[key]);
+                //Tuple<List<float>, List<string>,int> result = myLuceneApp.SearchText_baseline(querytext);
+                Tuple<List<float>, List<string>, int> result = myLuceneApp.SearchText_baseline(cNeeds[key]);
                 myLuceneApp.CleanUpSearcher();        // Clean searcher
                 valueListBase = result.Item1;    // Get scores ranked documents ranked
                 docsIdsListBase = result.Item2;     //Get IDs ranked documents
