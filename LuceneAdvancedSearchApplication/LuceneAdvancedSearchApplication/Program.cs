@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using Syn.WordNet;
+using Microsoft.Azure.CognitiveServices.Language.SpellCheck;
 
 namespace LuceneAdvancedSearchApplication
 {
@@ -71,6 +72,8 @@ namespace LuceneAdvancedSearchApplication
 
 
             myLuceneApp.CreateSearcher();           // Create searcher
+
+            querytext = SpellCheck.Query_SpellCheck(querytext);
 
             if (QECheckbox)
             {
@@ -264,7 +267,6 @@ namespace LuceneAdvancedSearchApplication
             return dic;
         }
 
-
         public static Tuple<string, string> Query_Simple_Preprocessing_advanced_Search(string querytext)
         {
             string title_query = "";
@@ -293,6 +295,7 @@ namespace LuceneAdvancedSearchApplication
             var finalAdvQuery = Tuple.Create(title_query, author_query);
             return finalAdvQuery;
         }
+
 
     }
 }

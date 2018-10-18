@@ -196,3 +196,15 @@ D:\IR\ifn647-project\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplica
 D:\IR\ifn647-project\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\bin\Debug\stanford-postagger-3.9.1.dll
 D:\IR\ifn647-project\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\obj\Debug\LuceneAdvancedSearchApplication.AdvancedSearchGUI.resources
 C:\Users\n9802614\Documents\GitHub\ifn647-project\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\obj\Debug\LuceneAdvancedSearchApplication.AdvancedSearchGUI.resources
+D:\IR\ifn647-project\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\bin\Debug\Microsoft.Azure.CognitiveServices.Language.SpellCheck.dll
+D:\IR\ifn647-project\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\bin\Debug\Microsoft.Rest.ClientRuntime.Azure.dll
+D:\IR\ifn647-project\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\bin\Debug\Microsoft.Rest.ClientRuntime.dll
+D:\IR\ifn647-project\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\bin\Debug\Newtonsoft.Json.dll
+D:\IR\ifn647-project\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\bin\Debug\System.Net.Http.dll
+D:\IR\ifn647-project\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\bin\Debug\System.Security.Cryptography.Algorithms.dll
+D:\IR\ifn647-project\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\bin\Debug\System.Security.Cryptography.Encoding.dll
+D:\IR\ifn647-project\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\bin\Debug\System.Security.Cryptography.Primitives.dll
+D:\IR\ifn647-project\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\bin\Debug\System.Security.Cryptography.X509Certificates.dll
+D:\IR\ifn647-project\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\bin\Debug\Microsoft.Rest.ClientRuntime.xml
+D:\IR\ifn647-project\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\bin\Debug\Microsoft.Rest.ClientRuntime.Azure.xml
+D:\IR\ifn647-project\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\bin\Debug\Newtonsoft.Json.xml
