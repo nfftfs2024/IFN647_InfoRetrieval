@@ -47,9 +47,9 @@ namespace LuceneAdvancedSearchApplication
         private void SetSourceDireBtn_Click(object sender, EventArgs e)
         {
             bool chk = true;
-            while (chk)
+            if(SourceDirBrowserDialog.ShowDialog()==DialogResult.OK)
             {
-                SourceDirBrowserDialog.ShowDialog();
+                //SourceDirBrowserDialog.ShowDialog();
                 sourcePath = SourceDirBrowserDialog.SelectedPath;
                 chk = CheckSourceDirectory(sourcePath);
             }
@@ -58,9 +58,12 @@ namespace LuceneAdvancedSearchApplication
 
         private void SetIndexDirBtn_Click(object sender, EventArgs e)
         {
-            IndexDirBrowserDialog.ShowDialog();
-            IndTxtBox.Text = IndexDirBrowserDialog.SelectedPath;
-            indexPath = IndexDirBrowserDialog.SelectedPath;
+            if (IndexDirBrowserDialog.ShowDialog() == DialogResult.OK)
+            {
+                //IndexDirBrowserDialog.ShowDialog();
+                IndTxtBox.Text = IndexDirBrowserDialog.SelectedPath;
+                indexPath = IndexDirBrowserDialog.SelectedPath;
+            }
         }
 
         public bool CheckSourceDirectory(string sourcePath)
