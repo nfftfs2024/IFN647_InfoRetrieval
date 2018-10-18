@@ -24,7 +24,6 @@ namespace LuceneAdvancedSearchApplication
         IndexSearcher searcher;                             // Create searcher object
         IndexSearcher searcher2;                            // Create a searcher for the Baseline.
         QueryParser parser;                                 // Create parser object
-        MultiFieldQueryParser multiParser;
         NewSimilarity newSimilarity;
         List<String> exFile= new List<string>();
 
@@ -37,9 +36,7 @@ namespace LuceneAdvancedSearchApplication
         const string TEXT_FN = "Text";                                              // Lucene field "Text"
         const string TEXT_FN_TITLE = "Title";
         const string TEXT_FN_AUTHOR = "Author";
-        const float a = 6, b = 3;
-
-        IDictionary<string, float> boosts = new Dictionary<string, float>{{ TEXT_FN_TITLE, a},{TEXT_FN_AUTHOR, b}};
+        const int max_hits = 2000;
 
         public LuceneSearcheEngine()
         {
@@ -48,7 +45,6 @@ namespace LuceneAdvancedSearchApplication
             //analyzer = new Lucene.Net.Analysis.SimpleAnalyzer();     // Using simple analyzer for baseline system 
             analyzer = new Lucene.Net.Analysis.Standard.StandardAnalyzer(VERSION, fileStopWords); //Using Standard Analyzer to apply steming and removing of stop words.
             parser = new QueryParser(Lucene.Net.Util.Version.LUCENE_30, TEXT_FN, analyzer);
-            multiParser = new MultiFieldQueryParser(VERSION, new[] {TEXT_FN_TITLE,TEXT_FN_AUTHOR}, analyzer, boosts);
             newSimilarity = new NewSimilarity();
             
             
@@ -207,61 +203,81 @@ namespace LuceneAdvancedSearchApplication
             if (asIsCheckBox == true && advCheckBox == true && qeCheckBox == false)
             {
                 Console.WriteLine("Opcion 1");
+                //Organizing the query to be used by the MultiFieldQueryParser.Parse
+                Tuple<string, string> result_preprocessing = Program.Query_Simple_Preprocessing_advanced_Search(querytext);
+                string querytext_title = result_preprocessing.Item1;
+                string querytext_author = result_preprocessing.Item2;
+                querytext_title = "\"" + querytext_title + "\""; //Adding the as-is structure                  
+                querytext_author = "\"" + querytext_author + "\"";//Adding the as-is structure 
+
+                //Option 2 sending the title and author separated and defining each field to be searched.
                 if (cond == "AND")
-                {
-                    multiParser.DefaultOperator = QueryParser.AND_OPERATOR;
+                {                   
+                    //Defining the elements for the MultiFieldQueryParser.Parse
+                    Occur[] flags = { Occur.MUST, Occur.MUST };
+                    String[] queries = new String[] { querytext_title, querytext_author };
+                    String[] fields = { TEXT_FN_TITLE, TEXT_FN_AUTHOR };
+
+                    //Applying MultiFieldQueryParser.Parse
+                    Query query = MultiFieldQueryParser.Parse(VERSION, queries, fields, flags, analyzer);   // Parse the query text by parser and create the query object
+                    finalQueryTxt = query.ToString();                                                       // Assign processed query text to final query text variable
+                    TopDocs results = searcher.Search(query, max_hits);                                     // Search the query
+                    System.Console.WriteLine("Number of results is " + results.TotalHits);
+
+                    //Retrieving the Results of the searching.
+                    if (results.TotalHits != 0)                                                             // Check if there are found results
+                    {
+                        for (int i = 0; i < results.TotalHits; i++)    // Loop through the top 10 ranked documents
+                        {
+                            ScoreDoc scoreDoc = results.ScoreDocs[i];   // Get the ranked document
+                            Lucene.Net.Documents.Document doc = searcher.Doc(scoreDoc.Doc);     // Get document contents
+                            string text = doc.Get(TEXT_FN).ToString();  // Get document contents by fields  
+                            string score = scoreDoc.Score.ToString();   // Get document score
+                            resultListDict.Add(new List<string> { text, score });     // Add contents and score into the created list of lists
+                        }
+                    }
                 }
                 else
                 {
-                    multiParser.DefaultOperator = QueryParser.OR_OPERATOR;
-                }
+                    //Defining the elements for the MultiFieldQueryParser.Parse
+                    Occur[] flags = { Occur.SHOULD, Occur.SHOULD };
+                    String[] queries = new String[] { querytext_title, querytext_author };
+                    String[] fields = { TEXT_FN_TITLE, TEXT_FN_AUTHOR };
 
-                int indexT = querytext.IndexOf("Title:");  // Get again the index just in case it has been changed
-                int indexA = querytext.IndexOf("Author:");  // Get again the index just in case it has been changed
-                if(indexT!= -1 && indexA != -1)
-                {
-                    string title_query = querytext.Substring(indexT + 6, ((indexA - 1 - (indexT + 6)) > 0) ? (indexA - 1 - (indexT + 6)) : 0);     // Get title string
-                    string author_query = querytext.Substring(indexA + 7, ((querytext.Length - (indexA + 7)) > 0) ? (querytext.Length - (indexA + 7)) : 0);    // Get author string
-                    querytext = "Title:\"" + title_query + "\"" + " Author:\"" + author_query + "\"";
-                }//When both the title and author are queried
-                if (indexT == -1)
-                {
-                    string author_query = querytext.Substring(indexA + 7, ((querytext.Length - (indexA + 7)) > 0) ? (querytext.Length - (indexA + 7)) : 0);    // Get author string
-                    querytext = "Author:\"" + author_query + "\"";
-                }//When only the Author is queried
+                    //Applying MultiFieldQueryParser.Parse
+                    Query query = MultiFieldQueryParser.Parse(VERSION, queries, fields, flags, analyzer);// Parse the query text by parser and create the query object
+                    finalQueryTxt = query.ToString();           // Assign processed query text to final query text variable
+                    TopDocs results = searcher.Search(query, max_hits);                  // Search the query
+                    System.Console.WriteLine("Number of results is " + results.TotalHits);
 
-                if (indexA == -1)
-                {
-                    string title_query = querytext.Substring(indexT + 6, ((querytext.Length - (indexT + 6)) > 0) ? (querytext.Length - (indexT + 6)) : 0);     // Get title string
-                    querytext = "Title:\"" + title_query + "\"";
-                }//When only the title is queried
-
-                Query query = multiParser.Parse(querytext);      // Parse the query text by parser and create the query object
-                finalQueryTxt = query.ToString();           // Assign processed query text to final query text variable
-                TopDocs results = searcher.Search(query, 10000);                  // Search the query
-                System.Console.WriteLine("Number of results is " + results.TotalHits);
-                if (results.TotalHits != 0)     // Check if there are found results
-                {
-                    for (int i = 0; i < results.TotalHits; i++)    // Loop through the top 10 ranked documents
+                    //Retrieving the Results of the searching.
+                    if (results.TotalHits != 0)     // Check if there are found results
                     {
-                        ScoreDoc scoreDoc = results.ScoreDocs[i];   // Get the ranked document
-                        Lucene.Net.Documents.Document doc = searcher.Doc(scoreDoc.Doc);     // Get document contents
-                        string text = doc.Get(TEXT_FN).ToString();  // Get document contents by fields    
-                        string score = scoreDoc.Score.ToString();   // Get document score
-                        resultListDict.Add(new List<string> { text, score });     // Add contents and score into the created list of lists
+                        for (int i = 0; i < results.TotalHits; i++)    // Loop through the top 10 ranked documents
+                        {
+                            ScoreDoc scoreDoc = results.ScoreDocs[i];   // Get the ranked document
+                            Lucene.Net.Documents.Document doc = searcher.Doc(scoreDoc.Doc);     // Get document contents
+                            string text = doc.Get(TEXT_FN).ToString();  // Get document contents by fields  
+                            string score = scoreDoc.Score.ToString();   // Get document score
+                            resultListDict.Add(new List<string> { text, score });     // Add contents and score into the created list of lists
+                        }
                     }
-                }
+                }              
             }//Searching when AS-IS and advanced searching are activated
             else
             {
                 if (asIsCheckBox == true && advCheckBox == false && qeCheckBox == false)
                 {
                     Console.WriteLine("Opcion 2");
-                    Query query = parser.Parse("\"" + querytext + "\"");      // Parse the query text by parser and create the query object
-                    finalQueryTxt = query.ToString();           // Assign processed query text to final query text variable
-                    TopDocs results = searcher.Search(query, 10000);                  // Search the query
+
+                    //Organizing the query to be used and Applying normal parser
+                    Query query = parser.Parse("\"" + querytext + "\"");        // Parse the query text by parser and create the query object
+                    finalQueryTxt = query.ToString();                           // Assign processed query text to final query text variable
+                    TopDocs results = searcher.Search(query, max_hits);                  // Search the query
                     System.Console.WriteLine("Number of results is " + results.TotalHits);
-                    if (results.TotalHits != 0)     // Check if there are found results
+
+                    //Retrieving the Results of the searching.
+                    if (results.TotalHits != 0)                                 // Check if there are found results
                     {
                         for (int i = 0; i < results.TotalHits; i++)    // Loop through the top 10 ranked documents
                         {
@@ -279,21 +295,26 @@ namespace LuceneAdvancedSearchApplication
                     if (asIsCheckBox == false && advCheckBox == true && qeCheckBox == false)
                     {
                         Console.WriteLine("Opcion 3");
-                        //Option 2 sending i some way author and title separate.
+                        //Organizing the query to be used by the MultiFieldQueryParser.Parse
+                        Tuple<string, string> result_preprocessing = Program.Query_Simple_Preprocessing_advanced_Search(querytext);
+                        string querytext_title = result_preprocessing.Item1;
+                        string querytext_author = result_preprocessing.Item2;
+
+                        //Option 2 sending the title and author separated and defining each field to be searched.
                         if (cond == "AND")
                         {
+                            //Defining the elements for the MultiFieldQueryParser.Parse
                             Occur[] flags = { Occur.MUST, Occur.MUST };
-                            Tuple<string, string> result_preprocessing = Program.Query_Simple_Preprocessing_advanced_Search(querytext);
-                            string querytext_title = result_preprocessing.Item1;
-                            if (querytext_title.Length == 0) querytext_title = "-Title";
-                            string querytext_author = result_preprocessing.Item2;
-                            if (querytext_author.Length == 0) querytext_author = "-Author";
                             String[] queries = new String[] { querytext_title, querytext_author };
                             String[] fields = { TEXT_FN_TITLE, TEXT_FN_AUTHOR };
+
+
                             Query query = MultiFieldQueryParser.Parse(VERSION, queries, fields, flags, analyzer);// Parse the query text by parser and create the query object
                             finalQueryTxt = query.ToString();           // Assign processed query text to final query text variable
-                            TopDocs results = searcher.Search(query, 10000);                  // Search the query
+                            TopDocs results = searcher.Search(query, max_hits);                  // Search the query
                             System.Console.WriteLine("Number of results is " + results.TotalHits);
+
+                            //Retrieving the Results of the searching.
                             if (results.TotalHits != 0)     // Check if there are found results
                             {
                                 for (int i = 0; i < results.TotalHits; i++)    // Loop through the top 10 ranked documents
@@ -310,18 +331,18 @@ namespace LuceneAdvancedSearchApplication
                         }
                         else
                         {
+                            //Defining the elements for the MultiFieldQueryParser.Parse
                             Occur[] flags = { Occur.SHOULD, Occur.SHOULD };
-                            Tuple<string, string> result_preprocessing = Program.Query_Simple_Preprocessing_advanced_Search(querytext);
-                            string querytext_title = result_preprocessing.Item1;
-                            if (querytext_title.Length == 0) querytext_title = "-Title";
-                            string querytext_author = result_preprocessing.Item2;
-                            if (querytext_author.Length == 0) querytext_author = "-Author";
                             String[] queries = new String[] { querytext_title, querytext_author };
                             String[] fields = { TEXT_FN_TITLE, TEXT_FN_AUTHOR };
+
+                            //Applying MultiFieldQueryParser.Parse
                             Query query = MultiFieldQueryParser.Parse(VERSION, queries, fields, flags, analyzer);// Parse the query text by parser and create the query object
                             finalQueryTxt = query.ToString();           // Assign processed query text to final query text variable
-                            TopDocs results = searcher.Search(query, 10000);                  // Search the query
+                            TopDocs results = searcher.Search(query, max_hits);                  // Search the query
                             System.Console.WriteLine("Number of results is " + results.TotalHits);
+
+                            //Retrieving the Results of the searching.
                             if (results.TotalHits != 0)     // Check if there are found results
                             {
                                 for (int i = 0; i < results.TotalHits; i++)    // Loop through the top 10 ranked documents
@@ -341,61 +362,62 @@ namespace LuceneAdvancedSearchApplication
                     {
                         if (asIsCheckBox == false && advCheckBox == true && qeCheckBox == true)
                         {
-                            Console.WriteLine("Opcion 4");                            
+                            Console.WriteLine("Opcion 4");
+                            //Organizing the query to be used by the MultiFieldQueryParser.Parse
+                            Tuple<string, string> result_preprocessing = Program.Query_Simple_Preprocessing_advanced_Search(querytext);
+                            string querytext_title = result_preprocessing.Item1;
+                            string querytext_author = result_preprocessing.Item2;
+
                             //Option 2 sending i some way author and title separate.
                             if (cond == "AND")
                             {
+                                //Defining the elements for the MultiFieldQueryParser.Parse
                                 Occur[] flags = { Occur.MUST, Occur.MUST };
-                                Tuple<string, string> result_preprocessing = Program.Query_Simple_Preprocessing_advanced_Search(querytext);
-                                string querytext_title = result_preprocessing.Item1;
-                                if (querytext_title.Length == 0) querytext_title = "-Title";;
-                                string querytext_author = result_preprocessing.Item2;
-                                if (querytext_author.Length == 0) querytext_author = "-Author";
                                 String[] queries = new String[] { querytext_title, querytext_author };
                                 String[] fields = { TEXT_FN_TITLE, TEXT_FN_AUTHOR };
+
+                                //Applying MultiFieldQueryParser.Parse
                                 Query query = MultiFieldQueryParser.Parse(VERSION, queries, fields, flags, analyzer);// Parse the query text by parser and create the query object
                                 finalQueryTxt = query.ToString();           // Assign processed query text to final query text variable
-                                TopDocs results = searcher.Search(query, 10000);                  // Search the query
+                                TopDocs results = searcher.Search(query, max_hits);                  // Search the query
                                 System.Console.WriteLine("Number of results is " + results.TotalHits);
+
+                                //Retrieving the Results of the searching.
                                 if (results.TotalHits != 0)     // Check if there are found results
                                 {
                                     for (int i = 0; i < results.TotalHits; i++)    // Loop through the top 10 ranked documents
                                     {
-
                                         ScoreDoc scoreDoc = results.ScoreDocs[i];   // Get the ranked document
                                         Lucene.Net.Documents.Document doc = searcher.Doc(scoreDoc.Doc);     // Get document contents
                                         string text = doc.Get(TEXT_FN).ToString();  // Get document contents by fields  
                                         string score = scoreDoc.Score.ToString();   // Get document score
                                         resultListDict.Add(new List<string> { text, score });     // Add contents and score into the created list of lists
-
                                     }
                                 }
                             }
                             else
                             {
+                                //Defining the elements for the MultiFieldQueryParser.Parse
                                 Occur[] flags = { Occur.SHOULD, Occur.SHOULD };
-                                Tuple<string, string> result_preprocessing = Program.Query_Simple_Preprocessing_advanced_Search(querytext);
-                                string querytext_title = result_preprocessing.Item1;
-                                if (querytext_title.Length == 0) querytext_title = "-Title";
-                                string querytext_author = result_preprocessing.Item2;
-                                if (querytext_author.Length == 0) querytext_author = "-Author";
                                 String[] queries = new String[] { querytext_title, querytext_author };
                                 String[] fields = { TEXT_FN_TITLE, TEXT_FN_AUTHOR };
+
+                                //Applying MultiFieldQueryParser.Parse
                                 Query query = MultiFieldQueryParser.Parse(VERSION, queries, fields, flags, analyzer);// Parse the query text by parser and create the query object
                                 finalQueryTxt = query.ToString();           // Assign processed query text to final query text variable
-                                TopDocs results = searcher.Search(query, 10000);                  // Search the query
+                                TopDocs results = searcher.Search(query, max_hits);                  // Search the query
                                 System.Console.WriteLine("Number of results is " + results.TotalHits);
+
+                                //Retrieving the Results of the searching.
                                 if (results.TotalHits != 0)     // Check if there are found results
                                 {
                                     for (int i = 0; i < results.TotalHits; i++)    // Loop through the top 10 ranked documents
                                     {
-
                                         ScoreDoc scoreDoc = results.ScoreDocs[i];   // Get the ranked document
                                         Lucene.Net.Documents.Document doc = searcher.Doc(scoreDoc.Doc);     // Get document contents
                                         string text = doc.Get(TEXT_FN).ToString();  // Get document contents by fields  
                                         string score = scoreDoc.Score.ToString();   // Get document score
                                         resultListDict.Add(new List<string> { text, score });     // Add contents and score into the created list of lists
-
                                     }
                                 }
                             }
@@ -403,27 +425,30 @@ namespace LuceneAdvancedSearchApplication
                         else
                         {
                             Console.WriteLine("Opcion 5");
+
+                            //Applying the normal parser
                             Query query = parser.Parse(querytext);      // Parse the query text by parser and create the query object
                             finalQueryTxt = query.ToString();           // Assign processed query text to final query text variable
-                            TopDocs results = searcher.Search(query, 10000);                  // Search the query
+                            TopDocs results = searcher.Search(query, max_hits);                  // Search the query
                             System.Console.WriteLine("Number of results is " + results.TotalHits);
+
+                            //Retrieving the Results of the searching.
                             if (results.TotalHits != 0)     // Check if there are found results
                             {
                                 for (int i = 0; i < results.TotalHits; i++)    // Loop through the top 10 ranked documents
                                 {
-
                                     ScoreDoc scoreDoc = results.ScoreDocs[i];   // Get the ranked document
                                     Lucene.Net.Documents.Document doc = searcher.Doc(scoreDoc.Doc);     // Get document contents
                                     string text = doc.Get(TEXT_FN).ToString();  // Get document contents by fields  
                                     string score = scoreDoc.Score.ToString();   // Get document score
                                     resultListDict.Add(new List<string> { text, score });     // Add contents and score into the created list of lists
-
                                 }
                             }
                         }
                     }
                 }
             }
+
             return resultListDict;
         }
 
@@ -433,7 +458,7 @@ namespace LuceneAdvancedSearchApplication
             List<string> docsIdsListBase = new List<string>();
             querytext = querytext.ToLower();
             Query query = parser.Parse(querytext);
-            TopDocs results = searcher2.Search(query, 2000);
+            TopDocs results = searcher2.Search(query, max_hits);
 
             if (results.TotalHits != 0)     // Check if there are found results
             {

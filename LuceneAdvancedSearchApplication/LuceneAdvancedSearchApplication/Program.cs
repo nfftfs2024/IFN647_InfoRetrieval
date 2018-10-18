@@ -287,6 +287,9 @@ namespace LuceneAdvancedSearchApplication
                     title_query = querytext.Substring(indexT + 6, ((querytext.Length - (indexT + 6)) > 0) ? (querytext.Length - (indexT + 6)) : 0);     // Get title string
                 }
             }
+            if (title_query.Length == 0) title_query = "-Title";
+            if (author_query.Length == 0) author_query = "-Author";
+
             var finalAdvQuery = Tuple.Create(title_query, author_query);
             return finalAdvQuery;
         }
