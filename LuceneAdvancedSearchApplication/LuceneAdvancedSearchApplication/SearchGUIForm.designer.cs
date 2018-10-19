@@ -54,6 +54,7 @@
             this.advancedSearching = new System.Windows.Forms.Button();
             this.advancedCheck = new System.Windows.Forms.CheckBox();
             this.NeedsTxtbox = new System.Windows.Forms.TextBox();
+            this.SCCheckbox = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // TextEnter
@@ -68,7 +69,7 @@
             // SearchBtn1
             // 
             this.SearchBtn1.Enabled = false;
-            this.SearchBtn1.Location = new System.Drawing.Point(1120, 138);
+            this.SearchBtn1.Location = new System.Drawing.Point(1092, 173);
             this.SearchBtn1.Name = "SearchBtn1";
             this.SearchBtn1.Size = new System.Drawing.Size(100, 80);
             this.SearchBtn1.TabIndex = 13;
@@ -79,7 +80,7 @@
             // 
             // NeedsButton
             // 
-            this.NeedsButton.Location = new System.Drawing.Point(163, 116);
+            this.NeedsButton.Location = new System.Drawing.Point(164, 144);
             this.NeedsButton.Name = "NeedsButton";
             this.NeedsButton.Size = new System.Drawing.Size(120, 30);
             this.NeedsButton.TabIndex = 14;
@@ -91,7 +92,7 @@
             // NeedsLabel
             // 
             this.NeedsLabel.AutoSize = true;
-            this.NeedsLabel.Location = new System.Drawing.Point(308, 125);
+            this.NeedsLabel.Location = new System.Drawing.Point(309, 153);
             this.NeedsLabel.Name = "NeedsLabel";
             this.NeedsLabel.Size = new System.Drawing.Size(0, 13);
             this.NeedsLabel.TabIndex = 15;
@@ -99,7 +100,7 @@
             // PreviousBtn
             // 
             this.PreviousBtn.Enabled = false;
-            this.PreviousBtn.Location = new System.Drawing.Point(497, 664);
+            this.PreviousBtn.Location = new System.Drawing.Point(468, 667);
             this.PreviousBtn.Name = "PreviousBtn";
             this.PreviousBtn.Size = new System.Drawing.Size(100, 30);
             this.PreviousBtn.TabIndex = 18;
@@ -110,7 +111,7 @@
             // NextBtn
             // 
             this.NextBtn.Enabled = false;
-            this.NextBtn.Location = new System.Drawing.Point(603, 664);
+            this.NextBtn.Location = new System.Drawing.Point(574, 667);
             this.NextBtn.Name = "NextBtn";
             this.NextBtn.Size = new System.Drawing.Size(100, 30);
             this.NextBtn.TabIndex = 19;
@@ -130,9 +131,9 @@
             // 
             // SearchBtn2
             // 
-            this.SearchBtn2.Location = new System.Drawing.Point(1120, 33);
+            this.SearchBtn2.Location = new System.Drawing.Point(1092, 35);
             this.SearchBtn2.Name = "SearchBtn2";
-            this.SearchBtn2.Size = new System.Drawing.Size(100, 48);
+            this.SearchBtn2.Size = new System.Drawing.Size(100, 76);
             this.SearchBtn2.TabIndex = 22;
             this.SearchBtn2.Text = "Search";
             this.SearchBtn2.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
@@ -142,7 +143,7 @@
             // SaveResult
             // 
             this.SaveResult.Enabled = false;
-            this.SaveResult.Location = new System.Drawing.Point(1120, 264);
+            this.SaveResult.Location = new System.Drawing.Point(1093, 298);
             this.SaveResult.Name = "SaveResult";
             this.SaveResult.Size = new System.Drawing.Size(100, 30);
             this.SaveResult.TabIndex = 24;
@@ -155,8 +156,8 @@
             this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.Enabled = false;
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(164, 167);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.comboBox1.Location = new System.Drawing.Point(164, 193);
+            this.comboBox1.Margin = new System.Windows.Forms.Padding(2);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(120, 21);
             this.comboBox1.TabIndex = 25;
@@ -166,7 +167,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(60, 167);
+            this.label3.Location = new System.Drawing.Point(60, 193);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(98, 16);
@@ -176,7 +177,7 @@
             // Pagelabel
             // 
             this.Pagelabel.AutoSize = true;
-            this.Pagelabel.Location = new System.Drawing.Point(940, 670);
+            this.Pagelabel.Location = new System.Drawing.Point(911, 673);
             this.Pagelabel.MaximumSize = new System.Drawing.Size(130, 20);
             this.Pagelabel.Name = "Pagelabel";
             this.Pagelabel.Size = new System.Drawing.Size(0, 13);
@@ -188,9 +189,9 @@
             this.resultListView.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.resultListView.FullRowSelect = true;
             this.resultListView.GridLines = true;
-            this.resultListView.Location = new System.Drawing.Point(14, 349);
+            this.resultListView.Location = new System.Drawing.Point(17, 381);
             this.resultListView.Name = "resultListView";
-            this.resultListView.Size = new System.Drawing.Size(1203, 309);
+            this.resultListView.Size = new System.Drawing.Size(1203, 259);
             this.resultListView.TabIndex = 10;
             this.resultListView.UseCompatibleStateImageBehavior = false;
             this.resultListView.View = System.Windows.Forms.View.Details;
@@ -199,7 +200,7 @@
             // FinalQTxtbox
             // 
             this.FinalQTxtbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FinalQTxtbox.Location = new System.Drawing.Point(310, 268);
+            this.FinalQTxtbox.Location = new System.Drawing.Point(311, 301);
             this.FinalQTxtbox.Multiline = true;
             this.FinalQTxtbox.Name = "FinalQTxtbox";
             this.FinalQTxtbox.ReadOnly = true;
@@ -210,7 +211,7 @@
             // 
             this.FinalQLab.AutoSize = true;
             this.FinalQLab.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FinalQLab.Location = new System.Drawing.Point(185, 278);
+            this.FinalQLab.Location = new System.Drawing.Point(186, 311);
             this.FinalQLab.Name = "FinalQLab";
             this.FinalQLab.Size = new System.Drawing.Size(98, 16);
             this.FinalQLab.TabIndex = 31;
@@ -221,7 +222,7 @@
             // 
             this.resultLab.AutoSize = true;
             this.resultLab.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.resultLab.Location = new System.Drawing.Point(39, 308);
+            this.resultLab.Location = new System.Drawing.Point(40, 341);
             this.resultLab.Name = "resultLab";
             this.resultLab.Size = new System.Drawing.Size(0, 16);
             this.resultLab.TabIndex = 32;
@@ -230,7 +231,7 @@
             // 
             this.resultNumLab.AutoSize = true;
             this.resultNumLab.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.resultNumLab.Location = new System.Drawing.Point(157, 308);
+            this.resultNumLab.Location = new System.Drawing.Point(158, 341);
             this.resultNumLab.Name = "resultNumLab";
             this.resultNumLab.Size = new System.Drawing.Size(0, 16);
             this.resultNumLab.TabIndex = 33;
@@ -238,8 +239,8 @@
             // asIsCheckBox
             // 
             this.asIsCheckBox.AutoSize = true;
-            this.asIsCheckBox.Location = new System.Drawing.Point(430, 76);
-            this.asIsCheckBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.asIsCheckBox.Location = new System.Drawing.Point(453, 81);
+            this.asIsCheckBox.Margin = new System.Windows.Forms.Padding(2);
             this.asIsCheckBox.Name = "asIsCheckBox";
             this.asIsCheckBox.Size = new System.Drawing.Size(86, 17);
             this.asIsCheckBox.TabIndex = 34;
@@ -250,7 +251,7 @@
             // ConvertBtn
             // 
             this.ConvertBtn.Enabled = false;
-            this.ConvertBtn.Location = new System.Drawing.Point(1120, 300);
+            this.ConvertBtn.Location = new System.Drawing.Point(1093, 334);
             this.ConvertBtn.Name = "ConvertBtn";
             this.ConvertBtn.Size = new System.Drawing.Size(100, 30);
             this.ConvertBtn.TabIndex = 35;
@@ -261,8 +262,8 @@
             // QECheckbox
             // 
             this.QECheckbox.AutoSize = true;
-            this.QECheckbox.Location = new System.Drawing.Point(543, 76);
-            this.QECheckbox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.QECheckbox.Location = new System.Drawing.Point(586, 81);
+            this.QECheckbox.Margin = new System.Windows.Forms.Padding(2);
             this.QECheckbox.Name = "QECheckbox";
             this.QECheckbox.Size = new System.Drawing.Size(106, 17);
             this.QECheckbox.TabIndex = 36;
@@ -272,8 +273,8 @@
             // 
             // advancedSearching
             // 
-            this.advancedSearching.Location = new System.Drawing.Point(163, 71);
-            this.advancedSearching.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.advancedSearching.Location = new System.Drawing.Point(163, 76);
+            this.advancedSearching.Margin = new System.Windows.Forms.Padding(2);
             this.advancedSearching.Name = "advancedSearching";
             this.advancedSearching.Size = new System.Drawing.Size(120, 30);
             this.advancedSearching.TabIndex = 37;
@@ -284,8 +285,8 @@
             // advancedCheck
             // 
             this.advancedCheck.AutoSize = true;
-            this.advancedCheck.Location = new System.Drawing.Point(311, 76);
-            this.advancedCheck.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.advancedCheck.Location = new System.Drawing.Point(311, 81);
+            this.advancedCheck.Margin = new System.Windows.Forms.Padding(2);
             this.advancedCheck.Name = "advancedCheck";
             this.advancedCheck.Size = new System.Drawing.Size(106, 17);
             this.advancedCheck.TabIndex = 38;
@@ -296,18 +297,30 @@
             // NeedsTxtbox
             // 
             this.NeedsTxtbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NeedsTxtbox.Location = new System.Drawing.Point(311, 167);
+            this.NeedsTxtbox.Location = new System.Drawing.Point(311, 193);
             this.NeedsTxtbox.Multiline = true;
             this.NeedsTxtbox.Name = "NeedsTxtbox";
             this.NeedsTxtbox.ReadOnly = true;
             this.NeedsTxtbox.Size = new System.Drawing.Size(668, 60);
             this.NeedsTxtbox.TabIndex = 39;
             // 
+            // SCCheckbox
+            // 
+            this.SCCheckbox.AutoSize = true;
+            this.SCCheckbox.Location = new System.Drawing.Point(736, 81);
+            this.SCCheckbox.Margin = new System.Windows.Forms.Padding(2);
+            this.SCCheckbox.Name = "SCCheckbox";
+            this.SCCheckbox.Size = new System.Drawing.Size(83, 17);
+            this.SCCheckbox.TabIndex = 40;
+            this.SCCheckbox.Text = "Spell Check";
+            this.SCCheckbox.UseVisualStyleBackColor = true;
+            // 
             // SearchGUIForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1240, 767);
+            this.Controls.Add(this.SCCheckbox);
             this.Controls.Add(this.NeedsTxtbox);
             this.Controls.Add(this.advancedCheck);
             this.Controls.Add(this.advancedSearching);
@@ -368,6 +381,7 @@
         public System.Windows.Forms.Button SearchBtn1;
         public System.Windows.Forms.Button SearchBtn2;
         public System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.CheckBox SCCheckbox;
     }
 }
 

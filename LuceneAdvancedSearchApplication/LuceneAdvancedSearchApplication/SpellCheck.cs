@@ -44,8 +44,11 @@ namespace LuceneAdvancedSearchApplication
                 afterQuery += t + " ";
             }
             //Console.WriteLine(afterQuery.TrimEnd());
-            var message = string.Join(Environment.NewLine, correction);
-            MessageBox.Show("Words have been corrected by the Spell Checker\n\n" + message, "Word Correction", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            if (correction.Count > 0)
+            {
+                var message = string.Join(Environment.NewLine, correction);
+                MessageBox.Show("Words have been corrected by the Spell Checker\n\n" + message, "Word Correction", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
             return afterQuery.TrimEnd();
         }
     }

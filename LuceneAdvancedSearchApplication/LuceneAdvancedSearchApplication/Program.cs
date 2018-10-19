@@ -65,7 +65,7 @@ namespace LuceneAdvancedSearchApplication
             
         }
 
-        public static List<Dictionary<string, string>> Search_Click(string querytext, bool asIsCheckBox, bool QECheckbox, bool advCheckBox, string cond, out string finalQueryTxt)
+        public static List<Dictionary<string, string>> Search_Click(string querytext, bool asIsCheckBox, bool QECheckbox, bool advCheckBox, bool SCCheckbox, string cond, out string finalQueryTxt)
         {
             List<List<string>> tempList = new List<List<string>>();     // Create a list of lists for receiving output from SearchText method
             List<Dictionary<string, string>> resultListDict = new List<Dictionary<string, string>>();   // Create a list of dictionaries for outputting to GUI
@@ -73,8 +73,10 @@ namespace LuceneAdvancedSearchApplication
 
             myLuceneApp.CreateSearcher();           // Create searcher
 
-            querytext = SpellCheck.Query_SpellCheck(querytext);
-
+            if (SCCheckbox)
+            {
+                querytext = SpellCheck.Query_SpellCheck(querytext);
+            }
             if (QECheckbox)
             {
                 if(advCheckBox)
