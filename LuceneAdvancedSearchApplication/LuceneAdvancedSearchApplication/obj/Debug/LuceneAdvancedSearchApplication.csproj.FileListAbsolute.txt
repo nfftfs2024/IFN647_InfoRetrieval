@@ -208,3 +208,15 @@ D:\IR\ifn647-project\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplica
 D:\IR\ifn647-project\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\bin\Debug\Microsoft.Rest.ClientRuntime.xml
 D:\IR\ifn647-project\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\bin\Debug\Microsoft.Rest.ClientRuntime.Azure.xml
 D:\IR\ifn647-project\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\bin\Debug\Newtonsoft.Json.xml
+C:\Users\n9802614\Documents\GitHub\ifn647-project\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\bin\Debug\Microsoft.Azure.CognitiveServices.Language.SpellCheck.dll
+C:\Users\n9802614\Documents\GitHub\ifn647-project\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\bin\Debug\Microsoft.Rest.ClientRuntime.Azure.dll
+C:\Users\n9802614\Documents\GitHub\ifn647-project\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\bin\Debug\Microsoft.Rest.ClientRuntime.dll
+C:\Users\n9802614\Documents\GitHub\ifn647-project\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\bin\Debug\Newtonsoft.Json.dll
+C:\Users\n9802614\Documents\GitHub\ifn647-project\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\bin\Debug\System.Net.Http.dll
+C:\Users\n9802614\Documents\GitHub\ifn647-project\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\bin\Debug\System.Security.Cryptography.Algorithms.dll
+C:\Users\n9802614\Documents\GitHub\ifn647-project\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\bin\Debug\System.Security.Cryptography.Encoding.dll
+C:\Users\n9802614\Documents\GitHub\ifn647-project\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\bin\Debug\System.Security.Cryptography.Primitives.dll
+C:\Users\n9802614\Documents\GitHub\ifn647-project\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\bin\Debug\System.Security.Cryptography.X509Certificates.dll
+C:\Users\n9802614\Documents\GitHub\ifn647-project\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\bin\Debug\Microsoft.Rest.ClientRuntime.xml
+C:\Users\n9802614\Documents\GitHub\ifn647-project\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\bin\Debug\Microsoft.Rest.ClientRuntime.Azure.xml
+C:\Users\n9802614\Documents\GitHub\ifn647-project\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\bin\Debug\Newtonsoft.Json.xml

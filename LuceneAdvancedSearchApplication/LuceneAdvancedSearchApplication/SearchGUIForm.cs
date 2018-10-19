@@ -58,18 +58,20 @@ namespace LuceneAdvancedSearchApplication
 
         private void NeedsButton_Click(object sender, EventArgs e)      // Select file path after click on Select Cran Needs
         {
-            myNeedsDialog.ShowDialog();
-            NeedsLabel.Text = myNeedsDialog.FileName;
-            needsPath = myNeedsDialog.FileName;
-            comboBox1.Items.Clear();
-            cranNeeds = Program.ReadCranNeeds(needsPath);   // Put the cran_information_need into a dictionary
-            foreach(string key in cranNeeds.Keys)
+            if (myNeedsDialog.ShowDialog() == DialogResult.OK)
             {
-                comboBox1.Items.Add(key);
+                NeedsLabel.Text = myNeedsDialog.FileName;
+                needsPath = myNeedsDialog.FileName;
+                comboBox1.Items.Clear();
+                cranNeeds = Program.ReadCranNeeds(needsPath);   // Put the cran_information_need into a dictionary
+                foreach (string key in cranNeeds.Keys)
+                {
+                    comboBox1.Items.Add(key);
+                }
+
+                SearchBtn1.Enabled = true;      // Enable search button 1
+                comboBox1.Enabled = true;
             }
-            
-            SearchBtn1.Enabled = true;      // Enable search button 1
-            comboBox1.Enabled = true;
         }
 
         private void SaveResult_Click(object sender, EventArgs e)   // Select directory path after click on Set Index Directory
@@ -78,13 +80,14 @@ namespace LuceneAdvancedSearchApplication
             SaveFileDialog saveDialog = new SaveFileDialog();
            
             SaveDialog.Filter = "Text File | *.txt";
-            SaveDialog.ShowDialog();
-            savePath = SaveDialog.FileName;
-            StreamWriter writer = new StreamWriter(savePath,append:true);
-            Program.SaveClick(resultListDict, writer,queryCount);
-            
-            ConvertBtn.Enabled=true;
+            if (SaveDialog.ShowDialog() == DialogResult.OK)
+            {
+                savePath = SaveDialog.FileName;
+                StreamWriter writer = new StreamWriter(savePath, append: true);
+                Program.SaveClick(resultListDict, writer, queryCount);
 
+                ConvertBtn.Enabled = true;
+            }
 
         }
 
@@ -264,6 +267,11 @@ namespace LuceneAdvancedSearchApplication
                 QECheckbox.Enabled = false;
             else if (!asIsCheckBox.Checked)
                 QECheckbox.Enabled = true;
+
+        }
+
+        private void FinalQLab_Click(object sender, EventArgs e)
+        {
 
         }
 
