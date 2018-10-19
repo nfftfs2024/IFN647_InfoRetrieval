@@ -190,12 +190,6 @@
       <DependentUpon>BuildIndexGUIForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Converter.cs" />
-    <Compile Include="ExpandForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ExpandForm.Designer.cs">
-      <DependentUpon>ExpandForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="POSTagger.cs" />
     <Compile Include="SearchGUIForm.cs">
       <SubType>Form</SubType>
@@ -212,7 +206,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="ClassDiagram1.cd" />
+    <None Include="ClassDiagram.cd" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -221,9 +215,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="BuildIndexGUIForm.resx">
       <DependentUpon>BuildIndexGUIForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ExpandForm.resx">
-      <DependentUpon>ExpandForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SearchGUIForm.resx">
       <DependentUpon>SearchGUIForm.cs</DependentUpon>
