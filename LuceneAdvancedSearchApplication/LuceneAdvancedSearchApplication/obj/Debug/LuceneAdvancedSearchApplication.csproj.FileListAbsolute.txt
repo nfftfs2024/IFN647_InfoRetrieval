@@ -80,7 +80,6 @@ D:\IR\ifn647-project\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplica
 D:\IR\ifn647-project\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\obj\Debug\LuceneAdvancedSearchApplication.csproj.CopyComplete
 D:\IR\ifn647-project\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\obj\Debug\LuceneAdvancedSearchApplication.exe
 D:\IR\ifn647-project\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\obj\Debug\LuceneAdvancedSearchApplication.pdb
-D:\IR\ifn647-project\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\obj\Debug\LuceneAdvancedSearchApplication.ExpandForm.resources
 C:\Users\corve\OneDrive\Documentos\GitHub\ifn647-project\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\bin\Debug\LuceneAdvancedSearchApplication.exe.config
 C:\Users\corve\OneDrive\Documentos\GitHub\ifn647-project\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\bin\Debug\LuceneAdvancedSearchApplication.exe
 C:\Users\corve\OneDrive\Documentos\GitHub\ifn647-project\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\bin\Debug\LuceneAdvancedSearchApplication.pdb
