@@ -553,9 +553,10 @@ namespace LuceneAdvancedSearchApplication
                 {
                     //string tempt = myStemmer.stemTerm(t);
                     string tempt = GetWeightedExpandedQuery(t);     // Call query expansion on tokens
-                    ProcessedText += tempt + " ";       // Add spaces between words
+                    ProcessedText += "( " + tempt + ") ";       // Add spaces between words
                 }
             }
+            Console.WriteLine(ProcessedText);
             return ProcessedText.TrimEnd();     // Trim tailing spaces
         }
 

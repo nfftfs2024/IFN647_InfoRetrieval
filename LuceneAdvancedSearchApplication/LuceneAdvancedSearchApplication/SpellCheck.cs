@@ -17,7 +17,7 @@ namespace LuceneAdvancedSearchApplication
             char[] splits = new char[] { ' ', '\t', '\'', '"', '-', '(', ')', ',', '’', '\n', ':', ';', '?', '.', '!' };    // Set token delimiters
             string[] tokens = querytext.ToLower().Split(splits, StringSplitOptions.RemoveEmptyEntries);     // Tokenisation
 
-            var result = client.SpellCheckerWithHttpMessagesAsync(text: querytext, mode: "proof", acceptLanguage: "en-US").Result;
+            var result = client.SpellCheckerWithHttpMessagesAsync(text: querytext.Replace("Title:","").Replace("Author:",""), mode: "proof", acceptLanguage: "en-US").Result;
             //Console.WriteLine("Correction for Query:" + querytext);
 
             // SpellCheck Results

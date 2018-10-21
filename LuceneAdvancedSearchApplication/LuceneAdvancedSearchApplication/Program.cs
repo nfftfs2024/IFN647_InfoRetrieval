@@ -16,6 +16,7 @@ namespace LuceneAdvancedSearchApplication
         public static LuceneSearcheEngine myLuceneApp;      // Set publicly callable LuceneSearchEngine object
         public static PorterStemmer myStemmer;              // Set publicly callable PorterStemmer object
         public static WordNetEngine wordNet;                // Set WordNet object
+        public static bool QECheck = false;
         //public static Dictionary<string, string[]> thesaurus;   // Set thesaurus dictionary
 
         /// <summary>
@@ -28,21 +29,7 @@ namespace LuceneAdvancedSearchApplication
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new BuildIndexGUIForm());
 
-            var directory = System.IO.Directory.GetCurrentDirectory() + "\\wordnet";        // Set WordNet directory
             wordNet = new WordNetEngine();  // Initiate WordNet object
-
-            // Load WordNet data and index
-            wordNet.AddDataSource(new StreamReader(Path.Combine(directory, "data.adj")), PartOfSpeech.Adjective);
-            wordNet.AddDataSource(new StreamReader(Path.Combine(directory, "data.adv")), PartOfSpeech.Adverb);
-            wordNet.AddDataSource(new StreamReader(Path.Combine(directory, "data.noun")), PartOfSpeech.Noun);
-            wordNet.AddDataSource(new StreamReader(Path.Combine(directory, "data.verb")), PartOfSpeech.Verb);
-            wordNet.AddIndexSource(new StreamReader(Path.Combine(directory, "index.adj")), PartOfSpeech.Adjective);
-            wordNet.AddIndexSource(new StreamReader(Path.Combine(directory, "index.adv")), PartOfSpeech.Adverb);
-            wordNet.AddIndexSource(new StreamReader(Path.Combine(directory, "index.noun")), PartOfSpeech.Noun);
-            wordNet.AddIndexSource(new StreamReader(Path.Combine(directory, "index.verb")), PartOfSpeech.Verb);
-            Console.WriteLine("Loading WordNet database...");
-            wordNet.Load();
-            Console.WriteLine("Load completed.");
 
             Application.Run(new SearchGUIForm());
         }
@@ -79,7 +66,25 @@ namespace LuceneAdvancedSearchApplication
             }
             if (QECheckbox)
             {
-                if(advCheckBox)
+                if (!QECheck)
+                {
+                    var directory = System.IO.Directory.GetCurrentDirectory() + "\\wordnet";        // Set WordNet directory
+                                                                                                    // Load WordNet data and index
+                    wordNet.AddDataSource(new StreamReader(Path.Combine(directory, "data.adj")), PartOfSpeech.Adjective);
+                    wordNet.AddDataSource(new StreamReader(Path.Combine(directory, "data.adv")), PartOfSpeech.Adverb);
+                    wordNet.AddDataSource(new StreamReader(Path.Combine(directory, "data.noun")), PartOfSpeech.Noun);
+                    wordNet.AddDataSource(new StreamReader(Path.Combine(directory, "data.verb")), PartOfSpeech.Verb);
+                    wordNet.AddIndexSource(new StreamReader(Path.Combine(directory, "index.adj")), PartOfSpeech.Adjective);
+                    wordNet.AddIndexSource(new StreamReader(Path.Combine(directory, "index.adv")), PartOfSpeech.Adverb);
+                    wordNet.AddIndexSource(new StreamReader(Path.Combine(directory, "index.noun")), PartOfSpeech.Noun);
+                    wordNet.AddIndexSource(new StreamReader(Path.Combine(directory, "index.verb")), PartOfSpeech.Verb);
+                    Console.WriteLine("Loading WordNet database...");
+                    wordNet.Load();
+                    Console.WriteLine("Load completed.");
+                    QECheck = true;
+                }
+
+                if (advCheckBox)
                 {
                     int indexT = querytext.IndexOf("Title:");  // Get again the index just in case it has been changed
                     int indexA = querytext.IndexOf("Author:");  // Get again the index just in case it has been changed
