@@ -90,7 +90,6 @@ C:\Users\corve\OneDrive\Documentos\GitHub\ifn647-project\LuceneAdvancedSearchApp
 C:\Users\corve\OneDrive\Documentos\GitHub\ifn647-project\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\bin\Debug\Lucene.Net.Contrib.Analyzers.pdb
 C:\Users\corve\OneDrive\Documentos\GitHub\ifn647-project\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\bin\Debug\Lucene.Net.Contrib.Snowball.pdb
 C:\Users\corve\OneDrive\Documentos\GitHub\ifn647-project\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\obj\Debug\LuceneAdvancedSearchApplication.csprojResolveAssemblyReference.cache
-C:\Users\corve\OneDrive\Documentos\GitHub\ifn647-project\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\obj\Debug\LuceneAdvancedSearchApplication.ExpandForm.resources
 C:\Users\corve\OneDrive\Documentos\GitHub\ifn647-project\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\obj\Debug\LuceneAdvancedSearchApplication.csproj.GenerateResource.Cache
 C:\Users\corve\OneDrive\Documentos\GitHub\ifn647-project\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\obj\Debug\LuceneAdvancedSearchApplication.csproj.CoreCompileInputs.cache
 C:\Users\corve\OneDrive\Documentos\GitHub\ifn647-project\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\obj\Debug\LuceneAdvancedSearchApplication.exe
@@ -278,3 +277,15 @@ C:\Users\jchou\Desktop\IR project\ifn647-project\LuceneAdvancedSearchApplication
 C:\Users\jchou\Desktop\IR project\ifn647-project\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\obj\Debug\LuceneAdvancedSearchApplication.csproj.CopyComplete
 C:\Users\jchou\Desktop\IR project\ifn647-project\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\obj\Debug\LuceneAdvancedSearchApplication.exe
 C:\Users\jchou\Desktop\IR project\ifn647-project\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\obj\Debug\LuceneAdvancedSearchApplication.pdb
+C:\Users\corve\OneDrive\Documentos\GitHub\ifn647-project\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\bin\Debug\Microsoft.Azure.CognitiveServices.Language.SpellCheck.dll
+C:\Users\corve\OneDrive\Documentos\GitHub\ifn647-project\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\bin\Debug\Microsoft.Rest.ClientRuntime.Azure.dll
+C:\Users\corve\OneDrive\Documentos\GitHub\ifn647-project\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\bin\Debug\Microsoft.Rest.ClientRuntime.dll
+C:\Users\corve\OneDrive\Documentos\GitHub\ifn647-project\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\bin\Debug\Newtonsoft.Json.dll
+C:\Users\corve\OneDrive\Documentos\GitHub\ifn647-project\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\bin\Debug\System.Net.Http.dll
+C:\Users\corve\OneDrive\Documentos\GitHub\ifn647-project\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\bin\Debug\System.Security.Cryptography.Algorithms.dll
+C:\Users\corve\OneDrive\Documentos\GitHub\ifn647-project\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\bin\Debug\System.Security.Cryptography.Encoding.dll
+C:\Users\corve\OneDrive\Documentos\GitHub\ifn647-project\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\bin\Debug\System.Security.Cryptography.Primitives.dll
+C:\Users\corve\OneDrive\Documentos\GitHub\ifn647-project\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\bin\Debug\System.Security.Cryptography.X509Certificates.dll
+C:\Users\corve\OneDrive\Documentos\GitHub\ifn647-project\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\bin\Debug\Microsoft.Rest.ClientRuntime.xml
+C:\Users\corve\OneDrive\Documentos\GitHub\ifn647-project\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\bin\Debug\Microsoft.Rest.ClientRuntime.Azure.xml
+C:\Users\corve\OneDrive\Documentos\GitHub\ifn647-project\LuceneAdvancedSearchApplication\LuceneAdvancedSearchApplication\bin\Debug\Newtonsoft.Json.xml

@@ -274,7 +274,7 @@ namespace LuceneAdvancedSearchApplication
             return dic;
         }
 
-        public static Tuple<string, string> Query_Simple_Preprocessing_advanced_Search(string querytext)
+        public static Tuple<string, string> Query_Simple_Preprocessing_advanced_Search(string querytext, bool asis)
         {
             string title_query = "";
             string author_query = "";
@@ -296,9 +296,27 @@ namespace LuceneAdvancedSearchApplication
                     title_query = querytext.Substring(indexT + 6, ((querytext.Length - (indexT + 6)) > 0) ? (querytext.Length - (indexT + 6)) : 0);     // Get title string
                 }
             }
-            if (title_query.Length == 0) title_query = "-Title";
-            if (author_query.Length == 0) author_query = "-Author";
+            if (title_query.Length == 0) title_query = "Title:";
+            if (author_query.Length == 0) author_query = null;
 
+            //Adding boosting 
+            if(asis)
+            {
+
+            }
+            else
+            {
+                title_query = title_query.Replace(" ", "^2 ");
+                title_query = title_query.Replace("^5^2", "^5 ");
+                title_query = title_query.Replace(")^2", ") ");
+                title_query = title_query.Replace("(^2", "( ");
+                title_query = title_query.Replace("+^2", "+");
+                title_query = title_query.Replace("-^2", "-");
+                title_query = title_query.Replace("and^2", "and ");
+                title_query = title_query.Replace("or^2", "or ");
+                Console.WriteLine("This is the TITLE = {0}", title_query);
+            }
+            
             var finalAdvQuery = Tuple.Create(title_query, author_query);
             return finalAdvQuery;
         }

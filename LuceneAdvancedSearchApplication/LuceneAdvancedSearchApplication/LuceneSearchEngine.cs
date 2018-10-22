@@ -37,6 +37,7 @@ namespace LuceneAdvancedSearchApplication
         const string TEXT_FN_TITLE = "Title";
         const string TEXT_FN_AUTHOR = "Author";
         const int max_hits = 2000;
+        const float b1 = 2.0f, b2 = 1.0f; 
 
         public LuceneSearcheEngine()
         {
@@ -150,8 +151,6 @@ namespace LuceneAdvancedSearchApplication
                         Lucene.Net.Documents.Field titleField = new Lucene.Net.Documents.Field(TEXT_FN_TITLE, title, Field.Store.YES, Field.Index.ANALYZED, Field.TermVector.WITH_POSITIONS_OFFSETS);//Indexing field title
                         Lucene.Net.Documents.Field authorField = new Lucene.Net.Documents.Field(TEXT_FN_AUTHOR, author, Field.Store.YES, Field.Index.ANALYZED, Field.TermVector.WITH_POSITIONS_OFFSETS);//Indexing field author
                         doc.Add(new Lucene.Net.Documents.Field(TEXT_FN, text, Field.Store.YES, Field.Index.ANALYZED, Field.TermVector.WITH_POSITIONS_OFFSETS));//indexing field text
-                        authorField.Boost = 2;
-                        titleField.Boost = 5;
                         doc.Add(titleField);
                         doc.Add(authorField);
                         writer.AddDocument(doc);    // Add document
@@ -204,7 +203,7 @@ namespace LuceneAdvancedSearchApplication
             {
                 Console.WriteLine("Opcion 1");
                 //Organizing the query to be used by the MultiFieldQueryParser.Parse
-                Tuple<string, string> result_preprocessing = Program.Query_Simple_Preprocessing_advanced_Search(querytext);
+                Tuple<string, string> result_preprocessing = Program.Query_Simple_Preprocessing_advanced_Search(querytext, asIsCheckBox);
                 string querytext_title = result_preprocessing.Item1;
                 string querytext_author = result_preprocessing.Item2;
                 querytext_title = "\"" + querytext_title + "\""; //Adding the as-is structure                  
@@ -296,7 +295,7 @@ namespace LuceneAdvancedSearchApplication
                     {
                         Console.WriteLine("Opcion 3");
                         //Organizing the query to be used by the MultiFieldQueryParser.Parse
-                        Tuple<string, string> result_preprocessing = Program.Query_Simple_Preprocessing_advanced_Search(querytext);
+                        Tuple<string, string> result_preprocessing = Program.Query_Simple_Preprocessing_advanced_Search(querytext, asIsCheckBox);
                         string querytext_title = result_preprocessing.Item1;
                         string querytext_author = result_preprocessing.Item2;
 
@@ -364,7 +363,7 @@ namespace LuceneAdvancedSearchApplication
                         {
                             Console.WriteLine("Opcion 4");
                             //Organizing the query to be used by the MultiFieldQueryParser.Parse
-                            Tuple<string, string> result_preprocessing = Program.Query_Simple_Preprocessing_advanced_Search(querytext);
+                            Tuple<string, string> result_preprocessing = Program.Query_Simple_Preprocessing_advanced_Search(querytext, asIsCheckBox);
                             string querytext_title = result_preprocessing.Item1;
                             string querytext_author = result_preprocessing.Item2;
 
