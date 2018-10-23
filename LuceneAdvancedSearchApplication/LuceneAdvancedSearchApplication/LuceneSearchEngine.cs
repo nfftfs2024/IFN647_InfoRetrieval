@@ -30,6 +30,9 @@ namespace LuceneAdvancedSearchApplication
         FileInfo fileStopWords = new FileInfo(Path.GetDirectoryName(System.Windows.Forms.Application.ExecutablePath) + "\\stopwords.txt"); //Defining path to save the defined stopwords 
         string[] stopWords = { "a", "an", "and", "are", "as", "at", "be", "but", "by", "for", "if", "in", "into", "is",
             "it", "no", "not", "of", "on", "or", "such", "that", "the", "their", "then", "there", "these", "they", "this", "to", "was", "will", "with", "what", "how", "can", "must", "when"};
+
+        CharArraySet cStopWords = new CharArraySet(0001, true);
+        
         //Lucene.Net.Search.Similarity newSimilarity;   // for similarity measure
 
         const Lucene.Net.Util.Version VERSION = Lucene.Net.Util.Version.LUCENE_30;  // Lucene version 
@@ -44,7 +47,7 @@ namespace LuceneAdvancedSearchApplication
             luceneIndexDirectory = null;
             writer = null;
             //analyzer = new Lucene.Net.Analysis.SimpleAnalyzer();     // Using simple analyzer for baseline system 
-            analyzer = new Lucene.Net.Analysis.Standard.StandardAnalyzer(VERSION, fileStopWords); //Using Standard Analyzer to apply steming and removing of stop words.
+            analyzer = new Lucene.Net.Analysis.Snowball.SnowballAnalyzer(Lucene.Net.Util.Version.LUCENE_30, "English"); //Using Standard Analyzer to apply steming and removing of stop words.
             parser = new QueryParser(Lucene.Net.Util.Version.LUCENE_30, TEXT_FN, analyzer);
             newSimilarity = new NewSimilarity();
             

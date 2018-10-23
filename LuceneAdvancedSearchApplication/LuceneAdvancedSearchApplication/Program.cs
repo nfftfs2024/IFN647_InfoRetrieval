@@ -221,7 +221,7 @@ namespace LuceneAdvancedSearchApplication
             {
                
 
-                writer.WriteLine(queryCount.ToString()+ "\tQ1"+ "\t" + resultListDict[i]["id"] + "\t" + (i + 1)+  "\t"+resultListDict[i]["score"]+"    \tBaselineSystem");
+                writer.WriteLine("00"+queryCount.ToString()+ "\tQ0"+ "\t" + resultListDict[i]["id"] + "\t" + (i + 1)+  "\t"+resultListDict[i]["score"]+ "    \tn10080236_n10030581_n9802614_teamNo1");
                 
 
             }
