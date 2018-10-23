@@ -10,9 +10,21 @@ using java.util;
 using java.io;
 
 namespace LuceneAdvancedSearchApplication
+
+
 {
+
+
     class POSTagger
     {
+        static string jarRoot = @"..\..\..\..\data\paket-files\nlp.stanford.edu\stanford-postagger-full-2016-10-31";
+        static string modelsDirectory = jarRoot + @"\models";
+
+        // Loading POS Tagger
+        MaxentTagger tagger = new MaxentTagger(modelsDirectory + @"\wsj-0-18-bidirectional-nodistsim.tagger");
+
+        // Text for tagging
+        
         public void FindPOS(string querytext)
         {
             MaxentTagger tagger = new MaxentTagger();
