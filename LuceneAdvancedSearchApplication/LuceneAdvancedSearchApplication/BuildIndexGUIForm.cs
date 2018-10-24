@@ -16,11 +16,11 @@ namespace LuceneAdvancedSearchApplication
         //string indexPath = @"C:\Users\n9802614\Desktop\New folder";
         //string sourcePath = @"H:\647\crandocs";
 
-        string indexPath = @"D:\IR\ifn647-project\LuceneAdvancedSearchApplication\index";
-        string sourcePath = @"D:\IR\ifn647-project\LuceneAdvancedSearchApplication\crandocs";
+        //string indexPath = @"D:\IR\ifn647-project\LuceneAdvancedSearchApplication\index";
+        //string sourcePath = @"D:\IR\ifn647-project\LuceneAdvancedSearchApplication\crandocs";
 
-        //string indexPath;
-        //string sourcePath;
+        string indexPath;
+        string sourcePath;
         public BuildIndexGUIForm()
         {
             InitializeComponent();

@@ -140,8 +140,8 @@ namespace LuceneAdvancedSearchApplication
                     resultListDict = tempListDict;  // Assign temporary list to global variable as current 10 results
                     queryCount++;       // Count number of query search 
                     ViewData(limit, resultListDict);    // View data on listview
-
-                    NextBtn.Enabled = true;                 // Enable next button
+                    if(tempListDict.Count > 10)
+                        NextBtn.Enabled = true;                 // Enable next button
                     PreviousBtn.Enabled = false;            // Disable previous button
                     SaveResult.Enabled = true;              // Enable save result button
                     FinalQTxtbox.Text = finalQueryTxt;      // Display final query text

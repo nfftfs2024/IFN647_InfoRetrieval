@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{551B0201-70A7-4448-9F48-20B9B966A466}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>LuceneAdvancedSearchApplication</RootNamespace>
     <AssemblyName>LuceneAdvancedSearchApplication</AssemblyName>
